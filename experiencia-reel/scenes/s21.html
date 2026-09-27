@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s21 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s21 .ttl { position: absolute; left: 0; top: 380px; width: 1080px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 116px; line-height: 116px; color: #111b21; text-transform: uppercase; opacity: 0; }
+        #s21 .frame { position: absolute; left: 200px; top: 540px; width: 680px; height: 400px; border-radius: 40px; border: 8px dashed #3f5b67; background: rgba(251, 250, 247, 0.55); }
+        #s21 .slotc { position: absolute; top: 90px; width: 170px; height: 210px; border-radius: 22px; background: rgba(63, 91, 103, 0.12); }
+        #s21 .sl1 { left: 40px; } #s21 .sl2 { left: 247px; } #s21 .sl3 { left: 454px; }
+        #s21 .cd { position: absolute; left: 0; top: 0; width: 170px; height: 210px; border-radius: 22px; background: #fbfaf7; color: #005c4b; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px rgba(17, 27, 33, 0.2); }
+        #s21 .ck { position: absolute; width: 58px; height: 58px; border-radius: 50%; background: #00a884; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 5px #fbfaf7; opacity: 0; }
+        #s21 .mag { position: absolute; left: 470px; top: 960px; width: 140px; height: 140px; }
+        #s21 .you { position: absolute; left: 0; top: 1110px; width: 1080px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 32px; line-height: 40px; letter-spacing: 4px; color: #005c4b; opacity: 0; }
+      </style>
+      <div id="s21" data-composition-id="s21" data-width="1080" data-height="1920">
+        <div class="ttl">essa realidade</div>
+        <div class="frame"><div class="slotc sl1"></div><div class="slotc sl2"></div><div class="slotc sl3"></div></div>
+        <svg class="mag" viewBox="0 0 140 140" fill="none" aria-hidden="true">
+          <path d="M30 20 V70 a40 40 0 0 0 80 0 V20" stroke="#e5484d" stroke-width="30"/>
+          <path d="M30 20 V38 M110 20 V38" stroke="#54656f" stroke-width="30"/>
+        </svg>
+        <div class="cd c1" data-layout-allow-overflow></div>
+        <div class="cd c2" data-layout-allow-overflow></div>
+        <div class="cd c3" data-layout-allow-overflow></div>
+        <div class="ck k1"></div><div class="ck k2"></div><div class="ck k3"></div>
+        <div class="you">ÚTEIS PRA VOCÊ</div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s21");
+          var R = document.getElementById("s21");
+          var q = function (s) { return R.querySelector(s); };
+          q(".c1").innerHTML = VT.icon("star", { size: 90, stroke: 2 });
+          q(".c2").innerHTML = VT.icon("heart", { size: 90, stroke: 2 });
+          q(".c3").innerHTML = VT.icon("bulb", { size: 90, stroke: 2 });
+          ["k1", "k2", "k3"].forEach(function (k) { q("." + k).innerHTML = VT.icon("check", { size: 36, stroke: 3.4 }); });
+          // destinos: slots dentro da moldura (frame 200,540 + borda 8)
+          var dest = [[248, 638], [455, 638], [662, 638]];
+          var from = [[-220, 420], [455, 1500], [1130, 380]];
+          var hover = [[70, 560], [455, 1000], [860, 470]];
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".frame"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 0.05);
+          tl.fromTo(q(".mag"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(2)" }, 0.1);
+          tl.fromTo(q(".mag"), { scale: 1 }, { scale: 1.08, duration: 0.2, yoyo: true, repeat: 9, ease: "sine.inOut", immediateRender: false }, T("trazer"));
+          ["c1", "c2", "c3"].forEach(function (c, i) {
+            tl.fromTo(q("." + c), { x: from[i][0], y: from[i][1], rotation: (i - 1) * 30, opacity: 1 },
+              { x: hover[i][0], y: hover[i][1], rotation: (i - 1) * 12, duration: 1.1, ease: "power2.out" }, T("trazer") - 0.2 + i * 0.12);
+            tl.to(q("." + c), { x: dest[i][0], y: dest[i][1], rotation: 0, duration: 0.45, ease: "back.out(2)" }, T("úteis") - 0.35 + i * 0.1);
+            tl.fromTo(q(".k" + (i + 1)), { opacity: 0, scale: 0.3, x: dest[i][0] + 132, y: dest[i][1] - 22 }, { opacity: 1, scale: 1, x: dest[i][0] + 132, y: dest[i][1] - 22, duration: 0.3, ease: "back.out(3)" }, T("úteis") + 0.15 + i * 0.1);
+          });
+          tl.fromTo(q(".ttl"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T("realidade") - 0.15);
+          tl.to(q(".frame"), { borderColor: "#00a884", backgroundColor: "rgba(217, 253, 211, 0.6)", duration: 0.35 }, T("você") - 0.2);
+          tl.fromTo(q(".you"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3 }, T("você") - 0.1);
+          tl.to(q(".mag"), { opacity: 0, y: 40, duration: 0.3 }, T("você") - 0.3);
+          window.__timelines["s21"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

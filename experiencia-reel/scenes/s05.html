@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s05 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s05 .tb { position: absolute; left: 330px; top: 430px; width: 420px; height: 330px; }
+        #s05 .inside { position: absolute; left: 40px; top: 98px; width: 340px; height: 60px; border-radius: 10px; background: #1b2a30; }
+        #s05 .body { position: absolute; left: 30px; top: 120px; width: 360px; height: 200px; border-radius: 22px; background: #3f5b67; box-shadow: 0 18px 36px rgba(17, 27, 33, 0.22); }
+        #s05 .body .lbl { position: absolute; left: 0; top: 74px; width: 360px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; line-height: 44px; letter-spacing: 2px; color: #fbfaf7; }
+        #s05 .latch { position: absolute; left: 160px; top: 10px; width: 40px; height: 26px; border-radius: 6px; background: #c9a55c; }
+        #s05 .lid { position: absolute; left: 20px; top: 76px; width: 380px; height: 54px; border-radius: 16px; background: #54656f; }
+        #s05 .handle { position: absolute; left: 130px; top: -40px; width: 120px; height: 50px; border: 12px solid #3b4a54; border-bottom: none; border-radius: 30px 30px 0 0; }
+        #s05 .dust { position: absolute; width: 26px; height: 26px; border-radius: 50%; background: #a99f90; opacity: 0; }
+        #s05 .zero { position: absolute; left: 0; top: 270px; width: 1080px; text-align: center; font-weight: 900; font-size: 44px; line-height: 54px; color: #54656f; opacity: 0; }
+        #s05 .card { position: absolute; top: 700px; width: 250px; height: 330px; border-radius: 28px; background: #fbfaf7; box-shadow: 0 16px 34px rgba(17, 27, 33, 0.18); opacity: 0; }
+        #s05 .card .ic { position: absolute; left: 65px; top: 40px; width: 120px; height: 120px; color: #005c4b; }
+        #s05 .card .tx { position: absolute; left: 10px; top: 190px; width: 230px; text-align: center; font-family: "League Gothic", sans-serif; line-height: 58px; color: #111b21; text-transform: uppercase; }
+        #s05 .c1 { left: 60px; } #s05 .c2 { left: 295px; } #s05 .c3 { left: 535px; } #s05 .c4 { left: 770px; }
+        #s05 .c4 { background: #005c4b; }
+        #s05 .c4 .ic { color: #d9fdd3; }
+        #s05 .c4 .tx { color: #fbfaf7; }
+      </style>
+      <div id="s05" data-composition-id="s05" data-width="1080" data-height="1920">
+        <div class="tb">
+          <div class="inside"></div>
+          <div class="dust u1" data-layout-ignore></div>
+          <div class="dust u2" data-layout-ignore></div>
+          <div class="dust u3" data-layout-ignore></div>
+          <div class="body"><div class="lbl">EXPERIÊNCIA</div><div class="latch"></div></div>
+          <div class="lid"><div class="handle"></div></div>
+        </div>
+        <div class="card c1"><div class="ic"></div><div class="tx" style="font-size: 66px">Pessoal</div></div>
+        <div class="card c2"><div class="ic"></div><div class="tx" style="font-size: 54px">Profissional</div></div>
+        <div class="card c3"><div class="ic"></div><div class="tx" style="font-size: 62px">Trabalho</div></div>
+        <div class="card c4"><div class="ic"></div><div class="tx" style="font-size: 56px">Desafio novo</div></div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s05");
+          var R = document.getElementById("s05");
+          var q = function (s) { return R.querySelector(s); };
+          var svg = function (inner) { return '<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + inner + "</svg>"; };
+          q(".c1 .ic").innerHTML = VT.icon("heart", { size: 120, stroke: 1.8 });
+          q(".c2 .ic").innerHTML = svg('<rect x="6" y="15" width="36" height="25" rx="4"/><path d="M17 15v-4a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4M6 26h36M22 26v4h4v-4"/>');
+          q(".c3 .ic").innerHTML = svg('<rect x="10" y="10" width="28" height="19" rx="2.5"/><path d="M5 36h38l-3-7H8z"/>');
+          q(".c4 .ic").innerHTML = svg('<path d="M4 42 18 20l8 11 5-6 13 17z"/><path d="M26 31V8M26 9h11l-3 4 3 4H26"/>');
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".tb"), { opacity: 0, y: 80, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 0.05);
+          tl.fromTo(q(".tb"), { rotation: 0 }, { rotation: 3, duration: 0.07, yoyo: true, repeat: 5, immediateRender: false }, T("não") - 0.05);
+          tl.fromTo(q(".lid"), { rotation: 0, y: 0, transformOrigin: "0% 100%" }, { rotation: -16, y: -70, duration: 0.5, ease: "back.out(1.8)" }, T("tem") - 0.1);
+          ["u1", "u2", "u3"].forEach(function (c, i) {
+            tl.fromTo(q("." + c), { x: 150 + i * 50, y: 110, opacity: 0.9, scale: 0.6 },
+              { x: 130 + i * 70, y: -60 - i * 20, opacity: 0, scale: 1.4, duration: 1.2, ease: "power1.out", immediateRender: false }, T("experiência") + i * 0.15);
+          });
+          tl.fromTo(q(".body .lbl"), { opacity: 1 }, { opacity: 0.35, duration: 0.2, yoyo: true, repeat: 3, immediateRender: false }, T("experiência"));
+          tl.to(q(".tb"), { y: -150, scale: 0.62, duration: 0.6, ease: "power3.inOut" }, T("momento") + 0.2);
+          // cartas distribuídas em leque
+          var deal = [["c1", "pessoal", -12, 34], ["c2", "profissional", -4, 6], ["c3", "trabalho", 4, 6], ["c4", "desafio", 12, 34]];
+          deal.forEach(function (d, i) {
+            tl.fromTo(q("." + d[0]), { opacity: 0, y: 760, rotation: d[2] * 3, scale: 0.8 },
+              { opacity: 1, y: d[3], rotation: d[2], scale: 1, duration: 0.5, ease: "power3.out" }, T(d[1]) - 0.3);
+            tl.fromTo(q("." + d[0] + " .ic"), { scale: 0.3 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, T(d[1]) - 0.05);
+          });
+          tl.to(q(".c4"), { y: -10, scale: 1.08, duration: 0.3, ease: "back.out(2)" }, T("novo") - 0.05);
+          tl.to([q(".c1"), q(".c2"), q(".c3")], { opacity: 0.55, duration: 0.3 }, T("novo") - 0.05);
+          window.__timelines["s05"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

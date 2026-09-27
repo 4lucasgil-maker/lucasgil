@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s08 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #fbfaf7; }
+        #s08 .dark { position: absolute; inset: 0; background: #1b2a30; }
+        #s08 .clockw { position: absolute; left: 290px; top: 250px; width: 500px; height: 500px; }
+        #s08 .face { position: absolute; inset: 0; border-radius: 50%; border: 12px solid #3f5b67; }
+        #s08 .hh { position: absolute; left: 244px; top: 110px; width: 12px; height: 150px; border-radius: 6px; background: #c9a55c; }
+        #s08 .mm { position: absolute; left: 245px; top: 50px; width: 10px; height: 210px; border-radius: 5px; background: #fbfaf7; }
+        #s08 .hub { position: absolute; left: 232px; top: 232px; width: 36px; height: 36px; border-radius: 50%; background: #fbfaf7; }
+        #s08 .q { position: absolute; left: 0; top: 330px; width: 1080px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 340px; line-height: 340px; color: #fbfaf7; text-transform: uppercase; }
+        #s08 .col { position: absolute; top: 560px; width: 440px; height: 560px; border-radius: 40px; background: rgba(63, 91, 103, 0.45); border: 6px solid rgba(63, 91, 103, 0.9); }
+        #s08 .ca { left: 70px; }
+        #s08 .cd { left: 570px; }
+        #s08 .ch { position: absolute; left: 0; top: 30px; width: 428px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 130px; line-height: 130px; text-transform: uppercase; }
+        #s08 .ca .ch { color: #e5484d; }
+        #s08 .cd .ch { color: #d9fdd3; }
+        #s08 .slot { position: absolute; left: 124px; top: 210px; width: 180px; height: 180px; border-radius: 50%; border: 8px dashed #e5484d; }
+        #s08 .badge { position: absolute; left: 124px; top: 210px; width: 180px; height: 180px; border-radius: 50%; background: #c9a55c; display: flex; align-items: center; justify-content: center; }
+        #s08 .badge .in { width: 130px; height: 130px; border-radius: 50%; background: #fbfaf7; color: #005c4b; display: flex; align-items: center; justify-content: center; }
+        #s08 .tag { position: absolute; left: 20px; top: 430px; width: 388px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 40px; letter-spacing: 1px; color: #fbfaf7; }
+        #s08 .tagA { color: #e5484d; }
+        #s08 .back { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+        #s08 .bp { stroke-dasharray: 560; stroke-dashoffset: 560; }
+        #s08 .bh { opacity: 0; }
+      </style>
+      <div id="s08" data-composition-id="s08" data-width="1080" data-height="1920">
+        <div class="dark" data-layout-ignore></div>
+        <div class="clockw"><div class="face"></div><div class="hh"></div><div class="mm"></div><div class="hub"></div></div>
+        <div class="q">quando?</div>
+        <div class="col ca"><div class="ch">antes</div><div class="slot"></div><div class="tag tagA">PRECISAVA</div></div>
+        <div class="col cd"><div class="ch">depois</div><div class="badge"><div class="in"></div></div><div class="tag tagD">NÃO PRECISA MAIS</div></div>
+        <svg class="back" viewBox="0 0 1080 1920" fill="none" data-layout-ignore>
+          <path class="bp" d="M780 760 C 700 650, 420 650, 340 760" stroke="#c9a55c" stroke-width="8" stroke-linecap="round"/>
+          <path class="bh" d="M372 748 L 338 764 L 330 728" stroke="#c9a55c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <script>
+        (function () {
+          var W = [["Só",0.216,0.616],["que",0.616,0.936],["quando?",1.176,2.136],["Logo",2.936,3.336],["depois",3.336,3.656],["que",3.656,3.736],["a",3.896,3.976],["gente",3.976,4.216],["passou",4.216,4.616],["por",4.616,4.936],["isso.",4.936,5.576],["E",6.296,6.616],["agora",6.776,7.016],["a",7.176,7.256],["gente",7.256,7.496],["não",7.496,7.576],["precisa",7.576,7.896],["mais",7.896,8.136],["dela.",8.136,8.229],["A",8.696,8.776],["gente",8.776,9.016],["precisava",9.016,9.656],["imediatamente",9.736,10.456],["antes.",10.456,10.659]];
+          var T = VT.finder(W, "s08");
+          var R = document.getElementById("s08");
+          var q = function (s) { return R.querySelector(s); };
+          q(".badge .in").innerHTML = VT.icon("star", { size: 96, fill: true, stroke: 1 });
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".dark"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
+          tl.fromTo(q(".clockw"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 0.1);
+          tl.fromTo(q(".mm"), { rotation: 0, transformOrigin: "50% 100%" }, { rotation: 1440, duration: 2.6, ease: "power2.out" }, T("quando") - 0.3);
+          tl.fromTo(q(".hh"), { rotation: 0, transformOrigin: "50% 100%" }, { rotation: 240, duration: 2.6, ease: "power2.out" }, T("quando") - 0.3);
+          tl.fromTo(q(".q"), { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.in" }, T("quando") - 0.3);
+          tl.fromTo(q(".q"), { x: 0 }, { x: 14, duration: 0.05, yoyo: true, repeat: 5, immediateRender: false }, T("quando") + 0.02);
+          // sobe e abre espaço para ANTES / DEPOIS
+          tl.to(q(".q"), { y: -170, scale: 0.5, duration: 0.55, ease: "power3.inOut" }, T("Logo") - 0.3);
+          tl.to(q(".clockw"), { y: -190, scale: 0.46, opacity: 0.6, duration: 0.55, ease: "power3.inOut" }, T("Logo") - 0.3);
+          tl.fromTo(q(".ca"), { opacity: 0, x: -120 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, T("Logo") - 0.1);
+          tl.fromTo(q(".cd"), { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, T("depois") - 0.1);
+          tl.to(q(".cd"), { borderColor: "#00a884", duration: 0.3 }, T("depois"));
+          tl.fromTo(q(".slot"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3 }, T("depois") + 0.2);
+          tl.fromTo(q(".badge"), { opacity: 0, y: -420, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "bounce.out" }, T("passou") - 0.1);
+          // não precisa mais
+          tl.fromTo(q(".tagD"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3 }, T("não") - 0.05);
+          tl.to(q(".badge"), { opacity: 0.35, scale: 0.9, duration: 0.5, ease: "power2.out" }, T("mais"));
+          tl.to(q(".cd"), { borderColor: "rgba(63, 91, 103, 0.9)", duration: 0.4 }, T("mais"));
+          // precisava imediatamente antes
+          tl.fromTo(q(".tagA"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3 }, T("precisava") - 0.05);
+          tl.to(q(".ca"), { borderColor: "#e5484d", duration: 0.3 }, T("precisava"));
+          tl.fromTo(q(".slot"), { scale: 1 }, { scale: 1.15, duration: 0.25, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, T("precisava"));
+          tl.fromTo(q(".bp"), { strokeDasharray: 560, strokeDashoffset: 560 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, T("imediatamente") - 0.1);
+          tl.fromTo(q(".bh"), { opacity: 0 }, { opacity: 1, duration: 0.1 }, T("imediatamente") + 0.45);
+          tl.fromTo(q(".ca .ch"), { scale: 1 }, { scale: 1.3, duration: 0.3, ease: "back.out(3)", immediateRender: false }, T("antes") - 0.05);
+          tl.to(q(".cd"), { opacity: 0.45, duration: 0.3 }, T("antes"));
+          window.__timelines["s08"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

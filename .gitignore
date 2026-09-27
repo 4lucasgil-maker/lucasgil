@@ -1,0 +1,7 @@
+node_modules/
+**/renders/*-master.mp4
+**/renders/.hf-segments/
+**/snapshots/
+**/.hyperframes/
+**/assets/audio/*.flac
+**/renders/work-*/

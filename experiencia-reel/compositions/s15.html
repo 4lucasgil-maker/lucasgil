@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s15 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s15 .ax { position: absolute; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 38px; letter-spacing: 2px; color: #3b4a54; }
+        #s15 .axc { top: 400px; width: 390px; text-align: center; }
+        #s15 .c0 { left: 250px; } #s15 .c1 { left: 660px; }
+        #s15 .axr { left: 60px; width: 170px; text-align: right; }
+        #s15 .r0 { top: 520px; } #s15 .r1 { top: 790px; }
+        #s15 .cell { position: absolute; width: 390px; height: 250px; border-radius: 30px; background: #fbfaf7; box-shadow: 0 10px 24px rgba(17, 27, 33, 0.1); border: 6px solid #e2dace; }
+        #s15 .k00 { left: 250px; top: 460px; } #s15 .k01 { left: 660px; top: 460px; }
+        #s15 .k10 { left: 250px; top: 730px; } #s15 .k11 { left: 660px; top: 730px; }
+        #s15 .mk { position: absolute; left: 115px; top: 45px; width: 160px; height: 160px; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; }
+        #s15 .no { background: #fbfaf7; border: 8px dashed #e5484d; color: #e5484d; }
+        #s15 .yes { background: #00a884; color: #fbfaf7; }
+        #s15 .ntag { position: absolute; left: 0; top: 196px; width: 378px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 34px; letter-spacing: 3px; color: #c7373c; opacity: 0; }
+        #s15 .arr { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+      </style>
+      <div id="s15" data-composition-id="s15" data-width="1080" data-height="1920">
+        <div class="ax axc c0">ESTE LUGAR</div>
+        <div class="ax axc c1">OUTRO LUGAR</div>
+        <div class="ax axr r0">ESTE PROBLEMA</div>
+        <div class="ax axr r1">OUTRO PROBLEMA</div>
+        <div class="cell k00"><div class="mk no m00"></div><div class="ntag">NUNCA</div></div>
+        <div class="cell k01"><div class="mk yes m01"></div></div>
+        <div class="cell k10"><div class="mk yes m10"></div></div>
+        <div class="cell k11"></div>
+        <svg class="arr" viewBox="0 0 1080 1920" fill="none" data-layout-ignore>
+          <path class="a1" d="M445 760 L445 718" stroke="#005c4b" stroke-width="10" stroke-linecap="round"/>
+          <path class="a1h" d="M425 736 L445 714 L465 736" stroke="#005c4b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="a2" d="M690 585 L646 585" stroke="#005c4b" stroke-width="10" stroke-linecap="round"/>
+          <path class="a2h" d="M666 565 L644 585 L666 605" stroke="#005c4b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <script>
+        (function () {
+          var W = [["Ah,",0.19,0.51],["legal,",0.51,0.91],["eu",0.91,1.07],["nunca",1.07,1.31],["lidei",1.31,1.87],["com",1.87,2.11],["esse",2.11,2.43],["problema",2.43,2.75],["nesse",3.31,3.71],["tipo",3.71,4.03],["de",4.03,4.27],["lugar.",4.27,4.524],["Mas",4.736,4.976],["eu",4.976,5.216],["lidei",5.216,5.856],["com",5.856,6.176],["esse",6.176,6.416],["outro",6.416,6.736],["problema",6.736,7.056],["nesse",7.136,7.376],["lugar.",7.376,7.696],["Ou",7.696,7.856],["então",7.856,8.016],["eu",8.016,8.096],["lidei",8.176,8.496],["com",8.496,8.656],["esse",8.656,8.816],["mesmo",8.816,8.976],["problema",8.976,9.296],["nesse",9.296,9.616],["outro",9.616,9.856],["lugar.",9.856,9.923]];
+          var T = VT.finder(W, "s15");
+          var R = document.getElementById("s15");
+          var q = function (s) { return R.querySelector(s); };
+          q(".m00").innerHTML = '<svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+          q(".m01").innerHTML = VT.icon("check", { size: 96, stroke: 3.2 });
+          q(".m10").innerHTML = VT.icon("check", { size: 96, stroke: 3.2 });
+          var tl = gsap.timeline({ paused: true });
+          ["k00", "k01", "k10", "k11"].forEach(function (c, i) {
+            tl.fromTo(q("." + c), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 0.1 + i * 0.08);
+          });
+          tl.fromTo([q(".c0"), q(".c1")], { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.1 }, 0.3);
+          tl.fromTo([q(".r0"), q(".r1")], { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, stagger: 0.1 }, 0.4);
+          var hi = function (el, t) { tl.to(el, { color: "#005c4b", scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out" }, t); };
+          // nunca lidei com esse problema nesse tipo de lugar
+          hi(q(".r0"), T("problema") - 0.05);
+          hi(q(".c0"), T("lugar") - 0.05);
+          tl.fromTo(q(".m00"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, T("nunca") - 0.05);
+          tl.to(q(".k00"), { borderColor: "#e5484d", duration: 0.3 }, T("nunca"));
+          tl.fromTo(q(".ntag"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("lidei") + 0.1);
+          // outro problema, este lugar
+          hi(q(".r1"), T("problema", 2) - 0.05);
+          hi(q(".c0"), T("lugar", 2) - 0.05);
+          tl.fromTo(q(".m10"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, T("lugar", 2) - 0.1);
+          tl.to(q(".k10"), { borderColor: "#00a884", duration: 0.3 }, T("lugar", 2));
+          // mesmo problema, outro lugar
+          hi(q(".r0"), T("problema", 3) - 0.05);
+          hi(q(".c1"), T("lugar", 3) - 0.3);
+          tl.fromTo(q(".m01"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, T("lugar", 3) - 0.1);
+          tl.to(q(".k01"), { borderColor: "#00a884", duration: 0.3 }, T("lugar", 3));
+          // inferência: setas das experiências para o vazio
+          var a = T("lugar", 3) + 0.25;
+          tl.fromTo(q(".a1"), { strokeDasharray: 60, strokeDashoffset: 60 }, { strokeDashoffset: 0, duration: 0.25, ease: "power2.out" }, a);
+          tl.fromTo(q(".a1h"), { opacity: 0 }, { opacity: 1, duration: 0.1 }, a + 0.2);
+          tl.fromTo(q(".a2"), { strokeDasharray: 60, strokeDashoffset: 60 }, { strokeDashoffset: 0, duration: 0.25, ease: "power2.out" }, a + 0.1);
+          tl.fromTo(q(".a2h"), { opacity: 0 }, { opacity: 1, duration: 0.1 }, a + 0.3);
+          window.__timelines["s15"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

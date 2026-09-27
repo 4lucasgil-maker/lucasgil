@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #bg { position: absolute; inset: 0; background: #efeae2; overflow: hidden; }
+        #bg .doodles {
+          position: absolute; left: 0; top: 0; width: 2520px; height: 2640px;
+          background-image: url(assets/vendor/doodles.svg); background-size: 360px 360px; opacity: 0.85;
+        }
+        #bg .glow { position: absolute; border-radius: 50%; }
+        #bg .g1 { width: 1200px; height: 1200px; left: -420px; top: 120px; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 65%); }
+        #bg .g2 { width: 1100px; height: 1100px; left: 380px; top: 900px; background: radial-gradient(circle, rgba(217, 253, 211, 0.55) 0%, rgba(217, 253, 211, 0) 65%); }
+        #bg .g3 { width: 900px; height: 900px; left: 300px; top: -300px; background: radial-gradient(circle, rgba(201, 165, 92, 0.12) 0%, rgba(201, 165, 92, 0) 65%); }
+      </style>
+      <div id="bg" data-composition-id="bg" data-width="1080" data-height="1920">
+        <div class="doodles" data-layout-ignore></div>
+        <div class="glow g1" data-layout-ignore></div>
+        <div class="glow g2" data-layout-ignore></div>
+        <div class="glow g3" data-layout-ignore></div>
+      </div>
+      <script>
+        (function () {
+          var D = /*@DUR@*/ 10;
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo("#bg .doodles", { x: 0, y: 0 }, { x: -1440, y: -720, duration: D, ease: "none" }, 0);
+          tl.fromTo("#bg .g1", { x: 0, y: 0 }, { x: 320, y: 520, duration: D, ease: "sine.inOut" }, 0);
+          tl.fromTo("#bg .g2", { x: 0, y: 0 }, { x: -420, y: -380, duration: D, ease: "sine.inOut" }, 0);
+          tl.fromTo("#bg .g3", { x: 0, y: 0, scale: 1 }, { x: -200, y: 260, scale: 1.3, duration: D, ease: "sine.inOut" }, 0);
+          window.__timelines["bg"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

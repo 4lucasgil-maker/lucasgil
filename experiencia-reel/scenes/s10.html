@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s10 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s10 .you { position: absolute; left: 70px; top: 330px; display: flex; align-items: center; gap: 20px; }
+        #s10 .yav { width: 96px; height: 96px; border-radius: 50%; background: #3f5b67; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 6px #fbfaf7; }
+        #s10 .yl { font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; line-height: 44px; letter-spacing: 2px; color: #3b4a54; }
+        #s10 .search { position: absolute; left: 70px; top: 470px; width: 940px; height: 124px; border-radius: 62px; background: #fbfaf7; box-shadow: 0 12px 30px rgba(17, 27, 33, 0.14); }
+        #s10 .mag { position: absolute; left: 36px; top: 30px; width: 64px; height: 64px; color: #3b4a54; }
+        #s10 .typed { position: absolute; left: 124px; top: 30px; height: 64px; font-weight: 700; font-size: 52px; line-height: 64px; color: #111b21; white-space: nowrap; }
+        #s10 .ch { display: inline-block; }
+        #s10 .caret { position: absolute; left: 124px; top: 34px; width: 5px; height: 56px; background: #00a884; }
+        #s10 .panel { position: absolute; left: 70px; top: 630px; width: 940px; height: 470px; border-radius: 36px; background: #fbfaf7; box-shadow: 0 14px 34px rgba(17, 27, 33, 0.14); }
+        #s10 .empty { position: absolute; left: 0; top: 0; width: 940px; height: 470px; }
+        #s10 .fold { position: absolute; left: 395px; top: 70px; width: 150px; height: 150px; color: #a99f90; }
+        #s10 .et { position: absolute; left: 0; top: 250px; width: 940px; text-align: center; font-weight: 700; font-size: 44px; line-height: 54px; color: #54656f; }
+        #s10 .spin { position: absolute; left: 430px; top: 330px; width: 80px; height: 80px; border-radius: 50%; border: 9px solid #e2dace; border-top-color: #00a884; opacity: 0; }
+        #s10 .job { position: absolute; left: 0; top: 0; width: 940px; height: 470px; opacity: 0; }
+        #s10 .jt { position: absolute; left: 50px; top: 30px; font-family: "League Gothic", sans-serif; font-size: 120px; line-height: 120px; color: #111b21; text-transform: uppercase; }
+        #s10 .sk { position: absolute; left: 50px; height: 26px; border-radius: 13px; background: #e2dace; }
+        #s10 .req { position: absolute; left: 50px; top: 330px; width: 840px; height: 90px; border-radius: 22px; background: #efeae2; }
+        #s10 .box { position: absolute; left: 22px; top: 18px; width: 54px; height: 54px; border-radius: 12px; border: 6px solid #3f5b67; }
+        #s10 .rt { position: absolute; left: 100px; top: 16px; font-weight: 900; font-size: 46px; line-height: 58px; color: #111b21; }
+        #s10 .strike { position: absolute; left: 90px; top: 42px; width: 420px; height: 10px; border-radius: 5px; background: #e5484d; }
+        #s10 .x { position: absolute; left: 24px; top: 20px; width: 50px; height: 50px; color: #e5484d; opacity: 0; }
+      </style>
+      <div id="s10" data-composition-id="s10" data-width="1080" data-height="1920">
+        <div class="you"><div class="yav"></div><div class="yl">VOCÊ</div></div>
+        <div class="search"><div class="mag"></div><div class="typed"></div><div class="caret" data-layout-ignore></div></div>
+        <div class="panel">
+          <div class="empty"><div class="fold"></div><div class="et">nada encontrado</div><div class="spin" data-layout-ignore></div></div>
+          <div class="job">
+            <div class="jt">vaga</div>
+            <div class="sk s1" style="top: 180px; width: 560px"></div>
+            <div class="sk s2" style="top: 230px; width: 700px"></div>
+            <div class="sk s3" style="top: 280px; width: 420px"></div>
+            <div class="req"><div class="box"></div><div class="x"></div><div class="rt">Experiência</div><div class="strike" data-layout-ignore></div></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s10");
+          var R = document.getElementById("s10");
+          var q = function (s) { return R.querySelector(s); };
+          q(".yav").innerHTML = '<svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4.2"/><path d="M3.8 21a8.2 8.2 0 0 1 16.4 0z"/></svg>';
+          q(".mag").innerHTML = VT.icon("search", { size: 64, stroke: 2.4 });
+          q(".fold").innerHTML = '<svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9.5a2 2 0 0 0-2-2h-7L10 5H5a2 2 0 0 0-2 2.5z"/></svg>';
+          q(".x").innerHTML = '<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>';
+          var word = "experiência";
+          var typed = q(".typed");
+          for (var i = 0; i < word.length; i++) {
+            var c = document.createElement("span");
+            c.className = "ch";
+            c.textContent = word[i];
+            typed.appendChild(c);
+          }
+          var chs = typed.querySelectorAll(".ch");
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".you"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, T("você") - 0.15);
+          tl.fromTo(q(".yav"), { scale: 1 }, { scale: 1.12, duration: 0.2, yoyo: true, repeat: 3, immediateRender: false }, T("Cris"));
+          tl.fromTo(q(".search"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, T("Então") - 0.1);
+          tl.fromTo(q(".panel"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, T("Então") + 0.1);
+          tl.fromTo(q(".caret"), { opacity: 1 }, { opacity: 0, duration: 0.25, yoyo: true, repeat: 7, ease: "steps(1)", immediateRender: false }, T("Então") + 0.3);
+          // digita "experiência"
+          var t0 = T("então", 2), t1 = T("experiência");
+          chs.forEach(function (c, i) {
+            tl.fromTo(c, { opacity: 0 }, { opacity: 1, duration: 0.01 }, t0 + ((t1 - t0 + 0.3) * i) / chs.length);
+          });
+          tl.fromTo(q(".caret"), { x: 0 }, { x: 290, duration: t1 - t0 + 0.3, ease: "none", immediateRender: false }, t0);
+          tl.fromTo(q(".et"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, T("experiência") + 0.15);
+          tl.fromTo(q(".fold"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3 }, T("experiência") + 0.1);
+          // procurando…
+          tl.fromTo(q(".mag"), { rotation: 0, x: 0 }, { rotation: -20, x: 10, duration: 0.14, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, T("procurando") - 0.2);
+          tl.fromTo(q(".spin"), { opacity: 0, rotation: 0 }, { opacity: 1, rotation: 540, duration: 1.2, ease: "none" }, T("procurando") - 0.3);
+          tl.to(q(".spin"), { opacity: 0, duration: 0.2 }, T("quando") + 0.1);
+          // contratando → vaga
+          tl.to(q(".empty"), { opacity: 0, y: -30, duration: 0.3 }, T("contratando") - 0.4);
+          tl.fromTo(q(".job"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, T("contratando") - 0.25);
+          ["s1", "s2", "s3"].forEach(function (c, i) {
+            tl.fromTo(q("." + c), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.3, ease: "power2.out" }, T("contratando") + i * 0.07);
+          });
+          tl.fromTo(q(".strike"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.35, ease: "power3.in" }, T("adianta", 2) - 0.05);
+          tl.fromTo(q(".x"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("adianta", 2) + 0.25);
+          tl.to(q(".rt"), { opacity: 0.45, duration: 0.3 }, T("buscar"));
+          tl.fromTo(q(".req"), { x: 0 }, { x: 8, duration: 0.06, yoyo: true, repeat: 5, immediateRender: false }, T("experiência", 3));
+          window.__timelines["s10"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

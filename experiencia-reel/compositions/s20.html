@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s20 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s20 .hg { position: absolute; left: 440px; top: 330px; width: 200px; height: 300px; }
+        #s20 .hg svg { position: absolute; left: 0; top: 0; }
+        #s20 .sandT, #s20 .sandB { position: absolute; left: 40px; width: 120px; background: #c9a55c; }
+        #s20 .sandT { top: 44px; height: 100px; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+        #s20 .sandB { top: 156px; height: 100px; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+        #s20 .stream { position: absolute; left: 97px; top: 140px; width: 6px; height: 110px; background: #c9a55c; border-radius: 3px; opacity: 0; }
+        #s20 .stp { position: absolute; left: 0; top: 700px; width: 1080px; height: 440px; }
+        #s20 .line { position: absolute; left: 250px; top: 72px; width: 580px; height: 12px; border-radius: 6px; background: #e2dace; }
+        #s20 .fillL { position: absolute; left: 250px; top: 72px; width: 580px; height: 12px; border-radius: 6px; background: #00a884; }
+        #s20 .ci { position: absolute; top: 0; width: 156px; height: 156px; border-radius: 50%; background: #fbfaf7; border: 8px solid #3f5b67; text-align: center; font-family: "League Gothic", sans-serif; font-size: 110px; line-height: 140px; color: #3f5b67; box-sizing: border-box; }
+        #s20 .ci1 { left: 172px; } #s20 .ci2 { left: 752px; }
+        #s20 .lbl { position: absolute; top: 180px; width: 440px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 80px; line-height: 84px; color: #111b21; text-transform: uppercase; opacity: 0; }
+        #s20 .lb1 { left: 30px; } #s20 .lb2 { left: 610px; }
+        #s20 .dep { position: absolute; left: 130px; top: 290px; width: 240px; text-align: center; padding: 6px 0; border-radius: 14px; background: #005c4b; color: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 36px; letter-spacing: 2px; opacity: 0; }
+        #s20 .mc { position: absolute; top: 300px; width: 110px; height: 130px; border-radius: 18px; background: #fbfaf7; color: #005c4b; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.16); opacity: 0; }
+        #s20 .m1 { left: 645px; } #s20 .m2 { left: 775px; } #s20 .m3 { left: 905px; }
+      </style>
+      <div id="s20" data-composition-id="s20" data-width="1080" data-height="1920">
+        <div class="hg">
+          <div class="sandT"></div><div class="sandB"></div><div class="stream"></div>
+          <svg width="200" height="300" viewBox="0 0 200 300" fill="none" aria-hidden="true">
+            <rect x="10" y="6" width="180" height="26" rx="10" fill="#3f5b67"/><rect x="10" y="268" width="180" height="26" rx="10" fill="#3f5b67"/>
+            <path d="M34 34 C 34 110, 94 120, 94 150 C 94 180, 34 190, 34 266 M166 34 C 166 110, 106 120, 106 150 C 106 180, 166 190, 166 266" stroke="#3f5b67" stroke-width="8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="stp">
+          <div class="line"></div><div class="fillL"></div>
+          <div class="ci ci1">1</div><div class="ci ci2">2</div>
+          <div class="lbl lb1">reconhecer</div><div class="lbl lb2">identificar</div>
+          <div class="dep">SÓ DEPOIS</div>
+          <div class="mc m1"></div><div class="mc m2"></div><div class="mc m3"></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["E",0.462,0.782],["se",0.943,1.182],["você",1.182,1.502],["se",1.503,1.742],["der",1.742,1.902],["esse",2.063,2.383],["tempinho",2.383,2.889],["de",3.342,3.582],["processar",3.582,4.302],["isso",4.302,4.543],["em",4.543,4.702],["duas",4.702,4.862],["etapas:",4.862,5.342],["a",5.342,5.422],["primeira",5.422,5.583],["é,",5.663,5.743],["de",5.902,5.982],["novo,",5.982,6.223],["reconhecendo",6.223,6.702],["que",6.702,6.783],["você",6.783,6.862],["nunca",6.862,7.022],["vai",7.022,7.182],["ter",7.182,7.342],["exatamente",7.342,7.742],["a",7.742,7.902],["experiência",7.902,8.223],["que",8.223,8.383],["você",8.383,8.622],["precisa.",8.622,8.74],["Só",9.582,9.902],["depois",9.902,10.223],["que",10.223,10.383],["você",10.383,10.543],["precisar",10.543,10.942],["dela.",10.943,11.099],["Mas",11.742,11.982],["depois,",11.982,12.383],["dando",12.543,12.862],["um",12.862,12.943],["passo",12.943,13.182],["atrás",13.182,13.422],["e",13.422,13.582],["tentando",13.582,13.902],["identificar",13.902,14.383],["que",14.383,14.543],["outras",14.702,15.263],["você",15.263,15.503],["consegue",15.663,16.143]];
+          var T = VT.finder(W, "s20");
+          var DUR = 16.5;
+          var R = document.getElementById("s20");
+          var q = function (s) { return R.querySelector(s); };
+          q(".m1").innerHTML = VT.icon("star", { size: 60, stroke: 2.2 });
+          q(".m2").innerHTML = VT.icon("heart", { size: 60, stroke: 2.2 });
+          q(".m3").innerHTML = VT.icon("bulb", { size: 60, stroke: 2.2 });
+          var tl = gsap.timeline({ paused: true });
+          // tempinho: ampulheta vira e escorre
+          tl.fromTo(q(".hg"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, T("se") - 0.2);
+          tl.fromTo(q(".hg"), { rotation: 0 }, { rotation: 360, duration: 0.8, ease: "back.inOut(1.4)", immediateRender: false }, T("tempinho") - 0.3);
+          var s0 = T("tempinho") + 0.45;
+          tl.fromTo(q(".sandT"), { scaleY: 1, transformOrigin: "50% 100%" }, { scaleY: 0.08, duration: DUR - s0, ease: "none", immediateRender: false }, s0);
+          tl.fromTo(q(".sandB"), { scaleY: 0.08, transformOrigin: "50% 100%" }, { scaleY: 1, duration: DUR - s0, ease: "none" }, s0);
+          tl.fromTo(q(".stream"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, s0);
+          tl.to(q(".hg"), { scale: 0.7, y: -30, duration: 0.5, ease: "power2.inOut" }, T("duas") - 0.2);
+          // duas etapas
+          tl.fromTo(q(".line"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, T("duas") - 0.1);
+          tl.fromTo(q(".ci1"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, T("duas") - 0.1);
+          tl.fromTo(q(".ci2"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, T("etapas") - 0.05);
+          tl.to(q(".ci1"), { backgroundColor: "#00a884", borderColor: "#005c4b", color: "#fbfaf7", scale: 1.1, duration: 0.3, ease: "back.out(2)" }, T("primeira") - 0.1);
+          tl.fromTo(q(".lb1"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T("reconhecendo") - 0.1);
+          tl.fromTo(q(".dep"), { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.in" }, T("depois") - 0.2);
+          tl.fromTo(q(".fillL"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 1.4, ease: "power2.inOut" }, T("depois", 2) - 0.2);
+          // dando um passo atrás
+          tl.to(q(".stp"), { scale: 0.88, y: -40, duration: 0.6, ease: "power3.inOut" }, T("passo") - 0.2);
+          tl.to(q(".ci1"), { scale: 1, duration: 0.3 }, T("passo"));
+          tl.to(q(".ci2"), { backgroundColor: "#00a884", borderColor: "#005c4b", color: "#fbfaf7", scale: 1.1, duration: 0.3, ease: "back.out(2)" }, T("identificar") - 0.1);
+          tl.fromTo(q(".lb2"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T("identificar") - 0.05);
+          [["m1", -12], ["m2", 0], ["m3", 12]].forEach(function (m, i) {
+            tl.fromTo(q("." + m[0]), { opacity: 0, y: -120, x: -90 + i * -130, rotation: 0, scale: 0.4 },
+              { opacity: 1, y: 60, x: 0, rotation: m[1], scale: 1, duration: 0.5, ease: "back.out(1.8)" }, T("outras") - 0.1 + i * 0.12);
+          });
+          tl.to(q(".lb2"), { y: -20, duration: 0.3 }, T("outras") - 0.1);
+          tl.to([q(".hg"), q(".stp")], { opacity: 0, duration: 0.3, ease: "power1.in" }, DUR - 0.32);
+          window.__timelines["s20"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

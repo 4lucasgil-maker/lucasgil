@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #captions { position: absolute; inset: 0; font-family: Inter, sans-serif; }
+        #captions .bub {
+          position: absolute; bottom: 480px; max-width: 860px; padding: 22px 30px 18px 32px; border-radius: 30px;
+          box-shadow: 0 6px 18px rgba(17, 27, 33, 0.13); box-sizing: border-box; visibility: hidden;
+        }
+        #captions .out { right: 40px; background: #d9fdd3; border-top-right-radius: 8px; }
+        #captions .in { left: 40px; background: #fbfaf7; border-top-left-radius: 8px; }
+        #captions .out::before, #captions .in::before { content: ""; position: absolute; top: 0; width: 0; height: 0; border-bottom: 22px solid transparent; }
+        #captions .out::before { right: -18px; border-left: 22px solid #d9fdd3; }
+        #captions .in::before { left: -18px; border-right: 22px solid #fbfaf7; }
+        #captions .tag {
+          display: block; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 34px;
+          letter-spacing: 1px; color: #005c4b; text-transform: uppercase; margin-bottom: 4px;
+        }
+        #captions .txt { display: block; font-size: 56px; line-height: 68px; font-weight: 700; color: #111b21; letter-spacing: -0.5px; }
+        #captions .w { display: inline-block; }
+        #captions .k { font-weight: 900; color: #005c4b; }
+        #captions .spacer { display: inline-block; width: 170px; height: 10px; }
+        #captions .in .spacer { width: 110px; }
+        #captions .meta { position: absolute; right: 26px; bottom: 14px; height: 34px; display: flex; align-items: center; gap: 8px; }
+        #captions .hh { font-size: 26px; line-height: 34px; color: #54656f; font-weight: 400; }
+        #captions .tk { position: relative; width: 34px; height: 21px; }
+        #captions .tk svg { position: absolute; left: 0; top: 0; }
+        #captions .tk .tk-blue { opacity: 0; }
+        #captions .vm { right: 40px; width: 820px; height: 190px; padding: 0; }
+        #captions .vm .play { position: absolute; left: 30px; top: 42px; width: 80px; height: 80px; color: #3b4a54; }
+        #captions .vm .bars { position: absolute; left: 124px; top: 36px; width: 540px; height: 90px; }
+        #captions .vm .vb { position: absolute; width: 7px; border-radius: 4px; background: #3b4a54; }
+        #captions .vm .knob { position: absolute; left: 116px; top: 70px; width: 24px; height: 24px; border-radius: 50%; background: #005c4b; }
+        #captions .vm .dur { position: absolute; left: 124px; top: 134px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 34px; color: #54656f; }
+        #captions .vm .vav { position: absolute; right: 26px; top: 34px; width: 96px; height: 96px; border-radius: 50%; overflow: hidden; background: #005c4b; display: flex; align-items: center; justify-content: center; }
+        #captions .vm .vav img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #captions .vm .vav .ini { font-weight: 900; font-size: 38px; color: #fbfaf7; }
+        #captions .vm .badge { position: absolute; right: 18px; top: 104px; width: 40px; height: 40px; border-radius: 50%; background: #00a884; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+      </style>
+      <div id="captions" data-composition-id="captions" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          var D = /*@DATA@*/ {};
+          var root = document.getElementById("captions");
+          var els = [];
+          D.groups.forEach(function (g) {
+            if (g.hidden) return;
+            var b = document.createElement("div");
+            b.className = "bub " + (g.in ? "in" : "out");
+            b.id = "cg-" + g.i;
+            var html = "";
+            if (g.in) html += '<span class="tag">' + g.tag + "</span>";
+            html += '<span class="txt">';
+            g.words.forEach(function (w, j) {
+              html += '<span class="w' + (w[3] ? " k" : "") + '">' + w[0] + "</span>" + (j < g.words.length - 1 ? " " : "");
+            });
+            html += '<span class="spacer"></span></span>';
+            html += '<span class="meta"><span class="hh">' + g.clock + "</span>";
+            if (!g.in) html += '<span class="tk">' + VT.ticks({ cls: "tk-grey", color: "#54656f" }) + VT.ticks({ cls: "tk-blue", color: "#53bdeb" }) + "</span>";
+            html += "</span>";
+            b.innerHTML = html;
+            root.appendChild(b);
+            els.push({ g: g, el: b });
+          });
+          // mensagem de voz enviada
+          var V = D.voice;
+          var vm = document.createElement("div");
+          vm.className = "bub out vm";
+          vm.id = "cg-voice";
+          var vb = "";
+          V.bars.forEach(function (h, j) {
+            var hh = Math.round(14 + 72 * h);
+            vb += '<span class="vb" style="left:' + j * 14 + "px;top:" + Math.round((90 - hh) / 2) + "px;height:" + hh + 'px"></span>';
+          });
+          vm.innerHTML = '<span class="play">' + VT.icon("play", { size: 80, fill: true, stroke: 1 }) + '</span><span class="bars">' + vb +
+            '</span><span class="knob"></span><span class="dur">' + V.dur + '</span><span class="vav">' + V.avatar +
+            '</span><span class="badge">' + VT.icon("mic", { size: 26, stroke: 2.6 }) + '</span><span class="meta"><span class="hh">' + V.clock +
+            '</span><span class="tk">' + VT.ticks({ cls: "tk-grey", color: "#54656f" }) + VT.ticks({ cls: "tk-blue", color: "#53bdeb" }) + "</span></span>";
+          root.appendChild(vm);
+          els.push({ g: { start: V.t, end: V.t + 2, voice: true }, el: vm });
+
+          var build = function () {
+            var tl = gsap.timeline({ paused: true });
+            var H = els.map(function (x) { return x.el.getBoundingClientRect().height; });
+            els.forEach(function (x, n) {
+              var g = x.g, el = x.el;
+              var t0 = Math.max(0, g.start - 0.14);
+              tl.fromTo(el, { opacity: 0, y: 46, scale: 0.94, visibility: "visible", transformOrigin: g.in ? "0% 100%" : "100% 100%" },
+                { opacity: 1, y: 0, scale: 1, visibility: "visible", duration: 0.3, ease: "back.out(1.6)" }, t0);
+              if (!g.voice) {
+                var ws = el.querySelectorAll(".w");
+                g.words.forEach(function (w, j) {
+                  tl.fromTo(ws[j], { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.14, ease: "power2.out" }, Math.max(t0, w[1] - 0.05));
+                });
+              }
+              var blue = el.querySelector(".tk-blue");
+              if (blue) {
+                tl.to(blue, { opacity: 1, duration: 0.2 }, g.end + 0.35);
+              }
+              var nx = els[n + 1];
+              if (nx) {
+                var tn = Math.max(0, nx.g.start - 0.14);
+                tl.to(el, { y: -(H[n + 1] + 26), opacity: 0, duration: 0.32, ease: "power2.inOut" }, tn);
+                tl.set(el, { opacity: 0, visibility: "hidden" }, tn + 0.34);
+              }
+            });
+            window.__timelines["captions"] = tl;
+          };
+          document.fonts.ready.then(build);
+        })();
+      </script>
+    </template>
+  </body>
+</html>

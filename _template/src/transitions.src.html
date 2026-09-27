@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #transitions { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        #transitions .iris { position: absolute; inset: 0; }
+        #transitions .blade { position: absolute; left: -360px; top: -240px; width: 1800px; height: 2400px; }
+        #transitions .strip { position: absolute; left: 0; width: 1080px; height: 241px; }
+        #transitions .blk { position: absolute; width: 181px; height: 193px; border-radius: 18px; }
+      </style>
+      <div id="transitions" data-composition-id="transitions" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          var D = /*@DATA@*/ {};
+          var root = document.getElementById("transitions");
+          var tl = gsap.timeline({ paused: true });
+          var mk = function (cls, css) {
+            var e = document.createElement("div");
+            e.className = cls;
+            e.setAttribute("data-layout-ignore", "");
+            for (var k in css) e.style[k] = css[k];
+            root.appendChild(e);
+            return e;
+          };
+          D.cuts.forEach(function (c, n) {
+            var t = c.t;
+            if (c.type === "iris") {
+              var el = mk("iris", { background: c.color, clipPath: "circle(0px at 0px 0px)" });
+              var a = c.p0, b = c.p1;
+              tl.fromTo(el, { clipPath: "circle(0px at " + a[0] + "px " + a[1] + "px)" },
+                { clipPath: "circle(2300px at " + a[0] + "px " + a[1] + "px)", duration: 0.34, ease: "power2.in", immediateRender: false }, t - 0.34);
+              tl.set(el, { clipPath: "circle(2300px at " + b[0] + "px " + b[1] + "px)" }, t);
+              tl.to(el, { clipPath: "circle(0px at " + b[0] + "px " + b[1] + "px)", duration: 0.38, ease: "power2.out" }, t + 0.04);
+                          } else if (c.type === "blade") {
+              var b1 = mk("blade", { background: c.color });
+              var b2 = mk("blade", { background: c.color2 });
+              [b1, b2].forEach(function (bl, j) {
+                var off = j === 0 ? -0.07 : 0;
+                gsap.set(bl, { x: -2300, rotation: 18 });
+                tl.fromTo(bl, { x: -2300, rotation: 18 }, { x: 0, duration: 0.36, ease: "power3.in", immediateRender: false }, t - 0.36 + off);
+                tl.to(bl, { x: 2300, duration: 0.42, ease: "power3.out" }, t + 0.03 + off);
+              });
+            } else if (c.type === "blinds") {
+              for (var i = 0; i < 8; i++) {
+                var s = mk("strip", { top: i * 240 + "px", background: i % 2 ? c.color2 : c.color });
+                gsap.set(s, { scaleX: 0, transformOrigin: "0% 50%" });
+                tl.fromTo(s, { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.26, ease: "power2.in", immediateRender: false }, t - 0.26 - (7 - i) * 0.022);
+                tl.set(s, { transformOrigin: "100% 50%" }, t + 0.01);
+                tl.to(s, { scaleX: 0, duration: 0.3, ease: "power2.out" }, t + 0.03 + i * 0.022);
+              }
+            } else if (c.type === "blocks") {
+              var cx = c.p0[0], cy = c.p0[1];
+              for (var r = 0; r < 10; r++) for (var q = 0; q < 6; q++) {
+                var x = q * 180, y = r * 192;
+                var d = Math.hypot(x + 90 - cx, y + 96 - cy) / 2200;
+                var blk = mk("blk", { left: x + "px", top: y + "px", background: (r + q) % 2 ? c.color2 : c.color });
+                gsap.set(blk, { scale: 0 });
+                tl.fromTo(blk, { scale: 0 }, { scale: 1.08, duration: 0.2, ease: "power2.in", immediateRender: false }, t - 0.2 - (0.16 - 0.16 * d));
+                tl.to(blk, { scale: 0, duration: 0.26, ease: "power2.out" }, t + 0.03 + 0.16 * d);
+              }
+            }
+          });
+          window.__timelines["transitions"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

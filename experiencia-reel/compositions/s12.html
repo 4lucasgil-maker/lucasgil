@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s12 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s12 .tagN, #s12 .tagF { position: absolute; top: 340px; padding: 14px 26px; border-radius: 20px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; line-height: 42px; letter-spacing: 2px; }
+        #s12 .tagN { left: 90px; background: #3f5b67; color: #fbfaf7; }
+        #s12 .tagF { right: 90px; background: #fbfaf7; color: #c7373c; border: 5px solid #e5484d; }
+        #s12 .how { position: absolute; left: 0; top: 440px; width: 1080px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 120px; line-height: 120px; color: #111b21; text-transform: uppercase; }
+        #s12 .cab { position: absolute; left: 270px; top: 580px; width: 540px; height: 540px; border-radius: 30px; background: #1b2a30; box-shadow: 0 22px 44px rgba(17, 27, 33, 0.25); }
+        #s12 .dr { position: absolute; left: 22px; width: 496px; height: 150px; border-radius: 20px; background: #3f5b67; }
+        #s12 .d1 { top: 26px; } #s12 .d2 { top: 195px; } #s12 .d3 { top: 364px; }
+        #s12 .plate { position: absolute; left: 128px; top: 26px; width: 240px; height: 50px; border-radius: 10px; background: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 50px; letter-spacing: 3px; text-align: center; color: #111b21; }
+        #s12 .hd { position: absolute; left: 188px; top: 98px; width: 120px; height: 22px; border-radius: 11px; background: #c9a55c; }
+        #s12 .cd { position: absolute; width: 170px; height: 200px; border-radius: 16px; background: #fbfaf7; box-shadow: 0 12px 26px rgba(17, 27, 33, 0.22); color: #005c4b; display: flex; align-items: center; justify-content: center; opacity: 0; }
+        #s12 .cm { left: 455px; top: 720px; }
+        #s12 .ct { left: 250px; top: 560px; }
+        #s12 .cb { left: 660px; top: 560px; }
+        #s12 .spk { position: absolute; left: 430px; top: 430px; width: 220px; height: 220px; opacity: 0; }
+      </style>
+      <div id="s12" data-composition-id="s12" data-width="1080" data-height="1920">
+        <div class="tagN">NOVO</div>
+        <div class="tagF">FALTA DE EXPERIÊNCIA</div>
+        <div class="cab">
+          <div class="dr d1"><div class="plate"></div><div class="hd"></div></div>
+          <div class="dr d3"><div class="plate"></div><div class="hd"></div></div>
+          <div class="dr d2"><div class="plate pm">MEMÓRIA</div><div class="hd"></div></div>
+        </div>
+        <div class="cd ct"></div>
+        <div class="cd cb"></div>
+        <div class="cd cm"></div>
+        <svg class="spk" viewBox="0 0 220 220" fill="none" stroke="#c9a55c" stroke-width="9" stroke-linecap="round" data-layout-ignore>
+          <path d="M110 10v40M110 170v40M10 110h40M170 110h40M40 40l26 26M154 154l26 26M180 40l-26 26M66 154l-26 26"/>
+        </svg>
+      </div>
+      <script>
+        (function () {
+          var W = [["Acho",0.171,0.331],["que",0.331,0.411],["a",0.571,0.651],["maneira",0.651,0.971],["de",0.971,1.131],["lidar",1.131,1.523],["com",1.771,2.011],["essa",2.011,2.251],["questão",2.251,2.491],["do",2.491,2.651],["novo",2.651,3.051],["e",3.051,3.211],["com",3.211,3.371],["a",3.371,3.451],["nossa",3.451,3.771],["falta",3.771,4.411],["de",4.411,4.731],["experiência",4.731,5.403],["é",6.091,6.411],["a",6.411,6.571],["gente",6.571,6.811],["tentar",6.811,7.211],["resgatar",7.211,7.79],["na",8.491,8.731],["nossa",8.731,9.051],["memória,",9.051,9.851],["no",10.011,10.171],["coletivo",10.171,10.876]];
+          var T = VT.finder(W, "s12");
+          var R = document.getElementById("s12");
+          var q = function (s) { return R.querySelector(s); };
+          q(".cm").innerHTML = VT.icon("star", { size: 100, stroke: 2 });
+          q(".ct").innerHTML = VT.icon("bulb", { size: 90, stroke: 2 });
+          q(".cb").innerHTML = VT.icon("heart", { size: 90, stroke: 2 });
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".cab"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.05);
+          tl.fromTo(q(".tagN"), { opacity: 0, y: -40, rotation: -6 }, { opacity: 1, y: 0, rotation: -3, duration: 0.4, ease: "back.out(2)" }, T("novo") - 0.1);
+          tl.fromTo(q(".tagF"), { opacity: 0, y: -40, rotation: 6 }, { opacity: 1, y: 0, rotation: 3, duration: 0.4, ease: "back.out(2)" }, T("falta") - 0.1);
+          tl.fromTo([q(".tagN"), q(".tagF")], { y: 0 }, { y: 8, duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, T("experiência") + 0.3);
+          tl.to([q(".tagN"), q(".tagF")], { opacity: 0, y: -50, duration: 0.35, ease: "power2.in" }, T("resgatar") - 0.3);
+          // gaveta do meio abre e um cartão sobe
+          tl.to(q(".d2"), { y: 26, scale: 1.08, boxShadow: "0 18px 30px rgba(0,0,0,0.35)", duration: 0.45, ease: "back.out(1.6)" }, T("resgatar"));
+          tl.fromTo(q(".cm"), { opacity: 0, y: 40, scale: 0.6 }, { opacity: 1, y: -260, scale: 1, duration: 0.8, ease: "back.out(1.4)" }, T("resgatar") + 0.35);
+          tl.fromTo(q(".spk"), { opacity: 0, scale: 0.4, rotation: 0 }, { opacity: 1, scale: 1, rotation: 30, duration: 0.5, ease: "power3.out" }, T("resgatar") + 0.9);
+          tl.to(q(".spk"), { opacity: 0, rotation: 60, duration: 0.6 }, T("resgatar") + 1.4);
+          tl.fromTo(q(".pm"), { backgroundColor: "#fbfaf7" }, { backgroundColor: "#d9fdd3", duration: 0.2, yoyo: true, repeat: 3, immediateRender: false }, T("memória") - 0.1);
+          // no coletivo: todas as gavetas
+          tl.to(q(".d1"), { y: -14, scale: 1.05, duration: 0.4, ease: "back.out(1.6)" }, T("coletivo") - 0.2);
+          tl.to(q(".d3"), { y: 18, scale: 1.05, duration: 0.4, ease: "back.out(1.6)" }, T("coletivo") - 0.1);
+          tl.fromTo(q(".ct"), { opacity: 0, y: 200, rotation: 0 }, { opacity: 1, y: -170, rotation: -14, duration: 0.6, ease: "back.out(1.6)" }, T("coletivo"));
+          tl.fromTo(q(".cb"), { opacity: 0, y: 200, rotation: 0 }, { opacity: 1, y: -170, rotation: 12, duration: 0.6, ease: "back.out(1.6)" }, T("coletivo") + 0.1);
+          tl.to(q(".cm"), { x: -10, rotation: 4, duration: 0.6, ease: "sine.inOut" }, T("coletivo"));
+          var DUR = 10.95;
+          tl.to([q(".cab"), q(".ct"), q(".cb")], { opacity: 0, duration: 0.3, ease: "power1.in" }, DUR - 0.32);
+          window.__timelines["s12"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s04 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s04 .think { position: absolute; left: 400px; top: 340px; width: 280px; height: 130px; border-radius: 65px; background: #fbfaf7; box-shadow: 0 12px 30px rgba(17, 27, 33, 0.14); }
+        #s04 .dt { position: absolute; top: 45px; width: 40px; height: 40px; border-radius: 50%; background: #54656f; }
+        #s04 .d1 { left: 58px; } #s04 .d2 { left: 120px; } #s04 .d3 { left: 182px; }
+        #s04 .bang { position: absolute; left: 440px; top: 280px; width: 200px; height: 300px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 300px; line-height: 300px; color: #005c4b; opacity: 0; }
+        #s04 .road { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+        #s04 .walker { position: absolute; left: 0; top: 0; width: 64px; height: 64px; }
+        #s04 .wk { position: absolute; inset: 0; border-radius: 50%; background: #005c4b; box-shadow: 0 0 0 8px #fbfaf7, 0 10px 20px rgba(17, 27, 33, 0.25); }
+        #s04 .pt { position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: #3f5b67; opacity: 0; }
+        #s04 .box { position: absolute; left: 680px; top: 520px; width: 240px; height: 240px; border-radius: 34px; background: #fbfaf7; box-shadow: 0 18px 40px rgba(17, 27, 33, 0.18); opacity: 0; }
+        #s04 .box .qq { position: absolute; left: 0; top: 18px; width: 240px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 200px; line-height: 200px; color: #111b21; }
+        #s04 .ring { position: absolute; left: 650px; top: 490px; width: 300px; height: 300px; border-radius: 50px; border: 5px dashed #3f5b67; opacity: 0; }
+        #s04 .stamp { position: absolute; left: 650px; top: 800px; width: 300px; height: 130px; border: 9px solid #c7373c; border-radius: 22px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 112px; line-height: 112px; color: #c7373c; opacity: 0; }
+      </style>
+      <div id="s04" data-composition-id="s04" data-width="1080" data-height="1920">
+        <div class="think"><div class="dt d1"></div><div class="dt d2"></div><div class="dt d3"></div></div>
+        <div class="bang">!</div>
+        <svg class="road" viewBox="0 0 1080 1920" fill="none" data-layout-ignore>
+          <path class="roadp" stroke="#3f5b67" stroke-width="12" stroke-linecap="round" stroke-dasharray="2 26"/>
+          <path class="roadm" stroke="#a99f90" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div class="ring" data-layout-ignore></div>
+        <div class="box"><div class="qq">?</div></div>
+        <div class="pts"></div>
+        <div class="walker"><div class="wk"></div></div>
+        <div class="stamp">NOVO</div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Pensa",0.34,0.9],["comigo",0.9,1.3],["aqui,",1.3,1.7],["é",1.7,1.86],["impressionante.",1.86,2.66],["A",2.98,3.14],["gente",3.14,3.38],["está",3.38,3.62],["vivendo,",3.62,4.34],["e",4.58,4.66],["a",4.66,4.74],["gente",4.74,4.98],["encontra",4.98,5.46],["uma",5.46,5.62],["situação",5.62,5.966],["que",6.58,6.9],["se",6.9,7.06],["materializa",7.06,7.54],["na",7.7,7.86],["nossa",7.86,8.02],["vida,",8.02,8.18],["que",8.26,8.42],["a",8.42,8.5],["gente",8.5,8.58],["nunca",8.58,8.82],["lidou",8.82,9.14],["com",9.14,9.3],["aquilo,",9.3,9.62],["é",9.62,9.78],["novo,",9.78,10.02],["né?",10.42,10.611]];
+          var T = VT.finder(W, "s04");
+          var R = document.getElementById("s04");
+          var q = function (s) { return R.querySelector(s); };
+          var X = function (u) { return 60 + 960 * u; };
+          var Y = function (u) { return 1040 - 330 * u + 55 * Math.sin(u * Math.PI * 3); };
+          var d = "";
+          for (var i = 0; i <= 60; i++) { var u = i / 60; d += (i ? " L " : "M ") + X(u).toFixed(1) + " " + Y(u).toFixed(1); }
+          q(".roadp").setAttribute("d", d);
+          q(".roadm").setAttribute("d", d);
+          var tl = gsap.timeline({ paused: true });
+          // pensa comigo …
+          tl.fromTo(q(".think"), { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, T("Pensa") - 0.15);
+          ["d1", "d2", "d3"].forEach(function (c, i) {
+            tl.fromTo(q("." + c), { y: 0 }, { y: -18, duration: 0.22, ease: "sine.out", yoyo: true, repeat: 3, immediateRender: false }, T("Pensa") + i * 0.12);
+          });
+          tl.to(q(".think"), { scale: 1.3, opacity: 0, duration: 0.2, ease: "power2.in" }, T("impressionante") - 0.1);
+          tl.fromTo(q(".bang"), { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.out" }, T("impressionante") + 0.05);
+          tl.fromTo(q(".bang"), { rotation: 0 }, { rotation: 8, duration: 0.06, yoyo: true, repeat: 5, immediateRender: false }, T("impressionante") + 0.35);
+          tl.to(q(".bang"), { opacity: 0, y: -60, scale: 0.6, duration: 0.35, ease: "power2.in" }, T("vivendo") - 0.4);
+          // a vida: estrada + caminhante
+          tl.fromTo(q(".roadm"), { strokeDasharray: 1300, strokeDashoffset: 1300 }, { strokeDashoffset: 0, duration: 1.3, ease: "power2.inOut" }, T("gente") - 0.2);
+          tl.fromTo(q(".roadp"), { opacity: 0 }, { opacity: 1, duration: 0.6 }, T("vivendo"));
+          var wp = { u: 0 };
+          var wk = q(".walker");
+          var place = function () { wk.style.transform = "translate(" + (X(wp.u) - 32).toFixed(1) + "px," + (Y(wp.u) - 32).toFixed(1) + "px)"; };
+          place();
+          tl.fromTo(q(".wk"), { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, T("vivendo") - 0.2);
+          tl.fromTo(wp, { u: 0 }, { u: 0.5, duration: T("situação") - T("vivendo") + 0.4, ease: "sine.inOut", onUpdate: place, immediateRender: false }, T("vivendo"));
+          tl.fromTo(q(".wk"), { y: 0 }, { y: -12, duration: 0.2, yoyo: true, repeat: 9, ease: "sine.inOut", immediateRender: false }, T("vivendo"));
+          // partículas materializam a situação
+          var rnd = VT.rng(404);
+          var host = q(".pts");
+          var N = 44;
+          var bx = 680, by = 520, bw = 240;
+          for (var k = 0; k < N; k++) {
+            var p = document.createElement("div");
+            p.className = "pt";
+            p.setAttribute("data-layout-ignore", "");
+            host.appendChild(p);
+            var sx = 90 + rnd() * 900, sy = 330 + rnd() * 700;
+            var side = k % 4, f = Math.floor(k / 4) / (N / 4);
+            var tx = side === 0 ? bx + f * bw : side === 1 ? bx + bw : side === 2 ? bx + bw - f * bw : bx;
+            var ty = side === 0 ? by : side === 1 ? by + f * bw : side === 2 ? by + bw : by + bw - f * bw;
+            tl.fromTo(p, { x: sx, y: sy, opacity: 0, scale: 0.4 }, { opacity: 0.85, scale: 1, duration: 0.4, ease: "power2.out" }, T("encontra") - 0.2 + rnd() * 0.5);
+            tl.to(p, { x: tx - 9, y: ty - 9, duration: 1.1, ease: "power3.inOut" }, T("situação") + rnd() * 0.3);
+            tl.to(p, { opacity: 0, scale: 0.3, duration: 0.3 }, T("materializa") + 0.1 + rnd() * 0.25);
+          }
+          tl.fromTo(q(".box"), { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, T("materializa") + 0.05);
+          tl.fromTo(q(".qq"), { scale: 0.3, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.5)" }, T("materializa") + 0.2);
+          tl.fromTo(q(".ring"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3 }, T("nunca") - 0.1);
+          tl.fromTo(q(".ring"), { rotation: 0 }, { rotation: 20, duration: 1.8, ease: "none", immediateRender: false }, T("nunca") - 0.1);
+          tl.to(q(".wk"), { x: -16, duration: 0.25, ease: "power2.out" }, T("lidou"));
+          tl.fromTo(q(".stamp"), { opacity: 0, scale: 2.4, rotation: -4 }, { opacity: 1, scale: 1, rotation: -10, duration: 0.28, ease: "power4.in" }, T("novo") - 0.2);
+          tl.fromTo(q(".box"), { y: 0 }, { y: 10, duration: 0.07, yoyo: true, repeat: 3, immediateRender: false }, T("novo") + 0.08);
+          window.__timelines["s04"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

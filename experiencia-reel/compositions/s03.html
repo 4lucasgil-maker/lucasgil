@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s03 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s03 .rw { position: absolute; left: 470px; top: 330px; width: 140px; height: 140px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 30px rgba(0, 92, 75, 0.3); }
+        #s03 .rwico { width: 80px; height: 80px; }
+        #s03 .exp { position: absolute; left: 0; top: 500px; width: 1080px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; line-height: 44px; letter-spacing: 3px; color: #3b4a54; }
+        #s03 .axis { position: absolute; left: 90px; top: 816px; width: 880px; height: 10px; border-radius: 5px; background: #3f5b67; }
+        #s03 .head { position: absolute; left: 950px; top: 796px; width: 50px; height: 50px; color: #3f5b67; }
+        #s03 .tick { position: absolute; top: 836px; width: 4px; height: 22px; border-radius: 2px; background: #a99f90; }
+        #s03 .pinR, #s03 .pinG { position: absolute; top: 690px; width: 70px; height: 128px; }
+        #s03 .pinR { left: 265px; }
+        #s03 .pinG { left: 745px; }
+        #s03 .pinR .ball, #s03 .pinG .ball { position: absolute; left: 0; top: 0; width: 70px; height: 70px; border-radius: 50%; box-shadow: 0 0 0 7px #fbfaf7; }
+        #s03 .pinR .ball { background: #e5484d; }
+        #s03 .pinG .ball { background: #00a884; }
+        #s03 .stem { position: absolute; left: 32px; top: 70px; width: 6px; height: 58px; background: #111b21; border-radius: 3px; }
+        #s03 .lbR, #s03 .lbG { position: absolute; top: 880px; width: 320px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 96px; line-height: 100px; text-transform: uppercase; }
+        #s03 .lbR { left: 120px; width: 360px; color: #c7373c; }
+        #s03 .lbG { left: 600px; width: 360px; color: #005c4b; }
+        #s03 .arc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+        #s03 .dep { position: absolute; left: 330px; top: 574px; width: 420px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 38px; letter-spacing: 2px; color: #005c4b; }
+        #s03 .ph { position: absolute; left: 76px; top: 720px; width: 30px; height: 210px; }
+        #s03 .phl { position: absolute; left: 12px; top: 24px; width: 6px; height: 186px; background: #111b21; border-radius: 3px; }
+        #s03 .phd { position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; background: #111b21; }
+        #s03 .flashR, #s03 .flashG { position: absolute; top: 675px; width: 170px; height: 170px; border-radius: 50%; opacity: 0; }
+        #s03 .flashR { left: 215px; border: 8px solid #e5484d; }
+        #s03 .flashG { left: 695px; border: 8px solid #00a884; }
+      </style>
+      <div id="s03" data-composition-id="s03" data-width="1080" data-height="1920">
+        <div class="rw"><span class="rwico"></span></div>
+        <div class="exp">EXPERIÊNCIA É ALGO QUE A GENTE ADQUIRE</div>
+        <div class="axis"></div>
+        <div class="head"></div>
+        <div class="ticks"></div>
+        <svg class="arc" viewBox="0 0 1080 1920" fill="none" data-layout-ignore>
+          <path class="arcp" d="M335 676 C 420 586, 700 586, 780 666" stroke="#005c4b" stroke-width="7" stroke-linecap="round"/>
+          <path class="arch" d="M756 648 L 782 670 L 750 682" stroke="#005c4b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="dep">IMEDIATAMENTE DEPOIS</div>
+        <div class="flashR" data-layout-ignore></div>
+        <div class="flashG" data-layout-ignore></div>
+        <div class="pinR"><div class="stem"></div><div class="ball"></div></div>
+        <div class="pinG"><div class="stem"></div><div class="ball"></div></div>
+        <div class="lbR">precisar</div>
+        <div class="lbG">adquirir</div>
+        <div class="ph"><div class="phl"></div><div class="phd"></div></div>
+      </div>
+      <script>
+        (function () {
+          var W = [["De",0.33,0.57],["novo:",0.57,0.924],["experiência",1.45,2.25],["é",2.57,2.89],["algo",2.89,3.21],["que",3.21,3.37],["a",3.37,3.45],["gente",3.45,3.69],["adquire",3.69,4.274],["imediatamente",5.06,6.18],["depois",6.18,6.82],["de",6.82,7.06],["precisar",7.06,7.7],["dela.",7.7,7.968]];
+          var T = VT.finder(W, "s03");
+          var DUR = 8.8;
+          var R = document.getElementById("s03");
+          var q = function (s) { return R.querySelector(s); };
+          q(".rwico").innerHTML = VT.icon("rewind", { size: 80, stroke: 2.4 });
+          q(".head").innerHTML = VT.icon("arrow", { size: 50, stroke: 3 });
+          q(".exp").textContent = "EXPERIÊNCIA É ALGO QUE A GENTE ADQUIRE";
+          var tks = q(".ticks");
+          var tickEls = [];
+          for (var i = 0; i < 9; i++) {
+            var d = document.createElement("div");
+            d.className = "tick";
+            d.style.left = 140 + i * 100 + "px";
+            tks.appendChild(d);
+            tickEls.push(d);
+          }
+          var tl = gsap.timeline({ paused: true });
+          // "De novo" — rebobinar
+          tl.fromTo(q(".rw"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, 0.05);
+          tl.fromTo(q(".rwico"), { rotation: 0 }, { rotation: -720, duration: 1.1, ease: "power3.inOut" }, T("novo") - 0.25);
+          tl.fromTo(q(".axis"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, T("novo"));
+          tl.fromTo(q(".head"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, T("novo") + 0.5);
+          tickEls.forEach(function (e, i) {
+            tl.fromTo(e, { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.2, ease: "power2.out" }, T("novo") + 0.1 + i * 0.05);
+          });
+          tl.fromTo(q(".ph"), { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, T("novo") + 0.4);
+          tl.fromTo(q(".exp"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, T("experiência") - 0.1);
+          // pino verde: adquire
+          tl.fromTo(q(".pinG"), { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "bounce.out" }, T("adquire") - 0.1);
+          tl.fromTo(q(".lbG"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T("adquire") + 0.2);
+          // arco "imediatamente depois"
+          tl.fromTo(q(".arcp"), { strokeDasharray: 560, strokeDashoffset: 560 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, T("imediatamente"));
+          tl.fromTo(q(".arch"), { opacity: 0 }, { opacity: 1, duration: 0.15 }, T("imediatamente") + 0.75);
+          tl.fromTo(q(".dep"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, T("depois") - 0.1);
+          // pino vermelho: precisar
+          tl.fromTo(q(".pinR"), { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "bounce.out" }, T("precisar") - 0.15);
+          tl.fromTo(q(".lbR"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T("precisar") + 0.15);
+          // cabeça de leitura varre a linha do tempo
+          tl.fromTo(q(".ph"), { x: 0 }, { x: 10, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 7, immediateRender: false }, T("novo") + 0.8);
+          var s0 = T("precisar") + 0.35;
+          tl.to(q(".ph"), { x: 885, duration: 1.5, ease: "none" }, s0);
+          tl.fromTo(q(".flashR"), { opacity: 0.9, scale: 0.5 }, { opacity: 0, scale: 1.3, duration: 0.5, ease: "power2.out", immediateRender: false }, s0 + 0.33);
+          tl.fromTo(q(".flashG"), { opacity: 0.9, scale: 0.5 }, { opacity: 0, scale: 1.3, duration: 0.5, ease: "power2.out", immediateRender: false }, s0 + 1.15);
+          tl.to(q(".pinR .ball"), { scale: 1.25, duration: 0.12, yoyo: true, repeat: 1 }, s0 + 0.33);
+          tl.to(q(".pinG .ball"), { scale: 1.25, duration: 0.12, yoyo: true, repeat: 1 }, s0 + 1.15);
+          window.__timelines["s03"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s11 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s11 .ppl { position: absolute; left: 0; top: 330px; width: 1080px; height: 130px; }
+        #s11 .p { position: absolute; top: 0; width: 120px; height: 120px; border-radius: 50%; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 7px #fbfaf7; }
+        #s11 .p1 { left: 330px; background: #3f5b67; } #s11 .p2 { left: 480px; background: #c9a55c; } #s11 .p3 { left: 630px; background: #00a884; }
+        #s11 .ttl { position: absolute; left: 0; top: 400px; width: 1080px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; line-height: 44px; letter-spacing: 6px; color: #3b4a54; opacity: 0; }
+        #s11 .album { position: absolute; left: 90px; top: 470px; width: 900px; height: 640px; border-radius: 40px; background: #3f5b67; box-shadow: 0 18px 40px rgba(17, 27, 33, 0.2); opacity: 0; }
+        #s11 .tile { position: absolute; width: 192px; height: 172px; border-radius: 24px; background: #fbfaf7; color: #005c4b; display: flex; align-items: center; justify-content: center; }
+        #s11 .slot { position: absolute; left: 258px; top: 232px; width: 192px; height: 172px; border-radius: 24px; border: 6px dashed #d9fdd3; opacity: 0; }
+        #s11 .slotq { position: absolute; left: 0; top: 14px; width: 180px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 120px; line-height: 130px; color: #d9fdd3; }
+        #s11 .hex { position: absolute; left: 360px; top: 600px; width: 220px; height: 220px; opacity: 0; }
+      </style>
+      <div id="s11" data-composition-id="s11" data-width="1080" data-height="1920">
+        <div class="ppl"><div class="p p1"></div><div class="p p2"></div><div class="p p3"></div></div>
+        <div class="ttl">COLEÇÃO DE EXPERIÊNCIAS</div>
+        <div class="album"><div class="slot"><div class="slotq">?</div></div></div>
+        <svg class="hex" viewBox="0 0 220 220" data-layout-ignore>
+          <path d="M110 12 L198 61 L198 159 L110 208 L22 159 L22 61 Z" fill="#005c4b" stroke="#fbfaf7" stroke-width="8" stroke-linejoin="round"/>
+          <text x="110" y="148" text-anchor="middle" font-family="League Gothic" font-size="120" fill="#fbfaf7">?</text>
+        </svg>
+      </div>
+      <script>
+        (function () {
+          var W = [["Cada",0.421,0.821],["um",0.821,0.981],["de",0.981,1.141],["nós",1.141,1.461],["tem",1.461,1.701],["uma",1.941,2.181],["coleção",2.181,2.901],["de",2.901,3.061],["experiências.",3.061,3.751],["A",4.421,4.581],["gente",4.581,4.901],["não",4.901,5.061],["vai",5.061,5.221],["ter",5.221,5.541],["exatamente",5.541,6.181],["aquela",6.181,6.581],["da",6.581,6.741],["coisa",6.741,6.981],["nova",6.981,7.221],["que",7.221,7.301],["está",7.301,7.461],["se",7.461,7.621],["materializando",7.621,8.341],["na",8.341,8.501],["nossa",8.501,8.741],["frente.",8.741,8.978],["Mas",9.461,9.701],["a",9.701,9.781],["gente",9.781,9.941],["tem",9.941,10.181],["uma",10.181,10.341],["porção",10.341,10.661],["de",10.661,10.821],["experiências.",10.821,11.258]];
+          var T = VT.finder(W, "s11");
+          var DUR = 11.45;
+          var R = document.getElementById("s11");
+          var q = function (s) { return R.querySelector(s); };
+          var head = '<svg width="70" height="70" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4.2"/><path d="M3.8 21a8.2 8.2 0 0 1 16.4 0z"/></svg>';
+          ["p1", "p2", "p3"].forEach(function (c) { q("." + c).innerHTML = head; });
+          var names = ["star", "heart", "bulb", "flag", "clock", "pin", "check", "spark", "play", "lock", "mic", "search"];
+          var album = q(".album");
+          var tiles = [];
+          for (var i = 0; i < 12; i++) {
+            var t = document.createElement("div");
+            t.className = "tile tile" + i;
+            var c = i % 4, r = Math.floor(i / 4);
+            t.style.left = 30 + c * 216 + "px";
+            t.style.top = 30 + r * 202 + "px";
+            t.innerHTML = VT.icon(names[i], { size: 96, stroke: 2.2 });
+            album.appendChild(t);
+            tiles.push(t);
+          }
+          // o espaço vazio fica no lugar do tile 5 (linha 1, coluna 1)
+          q(".slot").style.left = 30 + 216 + "px";
+          q(".slot").style.top = 30 + 202 + "px";
+          var tl = gsap.timeline({ paused: true });
+          [["p1", "Cada"], ["p2", "um"], ["p3", "nós"]].forEach(function (p) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, scale: 0.3, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(2.5)" }, T(p[1]) - 0.1);
+          });
+          tl.to(q(".ppl"), { y: -40, scale: 0.7, opacity: 0, duration: 0.45, ease: "power2.in" }, T("coleção") - 0.45);
+          tl.fromTo(q(".ttl"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35 }, T("coleção") - 0.1);
+          tl.fromTo(album, { opacity: 0, y: 80, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, T("coleção") - 0.2);
+          tiles.forEach(function (t, i) {
+            tl.fromTo(t, { opacity: 0, scale: 0.4, rotation: (i % 2 ? 8 : -8) }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.2)" }, T("coleção") + 0.1 + i * 0.07);
+          });
+          // exatamente aquela: um espaço vazio
+          tl.to(tiles[5], { rotationY: 90, opacity: 0, duration: 0.35, ease: "power2.in" }, T("exatamente"));
+          tl.fromTo(q(".slot"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, T("exatamente") + 0.3);
+          tl.fromTo(q(".slot"), { scale: 1 }, { scale: 1.06, duration: 0.3, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, T("aquela"));
+          // a coisa nova não encaixa
+          tl.fromTo(q(".hex"), { opacity: 0, x: 560, y: -120, rotation: 60 }, { opacity: 1, x: 330, y: -60, rotation: 0, duration: 0.6, ease: "power3.out" }, T("coisa") - 0.1);
+          tl.to(q(".hex"), { x: 0, y: 0, duration: 0.7, ease: "power2.inOut" }, T("materializando"));
+          tl.to(q(".hex"), { rotation: 18, duration: 0.12, yoyo: true, repeat: 5, ease: "sine.inOut" }, T("materializando") + 0.7);
+          tl.to(q(".hex"), { x: 40, y: 40, scale: 0.85, rotation: 14, duration: 0.6, ease: "power2.out" }, T("frente") + 0.35);
+          // uma porção de experiências
+          tiles.forEach(function (t, i) {
+            if (i === 5) return;
+            tl.to(t, { y: -16, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, T("porção") + i * 0.06);
+          });
+          tl.to(q(".ttl"), { color: "#005c4b", duration: 0.3 }, T("porção"));
+          tl.to([album, q(".hex"), q(".ttl")], { opacity: 0, duration: 0.3 }, DUR - 0.32);
+          window.__timelines["s11"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

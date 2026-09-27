@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s13 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s13 .sheet { position: absolute; top: 470px; width: 300px; height: 380px; border-radius: 26px; background: rgba(251, 250, 247, 0.92); box-shadow: 0 14px 30px rgba(17, 27, 33, 0.16); border: 4px solid #e2dace; }
+        #s13 .sh1 { left: 75px; } #s13 .sh2 { left: 390px; } #s13 .sh3 { left: 705px; }
+        #s13 .sheet svg { position: absolute; left: 0; top: 0; }
+        #s13 .pat { position: absolute; left: 390px; top: 470px; width: 300px; height: 380px; opacity: 0; }
+        #s13 .lbl { position: absolute; left: 0; top: 890px; width: 1080px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 160px; line-height: 160px; color: #005c4b; text-transform: uppercase; opacity: 0; }
+        #s13 .sim { position: absolute; left: 0; top: 360px; width: 1080px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; line-height: 44px; letter-spacing: 4px; color: #3b4a54; opacity: 0; }
+      </style>
+      <div id="s13" data-composition-id="s13" data-width="1080" data-height="1920">
+        <div class="sim">AS QUE A GENTE SIM TEM</div>
+        <div class="sheet sh1"></div>
+        <div class="sheet sh2"></div>
+        <div class="sheet sh3"></div>
+        <svg class="pat" viewBox="0 0 300 380" fill="none" data-layout-ignore>
+          <path class="pl" d="M60 300 L120 140 L190 250 L250 90" stroke="#00a884" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="300" r="17" fill="#005c4b"/><circle cx="120" cy="140" r="17" fill="#005c4b"/><circle cx="190" cy="250" r="17" fill="#005c4b"/><circle cx="250" cy="90" r="17" fill="#005c4b"/>
+        </svg>
+        <div class="lbl">padrão</div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s13");
+          var R = document.getElementById("s13");
+          var q = function (s) { return R.querySelector(s); };
+          var shared = [[60, 300], [120, 140], [190, 250], [250, 90]];
+          var noise = [
+            [[40, 60], [230, 330], [150, 330], [260, 200]],
+            [[70, 200], [210, 40], [40, 120], [160, 60]],
+            [[250, 300], [100, 360], [30, 220], [200, 170]],
+          ];
+          var cols = ["#3f5b67", "#c9a55c", "#54656f"];
+          ["sh1", "sh2", "sh3"].forEach(function (c, i) {
+            var s = '<svg width="292" height="372" viewBox="0 0 300 380" fill="none" aria-hidden="true">';
+            var pts = shared.concat(noise[i]);
+            var path = "M" + pts.slice(0, 4).map(function (p) { return p[0] + " " + p[1]; }).join(" L");
+            s += '<path d="' + path + '" stroke="' + cols[i] + '" stroke-width="5" stroke-dasharray="10 10" stroke-linecap="round" opacity="0.7"/>';
+            pts.forEach(function (p) { s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="14" fill="' + cols[i] + '"/>'; });
+            s += "</svg>";
+            q("." + c).innerHTML = s;
+          });
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".sh1"), { opacity: 0, y: -160, rotation: -12 }, { opacity: 1, y: 0, rotation: -5, duration: 0.5, ease: "back.out(1.6)" }, 0.1);
+          tl.fromTo(q(".sh2"), { opacity: 0, y: -160, rotation: 10 }, { opacity: 1, y: 0, rotation: 2, duration: 0.5, ease: "back.out(1.6)" }, 0.25);
+          tl.fromTo(q(".sh3"), { opacity: 0, y: -160, rotation: 14 }, { opacity: 1, y: 0, rotation: 6, duration: 0.5, ease: "back.out(1.6)" }, 0.4);
+          tl.fromTo(q(".sim"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3 }, T("sim") - 0.1);
+          // padrões: as folhas se sobrepõem e o que é comum se alinha
+          var p0 = T("padrões") - 0.3;
+          tl.to(q(".sh1"), { x: 315, rotation: 0, opacity: 0.55, duration: 0.7, ease: "power3.inOut" }, p0);
+          tl.to(q(".sh3"), { x: -315, rotation: 0, opacity: 0.55, duration: 0.7, ease: "power3.inOut" }, p0);
+          tl.to(q(".sh2"), { rotation: 0, opacity: 0.55, duration: 0.7, ease: "power3.inOut" }, p0);
+          tl.to(q(".sim"), { opacity: 0, duration: 0.3 }, p0);
+          tl.fromTo(q(".pat"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, p0 + 0.7);
+          tl.fromTo(q(".pl"), { strokeDasharray: 520, strokeDashoffset: 520 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, p0 + 0.75);
+          // abstrair: o padrão se solta das folhas
+          var a = T("abstrair") - 0.2;
+          tl.to(q(".pat"), { y: -90, scale: 1.25, duration: 0.7, ease: "back.out(1.6)" }, a);
+          tl.to([q(".sh1"), q(".sh2"), q(".sh3")], { y: 520, opacity: 0, rotation: 8, duration: 0.7, ease: "power2.in", stagger: 0.08 }, a);
+          tl.fromTo(q(".lbl"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, a + 0.45);
+          tl.fromTo(q(".pat"), { rotation: 0 }, { rotation: 4, duration: 0.8, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, a + 0.8);
+          tl.fromTo(q(".lbl"), { scale: 1 }, { scale: 1.06, duration: 0.25, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("coletivo"));
+          window.__timelines["s13"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

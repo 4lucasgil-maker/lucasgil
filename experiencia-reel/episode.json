@@ -1,0 +1,22 @@
+{
+  "number": 11,
+  "name": "Experiência",
+  "slug": "experiencia",
+  "audio": "assets/audio/ep11-experiencia.flac",
+  "youtube": "https://www.youtube.com/watch?v=sfYfHklTXhY",
+  "tail": 1.2,
+  "clockStart": "08:20",
+  "hidden": [0, 1],
+  "dark": "s08",
+  "scenes": [
+    ["s01", 0], ["s02", 4.3], ["s03", 16.55], ["s04", 25.35], ["s05", 36.0], ["s06", 46.02],
+    ["s07", 58.75], ["s08", 67.7], ["s09", 79.0], ["s10", 90.0], ["s11", 100.3], ["s12", 111.75],
+    ["s13", 122.7], ["s14", 131.6], ["s15", 140.25], ["s16", 150.55], ["s17", 163.95], ["s18", 177.6],
+    ["s19", 189.95], ["s20", 197.3], ["s21", 213.8], ["s22", 219.9], ["s23", 233.85]
+  ],
+  "cuts": {
+    "s02": "iris", "s04": "blade", "s05": "blinds", "s06": "blocks", "s08": "iris", "s09": "iris",
+    "s10": "blinds", "s11": "blade", "s14": "iris", "s15": "blade", "s16": "blinds", "s17": "blocks",
+    "s19": "iris", "s20": "blade", "s22": "blinds", "s23": "blocks"
+  }
+}

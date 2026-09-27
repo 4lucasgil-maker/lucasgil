@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s18 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s18 .panel { position: absolute; left: 60px; top: 340px; width: 960px; height: 780px; border-radius: 40px; background: #fbfaf7; box-shadow: 0 18px 40px rgba(17, 27, 33, 0.16); }
+        #s18 .row { position: absolute; left: 50px; width: 860px; height: 160px; opacity: 0; }
+        #s18 .rw1 { top: 40px; } #s18 .rw2 { top: 220px; } #s18 .rw3 { top: 400px; } #s18 .rw4 { top: 580px; }
+        #s18 .lb { position: absolute; left: 0; top: 0; font-weight: 900; font-size: 46px; line-height: 56px; color: #111b21; }
+        #s18 .led { position: absolute; right: 0; top: 14px; width: 30px; height: 30px; border-radius: 50%; background: #e2dace; }
+        #s18 .tr { position: absolute; left: 0; top: 96px; width: 860px; height: 16px; border-radius: 8px; background: #e2dace; }
+        #s18 .gh { position: absolute; top: 86px; width: 6px; height: 36px; border-radius: 3px; background: #a99f90; }
+        #s18 .kn { position: absolute; left: 0; top: 72px; width: 64px; height: 64px; border-radius: 50%; background: #00a884; box-shadow: 0 0 0 8px #fbfaf7, 0 6px 16px rgba(17, 27, 33, 0.3); }
+        #s18 .ok { position: absolute; left: 470px; top: 1060px; width: 140px; height: 140px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px #efeae2; opacity: 0; }
+      </style>
+      <div id="s18" data-composition-id="s18" data-width="1080" data-height="1920">
+        <div class="panel">
+          <div class="row rw1"><div class="lb">Expectativa</div><div class="led"></div><div class="tr"></div><div class="gh"></div><div class="kn"></div></div>
+          <div class="row rw2"><div class="lb">Estratégia</div><div class="led"></div><div class="tr"></div><div class="gh"></div><div class="kn"></div></div>
+          <div class="row rw3"><div class="lb">Conduta</div><div class="led"></div><div class="tr"></div><div class="gh"></div><div class="kn"></div></div>
+          <div class="row rw4"><div class="lb">Expectativas</div><div class="led"></div><div class="tr"></div><div class="gh"></div><div class="kn"></div></div>
+        </div>
+        <div class="ok"></div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s18");
+          var R = document.getElementById("s18");
+          var q = function (s) { return R.querySelector(s); };
+          q(".ok").innerHTML = VT.icon("check", { size: 90, stroke: 3.2 });
+          var SPAN = 796;
+          var rows = [["rw1", "expectativa", 0.82, 0.42], ["rw2", "estratégia", 0.28, 0.7], ["rw3", "conduta", 0.55, 0.3], ["rw4", "expectativas", 0.4, 0.58]];
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".panel"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.1);
+          rows.forEach(function (r, i) {
+            var row = q("." + r[0]);
+            var kn = row.querySelector(".kn"), gh = row.querySelector(".gh"), led = row.querySelector(".led");
+            gh.style.left = Math.round(r[2] * SPAN + 29) + "px";
+            var t = T(r[1]);
+            var appear = i === 0 ? T("ajusto") - 0.1 : t - 0.9;
+            tl.fromTo(row, { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, appear);
+            tl.fromTo(kn, { x: r[2] * SPAN }, { x: r[3] * SPAN, duration: 0.7, ease: "back.out(2.2)" }, t - 0.15);
+            tl.fromTo(kn, { scale: 1 }, { scale: 1.2, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t - 0.15);
+            tl.to(led, { backgroundColor: "#00a884", duration: 0.2 }, t + 0.4);
+            tl.to(row.querySelector(".lb"), { color: "#005c4b", duration: 0.2 }, t - 0.1);
+          });
+          // ajuste fino contínuo
+          tl.fromTo(q(".rw4 .kn"), { rotation: 0 }, { rotation: 0, x: 0.6 * SPAN, duration: 0.4, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, T("expectativas") + 0.7);
+          tl.fromTo(q(".ok"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(3)" }, T("passar") - 0.1);
+          tl.to(q(".panel"), { y: -30, duration: 0.5, ease: "power2.out" }, T("passar") - 0.2);
+          window.__timelines["s18"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

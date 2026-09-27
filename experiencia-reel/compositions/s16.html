@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s16 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s16 .chain { position: absolute; left: 0; top: 330px; width: 1080px; height: 160px; }
+        #s16 .nd { position: absolute; top: 0; width: 86px; height: 86px; border-radius: 50%; background: #3f5b67; box-shadow: 0 0 0 7px #fbfaf7; }
+        #s16 .n1 { left: 257px; } #s16 .n2 { left: 497px; background: #c9a55c; } #s16 .n3 { left: 737px; background: #00a884; }
+        #s16 .lnk { position: absolute; top: 38px; width: 130px; height: 10px; border-radius: 5px; background: #a99f90; }
+        #s16 .l1 { left: 360px; } #s16 .l2 { left: 600px; }
+        #s16 .inf { position: absolute; left: 0; top: 108px; width: 1080px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 32px; line-height: 40px; letter-spacing: 4px; color: #3b4a54; }
+        #s16 .pn { position: absolute; top: 490px; width: 440px; height: 600px; border-radius: 32px; background: #fbfaf7; box-shadow: 0 14px 30px rgba(17, 27, 33, 0.15); overflow: hidden; }
+        #s16 .pA { left: 70px; } #s16 .pB { left: 570px; }
+        #s16 .pn svg { position: absolute; left: 0; top: 40px; }
+        #s16 .chip { position: absolute; left: 20px; top: 18px; padding: 6px 16px; border-radius: 12px; background: #1b2a30; color: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 34px; letter-spacing: 2px; }
+        #s16 .pB .chip { background: #005c4b; }
+        #s16 .marks { position: absolute; left: 570px; top: 530px; width: 440px; height: 560px; overflow: visible; }
+        #s16 .marks ellipse { stroke-dasharray: 560; stroke-dashoffset: 560; }
+      </style>
+      <div id="s16" data-composition-id="s16" data-width="1080" data-height="1920">
+        <div class="chain">
+          <div class="lnk l1"></div><div class="lnk l2"></div>
+          <div class="nd n1"></div><div class="nd n2"></div><div class="nd n3"></div>
+          <div class="inf">INFERÊNCIAS</div>
+        </div>
+        <div class="pn pA">
+          <svg width="440" height="560" viewBox="0 0 440 560" fill="none">
+            <circle class="sunA" cx="90" cy="100" r="46" fill="#c9a55c"/>
+            <path d="M0 470 Q 170 250 440 400 L440 560 L0 560 Z" fill="#d9fdd3"/>
+            <rect x="292" y="300" width="16" height="60" rx="6" fill="#3b4a54"/><circle cx="300" cy="290" r="44" fill="#00a884"/>
+            <path d="M178 352 V 262" stroke="#111b21" stroke-width="7" stroke-linecap="round"/><path d="M180 262 h56 l-14 18 l14 18 h-56 z" fill="#005c4b"/>
+            <path class="route" d="M30 540 C 80 470, 120 430, 178 356" stroke="#005c4b" stroke-width="9" stroke-linecap="round" stroke-dasharray="4 16"/>
+          </svg>
+          <div class="chip">DAQUELA VEZ</div>
+        </div>
+        <div class="pn pB">
+          <svg width="440" height="560" viewBox="0 0 440 560" fill="none">
+            <path d="M40 120 a34 34 0 0 1 40 -40 a44 44 0 0 1 80 12 a30 30 0 0 1 10 58 h-118 a30 30 0 0 1 -12 -30 z" fill="#a99f90"/>
+            <path d="M0 470 Q 170 250 440 400 L440 560 L0 560 Z" fill="#d9fdd3"/>
+            <path d="M388 400 V 312" stroke="#111b21" stroke-width="7" stroke-linecap="round"/><path d="M390 312 h-56 l14 18 l-14 18 h56 z" fill="#e5484d"/>
+          </svg>
+          <div class="chip">DESSA VEZ</div>
+        </div>
+        <svg class="marks" viewBox="0 0 440 560" fill="none" data-layout-ignore>
+          <ellipse class="e1" cx="100" cy="112" rx="96" ry="74" stroke="#e5484d" stroke-width="8"/>
+          <ellipse class="e2" cx="300" cy="286" rx="66" ry="80" stroke="#e5484d" stroke-width="8"/>
+          <ellipse class="e3" cx="372" cy="360" rx="58" ry="70" stroke="#e5484d" stroke-width="8"/>
+        </svg>
+      </div>
+      <script>
+        (function () {
+          var W = [["E",0.436,0.676],["aí,",0.676,1.076],["com",1.076,1.316],["isso,",1.316,1.716],["a",1.716,1.876],["gente",1.876,2.196],["vai",2.196,2.436],["fazendo",2.436,2.916],["inferências,",2.916,3.636],["né?",3.636,3.876],["A",3.876,3.956],["gente",3.956,4.356],["fala:",4.356,4.756],["bom,",4.756,5.076],["se",5.076,5.316],["daquela",5.316,5.716],["vez,",5.716,6.036],["naquele",6.036,6.436],["outro",6.436,6.756],["contexto,",6.756,7.303],["foi",7.716,7.956],["assim",7.956,8.196],["que",8.196,8.356],["eu",8.356,8.436],["lidei,",8.436,8.801],["dessa",9.636,10.036],["vez",10.036,10.276],["aqui,",10.276,10.516],["o",10.516,10.676],["que",10.676,10.836],["mudou?",10.916,11.236],["O",11.236,11.316],["que",11.316,11.396],["é",11.556,11.716],["diferente?",11.716,12.215]];
+          var T = VT.finder(W, "s16");
+          var R = document.getElementById("s16");
+          var q = function (s) { return R.querySelector(s); };
+          var tl = gsap.timeline({ paused: true });
+          // cadeia de inferências
+          [["n1", "isso"], ["n2", "vai"], ["n3", "inferências"]].forEach(function (p) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, T(p[1]) - 0.1);
+          });
+          tl.fromTo(q(".l1"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, T("vai") - 0.3);
+          tl.fromTo(q(".l2"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, T("inferências") - 0.3);
+          tl.fromTo(q(".inf"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3 }, T("inferências"));
+          tl.to(q(".chain"), { y: -20, scale: 0.8, opacity: 0.6, duration: 0.5, ease: "power2.inOut" }, T("daquela") - 0.4);
+          // daquela vez
+          tl.fromTo(q(".pA"), { opacity: 0, x: -120, rotation: -4 }, { opacity: 1, x: 0, rotation: -1.5, duration: 0.5, ease: "power3.out" }, T("daquela") - 0.2);
+          tl.fromTo(q(".sunA"), { scale: 0.6, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, T("daquela") + 0.1);
+          tl.fromTo(q(".route"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("assim") - 0.2);
+          tl.fromTo(q(".route"), { strokeDashoffset: 0 }, { strokeDashoffset: -60, duration: 2.5, ease: "none", immediateRender: false }, T("assim") - 0.2);
+          // dessa vez
+          tl.fromTo(q(".pB"), { opacity: 0, x: 120, rotation: 4 }, { opacity: 1, x: 0, rotation: 1.5, duration: 0.5, ease: "power3.out" }, T("dessa") - 0.2);
+          // o que mudou? o que é diferente?
+          var marks = [[".e1", T("mudou") - 0.2], [".e2", T("mudou") + 0.3], [".e3", T("diferente") - 0.05]];
+          marks.forEach(function (m) {
+            tl.fromTo(q(m[0]), { strokeDasharray: 560, strokeDashoffset: 560 }, { strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }, m[1]);
+          });
+          tl.fromTo(q(".pB"), { scale: 1 }, { scale: 1.03, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("diferente"));
+          window.__timelines["s16"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
