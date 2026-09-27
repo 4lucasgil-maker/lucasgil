@@ -5,3 +5,5 @@ node_modules/
 **/.hyperframes/
 **/assets/audio/*.flac
 **/renders/work-*/
+**/layers/*/renders/
+**/assets/video/

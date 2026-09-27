@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s01 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s01 .avwrap { position: absolute; left: 400px; top: 372px; width: 280px; height: 280px; }
+        #s01 .rg { position: absolute; left: 0; top: 0; width: 280px; height: 280px; border-radius: 50%; border: 6px solid #00a884; opacity: 0; }
+        #s01 .av { position: absolute; left: 0; top: 0; width: 280px; height: 280px; border-radius: 50%; overflow: hidden; background: #005c4b; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px #fbfaf7, 0 18px 40px rgba(17, 27, 33, 0.2); }
+        #s01 .av img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #s01 .av .ini { font-weight: 900; font-size: 116px; color: #fbfaf7; letter-spacing: -3px; }
+        #s01 .mic { position: absolute; left: 206px; top: 206px; width: 76px; height: 76px; border-radius: 50%; background: #00a884; box-shadow: 0 0 0 7px #fbfaf7; display: flex; align-items: center; justify-content: center; color: #fbfaf7; }
+        #s01 .hi { position: absolute; left: 0; top: 684px; width: 1080px; text-align: center; font-weight: 700; font-size: 64px; line-height: 76px; color: #3b4a54; }
+        #s01 .hi .w { display: inline-block; }
+        #s01 .nm { position: absolute; left: 0; top: 786px; width: 1080px; height: 190px; display: flex; justify-content: center; gap: 36px; font-family: "League Gothic", sans-serif; font-size: 180px; line-height: 190px; color: #111b21; text-transform: uppercase; letter-spacing: 1px; }
+        #s01 .nm .w { display: block; height: 190px; }
+        #s01 .brand { position: absolute; left: 130px; top: 1000px; width: 820px; height: 110px; background: #d9fdd3; border-radius: 30px; border-top-right-radius: 8px; box-shadow: 0 8px 22px rgba(17, 27, 33, 0.14); }
+        #s01 .brand::before { content: ""; position: absolute; top: 0; right: -18px; border-left: 22px solid #d9fdd3; border-bottom: 22px solid transparent; }
+        #s01 .bt { position: absolute; left: 34px; top: 22px; font-weight: 700; font-size: 52px; line-height: 64px; white-space: nowrap; }
+        #s01 .bt .w { display: inline-block; }
+        #s01 .bm { position: absolute; right: 24px; bottom: 16px; display: flex; align-items: center; gap: 8px; font-size: 26px; line-height: 32px; color: #54656f; }
+        #s01 .tkw { position: relative; width: 34px; height: 21px; }
+        #s01 .tkw svg { position: absolute; left: 0; top: 0; }
+        #s01 .tkw .tk-blue { opacity: 0; }
+        #s01 .chip { position: absolute; left: 0; top: 1150px; width: 1080px; display: flex; justify-content: center; }
+        #s01 .chip span { display: block; padding: 12px 26px; border-radius: 16px; background: #005c4b; color: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; line-height: 42px; letter-spacing: 1px; }
+      </style>
+      <div id="s01" data-composition-id="s01" data-width="1080" data-height="1920">
+        <div class="avwrap">
+          <div class="rg rg1" data-layout-ignore></div>
+          <div class="rg rg2" data-layout-ignore></div>
+          <div class="rg rg3" data-layout-ignore></div>
+          <div class="av"><span class="ini">CJ</span></div>
+          <div class="mic"></div>
+        </div>
+        <div class="hi"><span class="w w1">Olá,</span> <span class="w w2">eu</span> <span class="w w3">sou</span> <span class="w w4">a</span></div>
+        <div class="nm"><span class="w n1">Cris</span> <span class="w n2">Junqueira</span></div>
+        <div class="brand">
+          <div class="bt"><span class="w b1">Vou</span> <span class="w b2">te</span> <span class="w b3">mandar</span> <span class="w b4">um</span> <span class="w b5">áudio</span></div>
+          <div class="bm">08:20 <span class="tkw"></span></div>
+        </div>
+        <div class="chip"><span>EP #11 · EXPERIÊNCIA</span></div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Olá,",0.24,0.72],["eu",0.72,0.88],["sou",0.88,1.04],["a",1.04,1.12],["Cris",1.12,1.36],["Junqueira",1.44,2],["e",2.08,2.16],["eu",2.16,2.24],["vou",2.24,2.4],["te",2.4,2.48],["mandar",2.48,2.72],["um",2.72,2.88],["áudio.",2.88,2.949]];
+          var T = VT.finder(W, "s01");
+          var R = document.getElementById("s01");
+          var q = function (s) { return R.querySelector(s); };
+          q(".mic").innerHTML = VT.icon("mic", { size: 42, stroke: 2.4 });
+          q(".tkw").innerHTML = VT.ticks({ cls: "tk-grey", color: "#54656f" }) + VT.ticks({ cls: "tk-blue", color: "#53bdeb" });
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".avwrap"), { scale: 0.6, opacity: 0, y: 40 }, { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" }, 0.02);
+          tl.fromTo(q(".mic"), { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, 0.3);
+          ["rg1", "rg2", "rg3"].forEach(function (c, i) {
+            tl.fromTo(q("." + c), { scale: 1, opacity: 0.6 }, { scale: 1.75, opacity: 0, duration: 1.3, ease: "power1.out", repeat: 2, immediateRender: false }, T("Olá") + i * 0.42);
+          });
+          // "Olá, eu sou a" palavra a palavra
+          [["w1", "Olá"], ["w2", "eu"], ["w3", "sou"], ["w4", "a"]].forEach(function (p) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, T(p[1]) - 0.05);
+          });
+          tl.fromTo(q(".n1"), { opacity: 0, y: 60, scale: 1.25 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "power4.out" }, T("Cris") - 0.05);
+          tl.fromTo(q(".n2"), { opacity: 0, y: 60, scale: 1.25 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "power4.out" }, T("Junqueira") - 0.05);
+          tl.to(q(".nm"), { scale: 0.94, duration: 0.8, ease: "sine.inOut" }, T("Junqueira") + 0.4);
+          // balão-marca "Vou te mandar um áudio"
+          tl.fromTo(q(".brand"), { opacity: 0, y: 50, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.7)", transformOrigin: "100% 100%" }, T("e") - 0.1);
+          [["b1", "vou"], ["b2", "te"], ["b3", "mandar"], ["b4", "um"], ["b5", "áudio"]].forEach(function (p) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.16, ease: "power2.out" }, T(p[1]) - 0.04);
+          });
+          tl.to(q(".tk-blue"), { opacity: 1, duration: 0.2 }, T("áudio") + 0.5);
+          tl.fromTo(q(".chip span"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T("áudio") + 0.3);
+          tl.to(q(".avwrap"), { y: -10, duration: 1.2, ease: "sine.inOut" }, T("áudio") - 0.2);
+          window.__timelines["s01"] = tl;
+        })();
+      </script>
+      <style>#s01 .avwrap { top: 312px; } #s01 .hi { top: 624px; } #s01 .nm { top: 726px; } #s01 .brand { top: 940px; } #s01 .chip { top: 1086px; }</style>
+    </template>
+  </body>
+</html>

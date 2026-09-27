@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>EP 11 — Experiência · Vou te mandar um áudio (16:9)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/vendor/vtma.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #efeae2; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #efeae2; font-family: Inter, sans-serif; }
+      #wall { position: absolute; inset: 0; overflow: hidden; }
+      #wall .doodles { position: absolute; left: 0; top: 0; width: 3360px; height: 1800px; background-image: url(assets/vendor/doodles.svg); background-size: 360px 360px; opacity: 0.85; }
+      #wall .g1 { position: absolute; left: -300px; top: -200px; width: 1300px; height: 1300px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 65%); }
+      #wall .g2 { position: absolute; left: 1000px; top: 200px; width: 1200px; height: 1200px; border-radius: 50%; background: radial-gradient(circle, rgba(217, 253, 211, 0.55) 0%, rgba(217, 253, 211, 0) 65%); }
+      #darkov { position: absolute; inset: 0; background: #1b2a30; opacity: 0; }
+      #phone { position: absolute; left: 80px; top: 30px; width: 668px; height: 1020px; }
+      #phone .body { position: absolute; inset: 0; border-radius: 74px; background: #111b21; box-shadow: 0 30px 60px rgba(17, 27, 33, 0.35); }
+      #phone .screen { position: absolute; left: 22px; top: 22px; width: 624px; height: 976px; border-radius: 54px; overflow: hidden; background: #efeae2; }
+      #phone video { position: absolute; left: 0; top: 0; width: 624px; height: 1110px; }
+      #phone .notch { position: absolute; left: 234px; top: 34px; width: 200px; height: 38px; border-radius: 19px; background: #111b21; }
+      #phone .sb { position: absolute; width: 8px; border-radius: 4px; background: #111b21; }
+      #phone .sb1 { left: -6px; top: 200px; height: 70px; }
+      #phone .sb2 { left: -6px; top: 300px; height: 120px; }
+      #phone .sb3 { right: -6px; top: 260px; height: 150px; }
+      #card { position: absolute; left: 820px; top: 58px; width: 1040px; height: 963px; border-radius: 48px; overflow: hidden; background: #efeae2; box-shadow: 0 30px 60px rgba(17, 27, 33, 0.25); }
+      #card video { position: absolute; left: 0; top: -173px; width: 1040px; height: 1848px; }
+      #card .rim { position: absolute; inset: 0; border-radius: 48px; box-shadow: inset 0 0 0 8px #fbfaf7; }
+      #el-titlecard16 { position: absolute; inset: 0; z-index: 6; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="242.535">
+      <div id="wall"><div class="doodles" data-layout-ignore></div><div class="g1" data-layout-ignore></div><div class="g2" data-layout-ignore></div></div>
+      <div id="darkov" data-layout-ignore></div>
+      <div id="phone">
+        <div class="sb sb1"></div><div class="sb sb2"></div><div class="sb sb3"></div>
+        <div class="body"></div>
+        <div class="screen"><video id="chatv" src="assets/video/ep11-chat-9x16.mp4" muted playsinline data-start="0" data-duration="242.535" data-track-index="1"></video></div>
+        <div class="notch"></div>
+      </div>
+      <div id="card">
+        <video id="scenev" src="assets/video/ep11-scenes-9x16.mp4" muted playsinline data-start="0" data-duration="242.535" data-track-index="2"></video>
+        <div class="rim"></div>
+      </div>
+      <div id="el-titlecard16" data-composition-id="titlecard16" data-composition-src="compositions/titlecard16.html" data-start="0" data-duration="0.370" data-track-index="5" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <audio id="vo" src="assets/audio/ep11-experiencia.flac" data-start="0" data-duration="241.335" data-track-index="10"></audio>
+    </div>
+    <script>
+      (function () {
+        var T = 242.535, TOUT = 0.120;
+        var D0 = 67.7, D1 = 79.000;
+        var tl = gsap.timeline({ paused: true });
+        tl.fromTo("#wall .doodles", { x: 0, y: 0 }, { x: -1440, y: -720, duration: T, ease: "none" }, 0);
+        tl.fromTo("#wall .g1", { x: 0, y: 0 }, { x: 420, y: 160, duration: T, ease: "sine.inOut" }, 0);
+        tl.fromTo("#wall .g2", { x: 0, y: 0 }, { x: -520, y: -240, duration: T, ease: "sine.inOut" }, 0);
+        tl.fromTo("#phone", { y: 260, rotation: -3 }, { y: 0, rotation: 0, duration: 0.9, ease: "back.out(1.5)" }, TOUT - 0.1);
+        tl.fromTo("#card", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: "power3.out" }, TOUT + 0.05);
+        if (D0 >= 0) {
+          tl.to("#darkov", { opacity: 0.94, duration: 0.4, ease: "power2.out" }, D0 - 0.1);
+          tl.to("#darkov", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, D1 - 0.3);
+        }
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

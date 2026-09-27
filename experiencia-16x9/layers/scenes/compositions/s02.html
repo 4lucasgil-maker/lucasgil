@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s02 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s02 .qm { position: absolute; left: 70px; top: 300px; width: 260px; height: 300px; font-family: "League Gothic", sans-serif; font-size: 460px; line-height: 460px; color: #005c4b; opacity: 0; }
+        #s02 .heart { position: absolute; left: 780px; top: 350px; width: 190px; height: 190px; color: #e5484d; opacity: 0; }
+        #s02 .mini { position: absolute; width: 56px; height: 56px; color: #e5484d; opacity: 0; }
+        #s02 .card { position: absolute; left: 70px; top: 560px; width: 940px; height: 520px; background: #fbfaf7; border-radius: 40px; box-shadow: 0 22px 50px rgba(17, 27, 33, 0.16); opacity: 0; }
+        #s02 .pinrow { position: absolute; left: 44px; top: 34px; display: flex; align-items: center; gap: 14px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 36px; letter-spacing: 2px; color: #54656f; }
+        #s02 .pin { width: 44px; height: 44px; color: #005c4b; }
+        #s02 .rule { position: absolute; left: 44px; top: 96px; width: 852px; height: 3px; background: #e6e0d6; }
+        #s02 .big { position: absolute; left: 40px; top: 112px; width: 860px; font-family: "League Gothic", sans-serif; font-size: 186px; line-height: 186px; color: #111b21; text-transform: uppercase; white-space: nowrap; }
+        #s02 .l2 { position: absolute; left: 46px; top: 318px; width: 850px; font-weight: 700; font-size: 44px; line-height: 56px; color: #3b4a54; white-space: nowrap; }
+        #s02 .l3 { position: absolute; left: 46px; top: 392px; width: 850px; font-weight: 700; font-size: 41px; line-height: 64px; color: #3b4a54; white-space: nowrap; }
+        #s02 .w { display: inline-block; }
+        #s02 .dep { font-weight: 900; color: #005c4b; font-size: 54px; }
+        #s02 .dep { position: relative; }
+        #s02 .uline { position: absolute; left: 0; bottom: -2px; width: 100%; height: 9px; border-radius: 5px; background: #00a884; display: block; }
+      </style>
+      <div id="s02" data-composition-id="s02" data-width="1080" data-height="1920">
+        <div class="qm">“</div>
+        <div class="heart"></div>
+        <div class="mini m1" data-layout-ignore></div>
+        <div class="mini m2" data-layout-ignore></div>
+        <div class="mini m3" data-layout-ignore></div>
+        <div class="mini m4" data-layout-ignore></div>
+        <div class="mini m5" data-layout-ignore></div>
+        <div class="card">
+          <div class="pinrow"><span class="pin"></span><span>MENSAGEM FIXADA</span></div>
+          <div class="rule"></div>
+          <div class="big">Experiência</div>
+          <div class="l2"><span class="w a1">é</span> <span class="w a2">algo</span> <span class="w a3">que</span> <span class="w a4">a</span> <span class="w a5">gente</span> <span class="w a6">adquire</span></div>
+          <div class="l3"><span class="w c1">imediatamente</span> <span class="w c2 dep">depois<i class="uline" data-layout-ignore></i></span> <span class="w c3">de</span> <span class="w c4">precisar</span> <span class="w c5">dela.</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Tem",0.34,0.66],["uma",0.82,0.98],["frase",0.98,1.3],["que",1.3,1.46],["eu",1.46,1.7],["amo,",1.7,1.964],["que",2.5,2.66],["diz",2.82,3.22],["o",3.22,3.38],["seguinte:",3.38,3.772],["experiência",4.66,5.46],["é",5.46,5.62],["algo",5.62,5.94],["que",5.94,6.18],["a",6.18,6.26],["gente",6.26,6.5],["adquire",6.5,7.124],["imediatamente",7.94,9.06],["depois",9.06,9.727],["de",9.94,10.26],["precisar",10.26,10.98],["dela.",10.98,11.136]];
+          var T = VT.finder(W, "s02");
+          var DUR = 12.25;
+          var R = document.getElementById("s02");
+          var q = function (s) { return R.querySelector(s); };
+          q(".heart").innerHTML = VT.icon("heart", { size: 190, fill: true, stroke: 1 });
+          q(".pin").innerHTML = VT.icon("pin", { size: 44, stroke: 2.4 });
+          var minis = ["m1", "m2", "m3", "m4", "m5"];
+          minis.forEach(function (c) { q("." + c).innerHTML = VT.icon("heart", { size: 56, fill: true, stroke: 1 }); });
+          var tl = gsap.timeline({ paused: true });
+          // aspas + coração
+          tl.fromTo(q(".qm"), { opacity: 0, scale: 0.4, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }, T("frase") - 0.1);
+          tl.fromTo(q(".heart"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(3)" }, T("amo") - 0.08);
+          tl.fromTo(q(".heart"), { scale: 1 }, { scale: 1.12, duration: 0.28, ease: "sine.inOut", yoyo: true, repeat: 5, immediateRender: false }, T("amo") + 0.35);
+          var dirs = [[-150, -90], [-60, -170], [60, -175], [150, -80], [170, 40]];
+          minis.forEach(function (c, i) {
+            tl.fromTo(q("." + c), { x: 845, y: 420, opacity: 1, scale: 0.3, rotation: 0 },
+              { x: 845 + dirs[i][0], y: 420 + dirs[i][1], opacity: 0, scale: 1, rotation: (i - 2) * 18, duration: 0.9, ease: "power2.out", immediateRender: false }, T("amo") + 0.02);
+          });
+          // cartão fixado sobe em "que diz o seguinte"
+          tl.fromTo(q(".card"), { opacity: 0, y: 140, rotation: 3 }, { opacity: 1, y: 0, rotation: 0, duration: 0.55, ease: "power3.out" }, T("diz") - 0.2);
+          tl.fromTo(q(".pin"), { y: -80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "bounce.out" }, T("seguinte") - 0.1);
+          tl.fromTo(q(".rule"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, T("seguinte"));
+          tl.to(q(".qm"), { x: -30, y: -40, scale: 0.7, opacity: 0.35, duration: 0.6, ease: "power2.inOut" }, T("diz"));
+          tl.to(q(".heart"), { x: 60, y: -40, scale: 0.6, duration: 0.6, ease: "power2.inOut" }, T("diz"));
+          // EXPERIÊNCIA bate
+          tl.fromTo(q(".big"), { opacity: 0, scale: 1.5, y: -30 }, { opacity: 1, scale: 1, y: 0, duration: 0.32, ease: "power4.out", transformOrigin: "0% 50%" }, T("experiência") - 0.06);
+          tl.fromTo(q(".card"), { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 3, immediateRender: false }, T("experiência") + 0.2);
+          [["a1", "é"], ["a2", "algo"], ["a3", "que"], ["a4", "a"], ["a5", "gente"], ["a6", "adquire"]].forEach(function (p) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, T(p[1]) - 0.04);
+          });
+          [["c1", "imediatamente"], ["c2", "depois"], ["c3", "de"], ["c4", "precisar"], ["c5", "dela"]].forEach(function (p) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, T(p[1]) - 0.04);
+          });
+          tl.fromTo(q(".dep"), { scale: 1.4 }, { scale: 1, duration: 0.3, ease: "back.out(2.5)", immediateRender: false }, T("depois"));
+          tl.fromTo(q(".uline"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.45, ease: "power2.out" }, T("depois") + 0.15);
+          tl.to(q(".card"), { y: -12, duration: 1.4, ease: "sine.inOut" }, T("dela") - 0.2);
+          tl.to(q(".pin"), { scale: 1.25, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, T("dela") + 0.5);
+          window.__timelines["s02"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

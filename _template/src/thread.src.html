@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #thread { position: absolute; inset: 0; font-family: Inter, sans-serif; overflow: hidden; }
+        #thread .view { position: absolute; left: 0; top: 290px; width: 1080px; height: 1190px; overflow: hidden; }
+        #thread .rail { position: absolute; left: 0; top: 0; width: 1080px; height: 100px; }
+        #thread .bub {
+          position: absolute; max-width: 900px; padding: 24px 32px 20px 34px; border-radius: 32px;
+          box-shadow: 0 6px 18px rgba(17, 27, 33, 0.13); box-sizing: border-box;
+        }
+        #thread .out { right: 40px; background: #d9fdd3; border-top-right-radius: 8px; }
+        #thread .in { left: 40px; background: #fbfaf7; border-top-left-radius: 8px; }
+        #thread .out::before, #thread .in::before { content: ""; position: absolute; top: 0; width: 0; height: 0; border-bottom: 24px solid transparent; }
+        #thread .out::before { right: -20px; border-left: 24px solid #d9fdd3; }
+        #thread .in::before { left: -20px; border-right: 24px solid #fbfaf7; }
+        #thread .tag { display: block; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 38px; letter-spacing: 1px; color: #005c4b; text-transform: uppercase; margin-bottom: 4px; }
+        #thread .txt { display: block; font-size: 64px; line-height: 78px; font-weight: 700; color: #111b21; letter-spacing: -0.5px; }
+        #thread .w { display: inline-block; }
+        #thread .k { font-weight: 900; color: #005c4b; }
+        #thread .spacer { display: inline-block; width: 190px; height: 10px; }
+        #thread .in .spacer { width: 124px; }
+        #thread .meta { position: absolute; right: 28px; bottom: 16px; height: 36px; display: flex; align-items: center; gap: 8px; }
+        #thread .hh { font-size: 28px; line-height: 36px; color: #54656f; font-weight: 400; }
+        #thread .tk { position: relative; width: 36px; height: 22px; }
+        #thread .tk svg { position: absolute; left: 0; top: 0; }
+        #thread .tk .tk-blue { opacity: 0; }
+        #thread .vm { right: 40px; width: 860px; height: 200px; padding: 0; }
+        #thread .vm .play { position: absolute; left: 30px; top: 44px; width: 84px; height: 84px; color: #3b4a54; }
+        #thread .vm .bars { position: absolute; left: 130px; top: 38px; width: 560px; height: 94px; }
+        #thread .vm .vb { position: absolute; width: 8px; border-radius: 4px; background: #3b4a54; }
+        #thread .vm .knob { position: absolute; left: 120px; top: 74px; width: 26px; height: 26px; border-radius: 50%; background: #005c4b; }
+        #thread .vm .dur { position: absolute; left: 130px; top: 140px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 36px; color: #54656f; }
+        #thread .vm .vav { position: absolute; right: 28px; top: 36px; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; background: #005c4b; display: flex; align-items: center; justify-content: center; }
+        #thread .vm .vav img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #thread .vm .vav .ini { font-weight: 900; font-size: 40px; color: #fbfaf7; }
+        #thread .vm .badge { position: absolute; right: 20px; top: 110px; width: 42px; height: 42px; border-radius: 50%; background: #00a884; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+      </style>
+      <div id="thread" data-composition-id="thread" data-width="1080" data-height="1920">
+        <div class="view"><div class="rail" data-layout-allow-overflow></div></div>
+      </div>
+      <script>
+        (function () {
+          var D = /*@DATA@*/ {};
+          var root = document.getElementById("thread");
+          var rail = root.querySelector(".rail");
+          var ANCHOR = 1440 - 290;
+          var items = [];
+          D.groups.forEach(function (g) {
+            var b = document.createElement("div");
+            b.className = "bub " + (g.in ? "in" : "out");
+            b.setAttribute("data-layout-allow-overflow", "");
+            var html = "";
+            if (g.in) html += '<span class="tag">' + g.tag + "</span>";
+            html += '<span class="txt">';
+            g.words.forEach(function (w, j) {
+              html += '<span class="w' + (w[3] ? " k" : "") + '">' + w[0] + "</span>" + (j < g.words.length - 1 ? " " : "");
+            });
+            html += '<span class="spacer"></span></span><span class="meta"><span class="hh">' + g.clock + "</span>";
+            if (!g.in) html += '<span class="tk">' + VT.ticks({ cls: "tk-grey", color: "#54656f", width: 36 }) + VT.ticks({ cls: "tk-blue", color: "#53bdeb", width: 36 }) + "</span>";
+            html += "</span>";
+            b.innerHTML = html;
+            rail.appendChild(b);
+            items.push({ g: g, el: b, in: g.in });
+          });
+          var V = D.voice;
+          var vm = document.createElement("div");
+          vm.className = "bub out vm";
+          vm.setAttribute("data-layout-allow-overflow", "");
+          var vb = "";
+          V.bars.forEach(function (h, j) {
+            var hh = Math.round(14 + 76 * h);
+            vb += '<span class="vb" style="left:' + j * 14.6 + "px;top:" + Math.round((94 - hh) / 2) + "px;height:" + hh + 'px"></span>';
+          });
+          vm.innerHTML = '<span class="play">' + VT.icon("play", { size: 84, fill: true, stroke: 1 }) + '</span><span class="bars">' + vb +
+            '</span><span class="knob"></span><span class="dur">' + V.dur + '</span><span class="vav">' + V.avatar +
+            '</span><span class="badge">' + VT.icon("mic", { size: 26, stroke: 2.6 }) + '</span><span class="meta"><span class="hh">' + V.clock +
+            '</span><span class="tk">' + VT.ticks({ cls: "tk-grey", color: "#54656f", width: 36 }) + VT.ticks({ cls: "tk-blue", color: "#53bdeb", width: 36 }) + "</span></span>";
+          rail.appendChild(vm);
+          items.push({ g: { start: V.t, end: V.t + 2, voice: true }, el: vm, in: false });
+
+          var build = function () {
+            // empilha como uma conversa: posição de cada balão dentro do trilho
+            var y = 0;
+            items.forEach(function (it, n) {
+              if (n > 0) y += items[n - 1].in !== it.in ? 34 : 18;
+              it.top = y;
+              it.el.style.top = y + "px";
+              it.h = it.el.getBoundingClientRect().height;
+              y += it.h;
+            });
+            rail.style.height = y + "px";
+            var tl = gsap.timeline({ paused: true });
+            gsap.set(rail, { y: ANCHOR - (items[0].top + items[0].h) });
+            items.forEach(function (it, n) {
+              var g = it.g, el = it.el;
+              var t0 = Math.max(0, g.start - 0.14);
+              if (n > 0) { var pv = items[n - 1]; tl.fromTo(rail, { y: ANCHOR - (pv.top + pv.h) }, { y: ANCHOR - (it.top + it.h), duration: 0.32, ease: "power2.out", immediateRender: false }, t0); }
+              tl.fromTo(el, { opacity: 0, scale: 0.94, transformOrigin: it.in ? "0% 100%" : "100% 100%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, t0);
+              if (!g.voice) {
+                var ws = el.querySelectorAll(".w");
+                g.words.forEach(function (w, j) {
+                  tl.fromTo(ws[j], { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.14, ease: "power2.out" }, Math.max(t0, w[1] - 0.05));
+                });
+              }
+              var blue = el.querySelector(".tk-blue");
+              if (blue) tl.to(blue, { opacity: 1, duration: 0.2 }, g.end + 0.35);
+            });
+            window.__timelines["thread"] = tl;
+          };
+          document.fonts.ready.then(build);
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s23 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s23 .typing { position: absolute; left: 410px; top: 560px; width: 260px; height: 130px; border-radius: 40px; border-top-right-radius: 10px; background: #d9fdd3; box-shadow: 0 10px 24px rgba(17, 27, 33, 0.14); }
+        #s23 .td { position: absolute; top: 45px; width: 40px; height: 40px; border-radius: 50%; background: #3b4a54; }
+        #s23 .t1 { left: 50px; } #s23 .t2 { left: 110px; } #s23 .t3 { left: 170px; }
+        #s23 .card { position: absolute; left: 90px; top: 400px; width: 900px; height: 420px; border-radius: 44px; background: #fbfaf7; box-shadow: 0 18px 40px rgba(17, 27, 33, 0.16); opacity: 0; }
+        #s23 .ig { position: absolute; left: 44px; top: 40px; padding: 8px 20px; border-radius: 14px; background: #005c4b; color: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 32px; line-height: 40px; letter-spacing: 3px; }
+        #s23 .mc { position: absolute; left: 44px; top: 120px; font-family: "League Gothic", sans-serif; font-size: 230px; line-height: 230px; color: #111b21; }
+        #s23 .run { position: absolute; left: 740px; top: 250px; width: 120px; height: 120px; border-radius: 50%; background: #00a884; color: #fbfaf7; overflow: hidden; }
+        #s23 .arw { position: absolute; left: 22px; top: 22px; width: 76px; height: 76px; }
+        #s23 .tray { position: absolute; left: 150px; top: 880px; width: 780px; height: 150px; border-radius: 75px; background: #fbfaf7; box-shadow: 0 12px 28px rgba(17, 27, 33, 0.14); opacity: 0; }
+        #s23 .rx { position: absolute; top: 25px; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #a99f90; }
+        #s23 .r1 { left: 40px; } #s23 .r2 { left: 185px; } #s23 .r3 { left: 340px; } #s23 .r4 { left: 495px; } #s23 .r5 { left: 640px; }
+        #s23 .lock { position: absolute; left: 0; top: 330px; width: 1080px; height: 560px; }
+        #s23 .lav { position: absolute; left: 460px; top: 0; width: 160px; height: 160px; border-radius: 50%; overflow: hidden; background: #005c4b; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 8px #fbfaf7; opacity: 0; }
+        #s23 .lav img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #s23 .lav .ini { font-weight: 900; font-size: 64px; color: #fbfaf7; }
+        #s23 .brand { position: absolute; left: 130px; top: 220px; width: 820px; height: 110px; background: #d9fdd3; border-radius: 30px; border-top-right-radius: 8px; box-shadow: 0 8px 22px rgba(17, 27, 33, 0.14); opacity: 0; }
+        #s23 .brand::before { content: ""; position: absolute; top: 0; right: -18px; border-left: 22px solid #d9fdd3; border-bottom: 22px solid transparent; }
+        #s23 .bt { position: absolute; left: 34px; top: 22px; font-weight: 700; font-size: 52px; line-height: 64px; white-space: nowrap; }
+        #s23 .bm { position: absolute; right: 24px; bottom: 16px; display: flex; align-items: center; gap: 8px; font-size: 26px; line-height: 32px; color: #54656f; }
+        #s23 .chips { position: absolute; left: 0; top: 390px; width: 1080px; display: flex; justify-content: center; gap: 22px; }
+        #s23 .cp { padding: 12px 24px; border-radius: 16px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 32px; line-height: 40px; letter-spacing: 1px; opacity: 0; }
+        #s23 .cp1 { background: #005c4b; color: #fbfaf7; }
+        #s23 .cp2 { background: #fbfaf7; color: #111b21; box-shadow: inset 0 0 0 4px #111b21; }
+      </style>
+      <div id="s23" data-composition-id="s23" data-width="1080" data-height="1920">
+        <div class="typing"><div class="td t1"></div><div class="td t2"></div><div class="td t3"></div></div>
+        <div class="card">
+          <div class="ig">INSTAGRAM</div>
+          <div class="mc">Me conta.</div>
+          <div class="run"><div class="arw"></div></div>
+        </div>
+        <div class="tray"><div class="rx r1"></div><div class="rx r2"></div><div class="rx r3"></div><div class="rx r4"></div><div class="rx r5"></div></div>
+        <div class="lock">
+          <div class="lav"><span class="ini">CJ</span></div>
+          <div class="brand"><div class="bt">Vou te mandar um áudio</div><div class="bm">08:20 <span class="tks"></span></div></div>
+          <div class="chips"><div class="cp cp1">EP #11 · EXPERIÊNCIA</div><div class="cp cp2">PRÓXIMO ▸</div></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Agora",3.167,3.647],["corre",3.647,4.047],["lá",4.047,4.207],["no",4.207,4.367],["Instagram",4.367,4.687],["e",4.687,4.767],["me",4.767,4.927],["conta.",4.927,5.167],["O",5.167,5.247],["que",5.247,5.407],["você",5.407,5.487],["achou",5.567,5.807],["desse",5.807,6.047],["áudio?",6.047,6.151],["Te",6.447,6.607],["ajudou?",6.687,6.997]];
+          var T = VT.finder(W, "s23");
+          var AE = 7.485;
+          var R = document.getElementById("s23");
+          var q = function (s) { return R.querySelector(s); };
+          q(".arw").innerHTML = VT.icon("arrow", { size: 76, stroke: 2.6 });
+          q(".tks").innerHTML = VT.ticks({ color: "#53bdeb" });
+          var rx = [["r1", "heart"], ["r2", "bulb"], ["r3", "check"], ["r4", "star"], ["r5", "spark"]];
+          rx.forEach(function (r) { q("." + r[0]).innerHTML = VT.icon(r[1], { size: 70, stroke: 2.2 }); });
+          var tl = gsap.timeline({ paused: true });
+          // silêncio → digitando…
+          tl.fromTo(q(".typing"), { opacity: 0, scale: 0.6, transformOrigin: "100% 100%" }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 0.35);
+          ["t1", "t2", "t3"].forEach(function (c, i) {
+            tl.fromTo(q("." + c), { y: 0 }, { y: -16, duration: 0.25, yoyo: true, repeat: 9, ease: "sine.inOut", immediateRender: false }, 0.5 + i * 0.14);
+          });
+          tl.to(q(".typing"), { opacity: 0, scale: 0.7, duration: 0.25, ease: "power2.in" }, T("Agora") - 0.3);
+          // Agora corre lá no Instagram e me conta
+          tl.fromTo(q(".card"), { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, T("Agora") - 0.15);
+          tl.fromTo(q(".ig"), { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("Instagram") - 0.1);
+          tl.fromTo(q(".mc"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, T("conta") - 0.2);
+          tl.fromTo(q(".arw"), { x: -100 }, { x: 100, duration: 0.42, ease: "power2.in", repeat: 3, immediateRender: false }, T("corre") - 0.1);
+          tl.set(q(".arw"), { x: 0 }, T("corre") + 1.6);
+          // reações
+          tl.fromTo(q(".tray"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.8)" }, T("achou") - 0.4);
+          tl.to(q(".r1"), { color: "#e5484d", scale: 1.3, duration: 0.25, ease: "back.out(3)" }, T("achou") - 0.05);
+          tl.to(q(".r1"), { scale: 1, duration: 0.2 }, T("achou") + 0.25);
+          tl.to(q(".r2"), { color: "#c9a55c", scale: 1.3, duration: 0.25, ease: "back.out(3)" }, T("ajudou") - 0.05);
+          tl.to(q(".r3"), { color: "#00a884", scale: 1.3, duration: 0.25, ease: "back.out(3)" }, T("ajudou") + 0.08);
+          tl.to([q(".r2"), q(".r3")], { scale: 1, duration: 0.2 }, T("ajudou") + 0.4);
+          // lockup final
+          var L = AE - 0.15;
+          tl.to([q(".card"), q(".tray")], { opacity: 0, scale: 0.9, duration: 0.3, ease: "power2.in" }, L);
+          tl.fromTo(q(".lav"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2.2)" }, L + 0.2);
+          tl.fromTo(q(".brand"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.8)" }, L + 0.3);
+          tl.fromTo(q(".cp1"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, L + 0.45);
+          tl.fromTo(q(".cp2"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, L + 0.55);
+          tl.fromTo(q(".cp2"), { x: 0 }, { x: 8, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, L + 0.9);
+          window.__timelines["s23"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

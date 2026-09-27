@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360" fill="none" stroke="#cbc1b2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <!-- microfone -->
+  <g transform="translate(34 30) rotate(-12)"><rect x="10" y="0" width="20" height="34" rx="10"/><path d="M2 22a18 18 0 0 0 36 0M20 40v10M11 50h18"/></g>
+  <!-- balão -->
+  <g transform="translate(172 24) rotate(6)"><path d="M6 4h62a8 8 0 0 1 8 8v26a8 8 0 0 1-8 8H30l-14 12 2-12H6a8 8 0 0 1-8-8V12a8 8 0 0 1 8-8z"/><path d="M14 20h40M14 31h26"/></g>
+  <!-- waveform -->
+  <g transform="translate(268 118)"><path d="M0 18v8M10 10v24M20 2v40M30 12v20M40 6v32M50 16v12M60 9v26"/></g>
+  <!-- ✓✓ -->
+  <g transform="translate(26 176) rotate(-6)"><path d="M2 14l8 8L26 4"/><path d="M18 22 34 4"/></g>
+  <!-- relógio -->
+  <g transform="translate(140 150)"><circle cx="24" cy="24" r="22"/><path d="M24 11v13l9 6"/></g>
+  <!-- lâmpada -->
+  <g transform="translate(270 232) rotate(10)"><path d="M18 2a16 16 0 0 0-9 29c2 1.5 3 3.6 3 6v2h12v-2c0-2.4 1-4.5 3-6A16 16 0 0 0 18 2z"/><path d="M12 45h12M14 51h8"/></g>
+  <!-- coração -->
+  <g transform="translate(46 270) rotate(-10)"><path d="M22 40S2 28 2 14A10 10 0 0 1 22 9a10 10 0 0 1 20 5c0 14-20 26-20 26z"/></g>
+  <!-- play -->
+  <g transform="translate(168 272)"><circle cx="24" cy="24" r="22"/><path d="M19 14v20l16-10z"/></g>
+  <!-- brilho -->
+  <g transform="translate(318 30)"><path d="M14 0v28M0 14h28M5 5l18 18M23 5 5 23"/></g>
+  <!-- pontinhos -->
+  <circle cx="120" cy="100" r="3"/><circle cx="250" cy="200" r="3"/><circle cx="110" cy="236" r="3"/><circle cx="330" cy="330" r="3"/>
+</svg>

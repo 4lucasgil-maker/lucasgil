@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s06 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; overflow: hidden; }
+        #s06 .world { position: absolute; left: 0; top: 0; width: 2400px; height: 1920px; }
+        #s06 .ground { position: absolute; left: 0; top: 902px; width: 2400px; height: 8px; border-radius: 4px; background: #a99f90; }
+        #s06 .block { position: absolute; left: 380px; top: 380px; width: 700px; height: 524px; border-radius: 48px 48px 0 0; background: #3f5b67; box-shadow: 0 20px 40px rgba(17, 27, 33, 0.18); }
+        #s06 .novo { position: absolute; left: 0; top: 50px; width: 700px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 210px; line-height: 210px; color: #fbfaf7; }
+        #s06 .tunnel { position: absolute; left: 0; top: 300px; width: 700px; height: 224px; background: #1b2a30; }
+        #s06 .streak { position: absolute; top: 0; height: 8px; border-radius: 4px; background: #d9fdd3; opacity: 0; }
+        #s06 .walker { position: absolute; left: 138px; top: 806px; width: 64px; height: 64px; }
+        #s06 .wk { position: absolute; inset: 0; border-radius: 50%; background: #005c4b; box-shadow: 0 0 0 8px #fbfaf7, 0 10px 20px rgba(17, 27, 33, 0.25); }
+        #s06 .ask { position: absolute; left: 100px; top: 640px; width: 140px; height: 120px; border-radius: 30px; background: #fbfaf7; box-shadow: 0 10px 24px rgba(17, 27, 33, 0.14); text-align: center; font-family: "League Gothic", sans-serif; font-size: 100px; line-height: 120px; color: #111b21; opacity: 0; }
+        #s06 .rays { position: absolute; left: 1160px; top: 670px; width: 340px; height: 340px; opacity: 0; }
+        #s06 .other { position: absolute; left: 1100px; top: 500px; width: 440px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 130px; line-height: 130px; color: #005c4b; text-transform: uppercase; opacity: 0; }
+        #s06 .ok { position: absolute; left: 985px; top: 300px; width: 170px; height: 170px; border-radius: 50%; background: #00a884; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px #fbfaf7; opacity: 0; }
+      </style>
+      <div id="s06" data-composition-id="s06" data-width="1080" data-height="1920">
+        <div class="world" data-layout-allow-overflow>
+          <div class="ground" data-layout-ignore></div>
+          <div class="block">
+            <div class="novo">NOVO</div>
+            <div class="tunnel"></div>
+          </div>
+          <svg class="rays" viewBox="0 0 340 340" fill="none" stroke="#c9a55c" stroke-width="10" stroke-linecap="round" data-layout-ignore>
+            <path d="M170 20v50M170 270v50M20 170h50M270 170h50M64 64l35 35M241 241l35 35M276 64l-35 35M99 241l-35 35"/>
+          </svg>
+          <div class="other" data-layout-allow-overflow>outro lado</div>
+          <div class="ok" data-layout-allow-overflow></div>
+          <div class="ask">?</div>
+          <div class="walker"><div class="wk"></div></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["E,",0.111,0.351],["por",0.351,0.511],["definição,",0.511,1.151],["como",1.151,1.391],["é",1.391,1.551],["novo,",1.551,1.803],["a",2.111,2.191],["gente",2.191,2.431],["não",2.431,2.591],["tem",2.591,2.751],["aquela",2.751,3.071],["experiência,",3.071,3.471],["a",3.471,3.551],["gente",3.551,3.711],["nunca",3.711,3.951],["viveu",3.951,4.351],["aquilo.",4.351,4.471],["Só",5.551,5.791],["que",5.791,5.951],["uma",5.951,6.191],["vez",6.191,6.351],["que",6.351,6.511],["a",6.511,6.591],["gente",6.591,6.911],["passa",6.911,7.391],["por",7.391,7.631],["aquilo,",7.631,7.88],["a",8.191,8.271],["gente",8.271,8.511],["sai",8.511,8.751],["do",8.831,8.911],["outro",8.911,9.071],["lado.",9.071,9.311],["Então",9.551,9.631],["essa",10.271,10.591],["situação",10.591,10.911],["se",10.991,11.151],["materializou,",11.151,11.713],["né?",12.431,12.701]];
+          var T = VT.finder(W, "s06");
+          var R = document.getElementById("s06");
+          var q = function (s) { return R.querySelector(s); };
+          q(".ok").innerHTML = VT.icon("check", { size: 110, stroke: 3.2 });
+          var tun = q(".tunnel");
+          var streaks = [];
+          for (var i = 0; i < 7; i++) {
+            var s = document.createElement("div");
+            s.className = "streak";
+            s.setAttribute("data-layout-ignore", "");
+            s.style.top = 30 + i * 26 + "px";
+            s.style.left = (i * 97) % 520 + "px";
+            s.style.width = 120 + ((i * 53) % 140) + "px";
+            tun.appendChild(s);
+            streaks.push(s);
+          }
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".walker"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, 0.05);
+          tl.fromTo(q(".block"), { y: 560 }, { y: 0, duration: 0.7, ease: "power3.out" }, T("definição") - 0.1);
+          tl.fromTo(q(".novo"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, T("novo") - 0.1);
+          tl.fromTo(q(".ask"), { opacity: 0, y: 30, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, T("experiência") - 0.1);
+          tl.fromTo(q(".ask"), { rotation: 0 }, { rotation: 10, duration: 0.2, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, T("nunca"));
+          tl.to(q(".ask"), { opacity: 0, y: -30, duration: 0.3 }, T("passa") - 0.8);
+          tl.fromTo(q(".wk"), { y: 0 }, { y: -10, duration: 0.18, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("aquilo") - 0.2);
+          // atravessar: caminhante entra no túnel, câmera acompanha
+          var a0 = T("passa") - 1.0, a1 = T("sai") + 0.3;
+          tl.to(q(".walker"), { x: 1160, duration: a1 - a0, ease: "sine.inOut" }, a0);
+          tl.to(q(".world"), { x: -560, duration: a1 - a0 + 0.3, ease: "sine.inOut" }, a0 + 0.2);
+          tl.fromTo(q(".wk"), { y: 0 }, { y: -8, duration: 0.15, yoyo: true, repeat: 13, ease: "sine.inOut", immediateRender: false }, a0);
+          streaks.forEach(function (s, i) {
+            tl.fromTo(s, { opacity: 0, x: 500 }, { opacity: 0.9, x: -300, duration: 0.6, ease: "none", repeat: 2, immediateRender: false }, T("passa") + i * 0.09);
+            tl.to(s, { opacity: 0, duration: 0.2 }, T("passa") + 1.9 + i * 0.09);
+          });
+          // outro lado
+          tl.fromTo(q(".rays"), { opacity: 0, scale: 0.4, rotation: 0 }, { opacity: 1, scale: 1, rotation: 30, duration: 0.6, ease: "back.out(2)" }, T("sai"));
+          tl.fromTo(q(".rays"), { rotation: 30 }, { rotation: 120, duration: 4, ease: "none", immediateRender: false }, T("sai") + 0.6);
+          tl.fromTo(q(".other"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T("outro") - 0.1);
+          // a situação se materializou → check
+          tl.fromTo(q(".ok"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.5)" }, T("materializou") - 0.05);
+          tl.to(q(".block"), { backgroundColor: "#005c4b", duration: 0.5 }, T("materializou"));
+          tl.fromTo(q(".wk"), { y: 0 }, { y: -40, duration: 0.25, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("né") - 0.1);
+          var DUR = 12.73;
+          tl.to([q(".block"), q(".other"), q(".ok"), q(".rays"), q(".ground")], { opacity: 0, duration: 0.3, ease: "power1.in" }, DUR - 0.32);
+          window.__timelines["s06"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

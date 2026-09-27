@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #t16 { position: absolute; inset: 0; font-family: Inter, sans-serif; }
+        #t16 .in { position: absolute; inset: 0; background: #efeae2; overflow: hidden; }
+        #t16 .doodles { position: absolute; left: -60px; top: -40px; width: 2160px; height: 1260px; background-image: url(assets/vendor/doodles.svg); background-size: 360px 360px; opacity: 0.85; }
+        #t16 .glow { position: absolute; left: 260px; top: -260px; width: 1400px; height: 1400px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 64%); }
+        #t16 .stack { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        #t16 .who { display: flex; align-items: center; gap: 20px; margin-bottom: 44px; }
+        #t16 .tav { width: 96px; height: 96px; border-radius: 50%; overflow: hidden; background: #005c4b; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 6px #fbfaf7; }
+        #t16 .tav img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #t16 .tav .ini { font-weight: 900; font-size: 38px; color: #fbfaf7; }
+        #t16 .whoname { font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; letter-spacing: 3px; color: #111b21; }
+        #t16 .epn { font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 50px; letter-spacing: 4px; color: #005c4b; }
+        #t16 .name { margin-top: 40px; font-family: "League Gothic", sans-serif; font-weight: 400; color: #111b21; text-align: center; line-height: 0.9; width: 1600px; text-transform: uppercase; }
+        #t16 .brand { position: relative; margin-top: 44px; background: #d9fdd3; border-radius: 30px; border-top-right-radius: 8px; padding: 22px 30px 18px 34px; box-shadow: 0 8px 22px rgba(17, 27, 33, 0.14); display: flex; align-items: flex-end; gap: 22px; }
+        #t16 .brand::before { content: ""; position: absolute; top: 0; right: -18px; border-left: 22px solid #d9fdd3; border-bottom: 22px solid transparent; }
+        #t16 .bt { font-weight: 700; font-size: 48px; line-height: 60px; color: #111b21; white-space: nowrap; }
+        #t16 .bm { display: flex; align-items: center; gap: 8px; font-size: 26px; color: #54656f; padding-bottom: 4px; }
+      </style>
+      <div id="t16" data-composition-id="titlecard16" data-width="1920" data-height="1080">
+        <div class="in">
+          <div class="doodles" data-layout-ignore></div><div class="glow" data-layout-ignore></div>
+          <div class="stack">
+            <div class="who"><div class="tav"><span class="ini">CJ</span></div><div class="whoname">CRIS JUNQUEIRA</div></div>
+            <div class="epn">EPISÓDIO #11</div>
+            <div class="name">Experiência</div>
+            <div class="brand"><span class="bt">Vou te mandar um áudio</span><span class="bm">08:20 <span class="tks"></span></span></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var R = document.getElementById("t16");
+          R.querySelector(".tks").innerHTML = VT.ticks({ color: "#53bdeb", width: 36 });
+          var build = function () {
+            var nm = R.querySelector(".name");
+            var fit = window.__hyperframes && window.__hyperframes.fitTextFontSize
+              ? window.__hyperframes.fitTextFontSize(nm.textContent.trim().toUpperCase(), { fontFamily: "League Gothic", fontWeight: 400, maxWidth: 1500, baseFontSize: 400, minFontSize: 160, step: 4 })
+              : { fontSize: 340 };
+            nm.style.fontSize = Math.min(fit.fontSize, 400) + "px";
+            var tl = gsap.timeline({ paused: true });
+            tl.fromTo(R.querySelector(".in"), { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.04, duration: 0.2, ease: "power2.in", immediateRender: false }, 0.120);
+            window.__timelines["titlecard16"] = tl;
+          };
+          document.fonts.ready.then(build);
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s09 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s09 .note { position: absolute; left: 70px; top: 330px; width: 940px; height: 190px; border-radius: 36px; background: #fbfaf7; box-shadow: 0 16px 36px rgba(17, 27, 33, 0.16); }
+        #s09 .bell { position: absolute; left: 34px; top: 40px; width: 110px; height: 110px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s09 .bellin { width: 64px; height: 64px; }
+        #s09 .nt { position: absolute; left: 176px; top: 36px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 36px; letter-spacing: 2px; color: #54656f; }
+        #s09 .nb { position: absolute; left: 176px; top: 80px; font-weight: 900; font-size: 60px; line-height: 72px; color: #111b21; white-space: nowrap; }
+        #s09 .chip { position: absolute; right: 34px; top: 34px; padding: 8px 18px; border-radius: 14px; background: #3f5b67; color: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 36px; letter-spacing: 1px; }
+        #s09 .prep { position: absolute; left: 70px; top: 600px; font-family: "League Gothic", sans-serif; font-size: 130px; line-height: 130px; color: #111b21; text-transform: uppercase; }
+        #s09 .cent { position: absolute; right: 150px; top: 612px; font-family: "League Gothic", sans-serif; font-size: 120px; line-height: 120px; color: #005c4b; }
+        #s09 .track { position: absolute; left: 70px; top: 760px; width: 940px; height: 110px; border-radius: 55px; background: #e2dace; overflow: hidden; }
+        #s09 .fill { position: absolute; left: 0; top: 0; width: 940px; height: 110px; border-radius: 55px; background: #00a884; }
+        #s09 .gap { position: absolute; left: 870px; top: 748px; width: 150px; height: 134px; border-radius: 60px; border: 6px dashed #3f5b67; opacity: 0; }
+        #s09 .flag { position: absolute; left: 950px; top: 640px; width: 90px; height: 110px; color: #111b21; }
+        #s09 .gl { position: absolute; left: 0; top: 910px; width: 1010px; text-align: right; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 32px; line-height: 40px; letter-spacing: 2px; color: #3b4a54; opacity: 0; }
+        #s09 .nev { position: absolute; left: 70px; top: 980px; width: 940px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 120px; line-height: 120px; color: #c7373c; text-transform: uppercase; opacity: 0; }
+      </style>
+      <div id="s09" data-composition-id="s09" data-width="1080" data-height="1920">
+        <div class="note">
+          <div class="bell"><span class="bellin"></span></div>
+          <div class="nt">LEMBRETE</div>
+          <div class="nb">Lembrar disso</div>
+          <div class="chip">ALGO NOVO</div>
+        </div>
+        <div class="prep">preparado</div>
+        <div class="cent">100%</div>
+        <div class="track"><div class="fill"></div></div>
+        <div class="gap" data-layout-ignore></div>
+        <div class="flag"></div>
+        <div class="gl">EXPERIÊNCIA</div>
+        <div class="nev">nunca</div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Então",0.318,0.638],["é",1.518,1.678],["importante",1.918,2.238],["a",2.238,2.318],["gente",2.398,2.558],["lembrar",2.558,2.958],["disso",3.118,3.678],["quando",3.678,3.998],["a",4.078,4.238],["gente",4.238,4.558],["encontra",4.558,5.038],["algo",5.198,5.438],["novo.",5.438,5.71],["A",6.238,6.398],["gente",6.398,6.638],["nunca",6.638,6.878],["vai",6.878,7.118],["estar",7.118,7.278],["preparado",7.278,7.758],["100%",7.758,8.158],["para",8.318,8.478],["algo",8.478,8.718],["novo,",8.718,9.038],["a",9.038,9.118],["gente",9.118,9.278],["nunca",9.278,9.438],["vai",9.438,9.598],["ter",9.598,9.758],["essa",9.758,9.998],["experiência.",9.998,10.388]];
+          var T = VT.finder(W, "s09");
+          var R = document.getElementById("s09");
+          var q = function (s) { return R.querySelector(s); };
+          q(".bellin").innerHTML = '<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>';
+          q(".flag").innerHTML = VT.icon("flag", { size: 100, stroke: 2.4 });
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".note"), { opacity: 0, y: -120 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.6)" }, T("importante") - 0.35);
+          tl.fromTo(q(".bell"), { rotation: 0 }, { rotation: 16, duration: 0.08, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, T("importante"));
+          tl.fromTo(q(".nb"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, T("lembrar") - 0.05);
+          tl.fromTo(q(".chip"), { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("algo") - 0.05);
+          tl.to(q(".note"), { scale: 0.92, y: -10, duration: 0.5, ease: "power2.inOut" }, T("nunca") - 0.4);
+          // barra de preparo que nunca chega ao fim
+          tl.fromTo(q(".prep"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T("preparado") - 0.2);
+          tl.fromTo(q(".track"), { opacity: 0, scaleX: 0.6, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.4, ease: "power3.out" }, T("nunca") - 0.1);
+          tl.fromTo(q(".flag"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.4, ease: "bounce.out" }, T("nunca"));
+          tl.fromTo(q(".cent"), { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.out" }, T("100%") - 0.08);
+          tl.fromTo(q(".fill"), { x: -940 }, { x: -120, duration: 1.1, ease: "power2.out" }, T("preparado"));
+          tl.to(q(".fill"), { x: -100, duration: 0.18, yoyo: true, repeat: 5, ease: "sine.inOut" }, T("preparado") + 1.15);
+          tl.fromTo(q(".gap"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, T("novo", 2));
+          tl.fromTo(q(".gap"), { scale: 1 }, { scale: 1.06, duration: 0.3, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, T("novo", 2) + 0.3);
+          tl.fromTo(q(".nev"), { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.28, ease: "power4.in" }, T("nunca", 2) - 0.12);
+          tl.to(q(".fill"), { backgroundColor: "#e5484d", duration: 0.15, yoyo: true, repeat: 1 }, T("nunca", 2));
+          tl.fromTo(q(".track"), { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 5, immediateRender: false }, T("nunca", 2));
+          tl.fromTo(q(".gl"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3 }, T("experiência") - 0.1);
+          window.__timelines["s09"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

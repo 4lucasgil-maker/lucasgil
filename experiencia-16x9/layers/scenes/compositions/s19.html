@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s19 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; overflow: hidden; }
+        #s19 .bulb { position: absolute; left: 470px; top: 320px; width: 140px; height: 140px; border-radius: 50%; background: #c9a55c; color: #111b21; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(201, 165, 92, 0.25); opacity: 0; z-index: 3; }
+        #s19 .cam { position: absolute; left: 110px; top: 330px; width: 860px; height: 860px; }
+        #s19 .tile { position: absolute; width: 104px; height: 104px; border-radius: 20px; background: #fbfaf7; color: #005c4b; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(17, 27, 33, 0.1); }
+        #s19 .hole { position: absolute; left: 378px; top: 378px; width: 104px; height: 104px; border-radius: 20px; border: 5px dashed #3f5b67; background: rgba(251, 250, 247, 0.4); }
+        #s19 .hq { position: absolute; left: 0; top: 4px; width: 94px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 80px; line-height: 90px; color: #3f5b67; }
+        #s19 .many { position: absolute; left: 0; top: 1130px; width: 1080px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 110px; line-height: 110px; color: #005c4b; text-transform: uppercase; opacity: 0; }
+      </style>
+      <div id="s19" data-composition-id="s19" data-width="1080" data-height="1920">
+        <div class="cam" data-layout-allow-overflow><div class="hole"><div class="hq">?</div></div></div>
+        <div class="bulb"></div>
+        <div class="many">várias outras</div>
+      </div>
+      <script>
+        (function () {
+          var W = [["E",0.293,0.453],["aí,",0.453,0.772],["de",0.853,0.932],["repente,",0.932,1.412],["você",1.413,1.652],["percebe",1.652,2.052],["que",2.052,2.212],["não",2.212,2.293],["é",2.293,2.372],["que",2.372,2.532],["você",2.532,2.692],["não",2.692,2.852],["tem",2.853,3.013],["nenhuma",3.013,3.492],["experiência.",3.492,4.052],["Você",4.052,4.293],["não",4.293,4.372],["tem",4.372,4.613],["exatamente",4.613,5.173],["aquela,",5.173,5.573],["mas",5.573,5.733],["você",5.733,5.893],["tem",5.893,6.052],["várias",6.052,6.372],["outras.",6.372,6.614]];
+          var T = VT.finder(W, "s19");
+          var R = document.getElementById("s19");
+          var q = function (s) { return R.querySelector(s); };
+          q(".bulb").innerHTML = VT.icon("bulb", { size: 86, stroke: 2.2 });
+          var names = ["star", "heart", "bulb", "flag", "clock", "pin", "check", "spark", "play", "lock", "mic", "search"];
+          var cam = q(".cam");
+          var rnd = VT.rng(1919);
+          var tiles = [];
+          for (var r = 0; r < 7; r++) for (var c = 0; c < 7; c++) {
+            if (r === 3 && c === 3) continue;
+            var t = document.createElement("div");
+            t.className = "tile";
+            t.style.left = c * 126 + "px";
+            t.style.top = r * 126 + "px";
+            t.innerHTML = VT.icon(names[Math.floor(rnd() * names.length)], { size: 58, stroke: 2.2 });
+            cam.appendChild(t);
+            tiles.push({ el: t, d: Math.hypot(r - 3, c - 3) });
+          }
+          var tl = gsap.timeline({ paused: true });
+          // câmera começa colada no espaço vazio
+          tl.fromTo(cam, { scale: 5.2, transformOrigin: "50% 50%" }, { scale: 4.6, duration: 5.4, ease: "sine.inOut" }, 0);
+          tl.fromTo(q(".hole"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          tl.fromTo(q(".bulb"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(3)" }, T("percebe") - 0.15);
+          tl.fromTo(q(".bulb"), { boxShadow: "0 0 0 10px rgba(201,165,92,0.25)" }, { boxShadow: "0 0 0 34px rgba(201,165,92,0)", duration: 0.7, repeat: 2, ease: "power1.out", immediateRender: false }, T("percebe") + 0.2);
+          tl.to(q(".bulb"), { y: -10, scale: 0.8, duration: 0.4 }, T("nenhuma"));
+          tl.fromTo(q(".hq"), { scale: 1 }, { scale: 1.15, duration: 0.2, yoyo: true, repeat: 3, ease: "power2.out", immediateRender: false }, T("nenhuma"));
+          tl.fromTo(q(".hole"), { rotation: 0 }, { rotation: 4, duration: 0.1, yoyo: true, repeat: 3, immediateRender: false }, T("aquela"));
+          // várias outras → zoom-out revela a coleção inteira
+          var z = T("várias") - 0.55;
+          tl.to(cam, { scale: 0.82, duration: 1.0, ease: "power3.inOut" }, z);
+          tiles.forEach(function (o) {
+            tl.fromTo(o.el, { opacity: 0.2 }, { opacity: 1, duration: 0.3 }, z + 0.3 + o.d * 0.06);
+          });
+          tl.fromTo(q(".many"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T("outras") - 0.1);
+          tl.to(q(".bulb"), { opacity: 0, duration: 0.3 }, z);
+          window.__timelines["s19"] = tl;
+        })();
+      </script>
+      <style>#s19 .cam { top: 290px; } #s19 .many { top: 1078px; font-size: 88px; line-height: 88px; }</style>
+    </template>
+  </body>
+</html>
