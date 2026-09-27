@@ -172,6 +172,7 @@ const html = `<!doctype html>
       #wall .g1 { position: absolute; left: -300px; top: -200px; width: 1300px; height: 1300px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 65%); }
       #wall .g2 { position: absolute; left: 1000px; top: 200px; width: 1200px; height: 1200px; border-radius: 50%; background: radial-gradient(circle, rgba(217, 253, 211, 0.55) 0%, rgba(217, 253, 211, 0) 65%); }
       #darkov { position: absolute; inset: 0; background: #1b2a30; opacity: 0; }
+      #phoneF, #cardF { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
       #phone { position: absolute; left: 80px; top: 30px; width: 668px; height: 1020px; }
       #phone .body { position: absolute; inset: 0; border-radius: 74px; background: #111b21; box-shadow: 0 30px 60px rgba(17, 27, 33, 0.35); }
       #phone .screen { position: absolute; left: 22px; top: 22px; width: 624px; height: 976px; border-radius: 54px; overflow: hidden; background: #efeae2; }
@@ -191,15 +192,19 @@ const html = `<!doctype html>
     <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="${total}">
       <div id="wall"><div class="doodles" data-layout-ignore></div><div class="g1" data-layout-ignore></div><div class="g2" data-layout-ignore></div></div>
       <div id="darkov" data-layout-ignore></div>
+      <div id="phoneF">
       <div id="phone">
         <div class="sb sb1"></div><div class="sb sb2"></div><div class="sb sb3"></div>
         <div class="body"></div>
-        <div class="screen"><video id="chatv" src="assets/video/ep${n}-chat-9x16.mp4" muted playsinline data-start="0" data-duration="${total}" data-track-index="1"></video></div>
+        <div class="screen"><video id="chatv" data-layout-allow-overflow src="assets/video/ep${n}-chat-9x16.mp4" muted playsinline data-start="0" data-duration="${total}" data-track-index="1"></video></div>
         <div class="notch"></div>
       </div>
+      </div>
+      <div id="cardF">
       <div id="card">
-        <video id="scenev" src="assets/video/ep${n}-scenes-9x16.mp4" muted playsinline data-start="0" data-duration="${total}" data-track-index="2"></video>
+        <video id="scenev" data-layout-allow-overflow src="assets/video/ep${n}-scenes-9x16.mp4" muted playsinline data-start="0" data-duration="${total}" data-track-index="2"></video>
         <div class="rim"></div>
+      </div>
       </div>
       <div id="el-titlecard16" data-composition-id="titlecard16" data-composition-src="compositions/titlecard16.html" data-start="0" data-duration="${(tOut + 0.25).toFixed(3)}" data-track-index="5" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
       <audio id="vo" src="assets/audio/${path.basename(ep.audio)}" data-start="0" data-duration="${audioEnd}" data-track-index="10"></audio>
@@ -214,6 +219,9 @@ const html = `<!doctype html>
         tl.fromTo("#wall .g2", { x: 0, y: 0 }, { x: -520, y: -240, duration: T, ease: "sine.inOut" }, 0);
         tl.fromTo("#phone", { y: 260, rotation: -3 }, { y: 0, rotation: 0, duration: 0.9, ease: "back.out(1.5)" }, TOUT - 0.1);
         tl.fromTo("#card", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: "power3.out" }, TOUT + 0.05);
+        var F = 3.4, reps = Math.max(0, Math.floor((T - 1.2) / F) - 1);
+        tl.fromTo("#phoneF", { y: 0 }, { y: -8, duration: F, ease: "sine.inOut", yoyo: true, repeat: reps }, 1.2);
+        tl.fromTo("#cardF", { y: 0 }, { y: 8, duration: F, ease: "sine.inOut", yoyo: true, repeat: reps }, 1.2);
         if (D0 >= 0) {
           tl.to("#darkov", { opacity: 0.94, duration: 0.4, ease: "power2.out" }, D0 - 0.1);
           tl.to("#darkov", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, D1 - 0.3);

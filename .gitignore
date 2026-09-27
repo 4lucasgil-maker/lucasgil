@@ -7,3 +7,4 @@ node_modules/
 **/renders/work-*/
 **/layers/*/renders/
 **/assets/video/
+**/renders/.*
