@@ -8,3 +8,4 @@ node_modules/
 **/layers/*/renders/
 **/assets/video/
 **/renders/.*
+**/renders/preview/

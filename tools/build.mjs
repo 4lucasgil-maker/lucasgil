@@ -23,7 +23,13 @@ const clock = (sec) => {
   return `${String(Math.floor(t / 60) % 24).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
 };
 const mmss = (t) => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, "0")}`;
-const hasPhoto = fs.existsSync(path.join(P, "assets/images/cris-junqueira-avatar.jpg"));
+// foto de perfil: usa a do projeto; se não houver, copia a padrão do template
+const AV_FILE = path.join(P, "assets/images/cris-junqueira-avatar.jpg");
+if (!fs.existsSync(AV_FILE) && fs.existsSync(path.join(TPL, "assets/cris-junqueira-avatar.jpg"))) {
+  fs.mkdirSync(path.dirname(AV_FILE), { recursive: true });
+  fs.copyFileSync(path.join(TPL, "assets/cris-junqueira-avatar.jpg"), AV_FILE);
+}
+const hasPhoto = fs.existsSync(AV_FILE);
 const AVATAR = hasPhoto ? '<img src="assets/images/cris-junqueira-avatar.jpg" alt="" />' : '<span class="ini">CJ</span>';
 
 // ---- grupos

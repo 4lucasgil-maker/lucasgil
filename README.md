@@ -58,5 +58,7 @@ Modelos de ASR (baixados dos releases do sherpa-onnx no GitHub):
 
 ## Foto da Cris
 
-Sem foto na sessão, o avatar usa as iniciais "CJ". Para usar a foto: salvar um recorte quadrado (480 px) em
-`<slug>-reel/assets/images/cris-junqueira-avatar.jpg`, rodar `node tools/build.mjs <slug>-reel` e renderizar de novo.
+A foto de perfil padrão fica em `_template/assets/cris-junqueira-avatar.jpg` (recorte quadrado no rosto, 480 px,
+Lanczos) e o `build.mjs` copia para `<slug>-reel/assets/images/` quando o projeto não tem uma própria. Ela aparece no
+header, na intro, no card de título/thumbnail, na mensagem de voz e no lockup final (e na versão 16:9).
+Para trocar: substituir o arquivo (idealmente a partir de uma foto maior que 480 px), rodar o build e renderizar de novo.

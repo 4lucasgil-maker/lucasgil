@@ -1,11 +1,34 @@
 #!/usr/bin/env bash
 # Encode final (§3.11) + verificação técnica.
-# Uso: tools/encode.sh <master.mp4> <final.mp4>
+# Uso: tools/encode.sh <master.mp4> <final.mp4> [--fit MB]
+#   Padrão: H.264 High, CRF 16, 30 fps, VBV 25 Mbps (maxrate 25M / bufsize 50M), áudio copiado.
+#   Se o arquivo passar de 95 MB (limite prático do GitHub, 100 MB por arquivo) — ou com --fit MB —
+#   refaz em 2 passes com o bitrate que cabe no tamanho, mantendo perfil, fps e VBV.
 set -euo pipefail
-IN="$1"; OUT="$2"
-ffmpeg -hide_banner -loglevel error -y -i "$IN" -map 0:v:0 -map 0:a:0 \
-  -c:v libx264 -profile:v high -level:v 4.2 -pix_fmt yuv420p -r 30 -preset slow -crf 16 \
-  -maxrate 25M -bufsize 50M -g 60 -keyint_min 30 -c:a copy -movflags +faststart "$OUT"
+IN="$1"; OUT="$2"; FIT=""
+if [ "${3:-}" = "--fit" ]; then FIT="${4:-95}"; fi
+MAXMB="${FIT:-95}"
+COMMON=(-c:v libx264 -profile:v high -level:v 4.2 -pix_fmt yuv420p -r 30 -preset slow -maxrate 25M -bufsize 50M -g 60 -keyint_min 30)
+
+twopass() {
+  local dur abr vbr log
+  dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$IN")
+  abr=$(ffprobe -v error -select_streams a:0 -show_entries stream=bit_rate -of csv=p=0 "$IN"); abr=${abr:-192000}
+  vbr=$(python3 -c "print(int(($MAXMB*1e6*8*0.985/$dur - $abr)/1000))")
+  log=$(mktemp -u)
+  echo "(2 passes: ${vbr}k para caber em ${MAXMB} MB)"
+  ffmpeg -hide_banner -loglevel error -y -i "$IN" -map 0:v:0 "${COMMON[@]}" -b:v "${vbr}k" -pass 1 -passlogfile "$log" -an -f mp4 /dev/null
+  ffmpeg -hide_banner -loglevel error -y -i "$IN" -map 0:v:0 -map 0:a:0 "${COMMON[@]}" -b:v "${vbr}k" -pass 2 -passlogfile "$log" -c:a copy -movflags +faststart "$OUT"
+  rm -f "$log"*
+}
+
+if [ -n "$FIT" ]; then
+  twopass
+else
+  ffmpeg -hide_banner -loglevel error -y -i "$IN" -map 0:v:0 -map 0:a:0 "${COMMON[@]}" -crf 16 -c:a copy -movflags +faststart "$OUT"
+  size=$(stat -c %s "$OUT")
+  if [ "$size" -gt $((MAXMB * 1000000)) ]; then echo "CRF 16 gerou $((size / 1000000)) MB"; twopass; fi
+fi
 
 echo "== ffprobe =="
 ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,profile,width,height,r_frame_rate,avg_frame_rate,pix_fmt -of default=nw=1 "$OUT"

@@ -13,7 +13,11 @@ const Q = path.join(path.dirname(P), `${ep.slug}-16x9`);
 const rd = (f) => fs.readFileSync(f, "utf8");
 const out = (f, s) => { fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, s); };
 const cp = (a, b) => { fs.mkdirSync(path.dirname(b), { recursive: true }); fs.copyFileSync(a, b); };
-const vendor = (dir) => { for (const f of ["gsap.min.js", "vtma.js", "doodles.svg"]) cp(path.join(TPL, "vendor", f), path.join(dir, "assets/vendor", f)); };
+const AVATAR_SRC = path.join(P, "assets/images/cris-junqueira-avatar.jpg");
+const vendor = (dir) => {
+  for (const f of ["gsap.min.js", "vtma.js", "doodles.svg"]) cp(path.join(TPL, "vendor", f), path.join(dir, "assets/vendor", f));
+  if (fs.existsSync(AVATAR_SRC)) cp(AVATAR_SRC, path.join(dir, "assets/images/cris-junqueira-avatar.jpg"));
+};
 const fill = (src, map) => { let s = src; for (const [k, v] of Object.entries(map)) s = s.split(k).join(v); return s; };
 
 const index = rd(path.join(P, "index.html"));
