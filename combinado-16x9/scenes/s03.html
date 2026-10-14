@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s03 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s03 .cam { position: absolute; inset: 0; }
+        #s03 .wall { position: absolute; inset: 0; }
+        #s03 .nc { position: absolute; width: 270px; height: 112px; border-radius: 22px; background: #fbfaf7; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.1); }
+        #s03 .nc .av { position: absolute; left: 16px; top: 24px; width: 64px; height: 64px; }
+        #s03 .nc .nm { position: absolute; left: 96px; top: 22px; width: 150px; height: 14px; border-radius: 7px; background: #005c4b; opacity: 0.8; }
+        #s03 .nc .b1 { position: absolute; left: 96px; top: 50px; width: 156px; height: 12px; border-radius: 6px; background: #cbc1b2; }
+        #s03 .nc .b2 { position: absolute; left: 96px; top: 72px; width: 110px; height: 12px; border-radius: 6px; background: #cbc1b2; }
+        #s03 .nc .dot { position: absolute; right: 14px; top: 16px; width: 18px; height: 18px; border-radius: 50%; background: #00a884; }
+        #s03 .hero { position: absolute; left: 660px; top: 190px; width: 600px; height: 230px; border-radius: 34px; background: #fbfaf7; border-top-left-radius: 8px; box-shadow: 0 24px 50px rgba(17, 27, 33, 0.22); }
+        #s03 .hero .av { position: absolute; left: 34px; top: 34px; width: 92px; height: 92px; }
+        #s03 .hero .tag { position: absolute; left: 150px; top: 40px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 2px; color: #005c4b; }
+        #s03 .hero .tx { position: absolute; left: 150px; top: 82px; width: 420px; font-weight: 700; font-size: 34px; line-height: 44px; }
+        #s03 .hero .mk { display: inline-block; font-weight: 900; color: #005c4b; background-image: linear-gradient(rgba(0, 168, 132, 0.28), rgba(0, 168, 132, 0.28)); background-repeat: no-repeat; background-position: 0% 90%; background-size: 0% 45%; }
+        #s03 .chips { position: absolute; left: 0; top: 540px; width: 1920px; height: 200px; }
+        #s03 .cp { position: absolute; top: 0; width: 330px; height: 190px; border-radius: 30px; background: #fbfaf7; box-shadow: 0 12px 26px rgba(17, 27, 33, 0.14); }
+        #s03 .cp .ic { position: absolute; left: 95px; top: 24px; width: 140px; height: 60px; }
+        #s03 .cp .lb { position: absolute; left: 0; top: 112px; width: 330px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 58px; line-height: 62px; color: #111b21; }
+        #s03 .cp4 { background: #005c4b; }
+        #s03 .cp4 .lb { color: #fbfaf7; }
+      </style>
+      <div id="s03" data-composition-id="s03" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="wall"></div>
+          <div class="hero" data-layout-allow-overlap>
+            <div class="av"></div>
+            <div class="tag">OUVINTE</div>
+            <div class="tx">comigo aconteceu a <span class="mk">mesma coisa</span></div>
+          </div>
+          <div class="chips">
+            <div class="cp cp1" style="left:150px"><div class="ic"></div><div class="lb">MONTADORA X</div></div>
+            <div class="cp cp2" style="left:570px"><div class="ic"></div><div class="lb">MONTADORA Y</div></div>
+            <div class="cp cp3" style="left:990px"><div class="ic"></div><div class="lb">MONTADORA Z</div></div>
+            <div class="cp cp4" style="left:1410px"><div class="ic"></div><div class="lb">IMPORTADOS</div></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s03");
+          var R = document.getElementById("s03");
+          var q = function (s) { return R.querySelector(s); };
+          var wall = q(".wall");
+          var BG = ["#3f5b67", "#005c4b", "#c9a55c", "#54656f", "#00a884", "#1b2a30"];
+          var cards = [];
+          for (var r = 0; r < 3; r++) for (var c = 0; c < 6; c++) {
+            var n = document.createElement("div");
+            n.className = "nc nc" + r + c;
+            n.style.left = 105 + c * 290 + "px";
+            n.style.top = 140 + r * 132 + "px";
+            n.innerHTML = '<div class="av">' + VT.person({ size: 64, bg: BG[(r * 2 + c) % 6] }) + '</div><div class="nm"></div><div class="b1"></div><div class="b2"></div><div class="dot"></div>';
+            wall.appendChild(n);
+            cards.push({ el: n, d: r + c });
+          }
+          q(".hero .av").innerHTML = VT.person({ size: 92, bg: "#c9a55c" });
+          for (var k = 1; k <= 4; k++) q(".cp" + k + " .ic").innerHTML = VT.car({ width: 140, color: k === 4 ? "#d9fdd3" : "#fbfaf7" });
+          var tl = gsap.timeline({ paused: true });
+          // cachoeira de mensagens
+          cards.forEach(function (o, i) {
+            tl.fromTo(o.el, { opacity: 0, y: -90, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.38, ease: "back.out(1.8)" }, 0.08 + o.d * 0.09 + (i % 6) * 0.015);
+          });
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.03, duration: 2.2, ease: "sine.inOut", transformOrigin: "50% 30%" }, T("mensagem") - 0.4);
+          // "Nossa": a mensagem do ouvinte salta do mural
+          var n0 = T("Nossa");
+          tl.to(wall, { opacity: 0.28, duration: 0.3, ease: "power2.out" }, n0 - 0.1);
+          tl.fromTo(q(".hero"), { opacity: 0, scale: 0.4, y: 60 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(1.9)", transformOrigin: "0% 0%" }, n0 - 0.1);
+          tl.fromTo(q(".hero .mk"), { backgroundSize: "0% 45%" }, { backgroundSize: "100% 45%", duration: 0.35, ease: "power2.out", immediateRender: false }, T("mesma"));
+          // montadora X, Y, Z, importados
+          tl.to(wall, { opacity: 0.12, y: -40, duration: 0.4, ease: "power2.inOut" }, T("montadora") - 0.2);
+          tl.to(q(".hero"), { y: -40, scale: 0.92, duration: 0.4, ease: "power2.inOut" }, T("montadora") - 0.2);
+          [["cp1", "X"], ["cp2", "Y"], ["cp3", "Z"], ["cp4", "importados"]].forEach(function (p) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, y: 80, rotation: -6 }, { opacity: 1, y: 0, rotation: 0, duration: 0.4, ease: "back.out(2.2)" }, T(p[1]) - 0.12);
+          });
+          tl.fromTo(q(".cp4"), { scale: 1 }, { scale: 1.08, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("importados") + 0.35);
+          window.__timelines["s03"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

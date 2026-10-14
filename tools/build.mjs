@@ -1,4 +1,5 @@
-// Monta um episódio (vertical 1080×1920) a partir de episode.json + captions.words.json + cenas.
+// Monta um episódio a partir de episode.json + captions.words.json + cenas.
+// Formato: vertical 1080×1920 (padrão) ou "format": "16x9" (1920×1080 nativo, template em _template/wide).
 // Uso: node tools/build.mjs <projeto>
 import fs from "node:fs";
 import path from "node:path";
@@ -10,6 +11,9 @@ const P = path.resolve(process.argv[2]);
 const rd = (f) => fs.readFileSync(f, "utf8");
 const ep = JSON.parse(rd(path.join(P, "episode.json")));
 const groupsRaw = JSON.parse(rd(path.join(P, "captions.words.json")));
+const WIDE = ep.format === "16x9";
+const [FW, FH] = WIDE ? [1920, 1080] : [1080, 1920];
+const SRC = path.join(TPL, WIDE ? "wide/src" : "src");
 const envJ = JSON.parse(rd(path.join(P, "assets/audio/envelope-20hz.json")));
 const summary = JSON.parse(rd(path.join(P, "assets/audio/voice-summary-38.json")));
 
@@ -68,10 +72,12 @@ const scenes = ep.scenes.map(([id, start], n) => {
 const dark = ep.dark ? scenes.find((s) => s.id === ep.dark) : null;
 
 // ---- transições
-const PAL = [
+const PAL = ep.palette ?? [
   ["#005c4b", "#d9fdd3"], ["#d9fdd3", "#fbfaf7"], ["#3f5b67", "#005c4b"], ["#fbfaf7", "#d9fdd3"], ["#00a884", "#005c4b"],
 ];
-const POINTS = [[540, 700], [880, 420], [200, 980], [760, 1060], [300, 480], [540, 900]];
+const POINTS = WIDE
+  ? [[960, 460], [1500, 300], [380, 700], [1300, 760], [560, 260], [960, 640]]
+  : [[540, 700], [880, 420], [200, 980], [760, 1060], [300, 480], [540, 900]];
 const cuts = [];
 scenes.forEach((s, n) => {
   if (n === 0) return;
@@ -94,18 +100,22 @@ for (const f of ["gsap.min.js", "vtma.js", "doodles.svg"]) {
   fs.mkdirSync(path.join(P, "assets/vendor"), { recursive: true });
   fs.copyFileSync(path.join(TPL, "vendor", f), path.join(P, "assets/vendor", f));
 }
-const common = { "/*@EP@*/": String(ep.number), "/*@NAME@*/": ep.name, "/*@AVATAR@*/": AVATAR };
-out("compositions/bg.html", fill(rd(path.join(TPL, "src/bg.src.html")), { "/*@DUR@*/ 10": String(total) }));
-out("compositions/chrome.html", fill(rd(path.join(TPL, "src/chrome.src.html")), {
+const titleLines = ep.titleLines ?? [ep.name];
+const common = {
+  "/*@EP@*/": String(ep.number), "/*@NAMEHTML@*/": titleLines.join("<br>"),
+  "/*@NAMELONG@*/": titleLines.reduce((a, b) => (b.length > a.length ? b : a), ""), "/*@NAME@*/": ep.name, "/*@AVATAR@*/": AVATAR,
+};
+out("compositions/bg.html", fill(rd(path.join(SRC, "bg.src.html")), { "/*@DUR@*/ 10": String(total) }));
+out("compositions/chrome.html", fill(rd(path.join(SRC, "chrome.src.html")), {
   ...common,
-  "/*@DATA@*/ {}": J({ audioEnd, rate: envJ.rate, env: envJ.env, status, firstWord, dark: dark ? [dark.start, dark.end] : null }),
+  "/*@DATA@*/ {}": J({ audioEnd, total, rate: envJ.rate, env: envJ.env, status, firstWord, dark: dark ? [dark.start, dark.end] : null, chapters: ep.chapters ?? [] }),
 }));
-out("compositions/captions.html", fill(rd(path.join(TPL, "src/captions.src.html")), {
+out("compositions/captions.html", fill(rd(path.join(SRC, "captions.src.html")), {
   "/*@DATA@*/ {}": J({ groups, voice: { t: r3(audioEnd + 0.15), dur: mmss(audioEnd), clock: clock(audioEnd), bars: summary, avatar: AVATAR } }),
 }));
-out("compositions/transitions.html", fill(rd(path.join(TPL, "src/transitions.src.html")), { "/*@DATA@*/ {}": J({ cuts }) }));
+out("compositions/transitions.html", fill(rd(path.join(SRC, "transitions.src.html")), { "/*@DATA@*/ {}": J({ cuts }) }));
 const titleOut = r3(Math.max(0.12, Math.min(0.3, firstWord - 0.2)));
-out("compositions/titlecard.html", fill(rd(path.join(TPL, "src/titlecard.src.html")), { ...common, "/*@OUT@*/ 0.2": String(titleOut) }));
+out("compositions/titlecard.html", fill(rd(path.join(SRC, "titlecard.src.html")), { ...common, "/*@OUT@*/ 0.2": String(titleOut), ...(ep.titleFit ? { "/*@NAMEW@*/ 1500": String(ep.titleFit[0]), "/*@NAMEMAX@*/ 400": String(ep.titleFit[1]) } : {}) }));
 
 const errors = [];
 for (const s of scenes) {
@@ -127,18 +137,18 @@ for (const s of scenes) {
 }
 
 const host = (id, src, start, dur, track, extra = "") =>
-  `      <div id="el-${id}" class="${extra.includes("scene") ? "scene" : "layer"}" data-composition-id="${id}" data-composition-src="compositions/${src}.html" data-start="${start}" data-duration="${dur}" data-track-index="${track}" data-track-kind="${extra.includes("captions") ? "captions" : "graphics"}" data-width="1080" data-height="1920"></div>`;
+  `      <div id="el-${id}" class="${extra.includes("scene") ? "scene" : "layer"}" data-composition-id="${id}" data-composition-src="compositions/${src}.html" data-start="${start}" data-duration="${dur}" data-track-index="${track}" data-track-kind="${extra.includes("captions") ? "captions" : "graphics"}" data-width="${FW}" data-height="${FH}"></div>`;
 const index = `<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1080, height=1920" />
+    <meta name="viewport" content="width=${FW}, height=${FH}" />
     <title>EP ${ep.number} — ${ep.name} · Vou te mandar um áudio</title>
     <script src="assets/vendor/gsap.min.js"></script>
     <script src="assets/vendor/vtma.js"></script>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #efeae2; }
+      html, body { width: ${FW}px; height: ${FH}px; overflow: hidden; background: #efeae2; }
       #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
       #root > div[data-composition-src] { position: absolute; inset: 0; }
       #el-bg { z-index: 0; }
@@ -150,7 +160,7 @@ const index = `<!doctype html>
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="${total}">
+    <div id="root" data-composition-id="main" data-start="0" data-width="${FW}" data-height="${FH}" data-duration="${total}">
 ${host("bg", "bg", 0, total, 0)}
 ${scenes.map((s) => host(s.id, s.id, s.start, s.dur, 1, "scene")).join("\n")}
 ${host("transitions", "transitions", 0, total, 2)}
@@ -171,5 +181,5 @@ out(".build/scene-times.txt", scenes.map((s) => {
   const W = allWords.filter((w) => w[1] >= s.start - 0.05 && w[1] < s.end);
   return `## ${s.id}  ${s.start}–${s.end} (${s.dur}s)\n` + W.map((w) => `${(w[1] - s.start).toFixed(2)} ${w[0]}`).join("  ");
 }).join("\n\n"));
-console.log(JSON.stringify({ total, audioEnd, scenes: scenes.length, cuts: cuts.length, photo: hasPhoto, statusChanges: status.length }));
+console.log(JSON.stringify({ format: WIDE ? "16x9" : "9x16", total, audioEnd, scenes: scenes.length, cuts: cuts.length, photo: hasPhoto, statusChanges: status.length }));
 if (errors.length) { console.error("ERROS:\n" + errors.join("\n")); process.exitCode = 1; }

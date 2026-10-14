@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s10 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s10 .cam { position: absolute; inset: 0; }
+        #s10 .blk { position: absolute; width: 200px; height: 62px; border-radius: 14px; }
+        #s10 .g { background: #00a884; box-shadow: inset 0 -6px 0 #005c4b; }
+        #s10 .r { background: #e5484d; box-shadow: inset 0 -6px 0 #c7373c; }
+        #s10 .base { position: absolute; left: 280px; top: 720px; width: 720px; height: 10px; border-radius: 5px; background: #3b4a54; }
+        #s10 .lab { position: absolute; top: 740px; width: 200px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 22px; line-height: 28px; letter-spacing: 2px; }
+        #s10 .lg { left: 330px; color: #005c4b; } #s10 .lr { left: 650px; color: #c7373c; }
+        #s10 .pf { position: absolute; width: 26px; height: 26px; border-radius: 50%; background: #fbfaf7; opacity: 0; }
+        #s10 .rl { position: absolute; left: 1150px; top: 740px; width: 400px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 64px; line-height: 64px; color: #005c4b; }
+        #s10 .barH { position: absolute; left: 1120px; top: 210px; width: 460px; height: 16px; border-radius: 8px; background: #c9a55c; }
+        #s10 .post { position: absolute; top: 200px; width: 16px; height: 530px; border-radius: 8px; background: #3b4a54; }
+        #s10 .p1 { left: 1110px; } #s10 .p2 { left: 1574px; }
+        #s10 .hl { position: absolute; left: 1120px; top: 150px; width: 460px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 34px; letter-spacing: 4px; color: #3b4a54; }
+      </style>
+      <div id="s10" data-composition-id="s10" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="stack"></div>
+          <div class="base"></div>
+          <div class="lab lg">PROMOTORES</div>
+          <div class="lab lr">DETRATORES</div>
+          <div class="post p1"></div><div class="post p2"></div>
+          <div class="barH"></div>
+          <div class="hl">MUITO ALTO</div>
+          <div class="rl">SEU NPS</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s10");
+          var R = document.getElementById("s10");
+          var q = function (s) { return R.querySelector(s); };
+          var st = q(".stack");
+          // 6 verdes (promotores) e 4 vermelhos (detratores): ilustrativo, sem números
+          for (var i = 0; i < 6; i++) st.insertAdjacentHTML("beforeend", '<div class="blk g g' + i + '" style="left:330px;top:' + (650 - i * 70) + 'px"></div>');
+          for (var j = 0; j < 4; j++) st.insertAdjacentHTML("beforeend", '<div class="blk r r' + j + '" style="left:650px;top:' + (650 - j * 70) + 'px"></div>');
+          for (var p = 0; p < 16; p++) st.insertAdjacentHTML("beforeend", '<div class="pf pf' + p + '" data-layout-ignore></div>');
+          var tl = gsap.timeline({ paused: true });
+          for (var a = 0; a < 6; a++) tl.fromTo(q(".g" + a), { opacity: 0, y: -120 }, { opacity: 1, y: 0, duration: 0.3, ease: "bounce.out" }, 0.05 + a * 0.05);
+          for (var b = 0; b < 4; b++) tl.fromTo(q(".r" + b), { opacity: 0, y: -120 }, { opacity: 1, y: 0, duration: 0.3, ease: "bounce.out" }, 0.1 + b * 0.05);
+          tl.fromTo([q(".base"), q(".lg"), q(".lr")], { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          // a diferença: cada vermelho anula um verde (de cima para baixo)
+          var td = T("diferença") - 0.1;
+          for (var k = 0; k < 4; k++) {
+            var t = td + k * 0.22, gi = 5 - k, ri = 3 - k;
+            tl.to(q(".r" + ri), { x: -160, duration: 0.14, ease: "power2.in" }, t);
+            tl.to(q(".g" + gi), { x: 160, duration: 0.14, ease: "power2.in" }, t);
+            tl.to([q(".r" + ri), q(".g" + gi)], { scale: 0, opacity: 0, duration: 0.12, ease: "power2.in" }, t + 0.14);
+            for (var m = 0; m < 4; m++) {
+              var ang = (m / 4) * Math.PI * 2 + k;
+              tl.fromTo(q(".pf" + (k * 4 + m)), { x: 590, y: 650 - gi * 70 + 18, opacity: 1, scale: 1 },
+                { x: 590 + Math.cos(ang) * 120, y: 650 - gi * 70 + 18 + Math.sin(ang) * 90, opacity: 0, scale: 0.3, duration: 0.4, ease: "power2.out", immediateRender: false }, t + 0.16);
+            }
+          }
+          // sobra = seu NPS: os verdes restantes deslizam para a direita
+          var tn = T("NPS") - 0.2;
+          tl.to([q(".g0"), q(".g1")], { x: 920, duration: 0.45, ease: "power3.inOut" }, tn);
+          tl.fromTo(q(".rl"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3 }, tn + 0.35);
+          // muito difícil um NPS muito alto: a barra lá em cima e o salto que não chega
+          tl.fromTo([q(".p1"), q(".p2")], { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.4, ease: "power3.out" }, T("difícil") - 0.2);
+          tl.fromTo(q(".barH"), { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, T("difícil") + 0.1);
+          tl.fromTo(q(".hl"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, T("alto") - 0.2);
+          var tj = T("terem") - 0.05;
+          tl.to([q(".g0"), q(".g1")], { y: -200, duration: 0.35, ease: "power2.out" }, tj);
+          tl.to([q(".g0"), q(".g1")], { y: 0, duration: 0.4, ease: "bounce.out" }, tj + 0.35);
+          tl.to([q(".g0"), q(".g1")], { y: -230, duration: 0.35, ease: "power2.out" }, T("alto") - 0.25);
+          tl.to([q(".g0"), q(".g1")], { y: 0, duration: 0.45, ease: "bounce.out" }, T("alto") + 0.1);
+          tl.fromTo(q(".barH"), { rotation: 0 }, { rotation: 2, duration: 0.08, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, T("alto"));
+          window.__timelines["s10"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

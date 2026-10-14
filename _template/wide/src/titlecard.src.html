@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #titlecard { position: absolute; inset: 0; background: #efeae2; overflow: hidden; font-family: Inter, sans-serif; }
+        #titlecard .doodles { position: absolute; left: -60px; top: -40px; width: 2160px; height: 1260px; background-image: url(assets/vendor/doodles.svg); background-size: 360px 360px; opacity: 0.85; }
+        #titlecard .glow { position: absolute; left: 260px; top: -260px; width: 1400px; height: 1400px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 64%); }
+        #titlecard .stack { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        #titlecard .who { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; }
+        #titlecard .tav { width: 96px; height: 96px; border-radius: 50%; overflow: hidden; background: #005c4b; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 6px #fbfaf7; }
+        #titlecard .tav img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #titlecard .tav .ini { font-weight: 900; font-size: 38px; color: #fbfaf7; }
+        #titlecard .whoname { font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; letter-spacing: 3px; color: #111b21; }
+        #titlecard .epn { font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 50px; letter-spacing: 4px; color: #005c4b; }
+        #titlecard .name { margin-top: 36px; font-family: "League Gothic", sans-serif; font-weight: 400; color: #111b21; text-align: center; line-height: 0.92; width: 1600px; text-transform: uppercase; }
+        #titlecard .brand { position: relative; margin-top: 40px; background: #d9fdd3; border-radius: 30px; border-top-right-radius: 8px; padding: 22px 30px 18px 34px; box-shadow: 0 8px 22px rgba(17, 27, 33, 0.14); display: flex; align-items: flex-end; gap: 22px; }
+        #titlecard .brand::before { content: ""; position: absolute; top: 0; right: -18px; border-left: 22px solid #d9fdd3; border-bottom: 22px solid transparent; }
+        #titlecard .bt { font-weight: 700; font-size: 48px; line-height: 60px; color: #111b21; white-space: nowrap; }
+        #titlecard .bm { display: flex; align-items: center; gap: 8px; font-size: 26px; color: #54656f; padding-bottom: 4px; }
+      </style>
+      <div id="titlecard" data-composition-id="titlecard" data-width="1920" data-height="1080">
+        <div class="doodles" data-layout-ignore></div>
+        <div class="glow" data-layout-ignore></div>
+        <div class="stack">
+          <div class="who"><div class="tav">/*@AVATAR@*/</div><div class="whoname">CRIS JUNQUEIRA</div></div>
+          <div class="epn">EPISÓDIO #/*@EP@*/</div>
+          <div class="name">/*@NAMEHTML@*/</div>
+          <div class="brand"><span class="bt">Vou te mandar um áudio</span><span class="bm">08:20 <span class="tks"></span></span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var R = document.getElementById("titlecard");
+          R.querySelector(".tks").innerHTML = VT.ticks({ color: "#53bdeb", width: 36 });
+          var build = function () {
+            var nm = R.querySelector(".name");
+            var fit = window.__hyperframes && window.__hyperframes.fitTextFontSize
+              ? window.__hyperframes.fitTextFontSize("/*@NAMELONG@*/".toUpperCase(), { fontFamily: "League Gothic", fontWeight: 400, maxWidth: /*@NAMEW@*/ 1500, baseFontSize: 400, minFontSize: 140, step: 4 })
+              : { fontSize: 300 };
+            nm.style.fontSize = Math.min(fit.fontSize, /*@NAMEMAX@*/ 400) + "px";
+            var tl = gsap.timeline({ paused: true });
+            tl.fromTo(R.querySelector(".stack"), { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.05, duration: 0.2, ease: "power2.in", immediateRender: false }, /*@OUT@*/ 0.2);
+            tl.fromTo(R.querySelector(".doodles"), { opacity: 0.85 }, { opacity: 0, duration: 0.2, immediateRender: false }, /*@OUT@*/ 0.2);
+            tl.fromTo(R.querySelector(".glow"), { opacity: 1 }, { opacity: 0, duration: 0.2, immediateRender: false }, /*@OUT@*/ 0.2);
+            tl.fromTo(R, { backgroundColor: "#efeae2" }, { backgroundColor: "rgba(239,234,226,0)", duration: 0.2, immediateRender: false }, /*@OUT@*/ 0.2);
+            window.__timelines["titlecard"] = tl;
+          };
+          document.fonts.ready.then(build);
+        })();
+      </script>
+    </template>
+  </body>
+</html>

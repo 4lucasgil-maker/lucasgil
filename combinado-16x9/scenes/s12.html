@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s12 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s12 .cam { position: absolute; inset: 0; }
+        #s12 .cd { position: absolute; left: 810px; top: 290px; width: 300px; height: 380px; border-radius: 30px; background: #fbfaf7; box-shadow: 0 16px 36px rgba(17, 27, 33, 0.16); }
+        #s12 .cd .n { position: absolute; left: 0; top: 70px; width: 300px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 200px; line-height: 200px; color: #005c4b; }
+        #s12 .cd .l { position: absolute; left: 0; top: 290px; width: 300px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 36px; letter-spacing: 4px; color: #3b4a54; }
+        #s12 .cd1 { background: #005c4b; }
+        #s12 .cd1 .n, #s12 .cd1 .l { color: #fbfaf7; }
+        #s12 .word { position: absolute; left: 0; top: 300px; width: 1920px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 230px; line-height: 240px; color: #111b21; letter-spacing: 2px; }
+        #s12 .glass { position: absolute; left: 300px; top: 280px; width: 1320px; height: 290px; border-radius: 40px; background: rgba(251, 250, 247, 0.72); box-shadow: inset 0 0 0 6px rgba(251, 250, 247, 0.95), 0 20px 40px rgba(17, 27, 33, 0.12); }
+        #s12 .glass i { position: absolute; top: 20px; width: 40px; height: 250px; border-radius: 20px; background: rgba(255, 255, 255, 0.7); transform: skewX(-18deg); }
+        #s12 .quo { position: absolute; left: 860px; top: 590px; width: 200px; height: 150px; font-family: "League Gothic", sans-serif; font-size: 300px; line-height: 300px; text-align: center; color: #c9a55c; }
+      </style>
+      <div id="s12" data-composition-id="s12" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="word" data-layout-allow-overlap>TRANSPARÊNCIA</div>
+          <div class="glass" data-layout-allow-overlap><i style="left:180px"></i><i style="left:250px"></i></div>
+          <div class="cd cd4"><div class="n">4</div><div class="l">LIÇÃO</div></div>
+          <div class="cd cd3"><div class="n">3</div><div class="l">LIÇÃO</div></div>
+          <div class="cd cd2"><div class="n">2</div><div class="l">LIÇÃO</div></div>
+          <div class="cd cd1"><div class="n">1</div><div class="l">LIÇÃO</div></div>
+          <div class="quo" data-layout-allow-overflow>“</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s12");
+          var R = document.getElementById("s12");
+          var q = function (s) { return R.querySelector(s); };
+          gsap.set([q(".word"), q(".glass")], { opacity: 0 });
+          var tl = gsap.timeline({ paused: true });
+          // as lições: leque de cartões
+          var fan = [["cd4", 300, 18], ["cd3", 100, 6], ["cd2", -100, -6], ["cd1", -300, -18]];
+          var tlc = T("lições") - 0.25;
+          fan.forEach(function (f, i) {
+            tl.fromTo(q("." + f[0]), { opacity: 0, y: 260, x: 0, rotation: 0 }, { opacity: 1, y: 0, x: f[1], rotation: f[2], duration: 0.5, ease: "back.out(1.6)" }, tlc + i * 0.06);
+          });
+          // a primeira: as outras saem, a 1 vem para a frente e vira etiqueta
+          var tp = T("primeira") - 0.1;
+          ["cd2", "cd3", "cd4"].forEach(function (c, i) {
+            tl.to(q("." + c), { x: 1200 + i * 120, y: 200, rotation: 40, opacity: 0, duration: 0.45, ease: "power3.in" }, tp + i * 0.05);
+          });
+          tl.to(q(".cd1"), { x: 0, rotation: 0, scale: 1.15, duration: 0.3, ease: "back.out(2)" }, tp);
+          tl.to(q(".cd1"), { x: -700, y: -150, scale: 0.42, duration: 0.45, ease: "power3.inOut" }, T("transparência") - 0.35);
+          // transparência: o vidro fosco sai e a palavra fica nítida
+          var tt = T("transparência") - 0.15;
+          tl.fromTo(q(".word"), { opacity: 0, filter: "blur(22px)", scale: 0.96 }, { opacity: 1, filter: "blur(22px)", scale: 0.96, duration: 0.2 }, tt - 0.1);
+          tl.fromTo(q(".glass"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.2 }, tt - 0.1);
+          tl.to(q(".glass"), { x: 1700, skewX: -10, opacity: 0, duration: 0.6, ease: "power3.in" }, tt + 0.25);
+          tl.to(q(".word"), { filter: "blur(0px)", scale: 1, duration: 0.55, ease: "power2.out" }, tt + 0.35);
+          // aquela frase: aspas
+          tl.to(q(".word"), { y: -60, scale: 0.86, duration: 0.5, ease: "power2.inOut" }, T("Como") - 0.1);
+          tl.to(q(".cd1"), { y: -210, duration: 0.5, ease: "power2.inOut" }, T("Como") - 0.1);
+          tl.fromTo(q(".quo"), { opacity: 0, scale: 0.3, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.6)" }, T("frase") - 0.3);
+          tl.fromTo(q(".quo"), { y: 0 }, { y: -12, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, T("frase") + 0.15);
+          window.__timelines["s12"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

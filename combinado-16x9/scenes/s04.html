@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s04 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s04 .cam { position: absolute; inset: 0; }
+        #s04 .rig { position: absolute; inset: 0; }
+        #s04 .pole { position: absolute; left: 946px; top: 390px; width: 28px; height: 370px; border-radius: 14px; background: #3f5b67; }
+        #s04 .basep { position: absolute; left: 820px; top: 752px; width: 280px; height: 30px; border-radius: 15px; background: #1b2a30; }
+        #s04 .beam { position: absolute; left: 500px; top: 378px; width: 920px; height: 24px; border-radius: 12px; background: #111b21; }
+        #s04 .piv { position: absolute; left: 932px; top: 362px; width: 56px; height: 56px; border-radius: 50%; background: #c9a55c; box-shadow: 0 0 0 6px #fbfaf7; }
+        #s04 .pan { position: absolute; left: 0; top: 0; width: 340px; height: 240px; }
+        #s04 .pan svg.str { position: absolute; left: 0; top: 0; }
+        #s04 .plate { position: absolute; left: 0; top: 150px; width: 340px; height: 22px; border-radius: 11px; background: #3b4a54; }
+        #s04 .tesla { position: absolute; left: 60px; top: 28px; width: 220px; height: 122px; border-radius: 18px; background: #1b2a30; color: #fbfaf7; font-family: "League Gothic", sans-serif; font-size: 76px; line-height: 122px; text-align: center; letter-spacing: 6px; }
+        #s04 .star { position: absolute; left: 236px; top: 6px; width: 64px; height: 64px; border-radius: 50%; background: #c9a55c; color: #111b21; display: flex; align-items: center; justify-content: center; }
+        #s04 .blk { position: absolute; width: 98px; height: 60px; border-radius: 12px; background: #fbfaf7; box-shadow: inset 0 0 0 4px #54656f; display: flex; align-items: center; justify-content: center; }
+        #s04 .bang { position: absolute; right: -10px; top: -14px; width: 34px; height: 34px; border-radius: 50%; background: #e5484d; color: #fbfaf7; font-weight: 900; font-size: 24px; line-height: 34px; text-align: center; }
+        #s04 .plab { position: absolute; left: -30px; top: 186px; width: 400px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 2px; color: #3b4a54; }
+        #s04 .brk { position: absolute; left: -6px; top: -46px; width: 352px; height: 204px; }
+        #s04 .plab b { color: #005c4b; font-weight: 700; }
+        #s04 .fac { position: absolute; left: 130px; top: 150px; width: 200px; height: 170px; }
+        #s04 .qm { position: absolute; left: 300px; top: 120px; width: 90px; height: 90px; border-radius: 50%; background: #005c4b; color: #fbfaf7; font-family: "League Gothic", sans-serif; font-size: 74px; line-height: 90px; text-align: center; }
+      </style>
+      <div id="s04" data-composition-id="s04" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="fac"></div>
+          <div class="qm">?</div>
+          <div class="rig">
+            <div class="pole"></div>
+            <div class="basep"></div>
+            <div class="beam"></div>
+            <div class="pan panL" data-layout-allow-overflow>
+              <svg class="str" width="340" height="160" viewBox="0 0 340 160"><path d="M170 0 L14 152 M170 0 L326 152" stroke="#54656f" stroke-width="4" fill="none"/></svg>
+              <div class="plate"></div>
+              <div class="tesla">TESLA<div class="star"></div></div>
+            </div>
+            <div class="pan panR" data-layout-allow-overflow>
+              <svg class="str" width="340" height="160" viewBox="0 0 340 160"><path d="M170 0 L14 152 M170 0 L326 152" stroke="#54656f" stroke-width="4" fill="none"/></svg>
+              <div class="plate"></div>
+              <div class="blk b0" style="left:14px;top:90px"><div class="bang g0">!</div></div>
+              <div class="blk b1" style="left:121px;top:90px"><div class="bang g1">!</div></div>
+              <div class="blk b2" style="left:228px;top:90px"><div class="bang g2">!</div></div>
+              <div class="blk b3" style="left:67px;top:30px"><div class="bang g3">!</div></div>
+              <div class="blk b4" style="left:174px;top:30px"><div class="bang g4">!</div></div>
+              <div class="blk b5" style="left:121px;top:-30px"><div class="bang g5">!</div></div>
+              <div class="plab">OUTRAS MONTADORAS <b class="jt">JUNTAS</b></div>
+              <svg class="brk" width="352" height="204" viewBox="0 0 352 204" data-layout-ignore><rect class="lasso" x="4" y="4" width="344" height="196" rx="26" fill="none" stroke="#005c4b" stroke-width="6" stroke-dasharray="14 10"/></svg>
+            </div>
+            <div class="piv"></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s04");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s04");
+          var q = function (s) { return R.querySelector(s); };
+          q(".star").innerHTML = VT.icon("star", { size: 40, stroke: 2.4, fill: true });
+          q(".fac").innerHTML = '<svg width="200" height="170" viewBox="0 0 200 170"><path d="M10 160V80l50-30v30l50-30v30l50-30V160z" fill="#fbfaf7" stroke="#3f5b67" stroke-width="6" stroke-linejoin="round"/><path d="M150 50V10h26v100" fill="#fbfaf7" stroke="#3f5b67" stroke-width="6"/><path d="M36 120h22M86 120h22M136 120h22" stroke="#3f5b67" stroke-width="8" stroke-linecap="round"/></svg>';
+          for (var i = 0; i < 6; i++) q(".b" + i).insertAdjacentHTML("afterbegin", VT.icon("car", { size: 44, stroke: 2 }));
+          var beam = q(".beam"), pL = q(".panL"), pR = q(".panR");
+          // ângulo da balança como função pura do tempo (negativo = lado TESLA desce)
+          var tT = T("Tesla"), tM = T("montadoras"), tP = T("Por");
+          var K = [[0, 0], [tT + 0.15, 0], [tT + 0.75, -14, "back"], [tM + 0.1, -14], [tM + 0.5, -10, "out"], [tM + 0.75, -12, "io"], [tM + 1.0, -9.5, "out"], [tM + 1.3, -11, "io"],
+            [tP, -11], [tP + 0.6, -15, "back"], [DUR, -15]];
+          var tl = gsap.timeline({ paused: true });
+          VT.driver(tl, DUR, function (t) {
+            var a = VT.kf(t, K), r = a * Math.PI / 180;
+            beam.style.transform = "rotate(" + a.toFixed(3) + "deg)";
+            pL.style.transform = "translate(" + (960 - 460 * Math.cos(r) - 170).toFixed(1) + "px," + (390 - 460 * Math.sin(r)).toFixed(1) + "px)";
+            pR.style.transform = "translate(" + (960 + 460 * Math.cos(r) - 170).toFixed(1) + "px," + (390 + 460 * Math.sin(r)).toFixed(1) + "px)";
+          });
+          gsap.set([q(".tesla"), q(".star"), q(".brk"), q(".jt")], { opacity: 0 });
+          tl.fromTo(q(".rig"), { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.05);
+          tl.fromTo(q(".cam"), { scale: 1.06 }, { scale: 1, duration: 1.2, ease: "power2.out" }, 0);
+          // indústria estranha
+          tl.fromTo(q(".fac"), { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, T("indústria") - 0.15);
+          tl.fromTo(q(".qm"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("estranha") - 0.08);
+          tl.fromTo(q(".qm"), { rotation: 0 }, { rotation: 14, duration: 0.1, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, T("estranha") + 0.25);
+          // Tesla cai no prato
+          tl.fromTo(q(".tesla"), { opacity: 0, y: -260 }, { opacity: 1, y: 0, duration: 0.42, ease: "bounce.out" }, tT - 0.05);
+          tl.fromTo(q(".star"), { opacity: 0, scale: 0, rotation: -90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, T("mais") - 0.05);
+          // outras montadoras, uma a uma
+          for (var j = 0; j < 6; j++) {
+            tl.fromTo(q(".b" + j), { opacity: 0, y: -220 }, { opacity: 1, y: 0, duration: 0.32, ease: "bounce.out" }, tM - 0.1 + j * 0.13);
+          }
+          tl.fromTo(q(".brk"), { opacity: 0, scale: 1.15 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, T("juntas") - 0.1);
+          tl.fromTo(q(".jt"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("juntas") - 0.05);
+          // por causa de coisas desse jeito: alertas
+          for (var g = 0; g < 6; g++) {
+            tl.fromTo(q(".g" + g), { scale: 0 }, { scale: 1, duration: 0.25, ease: "back.out(3)" }, tP + g * 0.07);
+          }
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.05, duration: 0.2, ease: "power2.out", transformOrigin: "75% 40%", immediateRender: false }, T("jeito") - 0.1);
+          window.__timelines["s04"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

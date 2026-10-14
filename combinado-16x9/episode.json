@@ -1,0 +1,38 @@
+{
+  "number": 124,
+  "name": "O Combinado Não Sai Caro",
+  "titleLines": ["O combinado", "não sai caro"],
+  "titleFit": [1500, 270],
+  "slug": "combinado",
+  "format": "16x9",
+  "audio": "assets/audio/ep124-combinado.flac",
+  "tail": 1.2,
+  "clockStart": "08:20",
+  "hidden": [],
+  "dark": "s49",
+  "chapters": [
+    [0, "CONSUMIDOR MALTRATADO"],
+    [70.5, "LIÇÃO 1 · TRANSPARÊNCIA"],
+    [123.5, "LIÇÃO 2 · O PROBLEMA É SEU"],
+    [171.12, "LIÇÃO 3 · COMO VOCÊ REAGE"],
+    [263.5, "LIÇÃO 4 · O MOMENTO MÁGICO"],
+    [310.39, "CAFÉ E VAMBORA"]
+  ],
+  "scenes": [
+    ["s01", 0], ["s02", 4.5], ["s03", 9.8], ["s04", 17.05], ["s05", 24.95], ["s06", 31.5], ["s07", 36.4], ["s08", 41.35],
+    ["s09", 47.5], ["s10", 59.3], ["s11", 64.75], ["s12", 70.5], ["s13", 75.85], ["s14", 79.38], ["s15", 82.58], ["s16", 86.95],
+    ["s17", 91.83], ["s18", 95.27], ["s19", 100.22], ["s20", 105.2], ["s21", 108.97], ["s22", 112.95], ["s23", 116.4], ["s24", 123.5],
+    ["s25", 128.55], ["s26", 139.35], ["s27", 146.95], ["s28", 152.0], ["s29", 159.75], ["s30", 165.7], ["s31", 171.12], ["s32", 177.78],
+    ["s33", 184.78], ["s34", 190.38], ["s35", 197.0], ["s36", 202.75], ["s37", 212.08], ["s38", 218.72], ["s39", 224.72], ["s40", 231.92],
+    ["s41", 235.76], ["s42", 242.48], ["s43", 249.68], ["s44", 255.74], ["s45", 263.5], ["s46", 269.18], ["s47", 274.62], ["s48", 277.58],
+    ["s49", 285.44], ["s50", 302.31], ["s51", 310.39], ["s52", 317.91]
+  ],
+  "cuts": {
+    "s02": "blade", "s03": "iris", "s04": "blinds", "s05": "stripes", "s07": "blocks", "s09": "doors", "s11": "iris",
+    "s12": "blade", "s13": "stripes", "s15": "blinds", "s16": "iris", "s18": "blocks", "s19": "doors", "s20": "blade",
+    "s21": "stripes", "s23": "iris", "s24": "blinds", "s26": "blade", "s28": "doors", "s29": "stripes", "s30": "iris",
+    "s31": "blocks", "s33": "blade", "s34": "blinds", "s36": "stripes", "s37": "iris", "s39": "doors", "s41": "blocks",
+    "s42": "blade", "s44": "stripes", "s45": "iris", "s46": "blinds", "s48": "doors", "s49": "iris", "s50": "iris",
+    "s51": "blade", "s52": "stripes"
+  }
+}

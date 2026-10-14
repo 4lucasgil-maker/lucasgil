@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s08 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s08 .cam { position: absolute; inset: 0; }
+        #s08 .gw { position: absolute; left: 200px; top: 170px; width: 720px; height: 470px; }
+        #s08 .gw svg { position: absolute; left: 0; top: 0; }
+        #s08 .needle { position: absolute; left: 352px; top: 120px; width: 16px; height: 260px; border-radius: 8px; background: #111b21; transform-origin: 50% 240px; }
+        #s08 .hub { position: absolute; left: 330px; top: 330px; width: 60px; height: 60px; border-radius: 50%; background: #c9a55c; box-shadow: 0 0 0 6px #fbfaf7; }
+        #s08 .gl { position: absolute; left: 0; top: 410px; width: 720px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 34px; letter-spacing: 3px; color: #3b4a54; }
+        #s08 .mm { position: absolute; top: 386px; width: 54px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 80px; line-height: 80px; color: #54656f; }
+        #s08 .mm1 { left: 53px; } #s08 .mm2 { left: 613px; }
+        #s08 .me { position: absolute; left: 1080px; top: 330px; width: 150px; height: 150px; }
+        #s08 .fr { position: absolute; left: 1640px; width: 110px; height: 110px; }
+        #s08 .f1 { top: 150px; } #s08 .f2 { top: 345px; } #s08 .f3 { top: 540px; }
+        #s08 .arcs { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #s08 .card { position: absolute; left: 0; top: 0; width: 120px; height: 84px; border-radius: 18px; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.2); }
+        #s08 .hrt { position: absolute; left: 1730px; width: 52px; height: 52px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s08 .h1 { top: 140px; } #s08 .h2 { top: 335px; } #s08 .h3 { top: 530px; }
+        #s08 .rec { position: absolute; left: 1050px; top: 520px; width: 220px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 2px; color: #005c4b; }
+      </style>
+      <div id="s08" data-composition-id="s08" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="gw">
+            <svg width="720" height="400" viewBox="0 0 720 400" aria-hidden="true">
+              <path class="arcbg" d="M80 360 A280 280 0 0 1 640 360" fill="none" stroke="#cbc1b2" stroke-width="54" stroke-linecap="round"/>
+              <path class="arcR" d="M80 360 A280 280 0 0 1 220 117.5" fill="none" stroke="#e5484d" stroke-width="54" stroke-linecap="round"/>
+              <path class="arcG" d="M500 117.5 A280 280 0 0 1 640 360" fill="none" stroke="#00a884" stroke-width="54" stroke-linecap="round"/>
+            </svg>
+            <div class="mm mm1">−</div>
+            <div class="mm mm2">+</div>
+            <div class="needle"></div>
+            <div class="hub"></div>
+            <div class="gl">DISPOSIÇÃO A RECOMENDAR</div>
+          </div>
+          <div class="me"></div>
+          <div class="rec">RECOMENDA</div>
+          <div class="fr f1"></div><div class="fr f2"></div><div class="fr f3"></div>
+          <svg class="arcs" viewBox="0 0 1920 1080" data-layout-ignore>
+            <path class="a1" d="M1230 380 Q1440 120 1650 205" fill="none" stroke="#00a884" stroke-width="6" stroke-dasharray="4 16" stroke-linecap="round"/>
+            <path class="a2" d="M1230 400 Q1440 330 1650 400" fill="none" stroke="#00a884" stroke-width="6" stroke-dasharray="4 16" stroke-linecap="round"/>
+            <path class="a3" d="M1230 420 Q1440 640 1650 595" fill="none" stroke="#00a884" stroke-width="6" stroke-dasharray="4 16" stroke-linecap="round"/>
+          </svg>
+          <div class="card c1" data-layout-ignore></div><div class="card c2" data-layout-ignore></div><div class="card c3" data-layout-ignore></div>
+          <div class="hrt h1"></div><div class="hrt h2"></div><div class="hrt h3"></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s08");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s08");
+          var q = function (s) { return R.querySelector(s); };
+          q(".me").innerHTML = VT.person({ size: 150, bg: "#005c4b" });
+          ["f1", "f2", "f3"].forEach(function (f, i) { q("." + f).innerHTML = VT.person({ size: 110, bg: ["#3f5b67", "#c9a55c", "#54656f"][i] }); });
+          ["c1", "c2", "c3"].forEach(function (c) { q("." + c).innerHTML = VT.icon("store", { size: 52, stroke: 2 }); });
+          ["h1", "h2", "h3"].forEach(function (h) { q("." + h).innerHTML = VT.icon("heart", { size: 30, stroke: 2.4, fill: true }); });
+          var needle = q(".needle");
+          var tq = T("quanto"), td = T("dispostos");
+          var K = [[0, -80], [tq - 0.3, -80], [tq + 0.2, 30, "out"], [tq + 0.6, -40, "io"], [tq + 1.0, 50, "io"], [td, 20, "io"], [td + 0.5, 62, "back"], [DUR, 62]];
+          var tl = gsap.timeline({ paused: true });
+          VT.driver(tl, DUR, function (t) { needle.style.transform = "rotate(" + VT.kf(t, K).toFixed(2) + "deg)"; });
+          tl.fromTo(q(".gw"), { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, 0.08);
+          tl.fromTo(q(".arcR"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, T("métrica"));
+          tl.fromTo(q(".arcG"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, T("métrica") + 0.15);
+          // os seus clientes
+          tl.fromTo(q(".me"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, T("clientes") - 0.15);
+          // recomendar: o cartão da empresa é encaminhado em arco para três amigos
+          var tr = T("recomendar") - 0.05;
+          tl.fromTo(q(".rec"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.25 }, tr - 0.1);
+          ["f1", "f2", "f3"].forEach(function (f, i) {
+            tl.fromTo(q("." + f), { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, tr - 0.3 + i * 0.08);
+          });
+          var paths = [["a1", "c1", [[1170, 340], [1440, 170], [1640, 190]]], ["a2", "c2", [[1170, 360], [1440, 330], [1640, 385]]], ["a3", "c3", [[1170, 380], [1440, 580], [1640, 580]]]];
+          paths.forEach(function (p, i) {
+            var t0 = tr + i * 0.14;
+            tl.fromTo(q("." + p[0]), { strokeDashoffset: 0, opacity: 0 }, { opacity: 1, duration: 0.2 }, t0);
+            var pts = p[2], el = q("." + p[1]);
+            tl.fromTo(el, { x: pts[0][0], y: pts[0][1], opacity: 0, scale: 0.6 }, { x: pts[1][0], y: pts[1][1], opacity: 1, scale: 1, duration: 0.25, ease: "power1.out" }, t0);
+            tl.to(el, { x: pts[2][0], y: pts[2][1], scale: 0.7, duration: 0.25, ease: "power2.in" }, t0 + 0.25);
+            tl.to(el, { opacity: 0, duration: 0.15 }, t0 + 0.5);
+          });
+          // a sua empresa: os amigos reagem com coração
+          ["h1", "h2", "h3"].forEach(function (h, i) {
+            tl.fromTo(q("." + h), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("empresa") - 0.2 + i * 0.08);
+          });
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.03, duration: DUR, ease: "sine.inOut", transformOrigin: "50% 45%" }, 0);
+          window.__timelines["s08"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

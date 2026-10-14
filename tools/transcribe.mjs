@@ -44,6 +44,24 @@ for (let i = 0; i < cuts.length; i++) {
   if (next - start > 24) { segs.push([start, cuts[i]]); start = cuts[i]; }
 }
 segs.push([start, dur]);
+// fala corrida sem silêncio ≥ 0,35 s: subdivide trechos longos no ponto de menor energia (quadros de 20 ms)
+const FR = SR / 50;
+const rmsAt = (t) => {
+  const i0 = Math.floor(t * 50) * FR;
+  let acc = 0;
+  for (let i = i0; i < Math.min(samples.length, i0 + FR); i++) acc += samples[i] * samples[i];
+  return Math.sqrt(acc / FR);
+};
+for (let k = 0; k < segs.length; k++) {
+  const [a, b] = segs[k];
+  if (b - a <= 24) continue;
+  let best = a + 18, bestV = Infinity;
+  for (let t = a + 12; t <= Math.min(b - 4, a + 24); t += 0.02) {
+    const v = rmsAt(t - 0.02) + rmsAt(t) + rmsAt(t + 0.02);
+    if (v < bestV) { bestV = v; best = t; }
+  }
+  segs.splice(k, 1, [a, best], [best, b]);
+}
 
 const parakeet = new sherpa.OfflineRecognizer({
   featConfig: { sampleRate: SR, featureDim: 80 },
