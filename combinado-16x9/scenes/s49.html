@@ -4,14 +4,98 @@
   <body>
     <template>
       <style>
-        #s49 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s49 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s49 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #fbfaf7; background: #1b2a30; overflow: hidden; }
+        #s49 .cam { position: absolute; inset: 0; }
+        #s49 .halo { position: absolute; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(0, 168, 132, 0.35) 0%, rgba(0, 168, 132, 0) 70%); }
+        #s49 .h1 { left: 300px; top: 260px; } #s49 .h2 { left: 1260px; top: 260px; }
+        #s49 .ht { position: absolute; left: 400px; top: 360px; width: 160px; height: 160px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(229, 72, 77, 0.25); }
+        #s49 .st { position: absolute; left: 1360px; top: 360px; width: 160px; height: 160px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(0, 168, 132, 0.25); }
+        #s49 .lb { position: absolute; top: 540px; width: 300px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 4px; color: #cbc1b2; }
+        #s49 .lb1 { left: 330px; } #s49 .lb2 { left: 1290px; }
+        #s49 .ln { position: absolute; left: 0; top: 0; }
+        #s49 .ttl { position: absolute; left: 0; top: 160px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 38px; letter-spacing: 8px; color: #d9fdd3; }
+        #s49 .tg { position: absolute; padding: 6px 18px; border-radius: 14px; background: #3f5b67; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 3px; color: #fbfaf7; white-space: nowrap; }
+        #s49 .tg1 { left: 860px; top: 268px; } #s49 .tg2 { left: 846px; top: 380px; } #s49 .tg3 { left: 860px; top: 560px; }
+        #s49 .nh { position: absolute; left: 0; top: 330px; width: 1920px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 300px; line-height: 300px; color: #fbfaf7; letter-spacing: 4px; }
+        #s49 .shock { position: absolute; left: 760px; top: 280px; width: 400px; height: 400px; border-radius: 50%; border: 10px solid #e5484d; opacity: 0; }
       </style>
-      <div id="s49" data-composition-id="s49" data-width="1920" data-height="1080"><div class="ph">s49 · PLACEHOLDER</div></div>
+      <div id="s49" data-composition-id="s49" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="halo h1" data-layout-ignore></div><div class="halo h2" data-layout-ignore></div>
+          <div class="ttl">CONEXÃO EMOCIONAL</div>
+          <svg class="ln" width="1920" height="1080" viewBox="0 0 1920 1080" data-layout-ignore>
+            <g fill="none" stroke-linecap="round">
+              <path class="main" d="M560 440 Q960 440 1360 440" stroke="#00a884" stroke-width="12"/>
+              <path class="fray" d="M560 440 Q960 440 1360 440" stroke="#e5484d" stroke-width="6" stroke-dasharray="18 26" opacity="0"/>
+              <path class="a1 L" d="M560 440 Q760 335 960 335" stroke="#d9fdd3" stroke-width="6"/><path class="a1 Rr" d="M960 335 Q1160 335 1360 440" stroke="#d9fdd3" stroke-width="6"/>
+              <path class="a2 L" d="M560 440 Q760 440 960 440" stroke="#d9fdd3" stroke-width="6"/><path class="a2 Rr" d="M960 440 Q1160 440 1360 440" stroke="#d9fdd3" stroke-width="6"/>
+              <path class="a3 L" d="M560 440 Q760 545 960 545" stroke="#d9fdd3" stroke-width="6"/><path class="a3 Rr" d="M960 545 Q1160 545 1360 440" stroke="#d9fdd3" stroke-width="6"/>
+            </g>
+          </svg>
+          <div class="ht"></div><div class="st"></div>
+          <div class="lb lb1">CLIENTE</div><div class="lb lb2">MARCA</div>
+          <div class="tg tg1" data-layout-allow-overlap>LEALDADE</div>
+          <div class="tg tg2" data-layout-allow-overlap>FIDELIDADE</div>
+          <div class="tg tg3" data-layout-allow-overlap>VÍNCULO</div>
+          <div class="shock" data-layout-ignore></div>
+          <div class="nh" data-layout-allow-overlap>NENHUMA.</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s49");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s49");
+          var q = function (s) { return R.querySelector(s); };
+          var qa = function (s) { return R.querySelectorAll(s); };
+          q(".ht").innerHTML = VT.icon("heart", { size: 80, stroke: 2, fill: true });
+          q(".st").innerHTML = VT.icon("store", { size: 84, stroke: 1.8 });
+          var main = q(".main"), fray = q(".fray"), tEnt = T("entregando");
+          var tn = T("Nenhuma") - 0.08;
+          // fios frágeis: tremem (função do tempo) até o "Nenhuma"
+          var threads = [[".a1", T("lealdade")], [".a2", T("fidelidade")], [".a3", T("vínculo")]];
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s49 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          VT.driver(tl, DUR, function (t) {
+            threads.forEach(function (th, i) {
+              var els = qa(th[0]);
+              var w = 0;
+              if (t >= th[1] - 0.1 && t < tn) w = 0.55 + 0.45 * Math.abs(Math.sin(t * (9 + i * 3)));
+              else if (t >= tn) w = Math.max(0, 1 - (t - tn) / 0.5);
+              els.forEach(function (e) { e.style.strokeOpacity = w.toFixed(3); });
+            });
+            var flick = t > T("experiência") && t < tn ? (Math.floor(t * 14) % 3 === 0 ? 0.35 : 1) : 1;
+            main.style.opacity = String(t < tEnt ? flick : 0);
+            fray.style.opacity = String(t >= tEnt && t < tn ? (Math.floor(t * 10) % 4 === 0 ? 0.3 : 0.9) : 0);
+          });
+          qa(".L, .Rr").forEach(function (e) { e.style.strokeOpacity = "0"; });
+          gsap.set([q(".tg1"), q(".tg2"), q(".tg3"), q(".nh")], { opacity: 0 });
+          // momento mais importante: cliente e marca
+          tl.fromTo([q(".ht"), q(".lb1")], { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 0.15);
+          tl.fromTo([q(".st"), q(".lb2")], { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 0.35);
+          tl.fromTo([q(".h1"), q(".h2")], { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.2, duration: 1.0, ease: "sine.out" }, T("importante") - 0.3);
+          // conexão emocional: o fio de luz
+          tl.fromTo(main, { strokeDasharray: 800, strokeDashoffset: 800 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, T("conexão") - 0.1);
+          tl.fromTo(q(".ttl"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.35 }, T("emocional") - 0.1);
+          tl.fromTo(q(".ht"), { scale: 1 }, { scale: 1.12, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("marca") - 0.1);
+          // essa experiência que entregam: o fio falha e fica vermelho
+          tl.to(main, { stroke: "#e5484d", duration: 0.4 }, T("experiência"));
+          tl.to(q(".ttl"), { opacity: 0.35, duration: 0.4 }, T("entregando"));
+          // a esperança: três fios finos, um a um
+          [["tg1", "lealdade"], ["tg2", "fidelidade"], ["tg3", "vínculo"]].forEach(function (p) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)", immediateRender: false }, T(p[1]) - 0.1);
+          });
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.08, duration: tn - T("esperança"), ease: "sine.inOut", transformOrigin: "50% 45%" }, T("esperança"));
+          // Nenhuma.: tudo arrebenta
+          var snap = [[".a1.L", 560, 440, 40], [".a1.Rr", 1360, 440, -40], [".a2.L", 560, 440, 25], [".a2.Rr", 1360, 440, -25], [".a3.L", 560, 440, 15], [".a3.Rr", 1360, 440, -15]];
+          snap.forEach(function (s) {
+            tl.fromTo(q(s[0]), { rotation: 0, svgOrigin: s[1] + " " + s[2] }, { rotation: s[3], duration: 0.5, ease: "power3.out", immediateRender: false }, tn);
+          });
+          tl.to([q(".tg1"), q(".tg2"), q(".tg3"), q(".ttl")], { opacity: 0, duration: 0.15 }, tn);
+          tl.to([q(".ht"), q(".st"), q(".lb1"), q(".lb2"), q(".h1"), q(".h2")], { opacity: 0.18, duration: 0.25 }, tn);
+          tl.fromTo(q(".nh"), { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power4.in", immediateRender: false }, tn);
+          tl.fromTo(q(".shock"), { opacity: 0.9, scale: 0.4 }, { opacity: 0, scale: 2.6, duration: 0.6, ease: "power2.out", immediateRender: false }, tn + 0.15);
+          tl.to(q(".cam"), { x: 16, duration: 0.04, yoyo: true, repeat: 7, ease: "none" }, tn + 0.18);
           window.__timelines["s49"] = tl;
         })();
       </script>

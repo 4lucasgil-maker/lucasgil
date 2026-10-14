@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s28 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s28 .cam { position: absolute; inset: 0; }
+        #s28 .board { position: absolute; left: 300px; top: 500px; width: 620px; height: 160px; border-radius: 34px; background: #3f5b67; box-shadow: 0 16px 32px rgba(17, 27, 33, 0.2); }
+        #s28 .hole { position: absolute; left: 230px; top: 14px; width: 160px; height: 132px; border-radius: 50%; background: #111b21; }
+        #s28 .bl { position: absolute; left: 300px; top: 676px; width: 620px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 4px; color: #3b4a54; }
+        #s28 .blk { position: absolute; left: 520px; top: 190px; width: 180px; height: 180px; border-radius: 22px; background: #c9a55c; box-shadow: inset 0 -10px 0 rgba(17, 27, 33, 0.18); display: flex; align-items: center; justify-content: center; font-family: "League Gothic", sans-serif; font-size: 46px; color: #111b21; }
+        #s28 .nx { position: absolute; left: 560px; top: 380px; width: 100px; height: 100px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s28 .cab { position: absolute; left: 1000px; top: 300px; font-family: "League Gothic", sans-serif; font-size: 90px; line-height: 92px; color: #111b21; }
+        #s28 .carw { position: absolute; left: 1300px; top: 380px; width: 340px; height: 144px; }
+        #s28 .al { position: absolute; left: 1580px; top: 330px; width: 74px; height: 74px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s28 .nc { position: absolute; left: 1300px; top: 560px; width: 340px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 4px; color: #3b4a54; }
+        #s28 .fac { position: absolute; left: 1900px; top: 320px; width: 230px; height: 200px; }
+        #s28 .arr { position: absolute; left: 1640px; top: 400px; width: 260px; height: 80px; }
+        #s28 .fl { position: absolute; left: 1860px; top: 540px; width: 320px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 64px; line-height: 66px; color: #e5484d; }
+      </style>
+      <div id="s28" data-composition-id="s28" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="cab">NÃO TEM CABIMENTO</div>
+          <div class="board"><div class="hole"></div></div>
+          <div class="bl">CLIENTE</div>
+          <div class="blk">DESCULPA</div>
+          <div class="nx"></div>
+          <div class="carw"><div class="cs"></div></div>
+          <div class="al"></div>
+          <div class="nc">NOSSO CASO</div>
+          <svg class="arr" width="260" height="80" viewBox="0 0 260 80" aria-hidden="true"><path class="ap" d="M10 40 H230 M190 10 L240 40 L190 70" fill="none" stroke="#e5484d" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="fac"></div>
+          <div class="fl">FOI A FÁBRICA</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["não",0.147,0.306],["importa,",0.306,0.516],["não",1.507,1.587],["tem",1.587,1.827],["cabimento",1.827,2.387],["isso.",2.466,2.707],["No",3.107,3.267],["nosso",3.267,3.427],["caso,",3.427,3.587],["né…",3.587,3.747],["Ah,",6.067,6.227],["não,",6.227,6.387],["mas",6.387,6.547],["foi",6.547,6.707],["a",6.707,6.787],["fábrica.",6.787,7.569]];
+          var T = VT.finder(W, "s28");
+          var R = document.getElementById("s28");
+          var q = function (s) { return R.querySelector(s); };
+          q(".nx").innerHTML = VT.icon("x", { size: 56, stroke: 3.2 });
+          q(".cs").innerHTML = VT.car({ width: 340, color: "#fbfaf7" });
+          q(".al").innerHTML = VT.icon("alert", { size: 44, stroke: 2.6 });
+          q(".fac").innerHTML = '<svg width="230" height="200" viewBox="0 0 200 170"><path d="M10 160V80l50-30v30l50-30v30l50-30V160z" fill="#fbfaf7" stroke="#3f5b67" stroke-width="6" stroke-linejoin="round"/><path d="M150 50V10h26v100" fill="#fbfaf7" stroke="#3f5b67" stroke-width="6"/><path d="M36 120h22M86 120h22M136 120h22" stroke="#3f5b67" stroke-width="8" stroke-linecap="round"/></svg>';
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo([q(".board"), q(".bl")], { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.8)" }, 0.05);
+          tl.fromTo(q(".blk"), { opacity: 0, y: -200 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, T("importa") - 0.1);
+          // não tem cabimento: o quadrado não entra no buraco redondo
+          var t1 = T("cabimento") - 0.25;
+          tl.to(q(".blk"), { y: 150, duration: 0.25, ease: "power2.in" }, t1);
+          tl.to(q(".blk"), { y: -40, rotation: 14, duration: 0.3, ease: "power2.out" }, t1 + 0.25);
+          tl.to(q(".blk"), { y: 0, rotation: 45, duration: 0.25, ease: "power2.in" }, T("isso") - 0.4);
+          tl.to(q(".blk"), { y: 150, duration: 0.2, ease: "power2.in" }, T("isso") - 0.15);
+          tl.to(q(".blk"), { y: -20, rotation: 30, duration: 0.3, ease: "power2.out" }, T("isso") + 0.05);
+          tl.fromTo(q(".cab"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, T("cabimento") - 0.1);
+          tl.fromTo(q(".nx"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(3)" }, T("isso") + 0.05);
+          tl.fromTo(q(".board"), { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, T("isso") - 0.05);
+          // no nosso caso: a câmera vai até o carro
+          tl.to(q(".cab"), { opacity: 0, y: -30, duration: 0.25, ease: "power2.in" }, T("No") - 0.35);
+          tl.to(q(".cam"), { x: -420, duration: 0.6, ease: "power3.inOut" }, T("No") - 0.2);
+          tl.fromTo([q(".carw"), q(".nc")], { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, T("No") - 0.05);
+          tl.fromTo(q(".al"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("caso"));
+          tl.fromTo(q(".al"), { scale: 1 }, { scale: 1.18, duration: 0.3, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, T("né") + 0.2);
+          // mas foi a fábrica: o dedo aponta para a fábrica
+          var tf = T("fábrica");
+          tl.fromTo(q(".ap"), { strokeDasharray: 420, strokeDashoffset: 420 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, T("Ah") - 0.05);
+          tl.fromTo(q(".fac"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.35, ease: "bounce.out" }, T("foi") - 0.2);
+          tl.fromTo(q(".fl"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, tf - 0.05);
+          tl.fromTo(q(".fac"), { rotation: 0 }, { rotation: 4, duration: 0.06, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, tf + 0.1);
+          window.__timelines["s28"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

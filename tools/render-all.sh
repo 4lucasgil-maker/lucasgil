@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 # Renderiza e entrega um episódio: vertical 9:16 e/ou horizontal 16:9, thumbnails e prévias leves.
-# Uso: tools/render-all.sh <slug> [all|vertical|16x9]
+# Uso: tools/render-all.sh <slug> [all|vertical|16x9|wide]
+#   wide = projeto 16:9 nativo (<slug>-16x9 com "format": "16x9" no episode.json), sem camadas.
 # Variáveis: HF (comando do CLI, padrão "npx hyperframes"), HYPERFRAMES_BROWSER_PATH (Chrome headless).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SLUG="$1"; WHAT="${2:-all}"
 V="$ROOT/$SLUG-reel"; H="$ROOT/$SLUG-16x9"
-N=$(node -e "process.stdout.write(String(require('$V/episode.json').number))")
+EPJ="$V/episode.json"; [ "$WHAT" = "wide" ] && EPJ="$H/episode.json"
+N=$(node -e "process.stdout.write(String(require('$EPJ').number))")
 HF="${HF:-npx hyperframes}"
 log() { echo "[$(date +%H:%M:%S)] $*"; }
 snap0() { # $1 projeto, $2 png de saída
@@ -53,5 +55,18 @@ if [ "$WHAT" = "all" ] || [ "$WHAT" = "16x9" ]; then
   preview "$H/renders/ep$N-$SLUG-16x9.mp4" "$H/renders/preview/ep$N-$SLUG-16x9-preview-720p.mp4" 1280:720 780k
   rm -f "$H/renders/ep$N-$SLUG-16x9-master.mp4"
   log "16:9: ok"
+fi
+if [ "$WHAT" = "wide" ]; then
+  log "16:9 nativo: build + render"
+  node "$ROOT/tools/build.mjs" "$H"
+  mkdir -p "$H/renders/preview"
+  (cd "$H" && $HF render --quality delivery --fps 30 --workers 4 --output "renders/ep$N-$SLUG-16x9-master.mp4" >/dev/null 2>&1)
+  log "16:9 nativo: encode"
+  "$ROOT/tools/encode.sh" "$H/renders/ep$N-$SLUG-16x9-master.mp4" "$H/renders/ep$N-$SLUG-16x9.mp4"
+  snap0 "$H" "$H/renders/thumb-ep$N-16x9.png"
+  ffmpeg -hide_banner -loglevel error -y -i "$H/renders/thumb-ep$N-16x9.png" -vf scale=1280:720:flags=lanczos -q:v 2 "$H/renders/thumb-ep$N-youtube.jpg"
+  preview "$H/renders/ep$N-$SLUG-16x9.mp4" "$H/renders/preview/ep$N-$SLUG-16x9-preview-720p.mp4" 1280:720 780k
+  rm -f "$H/renders/ep$N-$SLUG-16x9-master.mp4"
+  log "16:9 nativo: ok"
 fi
 log "fim"

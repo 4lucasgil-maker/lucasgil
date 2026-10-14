@@ -5,13 +5,64 @@
     <template>
       <style>
         #s17 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s17 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s17 .cam { position: absolute; inset: 0; }
+        #s17 .hd { position: absolute; left: 260px; top: 200px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 38px; letter-spacing: 5px; color: #3b4a54; }
+        #s17 .track { position: absolute; left: 300px; top: 446px; width: 1200px; height: 20px; border-radius: 10px; background: #cbc1b2; }
+        #s17 .fill { position: absolute; left: 300px; top: 446px; width: 1200px; height: 20px; border-radius: 10px; background: #00a884; }
+        #s17 .nd { position: absolute; top: 426px; width: 60px; height: 60px; border-radius: 50%; background: #fbfaf7; box-shadow: inset 0 0 0 8px #3b4a54; }
+        #s17 .nl { position: absolute; top: 510px; width: 240px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 2px; color: #3b4a54; }
+        #s17 .endw { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #s17 .carw { position: absolute; left: 0; top: 340px; width: 200px; height: 85px; }
+        #s17 .chip { position: absolute; left: 1380px; top: 290px; padding: 8px 24px; border-radius: 18px; background: #e5484d; color: #fbfaf7; font-family: "League Gothic", sans-serif; font-size: 70px; line-height: 80px; white-space: nowrap; box-shadow: 0 10px 22px rgba(229, 72, 77, 0.35); }
+        #s17 .bk { position: absolute; top: 240px; width: 90px; height: 90px; border-radius: 50%; background: #fbfaf7; color: #e5484d; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.14); }
       </style>
-      <div id="s17" data-composition-id="s17" data-width="1920" data-height="1080"><div class="ph">s17 · PLACEHOLDER</div></div>
+      <div id="s17" data-composition-id="s17" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="hd">RASTREIO DO PEDIDO</div>
+          <div class="track"></div>
+          <div class="fill"></div>
+          <div class="nd n0" style="left:270px"></div><div class="nd n1" style="left:670px"></div><div class="nd n2" style="left:1070px"></div>
+          <div class="nl" style="left:180px">PEDIDO</div><div class="nl" style="left:580px">FÁBRICA</div><div class="nl" style="left:980px">TRANSPORTE</div>
+          <div class="endw"><div class="nd n3" style="left:1470px"></div><div class="nl l3" style="left:1380px">ENTREGA</div></div>
+          <div class="carw"></div>
+          <div class="bk bk1" style="left:760px"></div><div class="bk bk2" style="left:1000px"></div>
+          <div class="chip">+3 DIAS</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s17");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s17");
+          var q = function (s) { return R.querySelector(s); };
+          q(".carw").innerHTML = VT.car({ width: 200, color: "#00a884" });
+          q(".bk1").innerHTML = VT.icon("rewind", { size: 52, stroke: 2.6 });
+          q(".bk2").innerHTML = VT.icon("rewind", { size: 52, stroke: 2.6 });
+          var fill = q(".fill"), carw = q(".carw"), endw = q(".endw");
+          // progresso (0–1) avança e volta a cada "mudança"; a entrega se afasta com +3 dias
+          var tm = T("mudando"), tc = T("coisa"), t3 = T("três");
+          var KP = [[0, 0.1], [0.5, 0.82, "out"], [tm, 0.82], [tm + 0.3, 0.55, "out"], [tm + 0.7, 0.75, "io"], [tc, 0.75], [tc + 0.3, 0.48, "out"], [t3 - 0.3, 0.66, "io"], [t3, 0.66], [t3 + 0.35, 0.52, "out"], [DUR, 0.52]];
+          var KE = [[0, 0], [t3 - 0.05, 0], [t3 + 0.35, 260, "back"], [DUR, 260]];
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s17 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          VT.driver(tl, DUR, function (t) {
+            var e = VT.kf(t, KE), p = VT.kf(t, KP);
+            var span = 1200 + e;
+            fill.style.transform = "scaleX(" + (p * span / 1200).toFixed(4) + ")";
+            fill.style.transformOrigin = "0% 50%";
+            q(".track").style.transform = "scaleX(" + (span / 1200).toFixed(4) + ")";
+            q(".track").style.transformOrigin = "0% 50%";
+            endw.style.transform = "translateX(" + e.toFixed(1) + "px)";
+            carw.style.transform = "translateX(" + (300 + p * span - 100).toFixed(1) + "px)";
+          });
+          tl.fromTo([q(".hd")], { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+          tl.fromTo([q(".n0"), q(".n1"), q(".n2"), q(".n3")], { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)", stagger: 0.06 }, 0.05);
+          tl.fromTo(q(".bk1"), { opacity: 0, scale: 0, rotation: 90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, tm);
+          tl.to(q(".bk1"), { opacity: 0, y: -30, duration: 0.3 }, tm + 0.6);
+          tl.fromTo(q(".bk2"), { opacity: 0, scale: 0, rotation: 90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, tc);
+          tl.to(q(".bk2"), { opacity: 0, y: -30, duration: 0.3 }, tc + 0.6);
+          tl.fromTo(q(".chip"), { opacity: 0, scale: 2.2, rotation: -10 }, { opacity: 1, scale: 1, rotation: -4, x: 260, duration: 0.3, ease: "power4.in" }, t3 - 0.1);
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.05, duration: 0.2, ease: "power2.out", transformOrigin: "80% 45%", immediateRender: false }, t3 + 0.2);
           window.__timelines["s17"] = tl;
         })();
       </script>

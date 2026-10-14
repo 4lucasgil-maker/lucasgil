@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s01 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s01 .cam { position: absolute; inset: 0; }
+        #s01 .avwrap { position: absolute; left: 250px; top: 196px; width: 240px; height: 240px; }
+        #s01 .rg { position: absolute; left: 0; top: 0; width: 240px; height: 240px; border-radius: 50%; border: 6px solid #00a884; opacity: 0; }
+        #s01 .av { position: absolute; left: 0; top: 0; width: 240px; height: 240px; border-radius: 50%; overflow: hidden; background: #005c4b; box-shadow: 0 0 0 9px #fbfaf7, 0 18px 40px rgba(17, 27, 33, 0.2); }
+        #s01 .av img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #s01 .mic { position: absolute; left: 172px; top: 172px; width: 72px; height: 72px; border-radius: 50%; background: #00a884; box-shadow: 0 0 0 6px #fbfaf7; display: flex; align-items: center; justify-content: center; color: #fbfaf7; }
+        #s01 .brand { position: absolute; left: 580px; top: 200px; width: 800px; height: 104px; background: #d9fdd3; border-radius: 30px; border-top-right-radius: 8px; box-shadow: 0 8px 22px rgba(17, 27, 33, 0.14); }
+        #s01 .brand::before { content: ""; position: absolute; top: 0; right: -18px; border-left: 22px solid #d9fdd3; border-bottom: 22px solid transparent; }
+        #s01 .bt { position: absolute; left: 34px; top: 20px; font-weight: 700; font-size: 50px; line-height: 62px; white-space: nowrap; }
+        #s01 .bm { position: absolute; right: 24px; bottom: 14px; display: flex; align-items: center; gap: 8px; font-size: 26px; line-height: 32px; color: #54656f; }
+        #s01 .chip { position: absolute; left: 580px; top: 336px; padding: 12px 26px; border-radius: 16px; background: #005c4b; color: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 32px; line-height: 40px; letter-spacing: 1px; white-space: nowrap; }
+        #s01 .row { position: absolute; left: 250px; top: 520px; width: 1420px; height: 200px; }
+        #s01 .st { position: absolute; top: 40px; width: 190px; height: 150px; border-radius: 28px; background: #fbfaf7; box-shadow: 0 10px 24px rgba(17, 27, 33, 0.12); display: flex; align-items: center; justify-content: center; color: #3f5b67; }
+        #s01 .ok { position: absolute; right: -12px; top: -12px; width: 52px; height: 52px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 5px #efeae2; }
+        #s01 .bulb { position: absolute; left: 1700px; top: 380px; width: 150px; height: 150px; border-radius: 50%; background: #c9a55c; color: #111b21; display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 30px rgba(201, 165, 92, 0.45); }
+        #s01 .carw { position: absolute; left: 0; top: 700px; width: 220px; height: 94px; }
+        #s01 .warn { position: absolute; left: 150px; top: -30px; width: 56px; height: 56px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+      </style>
+      <div id="s01" data-composition-id="s01" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="avwrap">
+            <div class="rg rg1" data-layout-ignore></div>
+            <div class="rg rg2" data-layout-ignore></div>
+            <div class="av"><img src="assets/images/cris-junqueira-avatar.jpg" alt="" /></div>
+            <div class="mic"></div>
+          </div>
+          <div class="brand"><div class="bt">Vou te mandar um áudio</div><div class="bm">08:20 <span class="tks"></span></div></div>
+          <div class="chip">EP #124 · O COMBINADO NÃO SAI CARO</div>
+          <div class="row">
+            <div class="st st0" style="left:0px"><div class="ok ok0"></div></div>
+            <div class="st st1" style="left:246px"><div class="ok ok1"></div></div>
+            <div class="st st2" style="left:492px"><div class="ok ok2"></div></div>
+            <div class="st st3" style="left:738px"><div class="ok ok3"></div></div>
+            <div class="st st4" style="left:984px"><div class="ok ok4"></div></div>
+            <div class="st st5" style="left:1230px"><div class="ok ok5"></div></div>
+          </div>
+          <div class="bulb"></div>
+          <div class="carw"><div class="carsvg"></div><div class="warn"></div></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Vou",0,0.16],["contar",0.16,0.4],["aqui",0.4,0.56],["pra",0.56,0.64],["vocês",0.64,0.88],["o",0.88,1.04],["que",1.04,1.12],["eu",1.2,1.36],["acho",1.36,1.52],["que",1.52,1.76],["todas",1.76,2],["as",2,2.16],["empresas",2.16,2.56],["podem",2.56,2.8],["aprender",2.8,3.04],["com",3.2,3.36],["situações",3.36,3.92],["como",3.92,4.24],["essa.",4.24,4.64]];
+          var T = VT.finder(W, "s01");
+          var R = document.getElementById("s01");
+          var q = function (s) { return R.querySelector(s); };
+          q(".mic").innerHTML = VT.icon("mic", { size: 40, stroke: 2.4 });
+          q(".tks").innerHTML = VT.ticks({ color: "#53bdeb" });
+          q(".bulb").innerHTML = VT.icon("bulb", { size: 96, stroke: 2.2 });
+          q(".carsvg").innerHTML = VT.car({ width: 220, color: "#fbfaf7" });
+          q(".warn").innerHTML = VT.icon("alert", { size: 34, stroke: 2.6 });
+          for (var i = 0; i < 6; i++) {
+            q(".st" + i).insertAdjacentHTML("afterbegin", VT.icon("store", { size: 92, stroke: 1.8 }));
+            q(".ok" + i).innerHTML = VT.icon("check", { size: 32, stroke: 3 });
+          }
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.04, duration: 4.5, ease: "sine.inOut", transformOrigin: "50% 40%" }, 0);
+          tl.fromTo(q(".avwrap"), { scale: 0.5, opacity: 0, rotation: -10 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, 0.2);
+          tl.fromTo(q(".mic"), { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, 0.45);
+          ["rg1", "rg2"].forEach(function (c, i) {
+            tl.fromTo(q("." + c), { scale: 1, opacity: 0.6 }, { scale: 1.7, opacity: 0, duration: 1.2, ease: "power1.out", repeat: 2, immediateRender: false }, 0.4 + i * 0.6);
+          });
+          tl.fromTo(q(".brand"), { opacity: 0, x: 60, scale: 0.9 }, { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "back.out(1.7)", transformOrigin: "100% 0%" }, T("contar") - 0.05);
+          tl.fromTo(q(".chip"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T("vocês"));
+          // todas as empresas: vitrines entrando em onda
+          for (var j = 0; j < 6; j++) {
+            tl.fromTo(q(".st" + j), { opacity: 0, y: 70, scale: 0.7 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(2)" }, T("todas") - 0.1 + j * 0.06);
+          }
+          // aprender: lâmpada acende e cada loja ganha um check
+          tl.fromTo(q(".bulb"), { opacity: 0, scale: 0.3, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.6)" }, T("aprender") - 0.08);
+          for (var k = 0; k < 6; k++) {
+            tl.fromTo(q(".ok" + k), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("aprender") + 0.15 + k * 0.05);
+          }
+          // situações como essa: o carro atravessa e acende o alerta
+          tl.fromTo(q(".carw"), { x: -260 }, { x: 860, duration: 1.0, ease: "power3.out" }, T("situações") - 0.1);
+          tl.fromTo(q(".warn"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("essa") - 0.1);
+          tl.fromTo(q(".carw"), { rotation: 0 }, { rotation: -3, duration: 0.12, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("essa"));
+          window.__timelines["s01"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

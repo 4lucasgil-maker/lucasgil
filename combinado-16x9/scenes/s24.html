@@ -5,13 +5,64 @@
     <template>
       <style>
         #s24 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s24 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s24 .cam { position: absolute; inset: 0; }
+        #s24 .fd { position: absolute; top: 330px; width: 480px; height: 320px; }
+        #s24 .fd .tab { position: absolute; left: 0; top: 0; width: 200px; height: 50px; border-radius: 22px 22px 0 0; }
+        #s24 .fd .body { position: absolute; left: 0; top: 34px; width: 480px; height: 286px; border-radius: 0 30px 30px 30px; box-shadow: 0 16px 34px rgba(17, 27, 33, 0.16); }
+        #s24 .fL { left: 290px; } #s24 .fR { left: 1150px; }
+        #s24 .fL .tab, #s24 .fL .body { background: #3f5b67; }
+        #s24 .fR .tab, #s24 .fR .body { background: #005c4b; }
+        #s24 .fd .ic { position: absolute; left: 34px; top: 70px; width: 96px; height: 96px; color: #fbfaf7; }
+        #s24 .fd .nm { position: absolute; left: 150px; top: 84px; font-family: "League Gothic", sans-serif; font-size: 80px; line-height: 80px; color: #fbfaf7; }
+        #s24 .strike { position: absolute; left: 140px; top: 120px; width: 230px; height: 10px; border-radius: 5px; background: #e5484d; }
+        #s24 .tagp { position: absolute; left: 0; top: 0; width: 300px; height: 84px; border-radius: 42px; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; gap: 12px; padding-left: 24px; box-sizing: border-box; font-family: "League Gothic", sans-serif; font-size: 54px; box-shadow: 0 10px 22px rgba(229, 72, 77, 0.35); }
+        #s24 .seu { position: absolute; left: 1150px; top: 170px; width: 480px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 150px; line-height: 150px; color: #005c4b; }
+        #s24 .cur { position: absolute; left: 0; top: 0; width: 56px; height: 70px; }
+        #s24 .rip { position: absolute; left: 1330px; top: 470px; width: 120px; height: 120px; border-radius: 50%; border: 6px solid #00a884; opacity: 0; }
       </style>
-      <div id="s24" data-composition-id="s24" data-width="1920" data-height="1080"><div class="ph">s24 · PLACEHOLDER</div></div>
+      <div id="s24" data-composition-id="s24" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="fd fL"><div class="tab"></div><div class="body"></div><div class="ic"></div><div class="nm">CLIENTE</div><div class="strike"></div></div>
+          <div class="fd fR"><div class="tab"></div><div class="body"></div><div class="ic"></div><div class="nm">VOCÊ</div></div>
+          <div class="seu">SEU</div>
+          <div class="tagp" data-layout-allow-overlap><span class="ti"></span>PROBLEMA</div>
+          <div class="rip" data-layout-ignore></div>
+          <div class="cur" data-layout-ignore></div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s24");
+          var R = document.getElementById("s24");
+          var q = function (s) { return R.querySelector(s); };
+          q(".fL .ic").innerHTML = VT.icon("user", { size: 96, stroke: 2 });
+          q(".fR .ic").innerHTML = VT.icon("store", { size: 96, stroke: 2 });
+          q(".ti").innerHTML = VT.icon("alert", { size: 42, stroke: 2.6 });
+          q(".cur").innerHTML = VT.cursor({ size: 56 });
+          gsap.set(q(".strike"), { scaleX: 0, transformOrigin: "0% 50%" });
+          gsap.set(q(".cur"), { x: 1990, y: 900 });
+          var A = [380, 500], B = [1240, 500];
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s24 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          tl.fromTo([q(".fL"), q(".fR")], { opacity: 0, y: 80, rotation: -4 }, { opacity: 1, y: 0, rotation: 0, duration: 0.45, ease: "back.out(1.8)", stagger: 0.1 }, 0.15);
+          tl.fromTo(q(".tagp"), { x: A[0], y: A[1], opacity: 0, scale: 0.5 }, { x: A[0], y: A[1], opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, 0.6);
+          // não existe problema do cliente
+          tl.to(q(".strike"), { scaleX: 1, duration: 0.25, ease: "power2.out" }, T("não") - 0.05);
+          tl.fromTo(q(".fL"), { x: 0 }, { x: 14, duration: 0.06, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, T("existe"));
+          tl.fromTo(q(".tagp"), { scale: 1 }, { scale: 1.12, duration: 0.14, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("problema") - 0.05);
+          // o cursor arrasta o problema para a pasta da empresa
+          var tg = T("Só") - 0.05, tdrop = T("seu") - 0.05;
+          tl.to(q(".cur"), { x: A[0] + 150, y: A[1] + 40, duration: 0.5, ease: "power3.out" }, tg - 0.55);
+          tl.to(q(".cur"), { scale: 0.85, duration: 0.08 }, tg - 0.02);
+          tl.to(q(".tagp"), { scale: 1.08, rotation: -4, boxShadow: "0 26px 40px rgba(229,72,77,0.45)", duration: 0.12 }, tg);
+          tl.to(q(".tagp"), { x: B[0], y: B[1], duration: tdrop - tg - 0.1, ease: "power2.inOut" }, tg + 0.08);
+          tl.to(q(".cur"), { x: B[0] + 150, y: B[1] + 40, duration: tdrop - tg - 0.1, ease: "power2.inOut" }, tg + 0.08);
+          tl.to(q(".tagp"), { scale: 1, rotation: 0, boxShadow: "0 10px 22px rgba(229,72,77,0.35)", duration: 0.18, ease: "back.out(3)" }, tdrop);
+          tl.to(q(".cur"), { scale: 1, duration: 0.1 }, tdrop);
+          tl.to(q(".cur"), { x: 1990, y: 760, duration: 0.5, ease: "power2.in" }, tdrop + 0.25);
+          tl.fromTo(q(".rip"), { opacity: 0.9, scale: 0.4 }, { opacity: 0, scale: 2, duration: 0.5, ease: "power2.out", immediateRender: false }, tdrop);
+          tl.fromTo(q(".fR"), { scale: 1 }, { scale: 1.06, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, tdrop + 0.02);
+          tl.fromTo(q(".seu"), { opacity: 0, y: 40, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2.6)" }, T("seu") - 0.05);
           window.__timelines["s24"] = tl;
         })();
       </script>

@@ -5,13 +5,80 @@
     <template>
       <style>
         #s46 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s46 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s46 .cam { position: absolute; inset: 0; }
+        #s46 .stage { position: absolute; left: 560px; top: 610px; width: 800px; height: 40px; border-radius: 50%; background: rgba(17, 27, 33, 0.12); }
+        #s46 .carw { position: absolute; left: 700px; top: 400px; width: 520px; height: 220px; }
+        #s46 .box { position: absolute; left: 680px; top: 330px; width: 560px; height: 300px; border-radius: 18px; background: #00a884; box-shadow: inset 0 -14px 0 rgba(17, 27, 33, 0.15); transform-origin: 50% 100%; }
+        #s46 .rv { position: absolute; left: 250px; top: 0; width: 60px; height: 300px; background: #c9a55c; }
+        #s46 .rh { position: absolute; left: 0; top: 120px; width: 560px; height: 60px; background: #c9a55c; }
+        #s46 .lid { position: absolute; left: 660px; top: 270px; width: 600px; height: 80px; border-radius: 18px; background: #005c4b; }
+        #s46 .lid .rv2 { position: absolute; left: 270px; top: 0; width: 60px; height: 80px; background: #c9a55c; }
+        #s46 .bow { position: absolute; left: 860px; top: 170px; width: 200px; height: 120px; }
+        #s46 .w { position: absolute; font-family: "League Gothic", sans-serif; color: #111b21; }
+        #s46 .w1 { left: 180px; top: 200px; font-size: 110px; line-height: 110px; }
+        #s46 .w2 { left: 1380px; top: 220px; font-size: 110px; line-height: 110px; color: #005c4b; }
+        #s46 .cf { position: absolute; left: 0; top: 0; width: 18px; height: 30px; border-radius: 4px; }
+        #s46 .sp { position: absolute; width: 70px; height: 70px; color: #c9a55c; }
+        #s46 .nv { position: absolute; left: 760px; top: 660px; width: 400px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 64px; line-height: 66px; color: #005c4b; }
       </style>
-      <div id="s46" data-composition-id="s46" data-width="1920" data-height="1080"><div class="ph">s46 · PLACEHOLDER</div></div>
+      <div id="s46" data-composition-id="s46" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="stage"></div>
+          <div class="carw"></div>
+          <div class="box"><div class="rv"></div><div class="rh"></div></div>
+          <div class="lid"><div class="rv2"></div></div>
+          <svg class="bow" width="200" height="120" viewBox="0 0 200 120" aria-hidden="true"><path d="M100 100 C60 20 10 30 20 70 C30 100 80 100 100 100 C120 100 170 100 180 70 C190 30 140 20 100 100 Z" fill="#c9a55c" stroke="#111b21" stroke-width="5" stroke-linejoin="round"/><circle cx="100" cy="98" r="16" fill="#c9a55c" stroke="#111b21" stroke-width="5"/></svg>
+          <div class="w w1">MOMENTO</div>
+          <div class="w w2">MARAVILHOSO</div>
+          <div class="confetti"></div>
+          <div class="sp s0" style="left:650px;top:330px"></div><div class="sp s1" style="left:1200px;top:300px"></div><div class="sp s2" style="left:1240px;top:520px"></div>
+          <div class="nv">SEU CARRO NOVO</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s46");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s46");
+          var q = function (s) { return R.querySelector(s); };
+          q(".carw").innerHTML = VT.car({ width: 520, color: "#00a884" });
+          for (var s = 0; s < 3; s++) q(".s" + s).innerHTML = VT.icon("spark", { size: 70, stroke: 2.6 });
+          // confete balístico (determinístico)
+          var cf = q(".confetti"), N = 34, P = [], rnd = VT.rng(124);
+          var COL = ["#00a884", "#c9a55c", "#e5484d", "#005c4b", "#53bdeb", "#fbfaf7"];
+          for (var i = 0; i < N; i++) {
+            cf.insertAdjacentHTML("beforeend", '<div class="cf k' + i + '" style="background:' + COL[i % COL.length] + '" data-layout-ignore></div>');
+            P.push({ el: cf.lastChild, vx: (rnd() - 0.5) * 1300, vy: -700 - rnd() * 700, r: (rnd() - 0.5) * 1400 });
+          }
+          var tb = T("maravilhoso") - 0.1;
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s46 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          VT.driver(tl, DUR, function (t) {
+            var u = t - tb;
+            P.forEach(function (p) {
+              if (u < 0 || u > 2.2) { p.el.style.opacity = "0"; return; }
+              var x = 960 + p.vx * u, y = 330 + p.vy * u + 900 * u * u;
+              p.el.style.opacity = u > 1.8 ? String(Math.max(0, (2.2 - u) / 0.4)) : "1";
+              p.el.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) rotate(" + (p.r * u).toFixed(0) + "deg)";
+            });
+          });
+          tl.fromTo([q(".box"), q(".lid"), q(".bow"), q(".stage")], { opacity: 0, y: 80, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 0.05);
+          gsap.set(q(".carw"), { opacity: 0 });
+          // um momento legal, maravilhoso
+          tl.fromTo(q(".w1"), { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, T("momento") - 0.1);
+          tl.fromTo(q(".bow"), { rotation: 0, transformOrigin: "50% 80%" }, { rotation: 8, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("legal") - 0.1);
+          tl.fromTo(q(".w2"), { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.out" }, tb);
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.04, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out", transformOrigin: "50% 45%" }, tb + 0.05);
+          // chegar lá e pegar seu carro novo: o presente abre
+          tl.to([q(".w1"), q(".w2")], { opacity: 0, duration: 0.3 }, T("chegar") - 0.1);
+          tl.fromTo(q(".box"), { scale: 1 }, { scale: 1.05, duration: 0.12, yoyo: true, repeat: 3, ease: "power2.out", immediateRender: false }, T("chegar"));
+          var to = T("pegar") - 0.1;
+          tl.to(q(".bow"), { y: -400, rotation: -40, opacity: 0, duration: 0.5, ease: "power3.in" }, to);
+          tl.to(q(".lid"), { y: -420, rotation: 18, opacity: 0, duration: 0.55, ease: "power3.in" }, to + 0.05);
+          tl.to(q(".box"), { rotationX: -95, opacity: 0, duration: 0.5, ease: "power2.in" }, to + 0.2);
+          tl.fromTo(q(".carw"), { opacity: 0, scale: 0.8, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(2)", immediateRender: false }, to + 0.35);
+          for (var k = 0; k < 3; k++) tl.fromTo(q(".s" + k), { opacity: 0, scale: 0, rotation: -90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, T("novo") - 0.2 + k * 0.08);
+          tl.fromTo(q(".nv"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3 }, T("carro") - 0.05);
           window.__timelines["s46"] = tl;
         })();
       </script>

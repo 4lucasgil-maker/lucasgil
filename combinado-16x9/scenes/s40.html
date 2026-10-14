@@ -5,13 +5,56 @@
     <template>
       <style>
         #s40 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s40 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s40 .cam { position: absolute; inset: 0; }
+        #s40 .net { position: absolute; left: 0; top: 0; }
+        #s40 .post { position: absolute; top: 450px; width: 150px; height: 150px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px rgba(0, 92, 75, 0.3); }
+        #s40 .pa { left: 385px; } #s40 .pb { left: 1385px; }
+        #s40 .pp { position: absolute; left: 870px; top: 140px; width: 180px; height: 180px; }
+        #s40 .lab { position: absolute; left: 0; top: 720px; width: 1920px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 100px; line-height: 104px; color: #005c4b; }
+        #s40 .lab small { font-size: 60px; color: #3b4a54; }
       </style>
-      <div id="s40" data-composition-id="s40" data-width="1920" data-height="1080"><div class="ph">s40 · PLACEHOLDER</div></div>
+      <div id="s40" data-composition-id="s40" data-width="1920" data-height="1080">
+        <div class="cam">
+          <svg class="net" width="1920" height="1080" viewBox="0 0 1920 1080" data-layout-ignore>
+            <g fill="none" stroke="#3b4a54" stroke-linecap="round">
+              <path class="n1" d="M460 525 Q960 525 1460 525" stroke-width="12"/>
+              <path class="n2" d="M520 545 Q960 545 1400 545" stroke-width="5" opacity="0.6"/>
+              <path class="n3" d="M600 565 Q960 565 1320 565" stroke-width="5" opacity="0.45"/>
+            </g>
+          </svg>
+          <div class="post pa"></div><div class="post pb"></div>
+          <div class="pp"></div>
+          <div class="lab">RESPALDO <small>DA EMPRESA</small></div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s40");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s40");
+          var q = function (s) { return R.querySelector(s); };
+          q(".pa").innerHTML = VT.icon("store", { size: 84, stroke: 2 });
+          q(".pb").innerHTML = VT.icon("store", { size: 84, stroke: 2 });
+          q(".pp").innerHTML = VT.person({ size: 180, bg: "#c9a55c" });
+          var n1 = q(".n1"), n2 = q(".n2"), n3 = q(".n3"), pp = q(".pp");
+          // queda da pessoa e a rede que segura (função pura do tempo)
+          var tf = T("tem") - 0.2, tc = T("respaldo") - 0.1;
+          var KY = [[0, 0], [tf, 0], [tc, 205, "in"], [tc + 0.25, 365, "out"], [tc + 0.55, 235, "io"], [tc + 0.85, 290, "io"], [DUR, 280, "io"]];
+          var KS = [[0, 0], [tc, 0], [tc + 0.25, 80, "out"], [tc + 0.55, 15, "io"], [tc + 0.85, 45, "io"], [DUR, 40, "io"]];
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s40 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          VT.driver(tl, DUR, function (t) {
+            var s = VT.kf(t, KS);
+            n1.setAttribute("d", "M460 525 Q960 " + (525 + s * 2).toFixed(1) + " 1460 525");
+            n2.setAttribute("d", "M520 545 Q960 " + (545 + s * 1.7).toFixed(1) + " 1400 545");
+            n3.setAttribute("d", "M600 565 Q960 " + (565 + s * 1.4).toFixed(1) + " 1320 565");
+            pp.style.transform = "translateY(" + VT.kf(t, KY).toFixed(1) + "px) rotate(" + (t > tf && t < tc ? (t - tf) * 40 : 0).toFixed(1) + "deg)";
+          });
+          tl.fromTo([q(".pa"), q(".pb")], { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)", stagger: 0.08 }, 0.05);
+          tl.fromTo(q(".net"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.15);
+          tl.fromTo(pp, { opacity: 0 }, { opacity: 1, duration: 0.3 }, T("sentir") - 0.2);
+          tl.fromTo(q(".lab"), { opacity: 0, y: 30, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, T("respaldo") + 0.05);
+          tl.fromTo([q(".pa"), q(".pb")], { scale: 1 }, { scale: 1.12, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("empresa") - 0.05);
           window.__timelines["s40"] = tl;
         })();
       </script>

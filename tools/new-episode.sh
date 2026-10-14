@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # Prepara um episódio novo: pasta, áudio, transcrição palavra a palavra, envelope e esqueleto.
-# Uso: tools/new-episode.sh <número> <slug> "<Nome do episódio>" <áudio (.m4a/.mp3)>
+# Uso: tools/new-episode.sh <número> <slug> "<Nome do episódio>" <áudio (.m4a/.mp3)> [--wide]
+#   --wide: projeto 16:9 nativo em <slug>-16x9 (template _template/wide); padrão: vertical em <slug>-reel.
 # Requer ASR_DIR apontando para a pasta com sherpa-onnx-node + modelos (ver README).
 set -euo pipefail
-N="$1"; SLUG="$2"; NAME="$3"; SRC="$4"
+N="$1"; SLUG="$2"; NAME="$3"; SRC="$4"; WIDE="${5:-}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-P="$ROOT/$SLUG-reel"
+P="$ROOT/$SLUG-reel"; TPLS="$ROOT/_template/scenes"; FMT=""
+if [ "$WIDE" = "--wide" ]; then P="$ROOT/$SLUG-16x9"; TPLS="$ROOT/_template/wide/scenes"; FMT='"format": "16x9",'; fi
 mkdir -p "$P/assets/audio" "$P/scenes" "$P/renders"
 EXT="${SRC##*.}"
 cp "$SRC" "$P/assets/audio/ep$N-$SLUG.$EXT"
@@ -13,13 +15,13 @@ cp "$SRC" "$P/assets/audio/ep$N-$SLUG.$EXT"
 ffmpeg -hide_banner -loglevel error -y -i "$SRC" -c:a flac "$P/assets/audio/ep$N-$SLUG.flac"
 node "$ROOT/tools/transcribe.mjs" "$P/assets/audio/ep$N-$SLUG.flac" "$P/.asr" --whisper
 node "$ROOT/tools/envelope.mjs" "$P/assets/audio/ep$N-$SLUG.flac" "$P"
-sed "s/__ID__/s01/g" "$ROOT/_template/scenes/intro.html" > "$P/scenes/s01.html"
+sed "s/__ID__/s01/g" "$TPLS/intro.html" > "$P/scenes/s01.html"
 if [ ! -f "$P/episode.json" ]; then
 cat > "$P/episode.json" <<EOF
 {
   "number": $N,
   "name": "$NAME",
-  "slug": "$SLUG",
+  "slug": "$SLUG", $FMT
   "audio": "assets/audio/ep$N-$SLUG.flac",
   "tail": 1.2,
   "clockStart": "08:20",

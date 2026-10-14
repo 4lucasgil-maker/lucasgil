@@ -5,13 +5,76 @@
     <template>
       <style>
         #s20 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s20 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s20 .cam { position: absolute; inset: 0; }
+        #s20 .map { position: absolute; left: 260px; top: 170px; width: 1400px; height: 580px; border-radius: 44px; background: #fbfaf7; box-shadow: 0 20px 44px rgba(17, 27, 33, 0.16); overflow: hidden; }
+        #s20 .map svg { position: absolute; left: 0; top: 0; }
+        #s20 .pin { position: absolute; width: 90px; height: 110px; }
+        #s20 .pl { position: absolute; padding: 6px 16px; border-radius: 12px; background: #111b21; color: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 3px; white-space: nowrap; }
+        #s20 .rp { position: absolute; left: 1435px; top: 255px; width: 90px; height: 90px; border-radius: 50%; border: 6px solid #e5484d; opacity: 0; }
+        #s20 .carw { position: absolute; left: 0; top: 0; width: 130px; height: 56px; }
+        #s20 .ont { position: absolute; left: 300px; top: 200px; height: 80px; padding: 0 26px 0 18px; border-radius: 40px; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; gap: 12px; font-family: "League Gothic", sans-serif; font-size: 56px; }
       </style>
-      <div id="s20" data-composition-id="s20" data-width="1920" data-height="1080"><div class="ph">s20 · PLACEHOLDER</div></div>
+      <div id="s20" data-composition-id="s20" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="map">
+            <svg width="1400" height="580" viewBox="0 0 1400 580" aria-hidden="true">
+              <g class="blocks" fill="#efeae2"></g>
+              <path class="route" d="M160 430 H540 V250 H940 V130 H1220" fill="none" stroke="#00a884" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 26"/>
+            </svg>
+          </div>
+          <div class="rp" data-layout-ignore></div>
+          <div class="pin p1" style="left:375px;top:500px"></div>
+          <div class="pl l1" style="left:360px;top:612px">CASA</div>
+          <div class="pin p2" style="left:1435px;top:190px"></div>
+          <div class="pl l2" style="left:1440px;top:302px">LOJA</div>
+          <div class="carw"></div>
+          <div class="ont"><span class="oi"></span>ONTEM</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s20");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s20");
+          var q = function (s) { return R.querySelector(s); };
+          var bl = "";
+          for (var r = 0; r < 4; r++) for (var c = 0; c < 7; c++) bl += '<rect x="' + (30 + c * 200) + '" y="' + (20 + r * 140) + '" width="170" height="104" rx="18"/>';
+          q(".blocks").innerHTML = bl;
+          var pinSvg = function (col) { return '<svg width="90" height="110" viewBox="0 0 90 110"><path d="M45 106s-36-34-36-60a36 36 0 0 1 72 0c0 26-36 60-36 60z" fill="' + col + '" stroke="#111b21" stroke-width="5"/><circle cx="45" cy="46" r="14" fill="#fbfaf7"/></svg>'; };
+          q(".p1").innerHTML = pinSvg("#00a884");
+          q(".p2").innerHTML = pinSvg("#e5484d");
+          q(".carw").innerHTML = VT.car({ width: 130, color: "#c9a55c" });
+          q(".oi").innerHTML = VT.icon("cal", { size: 44, stroke: 2.4 });
+          var route = q(".route"), carw = q(".carw");
+          var L = route.getTotalLength();
+          var t0 = T("que", 3) - 0.1, t1 = T("lá") + 0.15;
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s20 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          VT.driver(tl, DUR, function (t) {
+            var p = Math.max(0, Math.min(1, (t - t0) / (t1 - t0)));
+            p = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+            var pt = route.getPointAtLength(p * L), pt2 = route.getPointAtLength(Math.min(L, p * L + 2));
+            var flip = pt2.x < pt.x - 0.1 ? -1 : 1;
+            var up = Math.abs(pt2.y - pt.y) > 0.5;
+            carw.style.transform = "translate(" + (260 + pt.x - 65).toFixed(1) + "px," + (170 + pt.y - 50).toFixed(1) + "px) rotate(" + (up ? -90 : 0) + "deg) scaleX(" + flip + ")";
+            route.setAttribute("stroke-dasharray", dashFor(p * L));
+          });
+          function dashFor(vis) {
+            // pontilhado só até onde o carro chegou
+            var d = [], acc = 0;
+            while (acc + 28 <= vis) { d.push(2, 26); acc += 28; }
+            d.push(0, L + 30);
+            return d.join(" ");
+          }
+          tl.fromTo(q(".map"), { opacity: 0, scale: 0.9, rotationX: 20 }, { opacity: 1, scale: 1, rotationX: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+          tl.fromTo(q(".p2"), { opacity: 0, y: -80 }, { opacity: 1, y: 0, duration: 0.4, ease: "bounce.out" }, T("aconteceu") - 0.3);
+          tl.fromTo(q(".l2"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("aconteceu"));
+          tl.fromTo(q(".rp"), { opacity: 0.9, scale: 0.4 }, { opacity: 0, scale: 2, duration: 0.6, ease: "power2.out", repeat: 2, immediateRender: false }, T("aconteceu"));
+          tl.fromTo(q(".p1"), { opacity: 0, y: -80 }, { opacity: 1, y: 0, duration: 0.4, ease: "bounce.out" }, T("aconteceu", 2) - 0.3);
+          tl.fromTo(q(".l1"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("aconteceu", 2));
+          tl.fromTo(carw, { opacity: 0 }, { opacity: 1, duration: 0.2 }, t0 - 0.2);
+          tl.fromTo(q(".ont"), { opacity: 0, scale: 0.5, x: -40 }, { opacity: 1, scale: 1, x: 0, duration: 0.35, ease: "back.out(2.4)" }, T("ontem") - 0.12);
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.06, duration: 1.4, ease: "power2.inOut", transformOrigin: "80% 30%" }, t0 + 0.2);
           window.__timelines["s20"] = tl;
         })();
       </script>

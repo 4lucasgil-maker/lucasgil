@@ -5,13 +5,68 @@
     <template>
       <style>
         #s22 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s22 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s22 .cam { position: absolute; inset: 0; }
+        #s22 .spot { position: absolute; left: 560px; top: 112px; width: 800px; height: 560px; }
+        #s22 .plat { position: absolute; left: 600px; top: 560px; width: 720px; height: 130px; border-radius: 50%; background: #1b2a30; box-shadow: 0 14px 30px rgba(17, 27, 33, 0.25); }
+        #s22 .plat2 { position: absolute; left: 640px; top: 548px; width: 640px; height: 100px; border-radius: 50%; background: #3f5b67; }
+        #s22 .cloth { position: absolute; left: 650px; top: 330px; width: 620px; height: 280px; }
+        #s22 .ven { position: absolute; left: 240px; top: 330px; width: 170px; height: 170px; }
+        #s22 .vl { position: absolute; left: 205px; top: 512px; width: 240px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 3px; color: #3b4a54; }
+        #s22 .seal { position: absolute; left: 370px; top: 230px; height: 70px; padding: 0 22px 0 14px; border-radius: 35px; background: #00a884; color: #fbfaf7; display: flex; align-items: center; gap: 10px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; letter-spacing: 2px; }
+        #s22 .ger { position: absolute; left: 1520px; top: 330px; width: 170px; height: 170px; }
+        #s22 .gl { position: absolute; left: 1485px; top: 512px; width: 240px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 3px; color: #3b4a54; }
+        #s22 .clk { position: absolute; left: 1700px; top: 300px; width: 76px; height: 76px; border-radius: 50%; background: #fbfaf7; color: #3b4a54; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.14); }
+        #s22 .qm { position: absolute; left: 880px; top: 300px; width: 160px; height: 220px; font-family: "League Gothic", sans-serif; font-size: 250px; line-height: 220px; text-align: center; color: #e5484d; }
+        #s22 .empty { position: absolute; left: 760px; top: 640px; width: 400px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 4px; color: #fbfaf7; }
+        #s22 .ori { position: absolute; left: 1330px; top: 140px; width: 440px; height: 160px; border-radius: 30px; background: #fbfaf7; box-shadow: 0 14px 30px rgba(17, 27, 33, 0.18); }
+        #s22 .ori .op { position: absolute; left: 24px; top: 26px; width: 80px; height: 100px; }
+        #s22 .ori .oc { position: absolute; left: 112px; top: 50px; width: 150px; height: 64px; }
+        #s22 .ori .ot { position: absolute; left: 270px; top: 40px; font-family: "League Gothic", sans-serif; font-size: 60px; line-height: 40px; color: #111b21; }
+        #s22 .ori .ot small { display: block; margin-top: 12px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 18px; line-height: 22px; letter-spacing: 2px; color: #54656f; }
       </style>
-      <div id="s22" data-composition-id="s22" data-width="1920" data-height="1080"><div class="ph">s22 · PLACEHOLDER</div></div>
+      <div id="s22" data-composition-id="s22" data-width="1920" data-height="1080">
+        <div class="cam">
+          <svg class="spot" width="800" height="560" viewBox="0 0 800 560" aria-hidden="true"><polygon class="beam" points="340,0 460,0 760,520 40,520" fill="#fbfaf7" opacity="0.55"/></svg>
+          <div class="plat"></div><div class="plat2"></div>
+          <svg class="cloth" width="620" height="280" viewBox="0 0 620 280" aria-hidden="true">
+            <path d="M20 270 C30 180 80 150 150 140 C190 70 260 40 340 40 C420 40 470 70 500 130 C570 140 600 190 600 270 Z" fill="#3f5b67" stroke="#111b21" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M200 120 C230 170 230 230 210 268 M360 60 C380 130 380 210 360 268 M480 140 C500 190 500 230 490 268" fill="none" stroke="#1b2a30" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <div class="ven"></div><div class="vl">VENDEDOR</div>
+          <div class="seal"><span class="si"></span>GARANTIDO</div>
+          <div class="ger"></div><div class="gl">GERENTE</div>
+          <div class="clk"></div>
+          <div class="qm">?</div>
+          <div class="empty">VAZIO</div>
+          <div class="ori"><div class="op"></div><div class="oc"></div><div class="ot">ORIGEM<small>NEM SAIU</small></div></div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s22");
+          var R = document.getElementById("s22");
+          var q = function (s) { return R.querySelector(s); };
+          q(".ven").innerHTML = VT.person({ size: 170, bg: "#3f5b67" });
+          q(".ger").innerHTML = VT.person({ size: 170, bg: "#c9a55c" });
+          q(".si").innerHTML = VT.icon("check", { size: 40, stroke: 3 });
+          q(".clk").innerHTML = VT.icon("clock", { size: 52, stroke: 2.4 });
+          q(".ori .op").innerHTML = '<svg width="80" height="100" viewBox="0 0 90 110"><path d="M45 106s-36-34-36-60a36 36 0 0 1 72 0c0 26-36 60-36 60z" fill="#e5484d" stroke="#111b21" stroke-width="5"/><circle cx="45" cy="46" r="14" fill="#fbfaf7"/></svg>';
+          q(".ori .oc").innerHTML = VT.car({ width: 150, color: "#00a884" });
+          gsap.set(q(".seal"), { rotation: -6 });
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s22 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          // a gente chega lá: a câmera aproxima
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.08, duration: 0.7, ease: "power2.inOut", transformOrigin: "50% 55%" }, T("chega") - 0.2);
+          // o carro… a capa voa e não tem nada embaixo
+          var tc = T("carro") - 0.05;
+          tl.to(q(".cloth"), { x: 900, y: -260, rotation: 50, scale: 0.6, opacity: 0, duration: 0.5, ease: "power3.in" }, tc);
+          tl.fromTo(q(".beam"), { opacity: 0.55 }, { opacity: 0.15, duration: 0.06, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, T("não") - 0.05);
+          tl.fromTo(q(".qm"), { opacity: 0, scale: 0.3, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.6)" }, T("não") - 0.05);
+          tl.fromTo(q(".empty"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("nem"));
+          tl.to([q(".ven"), q(".vl"), q(".seal"), q(".ger"), q(".gl"), q(".clk")], { opacity: 0.25, duration: 0.3 }, T("saído") - 0.2);
+          // de onde ele tinha: o carro ainda na origem
+          tl.fromTo(q(".ori"), { opacity: 0, scale: 0.5, y: -30 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(2.2)", transformOrigin: "100% 0%" }, T("onde") - 0.15);
+          tl.fromTo(q(".ori .op"), { y: 0 }, { y: -10, duration: 0.18, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("tinha", 2));
           window.__timelines["s22"] = tl;
         })();
       </script>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s18 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s18 .cam { position: absolute; inset: 0; }
+        #s18 .bat { position: absolute; left: 330px; top: 260px; width: 760px; height: 300px; border-radius: 46px; background: #fbfaf7; box-shadow: inset 0 0 0 16px #111b21, 0 18px 40px rgba(17, 27, 33, 0.16); }
+        #s18 .nub { position: absolute; left: 1086px; top: 360px; width: 50px; height: 100px; border-radius: 0 20px 20px 0; background: #111b21; }
+        #s18 .seg { position: absolute; top: 40px; width: 120px; height: 220px; border-radius: 18px; background: #00a884; }
+        #s18 .bl { position: absolute; left: 330px; top: 590px; width: 760px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 38px; letter-spacing: 6px; color: #3b4a54; }
+        #s18 .pr { position: absolute; left: 1250px; width: 470px; height: 96px; border-radius: 26px; border-top-left-radius: 8px; background: #fbfaf7; box-shadow: 0 10px 22px rgba(17, 27, 33, 0.12); }
+        #s18 .pr .t { position: absolute; left: 28px; top: 18px; font-weight: 700; font-size: 38px; line-height: 60px; white-space: nowrap; }
+        #s18 .pr .x { position: absolute; left: 20px; top: 46px; width: 430px; height: 8px; border-radius: 4px; background: #e5484d; }
+        #s18 .p0 { top: 200px; } #s18 .p1 { top: 330px; } #s18 .p2 { top: 460px; }
+        #s18 .qm { position: absolute; left: 640px; top: 300px; width: 140px; height: 220px; font-family: "League Gothic", sans-serif; font-size: 240px; line-height: 220px; text-align: center; color: #e5484d; }
+      </style>
+      <div id="s18" data-composition-id="s18" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="bat">
+            <div class="seg g0" style="left:40px"></div><div class="seg g1" style="left:180px"></div><div class="seg g2" style="left:320px"></div>
+            <div class="seg g3" style="left:460px"></div><div class="seg g4" style="left:600px"></div>
+          </div>
+          <div class="nub"></div>
+          <div class="qm" data-layout-allow-overlap>?</div>
+          <div class="bl">CONFIANÇA</div>
+          <div class="pr p0"><div class="t">semana que vem…</div><div class="x x0"></div></div>
+          <div class="pr p1"><div class="t">semana que vem…</div><div class="x x1"></div></div>
+          <div class="pr p2"><div class="t">semana que vem!</div><div class="x x2"></div></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["E",0.144,0.224],["chega",0.224,0.464],["uma",0.464,0.544],["hora",0.544,0.704],["que",0.704,0.864],["você",0.864,0.944],["também",0.944,1.104],["nem",1.104,1.184],["acredita",1.184,1.584],["no",1.584,1.664],["que",1.664,1.744],["a",1.744,1.824],["empresa",1.824,2.144],["tá",2.144,2.304],["falando.",2.304,2.624],["Ela",2.624,2.784],["fala:",2.784,3.009],["Não,",3.344,3.584],["não,",3.584,3.824],["semana",3.824,4.064],["que",4.064,4.144],["vem",4.144,4.384],["vai",4.384,4.624],["chegar.",4.624,5.104]];
+          var T = VT.finder(W, "s18");
+          var R = document.getElementById("s18");
+          var q = function (s) { return R.querySelector(s); };
+          gsap.set([q(".x0"), q(".x1"), q(".x2")], { scaleX: 0, transformOrigin: "0% 50%" });
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo([q(".bat"), q(".nub")], { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.05);
+          tl.fromTo(q(".bl"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0.2);
+          for (var i = 0; i < 5; i++) tl.fromTo(q(".g" + i), { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.25, ease: "back.out(2)" }, 0.15 + i * 0.05);
+          // cada promessa drena um gomo
+          var drain = [[4, T("hora") ], [3, T("acredita")], [2, T("falando")], [1, T("Não")]];
+          drain.forEach(function (d) { tl.to(q(".g" + d[0]), { scaleY: 0, duration: 0.3, ease: "power2.in" }, d[1]); });
+          tl.to(q(".g0"), { backgroundColor: "#e5484d", duration: 0.15 }, T("Não") + 0.1);
+          tl.fromTo(q(".g0"), { opacity: 1 }, { opacity: 0.25, duration: 0.12, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, T("semana"));
+          tl.to(q(".g0"), { scaleY: 0, duration: 0.25, ease: "power2.in" }, T("chegar") - 0.1);
+          // as promessas da empresa (riscadas)
+          [["p0", "x0", T("empresa") - 0.3], ["p1", "x1", T("fala") - 0.2], ["p2", "x2", T("semana") - 0.1]].forEach(function (p, k) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, p[2]);
+            if (k < 2) tl.to(q("." + p[1]), { scaleX: 1, duration: 0.2, ease: "power2.out" }, p[2] + 0.5);
+          });
+          tl.to(q(".x2"), { scaleX: 1, duration: 0.2, ease: "power2.out" }, T("chegar"));
+          // vazia: a bateria treme e aparece a dúvida
+          tl.fromTo(q(".bat"), { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, T("chegar") + 0.1);
+          tl.fromTo(q(".qm"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("chegar") + 0.1);
+          window.__timelines["s18"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

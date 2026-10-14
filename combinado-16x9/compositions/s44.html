@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s44 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; perspective: 1400px; }
+        #s44 .cam { position: absolute; inset: 0; }
+        #s44 .co { position: absolute; left: 220px; top: 330px; width: 220px; height: 220px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 16px 34px rgba(0, 92, 75, 0.3); }
+        #s44 .say { position: absolute; left: 300px; top: 160px; height: 110px; padding: 0 34px 0 26px; border-radius: 34px; border-bottom-left-radius: 8px; background: #d9fdd3; box-shadow: 0 10px 22px rgba(17, 27, 33, 0.12); display: flex; align-items: center; gap: 16px; font-family: "League Gothic", sans-serif; font-size: 70px; color: #005c4b; white-space: nowrap; }
+        #s44 .say .sk { width: 64px; height: 64px; border-radius: 50%; background: #00a884; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s44 .counter { position: absolute; left: 180px; top: 576px; width: 1180px; height: 26px; border-radius: 13px; background: #3b4a54; }
+        #s44 .tok { position: absolute; left: 0; top: 0; width: 120px; height: 120px; border-radius: 50%; background: #c9a55c; color: #111b21; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(201, 165, 92, 0.3); }
+        #s44 .tl2 { position: absolute; left: 560px; top: 620px; width: 420px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 64px; line-height: 66px; color: #c9a55c; }
+        #s44 .cw { position: absolute; left: 0; top: 0; width: 200px; height: 200px; }
+        #s44 .door { position: absolute; left: 1500px; top: 230px; width: 240px; height: 360px; border-radius: 20px 20px 0 0; background: #111b21; }
+        #s44 .leaf { position: absolute; left: 1500px; top: 230px; width: 240px; height: 360px; border-radius: 20px 20px 0 0; background: #3f5b67; transform-origin: 0% 50%; box-shadow: inset 0 0 0 10px #1b2a30; }
+        #s44 .knob { position: absolute; left: 196px; top: 180px; width: 22px; height: 22px; border-radius: 50%; background: #c9a55c; }
+        #s44 .dl { position: absolute; left: 1440px; top: 610px; width: 360px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 3px; color: #3b4a54; }
+        #s44 .hrt { position: absolute; left: 1572px; top: 120px; width: 96px; height: 96px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+      </style>
+      <div id="s44" data-composition-id="s44" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="door"></div>
+          <div class="leaf"><div class="knob"></div></div>
+          <div class="dl">DO OUTRO LADO</div>
+          <div class="co"></div>
+          <div class="say"><span class="sk"></span>A GENTE VAI RESOLVER</div>
+          <div class="counter"></div>
+          <div class="cw"><div class="cf"></div></div>
+          <div class="tok"></div>
+          <div class="tl2">CONFIANÇA</div>
+          <div class="hrt"></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["falar:",0.153,0.393],["não,",0.393,0.553],["gente,",0.633,0.793],["peraí,",0.793,1.193],["a",1.193,1.273],["gente",1.273,1.433],["vai",1.433,1.593],["resolver,",1.593,1.833],["e",1.833,1.993],["passar",1.993,2.313],["essa",2.313,2.473],["confiança.",2.473,3.033],["Porque",3.033,3.273],["é",3.273,3.433],["essa",3.433,3.593],["sensação",3.673,3.913],["que",3.993,4.153],["você",4.153,4.313],["quer",4.313,4.473],["que",4.473,4.633],["o",4.713,4.793],["seu",4.793,4.873],["cliente",4.953,5.273],["saia",5.273,5.513],["lá",5.513,5.673],["do",5.673,5.833],["outro",5.833,5.993],["lado",5.993,6.393],["sentindo.",6.793,7.513]];
+          var T = VT.finder(W, "s44");
+          var DUR = 7.76;
+          var R = document.getElementById("s44");
+          var q = function (s) { return R.querySelector(s); };
+          q(".co").innerHTML = VT.icon("store", { size: 120, stroke: 1.8 });
+          q(".sk").innerHTML = VT.icon("check", { size: 40, stroke: 3.2 });
+          q(".tok").innerHTML = VT.icon("shield", { size: 70, stroke: 2.2 });
+          q(".hrt").innerHTML = VT.icon("heart", { size: 50, stroke: 2.2, fill: true });
+          q(".cf").innerHTML = '<svg width="200" height="200" viewBox="0 0 100 100"><circle class="fc" cx="50" cy="50" r="46" fill="#3f5b67" stroke="#111b21" stroke-width="3"/><circle cx="35" cy="44" r="5.5" fill="#111b21"/><circle cx="65" cy="44" r="5.5" fill="#111b21"/><path class="mo" d="M34 68 Q50 68 66 68" fill="none" stroke="#111b21" stroke-width="5" stroke-linecap="round"/></svg>';
+          // posições (função do tempo): ficha de confiança atravessa o balcão; o cliente sai pela porta
+          var tp = T("passar") - 0.05, tc = T("confiança") + 0.2, ts = T("saia") - 0.1, tlado = T("lado") + 0.1;
+          var cw = q(".cw"), tok = q(".tok");
+          var KTX = [[0, 460], [tp, 460], [tc, 1040, "io"], [ts, 1040], [tlado, 1530, "in"], [DUR, 1530]];
+          var KTY = [[0, 430], [tp, 430], [tp + 0.3, 360, "out"], [tc, 300, "io"], [ts, 300], [tlado, 330, "in"], [DUR, 330]];
+          var KCX = [[0, 1100], [ts, 1100], [tlado, 1520, "in"], [DUR, 1520]];
+          var tl = gsap.timeline({ paused: true });
+          VT.driver(tl, DUR, function (t) {
+            tok.style.transform = "translate(" + VT.kf(t, KTX).toFixed(1) + "px," + VT.kf(t, KTY).toFixed(1) + "px)";
+            cw.style.transform = "translate(" + VT.kf(t, KCX).toFixed(1) + "px,350px)";
+          });
+          tl.fromTo([q(".co"), q(".counter")], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.8)" }, 0.02);
+          tl.fromTo(cw, { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          tl.fromTo([q(".door"), q(".leaf"), q(".dl")], { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.2);
+          // não, gente, peraí, a gente vai resolver
+          tl.fromTo(q(".say"), { opacity: 0, scale: 0.5, transformOrigin: "0% 100%" }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, T("peraí") - 0.2);
+          tl.fromTo(q(".sk"), { scale: 0 }, { scale: 1, duration: 0.25, ease: "back.out(3)" }, T("resolver") - 0.05);
+          // passar essa confiança
+          tl.fromTo(tok, { opacity: 0 }, { opacity: 1, duration: 0.2 }, tp - 0.1);
+          tl.fromTo(q(".tl2"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, T("confiança") - 0.1);
+          tl.to(q(".say"), { opacity: 0.35, duration: 0.3 }, T("confiança"));
+          // essa sensação: o rosto do cliente melhora
+          tl.fromTo(q(".mo"), { attr: { d: "M34 68 Q50 68 66 68" } }, { attr: { d: "M30 58 Q50 80 70 58" }, duration: 0.35, ease: "back.out(2)", immediateRender: false }, T("sensação") - 0.1);
+          tl.fromTo(q(".fc"), { attr: { fill: "#3f5b67" } }, { attr: { fill: "#00a884" }, duration: 0.35, immediateRender: false }, T("sensação") - 0.1);
+          // saia lá do outro lado: a porta abre e ele sai com a confiança
+          tl.to(q(".tl2"), { opacity: 0, duration: 0.25 }, ts - 0.2);
+          tl.fromTo(q(".leaf"), { rotationY: 0 }, { rotationY: -75, duration: 0.45, ease: "power2.out" }, ts - 0.35);
+          tl.to([cw, tok], { opacity: 0, duration: 0.3 }, tlado - 0.15);
+          tl.to(q(".leaf"), { rotationY: 0, duration: 0.4, ease: "power2.in" }, tlado + 0.2);
+          // sentindo: um coração acima da porta
+          tl.fromTo(q(".hrt"), { opacity: 0, scale: 0, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(3)" }, T("sentindo") - 0.15);
+          window.__timelines["s44"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

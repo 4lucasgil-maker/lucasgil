@@ -5,13 +5,82 @@
     <template>
       <style>
         #s27 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s27 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s27 .cam { position: absolute; inset: 0; }
+        #s27 .nt { position: absolute; left: 610px; width: 700px; height: 100px; border-radius: 26px; background: #fbfaf7; box-shadow: 0 10px 24px rgba(17, 27, 33, 0.14); }
+        #s27 .nt .ic { position: absolute; left: 22px; top: 18px; width: 64px; height: 64px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s27 .nt .tx { position: absolute; left: 106px; top: 24px; font-family: "League Gothic", sans-serif; font-size: 54px; line-height: 54px; white-space: nowrap; }
+        #s27 .n0 { top: 200px; } #s27 .n1 { top: 330px; } #s27 .n2 { top: 460px; }
+        #s27 .cur { position: absolute; left: 0; top: 0; width: 56px; height: 70px; }
+        #s27 .faces { position: absolute; left: 0; top: 230px; width: 1920px; height: 160px; }
+        #s27 .fc { position: absolute; top: 0; width: 150px; height: 150px; }
+        #s27 .fl { position: absolute; left: 0; top: 410px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 34px; letter-spacing: 5px; color: #3b4a54; }
+        #s27 .box { position: absolute; left: 700px; top: 240px; width: 360px; height: 330px; }
+        #s27 .stp { position: absolute; left: 730px; top: 400px; padding: 6px 20px; border: 8px solid #005c4b; border-radius: 18px; color: #005c4b; font-family: "League Gothic", sans-serif; font-size: 66px; line-height: 70px; background: rgba(251, 250, 247, 0.85); }
+        #s27 .bag { position: absolute; left: 1150px; top: 300px; width: 300px; height: 320px; }
+        #s27 .ok { position: absolute; left: 1390px; top: 280px; width: 80px; height: 80px; border-radius: 50%; background: #00a884; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
       </style>
-      <div id="s27" data-composition-id="s27" data-width="1920" data-height="1080"><div class="ph">s27 · PLACEHOLDER</div></div>
+      <div id="s27" data-composition-id="s27" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="nt n0"><div class="ic"></div><div class="tx">É UM TERCEIRO</div></div>
+          <div class="nt n1"><div class="ic"></div><div class="tx">FOI A CONCESSIONÁRIA</div></div>
+          <div class="nt n2"><div class="ic"></div><div class="tx">É A BLINDADORA</div></div>
+          <div class="faces"></div>
+          <div class="fl">NENHUM CLIENTE QUER SABER</div>
+          <svg class="bag" width="300" height="320" viewBox="0 0 300 320" aria-hidden="true">
+            <path d="M90 90 V60 a60 60 0 0 1 120 0 V90" fill="none" stroke="#111b21" stroke-width="12" stroke-linecap="round"/>
+            <path d="M30 90 H270 L250 300 H50 Z" fill="#00a884" stroke="#111b21" stroke-width="8" stroke-linejoin="round"/>
+          </svg>
+          <svg class="box" width="360" height="330" viewBox="0 0 360 330" aria-hidden="true">
+            <path d="M40 90 L180 30 L320 90 L180 150 Z" fill="#c9a55c" stroke="#111b21" stroke-width="7" stroke-linejoin="round"/>
+            <path d="M40 90 V250 L180 310 V150 Z" fill="#fbfaf7" stroke="#111b21" stroke-width="7" stroke-linejoin="round"/>
+            <path d="M320 90 V250 L180 310 V150 Z" fill="#cbc1b2" stroke="#111b21" stroke-width="7" stroke-linejoin="round"/>
+          </svg>
+          <div class="stp">SUA MARCA</div>
+          <div class="ok"></div>
+          <div class="cur" data-layout-ignore></div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s27");
+          var R = document.getElementById("s27");
+          var q = function (s) { return R.querySelector(s); };
+          R.querySelectorAll(".nt .ic").forEach(function (e) { e.innerHTML = VT.icon("alert", { size: 36, stroke: 2.6 }); });
+          var fc = q(".faces");
+          for (var i = 0; i < 6; i++) fc.insertAdjacentHTML("beforeend", '<div class="fc f' + i + '" style="left:' + (450 + i * 180) + 'px">' + VT.face(i % 3 === 1 ? "angry" : "neutral", { size: 150 }) + "</div>");
+          q(".cur").innerHTML = VT.cursor({ size: 56 });
+          q(".ok").innerHTML = VT.icon("check", { size: 50, stroke: 3.2 });
+          gsap.set(q(".cur"), { x: 1400, y: 260 });
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s27 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          ["n0", "n1", "n2"].forEach(function (n, i) {
+            tl.fromTo(q("." + n), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 0.02 + i * 0.04);
+          });
+          // não quero saber: o cursor dispensa cada desculpa com um swipe
+          var ts = T("Não") - 0.1;
+          tl.fromTo(q(".cur"), { opacity: 0 }, { opacity: 1, duration: 0.1 }, ts - 0.05);
+          ["n0", "n1", "n2"].forEach(function (n, i) {
+            var t = ts + i * 0.22, y = 240 + i * 130;
+            tl.to(q(".cur"), { x: 1200, y: y, duration: 0.08, ease: "power2.out" }, t);
+            tl.to(q(".cur"), { x: 560, duration: 0.16, ease: "power3.in" }, t + 0.08);
+            tl.to(q("." + n), { x: -1300, rotation: -8, opacity: 0, duration: 0.3, ease: "power3.in" }, t + 0.08);
+          });
+          tl.to(q(".cur"), { y: 1120, duration: 0.3, ease: "power2.in" }, ts + 0.8);
+          // nenhum cliente quer saber
+          for (var f = 0; f < 6; f++) {
+            tl.fromTo(q(".f" + f), { opacity: 0, y: 50, scale: 0.5 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, T("Nenhum") - 0.15 + f * 0.05);
+            tl.fromTo(q(".f" + f), { rotation: 0 }, { rotation: 10, duration: 0.1, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, T("saber", 2) - 0.3 + f * 0.03);
+          }
+          tl.fromTo(q(".fl"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, T("cliente") - 0.1);
+          tl.to([q(".faces"), q(".fl")], { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, T("Se") - 0.15);
+          // sua marca: carimbo na caixa
+          tl.fromTo(q(".box"), { opacity: 0, y: 80, rotation: -8 }, { opacity: 1, y: 0, rotation: 0, duration: 0.4, ease: "back.out(2)" }, T("Se") - 0.05);
+          tl.fromTo(q(".stp"), { opacity: 0, scale: 2.2, rotation: -4 }, { opacity: 1, scale: 1, rotation: -10, duration: 0.2, ease: "power4.in" }, T("marca") - 0.1);
+          // comprando o seu produto: a caixa entra na sacola
+          tl.fromTo(q(".bag"), { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, T("comprando") - 0.3);
+          tl.to([q(".box"), q(".stp")], { x: 430, y: 40, scale: 0.62, duration: 0.45, ease: "power2.inOut" }, T("comprando"));
+          tl.fromTo(q(".bag"), { scale: 1 }, { scale: 1.08, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("produto") - 0.05);
+          tl.fromTo(q(".ok"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("produto"));
           window.__timelines["s27"] = tl;
         })();
       </script>

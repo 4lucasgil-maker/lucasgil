@@ -5,13 +5,77 @@
     <template>
       <style>
         #s31 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s31 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s31 .cam { position: absolute; inset: 0; }
+        #s31 .w { position: absolute; left: 200px; font-family: "League Gothic", sans-serif; font-size: 150px; line-height: 150px; color: #111b21; }
+        #s31 .w1 { top: 220px; } #s31 .w2 { top: 370px; color: #e5484d; }
+        #s31 .sky { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #s31 .sun { position: absolute; left: 1250px; top: 170px; width: 300px; height: 300px; }
+        #s31 .sieve { position: absolute; left: 1210px; top: 130px; width: 520px; height: 380px; }
+        #s31 .stores { position: absolute; left: 200px; top: 580px; width: 900px; height: 130px; }
+        #s31 .so { position: absolute; top: 0; width: 120px; height: 120px; border-radius: 26px; background: #fbfaf7; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.12); display: flex; align-items: center; justify-content: center; color: #3f5b67; }
+        #s31 .bd { position: absolute; right: -12px; top: -12px; width: 46px; height: 46px; border-radius: 50%; background: #e5484d; color: #fbfaf7; font-weight: 900; font-size: 28px; line-height: 46px; text-align: center; }
+        #s31 .lbl { position: absolute; left: 1230px; top: 560px; width: 520px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 3px; color: #3b4a54; }
       </style>
-      <div id="s31" data-composition-id="s31" data-width="1920" data-height="1080"><div class="ph">s31 · PLACEHOLDER</div></div>
+      <div id="s31" data-composition-id="s31" data-width="1920" data-height="1080">
+        <div class="cam">
+          <svg class="sky" width="1920" height="1080" viewBox="0 0 1920 1080" data-layout-ignore>
+            <g class="rays" fill="#c9a55c"></g>
+          </svg>
+          <svg class="sun" width="300" height="300" viewBox="0 0 300 300" aria-hidden="true">
+            <g class="sr" stroke="#c9a55c" stroke-width="14" stroke-linecap="round"></g>
+            <circle cx="150" cy="150" r="88" fill="#c9a55c"/>
+          </svg>
+          <svg class="sieve" width="520" height="380" viewBox="0 0 520 380" aria-hidden="true">
+            <defs><clipPath id="s31clip"><circle cx="190" cy="190" r="150"/></clipPath></defs>
+            <path d="M320 300 L500 360" stroke="#3b4a54" stroke-width="22" stroke-linecap="round"/>
+            <circle cx="190" cy="190" r="150" fill="rgba(239,234,226,0.55)"/>
+            <g class="mesh" clip-path="url(#s31clip)" stroke="#3b4a54" stroke-width="5"></g>
+            <circle cx="190" cy="190" r="150" fill="none" stroke="#3b4a54" stroke-width="18"/>
+          </svg>
+          <div class="lbl">TAMPAR O SOL COM A PENEIRA?</div>
+          <div class="w w1">PROBLEMA</div>
+          <div class="w w2">ACONTECE.</div>
+          <div class="stores"></div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s31");
+          var R = document.getElementById("s31");
+          var q = function (s) { return R.querySelector(s); };
+          var sr = "";
+          for (var i = 0; i < 12; i++) { var a = i * Math.PI / 6; sr += '<path d="M' + (150 + Math.cos(a) * 112).toFixed(1) + " " + (150 + Math.sin(a) * 112).toFixed(1) + " L" + (150 + Math.cos(a) * 140).toFixed(1) + " " + (150 + Math.sin(a) * 140).toFixed(1) + '"/>'; }
+          q(".sr").innerHTML = sr;
+          var mesh = "";
+          for (var m = 40; m <= 340; m += 24) mesh += '<path d="M' + m + ' 30 V350"/><path d="M30 ' + m + ' H350"/>';
+          q(".mesh").innerHTML = mesh;
+          // raios que atravessam a peneira (partem dos furos e descem para a esquerda)
+          var rays = "";
+          for (var r = 0; r < 9; r++) {
+            var sx = 1300 + r * 22, sy = 250 + (r % 3) * 40;
+            rays += '<polygon class="ry ry' + r + '" points="' + sx + "," + sy + " " + (sx + 10) + "," + sy + " " + (sx - 380 + r * 30) + ",780 " + (sx - 430 + r * 30) + ',780" opacity="0"/>';
+          }
+          q(".rays").innerHTML = rays;
+          var st = q(".stores");
+          for (var s = 0; s < 6; s++) st.insertAdjacentHTML("beforeend", '<div class="so so' + s + '" style="left:' + s * 150 + 'px">' + VT.icon("store", { size: 70, stroke: 1.8 }) + '<div class="bd b' + s + '">!</div></div>');
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s31 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          // problema acontece
+          tl.fromTo(q(".w1"), { opacity: 0, y: -80 }, { opacity: 1, y: 0, duration: 0.3, ease: "power4.out" }, T("problema") - 0.12);
+          tl.fromTo(q(".w2"), { opacity: 0, y: 80, rotation: 4 }, { opacity: 1, y: 0, rotation: 0, duration: 0.3, ease: "power4.out" }, T("acontece") - 0.12);
+          tl.fromTo(q(".w2"), { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, T("acontece") + 0.2);
+          // o sol
+          tl.fromTo(q(".sun"), { opacity: 0, scale: 0.4, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2)" }, T("Não") - 0.3);
+          tl.fromTo(q(".sun"), { rotation: 0 }, { rotation: 30, duration: 3, ease: "none", immediateRender: false }, T("Não") + 0.2);
+          // tampar com a peneira… e a luz passa pelos furos
+          tl.fromTo(q(".sieve"), { opacity: 0, x: 500, rotation: 25 }, { opacity: 1, x: 0, rotation: 0, duration: 0.45, ease: "power3.out" }, T("tampar") - 0.2);
+          for (var k = 0; k < 9; k++) tl.fromTo(q(".ry" + k), { opacity: 0 }, { opacity: 0.32, duration: 0.25, ease: "power2.out" }, T("sol") + k * 0.03);
+          tl.fromTo(q(".lbl"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3 }, T("peneira") - 0.1);
+          // toda empresa tem problema
+          for (var e = 0; e < 6; e++) {
+            tl.fromTo(q(".so" + e), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.25, ease: "back.out(2.4)" }, T("Toda") - 0.15 + e * 0.04);
+            tl.fromTo(q(".b" + e), { scale: 0 }, { scale: 1, duration: 0.22, ease: "back.out(3)" }, T("problema", 2) - 0.1 + e * 0.05);
+          }
           window.__timelines["s31"] = tl;
         })();
       </script>

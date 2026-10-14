@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s05 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s05 .cam { position: absolute; inset: 0; }
+        #s05 .fw { position: absolute; left: 420px; top: 170px; width: 380px; height: 380px; }
+        #s05 .fw svg { position: absolute; left: 0; top: 0; }
+        #s05 .puff { position: absolute; width: 60px; height: 60px; border-radius: 50%; background: #fbfaf7; opacity: 0; box-shadow: inset 0 0 0 4px #cbc1b2; }
+        #s05 .lab { position: absolute; left: 430px; top: 590px; width: 360px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 80px; line-height: 84px; color: #111b21; }
+        #s05 .lab b { font-weight: 400; color: #e5484d; }
+        #s05 .crowd { position: absolute; left: 1050px; top: 170px; width: 640px; height: 120px; }
+        #s05 .cw { position: absolute; top: 0; width: 84px; height: 84px; }
+        #s05 .know { position: absolute; left: 1050px; top: 276px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 3px; color: #005c4b; }
+        #s05 .tk { position: absolute; left: 1040px; top: 350px; width: 640px; height: 250px; border-radius: 32px; background: #fbfaf7; box-shadow: 0 16px 34px rgba(17, 27, 33, 0.16); }
+        #s05 .tkh { position: absolute; left: 36px; top: 30px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 3px; color: #54656f; }
+        #s05 .tkm { position: absolute; left: 36px; top: 74px; font-family: "League Gothic", sans-serif; font-size: 92px; line-height: 96px; color: #e5484d; }
+        #s05 .stars { position: absolute; left: 36px; top: 180px; display: flex; gap: 10px; }
+        #s05 .s { width: 44px; height: 44px; color: #cbc1b2; }
+        #s05 .s0 { color: #c9a55c; }
+        #s05 .thumb { position: absolute; left: 500px; top: 128px; width: 110px; height: 110px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s05 .down { position: absolute; left: 1716px; top: 300px; width: 140px; height: 320px; }
+      </style>
+      <div id="s05" data-composition-id="s05" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="fw">
+            <svg class="fsvg" width="380" height="380" viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="fc" cx="50" cy="50" r="46" fill="#3f5b67" stroke="#111b21" stroke-width="3"/>
+              <path class="br1" d="M22 28 L42 37" stroke="#111b21" stroke-width="5" stroke-linecap="round" opacity="0"/>
+              <path class="br2" d="M78 28 L58 37" stroke="#111b21" stroke-width="5" stroke-linecap="round" opacity="0"/>
+              <circle cx="35" cy="45" r="5.5" fill="#111b21"/><circle cx="65" cy="45" r="5.5" fill="#111b21"/>
+              <path class="mo" d="M34 68 Q50 68 66 68" fill="none" stroke="#111b21" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            <div class="puff p0" style="left:70px;top:-10px"></div>
+            <div class="puff p1" style="left:160px;top:-40px"></div>
+            <div class="puff p2" style="left:250px;top:-10px"></div>
+          </div>
+          <div class="lab">CLIENTE <b>RUIM</b></div>
+          <div class="crowd"></div>
+          <div class="know">TODO MUNDO SABE</div>
+          <div class="tk">
+            <div class="tkh">ATENDIMENTO</div>
+            <div class="tkm">MAL ATENDIDO</div>
+            <div class="stars"><div class="s s0"></div><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div></div>
+            <div class="thumb"></div>
+          </div>
+          <svg class="down" width="140" height="320" viewBox="0 0 140 320" aria-hidden="true"><path class="dn" d="M70 10 V270 M20 220 L70 290 L120 220" fill="none" stroke="#e5484d" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["E",0.128,0.288],["hoje",0.288,0.528],["em",0.528,0.608],["dia",0.608,0.928],["todo",1.168,1.408],["mundo",1.408,1.568],["sabe",1.568,1.808],["que",1.808,1.968],["um",1.968,2.128],["cliente",2.128,2.688],["ruim,",2.768,3.328],["puto,",3.568,4.128],["que",4.368,4.528],["foi",4.528,4.768],["mal",4.768,5.008],["atendido,",5.008,5.808],["é",5.808,5.968],["muito",5.968,6.208],["pior.",6.208,6.688]];
+          var T = VT.finder(W, "s05");
+          var R = document.getElementById("s05");
+          var q = function (s) { return R.querySelector(s); };
+          var crowd = q(".crowd");
+          var BG = ["#3f5b67", "#005c4b", "#54656f", "#c9a55c", "#1b2a30", "#00a884", "#3b4a54"];
+          for (var i = 0; i < 7; i++) crowd.insertAdjacentHTML("beforeend", '<div class="cw cw' + i + '" style="left:' + i * 92 + 'px">' + VT.person({ size: 84, bg: BG[i] }) + "</div>");
+          for (var s = 0; s < 5; s++) q(".s" + s).innerHTML = VT.icon("star", { size: 44, stroke: 2.2, fill: s === 0 });
+          q(".thumb").innerHTML = '<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(180deg)">' +
+            '<path d="M7.5 10.5v9.5H4.5v-9.5zM7.5 10.5l3.6-6.3a1.8 1.8 0 0 1 3.3 1.3L13.6 9h5a1.8 1.8 0 0 1 1.8 2.1l-1.3 7.2a2 2 0 0 1-2 1.7H7.5"/></svg>';
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".fw"), { opacity: 0, scale: 0.5, y: 60 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" }, 0.08);
+          // todo mundo sabe: a turma acena com a cabeça
+          for (var c = 0; c < 7; c++) {
+            tl.fromTo(q(".cw" + c), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, T("todo") - 0.2 + c * 0.05);
+            tl.fromTo(q(".cw" + c), { rotation: 0 }, { rotation: 8, duration: 0.14, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("sabe") + c * 0.04);
+          }
+          tl.fromTo(q(".know"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3 }, T("sabe") - 0.05);
+          // cliente ruim → bravo
+          tl.fromTo(q(".lab"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T("cliente") - 0.1);
+          tl.fromTo(q(".mo"), { attr: { d: "M34 68 Q50 68 66 68" } }, { attr: { d: "M34 72 Q50 61 66 72" }, duration: 0.3, ease: "power2.out", immediateRender: false }, T("ruim") - 0.05);
+          var tp = T("puto");
+          tl.to(q(".mo"), { attr: { d: "M30 75 Q50 55 70 75" }, duration: 0.2, ease: "power3.out" }, tp - 0.05);
+          tl.fromTo([q(".br1"), q(".br2")], { opacity: 0 }, { opacity: 1, duration: 0.12 }, tp - 0.05);
+          tl.fromTo(q(".fc"), { attr: { fill: "#3f5b67" } }, { attr: { fill: "#e5484d" }, duration: 0.25, ease: "power2.out", immediateRender: false }, tp - 0.05);
+          tl.fromTo(q(".fw"), { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 7, ease: "none", immediateRender: false }, tp + 0.1);
+          ["p0", "p1", "p2"].forEach(function (p, k) {
+            tl.fromTo(q("." + p), { opacity: 0.9, y: 0, scale: 0.5 }, { opacity: 0, y: -90, scale: 1.4, duration: 0.7, ease: "power1.out", repeat: 2, immediateRender: false }, tp + 0.05 + k * 0.18);
+          });
+          // mal atendido
+          tl.fromTo(q(".crowd"), { opacity: 1 }, { opacity: 0.35, duration: 0.3, immediateRender: false }, T("mal") - 0.3);
+          tl.fromTo(q(".tk"), { opacity: 0, x: 80, rotation: 4 }, { opacity: 1, x: 0, rotation: 0, duration: 0.4, ease: "back.out(1.8)" }, T("mal") - 0.25);
+          tl.fromTo(q(".thumb"), { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, T("atendido"));
+          // muito pior
+          tl.fromTo(q(".dn"), { strokeDasharray: 520, strokeDashoffset: 520 }, { strokeDashoffset: 0, duration: 0.3, ease: "power3.in" }, T("pior") - 0.25);
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.06, duration: 0.16, ease: "power2.out", transformOrigin: "60% 45%" }, T("pior") - 0.02);
+          window.__timelines["s05"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

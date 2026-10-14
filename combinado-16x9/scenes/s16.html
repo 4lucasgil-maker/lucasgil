@@ -4,14 +4,76 @@
   <body>
     <template>
       <style>
-        #s16 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s16 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s16 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; perspective: 1200px; }
+        #s16 .cam { position: absolute; inset: 0; }
+        #s16 .roof { position: absolute; left: 240px; top: 230px; width: 1080px; height: 30px; border-radius: 15px; background: #3f5b67; }
+        #s16 .floor { position: absolute; left: 240px; top: 610px; width: 1080px; height: 16px; border-radius: 8px; background: #3b4a54; }
+        #s16 .wall { position: absolute; top: 260px; width: 14px; height: 350px; background: #cbc1b2; }
+        #s16 .bay { position: absolute; top: 290px; width: 330px; height: 34px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 34px; letter-spacing: 3px; color: #54656f; }
+        #s16 .cw { position: absolute; top: 490px; width: 280px; height: 120px; }
+        #s16 .sold { position: absolute; left: 70px; top: -70px; padding: 6px 16px; border-radius: 12px; background: #e5484d; color: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 2px; }
+        #s16 .ghost { position: absolute; left: 1005px; top: 490px; width: 280px; height: 120px; }
+        #s16 .wait { position: absolute; left: 990px; top: 380px; width: 310px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 3px; color: #005c4b; }
+        #s16 .dots { position: absolute; left: 1105px; top: 420px; width: 90px; height: 20px; }
+        #s16 .dt { position: absolute; top: 0; width: 18px; height: 18px; border-radius: 50%; background: #005c4b; }
+        #s16 .calw { position: absolute; left: 1430px; top: 250px; width: 300px; height: 330px; }
+        #s16 .pg { position: absolute; left: 0; top: 0; width: 300px; height: 330px; border-radius: 30px; background: #fbfaf7; box-shadow: 0 14px 30px rgba(17, 27, 33, 0.16); transform-origin: 50% 0%; backface-visibility: hidden; overflow: hidden; }
+        #s16 .pg .top { position: absolute; left: 0; top: 0; width: 300px; height: 80px; background: #e5484d; }
+        #s16 .pg .grid { position: absolute; left: 30px; top: 110px; width: 240px; height: 190px; }
+        #s16 .pg .c { position: absolute; width: 26px; height: 26px; border-radius: 7px; background: #cbc1b2; }
+        #s16 .mes { position: absolute; left: 1430px; top: 600px; width: 300px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 70px; line-height: 74px; color: #e5484d; }
       </style>
-      <div id="s16" data-composition-id="s16" data-width="1920" data-height="1080"><div class="ph">s16 · PLACEHOLDER</div></div>
+      <div id="s16" data-composition-id="s16" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="roof"></div>
+          <div class="wall" style="left:240px"></div><div class="wall" style="left:600px"></div><div class="wall" style="left:960px"></div><div class="wall" style="left:1306px"></div>
+          <div class="bay" style="left:260px">VAGA 1</div><div class="bay" style="left:620px">VAGA 2</div><div class="bay" style="left:980px">VAGA 3</div>
+          <div class="floor"></div>
+          <svg class="ghost" width="280" height="120" viewBox="0 0 260 110" aria-hidden="true"><path class="gp" d="M18 74c0-12 8-16 22-18l38-4 26-22c6-5 12-7 20-7h52c10 0 18 4 24 11l20 20c18 2 28 8 28 18v8c0 4-3 6-7 6H22c-3 0-4-2-4-6z" fill="none" stroke="#005c4b" stroke-width="5" stroke-dasharray="12 10"/></svg>
+          <div class="wait">ESPERANDO</div>
+          <div class="dots"><div class="dt d0" style="left:0"></div><div class="dt d1" style="left:36px"></div><div class="dt d2" style="left:72px"></div></div>
+          <div class="cw c1" style="left:280px"><div class="cs"></div><div class="sold s1">VENDIDO</div></div>
+          <div class="cw c2" style="left:640px"><div class="cs"></div><div class="sold s2">VENDIDO</div></div>
+          <div class="calw">
+            <div class="pg p2"><div class="top"></div><div class="grid"></div></div>
+            <div class="pg p1"><div class="top"></div><div class="grid"></div></div>
+          </div>
+          <div class="mes">+ DE UM MÊS</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s16");
+          var R = document.getElementById("s16");
+          var q = function (s) { return R.querySelector(s); };
+          q(".c1 .cs").innerHTML = VT.car({ width: 280, color: "#00a884" });
+          q(".c2 .cs").innerHTML = VT.car({ width: 280, color: "#c9a55c" });
+          R.querySelectorAll(".pg .grid").forEach(function (g) {
+            var h = "";
+            for (var i = 0; i < 28; i++) h += '<div class="c" style="left:' + (i % 7) * 35 + "px;top:" + Math.floor(i / 7) * 42 + 'px"></div>';
+            g.innerHTML = h;
+          });
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s16 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          tl.fromTo([q(".roof"), q(".floor")], { scaleX: 0, transformOrigin: "50% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.05);
+          tl.fromTo([q(".c1"), q(".c2")], { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.35, ease: "bounce.out", stagger: 0.08 }, 0.2);
+          // vendi: etiquetas VENDIDO e os carros vão embora
+          tl.fromTo(q(".s1"), { opacity: 0, scale: 2, rotation: -6 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.2, ease: "power4.in" }, T("vendi") - 0.08);
+          tl.fromTo(q(".s2"), { opacity: 0, scale: 2, rotation: -6 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.2, ease: "power4.in" }, T("dois") - 0.08);
+          tl.to(q(".c1"), { x: -700, duration: 0.6, ease: "power3.in" }, T("carros") - 0.2);
+          tl.to(q(".c2"), { x: -1060, duration: 0.7, ease: "power3.in" }, T("carros") - 0.05);
+          // esperando esse carro chegar: vaga 3 tracejada
+          tl.fromTo(q(".gp"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, T("esperando") - 0.1);
+          tl.fromTo(q(".gp"), { strokeDashoffset: 0 }, { strokeDashoffset: -88, duration: 2, ease: "none", immediateRender: false }, T("esperando"));
+          tl.fromTo(q(".wait"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, T("esperando"));
+          ["d0", "d1", "d2"].forEach(function (d, i) {
+            tl.fromTo(q("." + d), { y: 0 }, { y: -12, duration: 0.22, yoyo: true, repeat: 5, ease: "sine.inOut" }, T("esperando") + i * 0.12);
+          });
+          // sem carro há mais de mês: a folha do calendário vira
+          tl.fromTo(q(".calw"), { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(2)" }, T("sem") - 0.2);
+          tl.to(q(".p1"), { rotationX: -100, opacity: 0, duration: 0.45, ease: "power2.in" }, T("mais", 2) - 0.25);
+          tl.fromTo(q(".mes"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, T("mês") - 0.15);
+          tl.fromTo(q(".cam"), { x: 0 }, { x: -60, duration: 4.6, ease: "sine.inOut" }, 0.2);
           window.__timelines["s16"] = tl;
         })();
       </script>

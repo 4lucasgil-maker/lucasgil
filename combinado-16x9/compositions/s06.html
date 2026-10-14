@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s06 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s06 .cam { position: absolute; inset: 0; }
+        #s06 .ttl { position: absolute; left: 0; top: 150px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 38px; letter-spacing: 6px; color: #005c4b; }
+        #s06 .one { position: absolute; left: 230px; top: 270px; width: 250px; height: 250px; }
+        #s06 .one1 { position: absolute; left: 230px; top: 540px; width: 250px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 96px; line-height: 100px; color: #e5484d; }
+        #s06 .eq { position: absolute; left: 540px; top: 280px; width: 160px; height: 240px; font-family: "League Gothic", sans-serif; font-size: 260px; line-height: 240px; text-align: center; color: #111b21; }
+        #s06 .grid { position: absolute; left: 760px; top: 250px; width: 940px; height: 300px; }
+        #s06 .hf { position: absolute; width: 132px; height: 132px; }
+        #s06 .cnt { position: absolute; left: 760px; top: 560px; width: 940px; height: 100px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 96px; line-height: 100px; color: #005c4b; }
+      </style>
+      <div id="s06" data-composition-id="s06" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="ttl">PRA COMPENSAR</div>
+          <div class="one"></div>
+          <div class="one1">1 BRAVO</div>
+          <div class="eq">=</div>
+          <div class="grid"></div>
+          <div class="cnt"><span class="n">0</span> FELIZES</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Pra",0.138,0.298],["você",0.298,0.458],["compensar",0.458,1.018],["um",1.018,1.178],["que",1.178,1.338],["tá",1.338,1.578],["puto",1.578,1.978],["com",1.978,2.138],["você,",2.138,2.458],["você",2.458,2.618],["precisa",2.618,2.858],["de",2.858,3.018],["10",3.018,3.338],["clientes",3.338,3.658],["que",3.658,3.818],["estejam",3.818,4.218],["muito",4.218,4.378],["felizes.",4.378,5.018]];
+          var T = VT.finder(W, "s06");
+          var DUR = 4.9;
+          var R = document.getElementById("s06");
+          var q = function (s) { return R.querySelector(s); };
+          q(".one").innerHTML = VT.face("angry", { size: 250 });
+          var grid = q(".grid");
+          for (var i = 0; i < 10; i++) {
+            var r = Math.floor(i / 5), c = i % 5;
+            grid.insertAdjacentHTML("beforeend", '<div class="hf hf' + i + '" style="left:' + (c * 190 + 18) + "px;top:" + r * 160 + 'px">' + VT.face("happy", { size: 132 }) + "</div>");
+          }
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".ttl"), { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3 }, T("compensar") - 0.2);
+          tl.fromTo(q(".one"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2.4)" }, T("um") - 0.12);
+          tl.fromTo(q(".one1"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25 }, T("puto") - 0.1);
+          tl.fromTo(q(".one"), { rotation: 0 }, { rotation: 6, duration: 0.06, yoyo: true, repeat: 7, ease: "none", immediateRender: false }, T("puto"));
+          tl.fromTo(q(".eq"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.3, ease: "back.out(2.5)" }, T("precisa") - 0.08);
+          // 10 felizes, um por um, com o contador acompanhando
+          var t10 = T("10") - 0.12, step = 0.075;
+          for (var k = 0; k < 10; k++) {
+            tl.fromTo(q(".hf" + k), { opacity: 0, scale: 0, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.32, ease: "back.out(2.6)" }, t10 + k * step);
+          }
+          var n = q(".n");
+          VT.driver(tl, DUR, function (t) { n.textContent = String(Math.max(0, Math.min(10, Math.floor((t - t10) / step) + 1))); });
+          tl.fromTo(q(".cnt"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, t10);
+          // muito felizes: ola
+          for (var w = 0; w < 10; w++) {
+            tl.fromTo(q(".hf" + w), { y: 0 }, { y: -26, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("felizes") - 0.1 + (w % 5) * 0.05 + Math.floor(w / 5) * 0.08);
+          }
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.04, duration: 4, ease: "sine.inOut", transformOrigin: "60% 45%" }, 0.5);
+          window.__timelines["s06"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

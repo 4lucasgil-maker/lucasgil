@@ -1,0 +1,155 @@
+## s01  0–4.5 (4.5s)
+0.00 Vou  0.16 contar  0.40 aqui  0.56 pra  0.64 vocês  0.88 o  1.04 que  1.20 eu  1.36 acho  1.52 que  1.76 todas  2.00 as  2.16 empresas  2.56 podem  2.80 aprender  3.20 com  3.36 situações  3.92 como  4.24 essa.
+
+## s02  4.5–9.8 (5.3s)
+0.14 A  0.30 realidade  0.62 é  0.78 que  0.94 no  1.02 Brasil  1.26 a  1.34 gente  1.50 é  1.58 muito  1.74 maltratado  2.72 como  2.88 consumidor,  3.36 é  3.44 impressionante.  4.08 A  4.16 gente  4.40 acha  4.72 que  4.80 é  4.88 normal.
+
+## s03  9.8–17.05 (7.25s)
+0.14 A  0.30 quantidade  0.70 de  0.78 mensagem  1.26 que  1.34 eu  1.42 recebi  1.90 aqui  2.06 falando:  2.54 Nossa,  3.18 comigo  3.50 aconteceu  3.82 a  3.90 mesma  4.06 coisa  4.22 com  4.38 montadora  4.86 X,  5.18 Y,  5.62 Z,  6.06 carros  6.38 importados.
+
+## s04  17.05–24.95 (7.9s)
+0.17 É  0.33 impressionante.  1.05 Depois  1.29 a  1.45 indústria  1.77 estranha  2.17 que  2.33 a  2.41 Tesla  2.89 vale  3.13 mais  3.29 que  3.45 todas  3.69 as  3.77 outras  4.01 montadoras  5.05 juntas.  6.43 Por  6.59 causa  6.83 de  6.99 coisas  7.31 desse  7.55 jeito.
+
+## s05  24.95–31.5 (6.55s)
+0.13 E  0.29 hoje  0.53 em  0.61 dia  1.17 todo  1.41 mundo  1.57 sabe  1.81 que  1.97 um  2.13 cliente  2.77 ruim,  3.57 puto,  4.37 que  4.53 foi  4.77 mal  5.01 atendido,  5.81 é  5.97 muito  6.21 pior.
+
+## s06  31.5–36.4 (4.9s)
+0.14 Pra  0.30 você  0.46 compensar  1.02 um  1.18 que  1.34 tá  1.58 puto  1.98 com  2.14 você,  2.46 você  2.62 precisa  2.86 de  3.02 10  3.34 clientes  3.66 que  3.82 estejam  4.22 muito  4.38 felizes.
+
+## s07  36.4–41.35 (4.95s)
+0.12 E  0.28 por  0.44 isso  0.60 que  0.76 muitas  1.00 empresas  1.32 medem  1.88 o  1.96 que  2.04 a  2.12 gente  2.20 chama  2.44 de  2.60 NPS,  3.32 é  3.40 o  3.56 Net  3.80 Promoter  4.28 Score,
+
+## s08  41.35–47.5 (6.15s)
+0.13 que  0.29 é  0.45 uma  0.61 métrica  1.25 que  1.65 mede  2.05 o  2.13 quanto  2.37 que  2.61 os  2.69 seus  3.39 clientes  3.71 estão  3.87 dispostos  4.35 a  4.43 recomendar  5.15 a  5.31 sua  5.55 empresa.
+
+## s09  47.5–59.3 (11.8s)
+0.12 E  0.52 pra  0.68 gente  0.92 chegar  1.24 no  1.40 valor  2.12 do  2.36 NPS,  3.16 a  3.24 gente  3.56 pega  3.88 o  3.96 número  4.20 de  4.36 pessoas  4.60 que  4.76 realmente  5.00 recomendariam,  5.72 que  5.88 dão  6.04 nota  6.20 9  6.36 e  6.72 10,  7.08 e  7.24 a  7.32 gente  7.56 diminui  8.12 o  8.20 número  8.44 das  8.60 pessoas  8.76 que  8.92 falam  9.24 que  9.32 não  9.48 recomendariam,  10.28 que  10.44 dão  10.68 uma  10.84 nota  11.08 baixa.
+
+## s10  59.3–64.75 (5.45s)
+0.16 Então  0.32 a  0.48 diferença  0.80 entre  0.96 um  1.12 e  1.28 outro  1.44 que  1.52 é  1.60 o  1.68 seu  2.00 NPS.  2.80 Muito  2.96 difícil  3.36 as  3.52 empresas  3.92 terem  4.16 um  4.24 NPS  4.80 muito  4.96 alto.
+
+## s11  64.75–70.5 (5.75s)
+0.15 Eu  0.39 imagino  0.71 que  0.87 essa  1.03 turma  1.43 aqui  1.59 de  1.67 carro…  3.75 tá  3.83 com  3.99 NPS  4.39 negativo,  4.71 porque  4.87 deve  5.03 ter  5.19 muito  5.35 mais  5.51 gente.
+
+## s12  70.5–75.85 (5.35s)
+0.16 Bom,  0.40 vamos  0.56 lá  0.72 às  0.96 lições,  1.36 gente.  1.76 A  1.84 primeira  2.16 lição  2.48 é  2.72 da  2.88 transparência.  3.58 Como  3.82 a  3.90 gente  4.06 fala  4.62 aquela  4.94 frase:
+
+## s13  75.85–79.38 (3.53s)
+0.15 combinado  0.71 não  0.87 sai  1.19 caro.  1.59 Então  1.83 a  1.91 gente  2.07 tem  2.23 que  2.39 ser  2.55 claro  2.87 com  3.03 os  3.11 prazos.
+
+## s14  79.38–82.58 (3.2s)
+0.14 Cada  0.38 hora  0.62 era  0.86 uma  0.94 coisa,  1.18 cada  1.34 hora  1.58 era  1.74 uma  1.82 informação:  2.14 Não,  2.22 vai  2.38 chegar  2.78 dia  2.94 tal.
+
+## s15  82.58–86.95 (4.37s)
+0.14 E  0.30 os  0.46 clientes,  0.99 gente,  1.31 eles  1.47 fazem  1.71 planos,  2.11 eles  2.35 acreditam  2.83 que  2.91 eles  3.07 podem  3.31 confiar  3.55 no  3.71 que  3.79 você  3.95 tá  4.11 falando.
+
+## s16  86.95–91.83 (4.88s)
+0.14 No  0.30 meu  0.46 caso,  0.78 eu  0.94 vendi  1.34 mais  1.58 dois  1.82 outros  1.98 carros  2.30 esperando  2.70 esse  2.86 carro  3.10 chegar.  3.50 Eu  3.66 tava  3.90 sem  4.06 carro  4.30 já  4.46 há  4.54 mais  4.62 de  4.78 mês,
+
+## s17  91.83–95.27 (3.44s)
+0.14 e  0.30 a  0.38 turma  0.70 lá  0.86 mudando,  1.18 cada  1.34 hora  1.58 era  1.74 uma  1.82 coisa:  2.06 Não,  2.30 agora  2.46 tem  2.62 mais  2.78 três  2.94 dias  3.10 disso.
+
+## s18  95.27–100.22 (4.95s)
+0.14 E  0.22 chega  0.46 uma  0.54 hora  0.70 que  0.86 você  0.94 também  1.10 nem  1.18 acredita  1.58 no  1.66 que  1.74 a  1.82 empresa  2.14 tá  2.30 falando.  2.62 Ela  2.78 fala:  3.34 Não,  3.58 não,  3.82 semana  4.06 que  4.14 vem  4.38 vai  4.62 chegar.
+
+## s19  100.22–105.2 (4.98s)
+0.15 Mas  0.58 quem  0.90 me  1.06 garante?  1.54 Você  1.70 já  1.86 me  1.94 falou  2.18 que  2.34 na  2.42 semana  2.74 que  2.82 vem  3.06 ia  3.22 chegar  3.54 cinco  3.78 vezes  4.10 e  4.26 não  4.42 chegou.
+
+## s20  105.2–108.97 (3.77s)
+0.16 Tanto  0.56 que  1.12 aconteceu  1.60 o  1.68 que  1.84 aconteceu,  2.40 que  2.80 ontem  3.20 eu  3.28 fui  3.52 lá.
+
+## s21  108.97–112.95 (3.98s)
+0.15 O  0.31 cara  0.55 tinha  0.79 me  0.95 garantido,  1.51 falou:  1.75 Não,  1.91 o  1.99 carro  2.23 tá  2.39 lá,  2.55 a  2.63 gerente  3.03 tá  3.19 te  3.35 esperando.
+
+## s22  112.95–116.4 (3.45s)
+0.15 A  0.23 gente  0.47 chega  0.71 lá,  0.95 o  1.03 carro  1.43 não  1.51 tinha  1.67 nem  1.83 saído  2.15 de  2.23 onde  2.47 ele  2.63 tinha.
+
+## s23  116.4–123.5 (7.1s)
+0.14 Realmente  0.62 é  0.86 uma  1.02 falta  1.34 de  1.42 transparência  2.38 muito  2.62 ruim,  3.66 não  3.90 tem  4.06 o  4.22 que  4.38 justifique  4.94 isso.  5.42 É  5.74 muito  5.98 duro,  6.46 muito  6.62 feio.
+
+## s24  123.5–128.55 (5.05s)
+0.16 A  0.32 outra  0.56 coisa,  0.80 gente,  1.04 é  1.20 que  1.68 não  1.84 existe  2.16 problema  2.48 do  2.64 cliente.  3.20 Só  3.44 existe  3.76 problema  4.08 seu.
+
+## s25  128.55–139.35 (10.8s)
+0.15 Porque  0.31 se  0.47 seu  0.71 cliente  1.03 tá  1.51 entrando  1.99 em  2.07 contato  2.31 com  2.39 você,  2.63 tá  2.79 precisando  3.03 de  3.11 alguma  3.35 coisa,  3.59 ou  3.83 você  4.07 não  4.15 foi  4.31 claro,  4.87 ou  5.11 o  5.19 seu  5.35 produto  5.67 não  5.83 tá  5.99 funcionando  6.31 direito,  6.63 ou  6.71 o  6.79 seu  6.95 serviço  7.27 não  7.43 foi  7.67 legal,  8.39 ou  8.63 a  9.36 experiência  9.92 também  10.08 tá  10.24 ruim.
+
+## s26  139.35–146.95 (7.6s)
+0.16 Não  0.32 adianta  0.80 falar,  1.20 e  1.44 muito  1.60 menos:  2.16 Ah,  2.32 não,  2.48 mas  2.64 é  2.72 um  2.88 terceiro.  3.20 Ah,  3.44 mas  3.60 é  3.84 a  3.92 concessionária  4.72 que  4.96 falou.  5.60 Ah,  5.84 mas  6.08 é  6.24 a  6.48 blindadora  7.04 que  7.20 não  7.28 sei  7.36 o  7.44 quê.
+
+## s27  146.95–152 (5.05s)
+0.16 Não  0.24 quero  0.48 saber.  1.28 Nenhum  1.68 cliente  1.92 quer  2.16 saber.  2.40 Se  2.48 é  2.64 a  2.72 sua  2.88 marca,  3.20 se  3.28 ela  3.44 tá  3.60 comprando  3.92 o  4.00 seu  4.24 produto,
+
+## s28  152–159.75 (7.75s)
+0.15 não  0.31 importa,  1.51 não  1.59 tem  1.83 cabimento  2.47 isso.  3.11 No  3.27 nosso  3.43 caso,  3.59 né…  6.07 Ah,  6.23 não,  6.39 mas  6.55 foi  6.71 a  6.79 fábrica.
+
+## s29  159.75–165.7 (5.95s)
+0.16 E  0.40 daí?  1.76 Pro  2.08 cliente,  2.56 o  2.72 que  2.88 importa  3.36 é  3.76 a  3.92 experiência  4.32 que  4.40 ele  4.56 tá  4.64 tendo  4.80 com  4.88 a  4.96 sua  5.53 marca.
+
+## s30  165.7–171.12 (5.42s)
+0.14 Então  0.54 não  0.78 existe  1.18 isso  1.42 de:  1.66 Ah,  1.90 não,  2.06 isso  2.22 não  2.38 é  2.46 problema  2.78 meu.  2.94 É  3.10 sempre  3.50 problema  3.82 seu.  4.22 Sempre,  4.62 sempre,  5.02 sempre.
+
+## s31  171.12–177.78 (6.66s)
+0.16 Terceira  0.56 coisa,  1.04 é  1.20 o  1.28 seguinte:  1.68 problema  2.08 acontece.  2.88 Não  3.04 vou  3.68 aqui  4.00 tampar  4.32 o  4.48 sol  4.64 com  4.72 a  4.80 peneira.  5.28 Toda  5.52 empresa  5.76 tem  6.00 problema.
+
+## s32  177.78–184.78 (7s)
+0.14 Não  0.30 existe  0.70 empresa  1.02 que  1.50 é  1.66 100%  2.38 maravilhosa,  2.74 que  3.10 nunca  3.34 dá  3.58 nada.  4.22 É  4.38 lógico  4.78 que  4.94 o  5.10 imprevisto  5.66 acontece,  6.38 que  6.46 tem  6.62 problema.
+
+## s33  184.78–190.38 (5.6s)
+0.15 Mas  0.31 o  0.38 que  0.47 define  0.87 uma  1.10 empresa  1.66 não  1.82 é  1.98 o  2.15 fato  2.38 de  2.54 não  2.71 ter  2.94 problema  3.26 nenhum,  3.75 é  3.98 como  4.22 a  4.31 gente  4.54 lida  4.94 com  5.10 o  5.19 problema.
+
+## s34  190.38–197 (6.62s)
+0.15 A  0.22 gente  0.38 tá  0.55 falando  0.71 de  0.87 uma  1.03 situação  1.43 que  1.59 já  1.75 tinha  2.06 tido  2.63 trocentos  3.43 problemas,  4.15 e  4.47 cada  4.78 hora  5.19 piorava  5.83 a  5.99 situação.
+
+## s35  197–202.75 (5.75s)
+0.16 Então  0.97 a  1.13 maneira  1.53 como  2.23 a  2.31 gente  2.47 reage  2.79 é  2.95 que  3.11 diz  3.35 quem  3.51 a  3.59 gente  3.67 é  3.83 como  3.99 empresa,  4.31 o  4.39 quanto  4.55 que  4.63 a  4.71 gente  4.87 se  4.95 importa  5.27 com  5.35 os  5.51 clientes.
+
+## s36  202.75–212.08 (9.33s)
+0.16 Se  0.32 é  0.40 um  0.56 problema,  0.88 é  1.04 a  1.12 hora  1.28 de:  1.60 peraí,  2.08 para  2.32 tudo,  2.64 vamos  2.88 reparar  3.28 esse  3.44 dano  3.84 aqui,  4.24 vamos  4.48 entender  4.80 o  4.88 que  5.04 aconteceu  5.44 e  5.60 vamos  5.84 garantir  6.32 que  6.48 nada  6.72 mais  7.04 escorrega.  7.92 Que  8.08 não  8.24 foi  8.48 o  8.56 caso  8.80 também.
+
+## s37  212.08–218.72 (6.64s)
+0.15 A  0.23 gente  0.47 precisa  0.79 lembrar  1.35 que  1.99 os  2.15 clientes  2.87 não  2.95 vão  3.19 necessariamente  3.75 lembrar  4.07 o  4.23 que  4.47 você  4.71 falou  5.27 ou  5.51 o  5.59 que  5.83 você  6.07 fez.
+
+## s38  218.72–224.72 (6s)
+0.15 A  0.31 gente  0.63 às  0.79 vezes  1.03 não  1.19 lembra  1.51 o  1.59 que  1.75 alguém  1.99 falou  2.31 pra  2.47 gente,  2.71 o  2.87 que  3.03 alguém  3.19 fez  3.43 com  3.51 a  3.59 gente,  3.83 mas  3.99 a  4.07 gente  4.23 sempre  4.47 lembra  4.87 como  5.03 a  5.19 gente  5.35 se  5.51 sentiu.
+
+## s39  224.72–231.92 (7.2s)
+0.15 Então  0.55 essa  0.79 é  0.95 a  1.11 hora  1.67 da  1.91 empresa  2.31 fazer  2.63 tudo  3.03 pra  3.27 aquela  3.51 pessoa  3.75 do  3.91 outro  4.07 lado  4.39 se  4.47 sentir  4.87 acolhida,  5.75 se  5.91 sentir  6.39 ouvida,
+
+## s40  231.92–235.76 (3.84s)
+0.15 se  0.39 sentir  1.27 que  1.51 ela  1.75 tem  2.47 o  2.55 respaldo  3.19 da  3.35 empresa,
+
+## s41  235.76–242.48 (6.72s)
+0.15 ela  0.39 não  0.63 se  0.79 sentir  1.35 impotente,  2.47 ignorada,  3.99 deixada  4.63 de  4.79 lado,  5.19 que  5.43 ela  5.59 não  5.83 importa.
+
+## s42  242.48–249.68 (7.2s)
+0.15 E  0.31 por  0.55 isso,  1.03 eu  1.11 falo  1.35 muito  1.59 disso  1.91 aqui,  2.23 que  2.47 dá  2.71 pra  2.87 ensinar  3.43 tudo  3.67 pra  3.99 equipe,  4.47 mas  4.71 não  4.79 dá  5.03 pra  5.19 ensinar  5.59 as  5.75 pessoas  5.99 a  6.15 se  6.39 importarem.
+
+## s43  249.68–255.74 (6.06s)
+0.15 A  0.31 empresa  0.63 precisa  0.87 se  1.03 importar.  1.97 Precisa  2.37 realmente  2.69 levar  3.01 isso  3.17 a  3.33 sério.  4.21 Precisa,  4.85 num  5.09 momento  5.25 desse  5.73 que  5.81 tem  5.89 um  5.97 problema,
+
+## s44  255.74–263.5 (7.76s)
+0.15 falar:  0.39 não,  0.63 gente,  0.79 peraí,  1.19 a  1.27 gente  1.43 vai  1.59 resolver,  1.83 e  1.99 passar  2.31 essa  2.47 confiança.  3.03 Porque  3.27 é  3.43 essa  3.67 sensação  3.99 que  4.15 você  4.31 quer  4.47 que  4.71 o  4.79 seu  4.95 cliente  5.27 saia  5.51 lá  5.67 do  5.83 outro  5.99 lado  6.79 sentindo.
+
+## s45  263.5–269.18 (5.68s)
+0.15 E  0.31 por  0.47 fim,  0.95 pensa  1.43 na  1.59 situação:  2.07 comprar  2.47 um  2.55 carro.  2.71 Eu  2.79 não  2.87 sei  3.11 vocês,  3.43 mas  3.91 nunca  4.23 tinha  4.39 comprado  4.79 um  4.87 carro  5.11 zero.
+
+## s46  269.18–274.62 (5.44s)
+0.15 É  0.31 pra  0.47 ser  0.63 um  0.79 puta  1.35 momento  1.75 legal,  2.15 maravilhoso,  2.87 que  3.03 você  3.11 vai  3.27 chegar  3.51 lá,  3.67 você  3.83 vai  3.91 pegar  4.15 seu  4.39 carro  4.87 novo.
+
+## s47  274.62–277.58 (2.96s)
+0.15 Só  0.63 estresse,  1.27 só  1.67 dor  2.07 de  2.15 barriga.
+
+## s48  277.58–285.44 (7.86s)
+0.15 Gente,  0.63 esse  0.87 era  1.11 pra  1.27 ser  1.51 o  1.75 momento  2.15 mágico  2.79 da  2.95 indústria.  3.59 E  3.75 aparentemente,  4.31 pelos  4.55 relatos  4.95 que  5.03 eu  5.11 tive  5.35 aqui,  5.51 isso  6.01 é  6.17 muito  6.33 comum,  6.65 ser  6.89 uma  7.05 experiência  7.45 ruim.
+
+## s49  285.44–302.31 (16.87s)
+0.15 Se  0.31 no  0.55 momento  0.95 mais  1.27 importante  1.67 de  1.83 conexão  2.31 emocional  2.79 com  2.87 a  2.95 marca  3.33 é  3.72 essa  4.12 experiência  4.52 que  4.68 as  4.76 empresas  5.08 estão  5.32 entregando,  6.20 qual  6.28 que  6.44 é  6.60 a  6.68 esperança  7.16 pra  7.24 elas  7.56 terem  7.88 um  8.20 mínimo  9.00 de  9.24 lealdade  9.96 desses  10.28 clientes,  11.24 de  11.40 fidelidade,  13.96 de  14.12 um  14.28 vínculo  14.68 ali  15.00 positivo  15.56 com  15.72 a  15.80 marca?  16.20 Nenhuma.
+
+## s50  302.31–310.39 (8.08s)
+0.15 Você  0.47 tá  0.63 pegando  1.03 a  1.11 maior  1.67 oportunidade  2.39 que  2.55 você  2.79 tinha  3.19 pra  3.35 fazer  3.67 algo  3.91 muito  4.15 positivo,  4.71 pra  4.87 deixar  5.19 essa  5.35 última  5.67 impressão  6.07 muito  6.23 boa  6.47 com  6.63 o  6.71 cliente,  7.03 jogando  7.19 no  7.51 lixo.
+
+## s51  310.39–317.91 (7.52s)
+0.15 Espero  0.39 que  0.55 tenha  0.79 sido  0.95 útil  1.27 aqui.  1.51 Acho  1.67 que  1.83 são  1.99 lições  2.47 que  2.63 valem  2.95 pra  3.11 todas  3.35 as  3.51 indústrias.  4.55 Vamos  4.87 torcer  5.27 pra  5.43 que  5.51 os  5.59 problemas  5.91 tenham  6.07 acabado  6.47 aqui,  6.63 que  6.79 dê  7.03 tudo  7.27 certo.
+
+## s52  317.91–327.264 (9.354s)
+0.15 Um  0.31 beijo  0.63 grande  0.87 pra  1.03 vocês.  1.67 Bom  1.91 dia,  2.15 vamos  2.39 lá,  2.71 café  3.43 e  3.67 vambora,  4.47 que  4.79 a  4.87 semana  5.35 tá  5.59 no  5.67 meio  5.91 ainda,  6.07 mas  6.23 tem  6.39 muita  6.63 coisa  6.79 pra  6.95 fazer.  7.43 Beijo!

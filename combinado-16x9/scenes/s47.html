@@ -5,13 +5,78 @@
     <template>
       <style>
         #s47 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s47 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s47 .cam { position: absolute; inset: 0; }
+        #s47 .stage { position: absolute; left: 560px; top: 610px; width: 800px; height: 40px; border-radius: 50%; background: rgba(17, 27, 33, 0.12); }
+        #s47 .carw { position: absolute; left: 700px; top: 400px; width: 520px; height: 220px; }
+        #s47 .nv { position: absolute; left: 760px; top: 660px; width: 400px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 64px; line-height: 66px; color: #005c4b; }
+        #s47 .sp { position: absolute; width: 70px; height: 70px; color: #c9a55c; }
+        #s47 .cloud { position: absolute; left: 600px; top: 120px; width: 720px; height: 260px; }
+        #s47 .rain { position: absolute; left: 0; top: 0; }
+        #s47 .bolt { position: absolute; left: 1010px; top: 300px; width: 120px; height: 200px; }
+        #s47 .flash { position: absolute; inset: 0; background: #fbfaf7; opacity: 0; }
+        #s47 .w1 { position: absolute; left: 150px; top: 230px; font-family: "League Gothic", sans-serif; font-size: 130px; line-height: 130px; color: #e5484d; }
+        #s47 .belly { position: absolute; left: 1400px; top: 330px; width: 300px; height: 300px; }
+        #s47 .bl { position: absolute; left: 1330px; top: 640px; width: 440px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 64px; line-height: 66px; color: #e5484d; }
       </style>
-      <div id="s47" data-composition-id="s47" data-width="1920" data-height="1080"><div class="ph">s47 · PLACEHOLDER</div></div>
+      <div id="s47" data-composition-id="s47" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="stage"></div>
+          <div class="carw"></div>
+          <div class="nv">SEU CARRO NOVO</div>
+          <div class="sp s0" style="left:650px;top:330px"></div><div class="sp s1" style="left:1200px;top:300px"></div><div class="sp s2" style="left:1240px;top:520px"></div>
+          <svg class="rain" width="1920" height="1080" viewBox="0 0 1920 1080" data-layout-ignore><g class="drops" stroke="#3f5b67" stroke-width="5" stroke-linecap="round"></g></svg>
+          <svg class="cloud" width="720" height="260" viewBox="0 0 720 260" aria-hidden="true"><path d="M90 230 C20 230 10 140 80 120 C80 50 170 20 230 60 C270 0 380 0 420 60 C470 20 570 30 580 110 C670 110 700 230 620 230 Z" fill="#3f5b67" stroke="#1b2a30" stroke-width="8" stroke-linejoin="round"/></svg>
+          <svg class="bolt" width="120" height="200" viewBox="0 0 120 200" aria-hidden="true"><path d="M70 0 L20 110 H60 L40 200 L110 70 H70 L95 0 Z" fill="#c9a55c" stroke="#111b21" stroke-width="5" stroke-linejoin="round"/></svg>
+          <div class="w1">ESTRESSE</div>
+          <svg class="belly" width="300" height="300" viewBox="0 0 300 300" aria-hidden="true">
+            <circle cx="150" cy="150" r="130" fill="#fbfaf7" stroke="#111b21" stroke-width="8"/>
+            <path class="sw" d="M150 150 m0 -10 a10 10 0 1 1 -10 10 a24 24 0 1 1 24 24 a40 40 0 1 1 -40 -40 a58 58 0 1 1 58 58 a78 78 0 1 1 -78 -78" fill="none" stroke="#e5484d" stroke-width="12" stroke-linecap="round"/>
+          </svg>
+          <div class="bl">DOR DE BARRIGA</div>
+          <div class="flash" data-layout-ignore></div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s47");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s47");
+          var q = function (s) { return R.querySelector(s); };
+          q(".carw").innerHTML = VT.car({ width: 520, color: "#00a884" });
+          for (var s = 0; s < 3; s++) q(".s" + s).innerHTML = VT.icon("spark", { size: 70, stroke: 2.6 });
+          // chuva: gotas em loop determinístico
+          var drops = q(".drops"), D = [], rnd = VT.rng(47);
+          for (var i = 0; i < 40; i++) {
+            drops.insertAdjacentHTML("beforeend", '<path d="M0 0 L-10 34"/>');
+            D.push({ el: drops.lastChild, x: 620 + rnd() * 700, ph: rnd(), sp: 900 + rnd() * 400 });
+          }
+          var tr = T("Só") + 0.2;
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s47 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          VT.driver(tl, DUR, function (t) {
+            var on = t > tr;
+            D.forEach(function (d) {
+              var y = 330 + (((t - tr) * d.sp / 360 + d.ph) % 1) * 360;
+              d.el.setAttribute("transform", "translate(" + d.x.toFixed(1) + "," + (on ? y : -100).toFixed(1) + ")");
+            });
+          });
+          // o céu fecha
+          tl.to([q(".s0"), q(".s1"), q(".s2")], { opacity: 0, scale: 0, duration: 0.2 }, 0.05);
+          tl.fromTo(q(".cloud"), { opacity: 0, y: -200, x: 200 }, { opacity: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+          tl.to(q(".nv"), { opacity: 0, duration: 0.2 }, 0.2);
+          tl.fromTo(q(".rain"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, tr);
+          // estresse: raio
+          var te = T("estresse") - 0.1;
+          tl.fromTo(q(".bolt"), { opacity: 0, scaleY: 0, transformOrigin: "50% 0%" }, { opacity: 1, scaleY: 1, duration: 0.12, ease: "power4.in" }, te);
+          tl.fromTo(q(".flash"), { opacity: 0.7 }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, te + 0.1);
+          tl.fromTo(q(".w1"), { opacity: 0, scale: 1.8, rotation: -6 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.2, ease: "power4.in" }, te);
+          tl.fromTo(q(".carw"), { x: 0 }, { x: 10, duration: 0.04, yoyo: true, repeat: 7, ease: "none", immediateRender: false }, te + 0.1);
+          tl.to(q(".bolt"), { opacity: 0, duration: 0.2 }, te + 0.5);
+          // dor de barriga: espiral
+          tl.fromTo(q(".belly"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, T("dor") - 0.25);
+          tl.fromTo(q(".sw"), { strokeDasharray: 900, strokeDashoffset: 900 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, T("dor") - 0.1);
+          tl.fromTo(q(".belly"), { rotation: 0 }, { rotation: -200, duration: 1.2, ease: "power1.inOut", immediateRender: false }, T("dor"));
+          tl.fromTo(q(".bl"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25 }, T("barriga") - 0.1);
           window.__timelines["s47"] = tl;
         })();
       </script>

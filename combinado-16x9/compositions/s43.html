@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s43 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s43 .cam { position: absolute; inset: 0; }
+        #s43 .mon { position: absolute; left: 200px; top: 160px; width: 1520px; height: 540px; border-radius: 44px; background: #fbfaf7; box-shadow: 0 22px 46px rgba(17, 27, 33, 0.16); overflow: hidden; }
+        #s43 .grid { position: absolute; left: 0; top: 0; }
+        #s43 .ecg { position: absolute; left: 0; top: 0; }
+        #s43 .dot { position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: #00a884; box-shadow: 0 0 0 8px rgba(0, 168, 132, 0.25); }
+        #s43 .hd { position: absolute; left: 40px; top: 30px; display: flex; align-items: center; gap: 18px; }
+        #s43 .st { width: 84px; height: 84px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s43 .ht { width: 84px; height: 84px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s43 .hl { font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 4px; color: #3b4a54; }
+        #s43 .seal { position: absolute; left: 1150px; top: 60px; height: 76px; padding: 0 24px 0 16px; white-space: nowrap; border-radius: 38px; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; gap: 12px; font-family: "League Gothic", sans-serif; font-size: 50px; }
+        #s43 .alarm { position: absolute; left: 1290px; top: 420px; height: 76px; padding: 0 24px 0 16px; border-radius: 38px; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; gap: 12px; font-family: "League Gothic", sans-serif; font-size: 50px; }
+      </style>
+      <div id="s43" data-composition-id="s43" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="mon">
+            <svg class="grid" width="1520" height="540" viewBox="0 0 1520 540" aria-hidden="true"><g class="gl" stroke="#efeae2" stroke-width="3"></g></svg>
+            <svg class="ecg" width="1520" height="540" viewBox="0 0 1520 540" aria-hidden="true"><path class="ln" fill="none" stroke="#00a884" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/></svg>
+            <div class="dot" data-layout-ignore></div>
+            <div class="hd"><div class="st"></div><div class="ht"></div><div class="hl">A EMPRESA PRECISA SE IMPORTAR</div></div>
+            <div class="seal"><span class="si"></span>LEVAR A SÉRIO</div>
+            <div class="alarm"><span class="ai"></span>TEM UM PROBLEMA</div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["A",0.153,0.313],["empresa",0.313,0.633],["precisa",0.633,0.873],["se",0.873,1.033],["importar.",1.033,1.973],["Precisa",1.973,2.373],["realmente",2.373,2.693],["levar",2.693,3.013],["isso",3.013,3.173],["a",3.173,3.333],["sério.",3.333,3.973],["Precisa,",4.213,4.853],["num",4.853,5.013],["momento",5.093,5.253],["desse",5.253,5.573],["que",5.733,5.813],["tem",5.813,5.893],["um",5.893,5.973],["problema,",5.973,6.213]];
+          var T = VT.finder(W, "s43");
+          var DUR = 6.06;
+          var R = document.getElementById("s43");
+          var q = function (s) { return R.querySelector(s); };
+          q(".st").innerHTML = VT.icon("store", { size: 50, stroke: 2 });
+          q(".ht").innerHTML = VT.icon("heart", { size: 46, stroke: 2.2, fill: true });
+          q(".si").innerHTML = VT.icon("check", { size: 40, stroke: 3 });
+          q(".ai").innerHTML = VT.icon("alert", { size: 40, stroke: 2.6 });
+          var g = "";
+          for (var x = 0; x <= 1520; x += 60) g += '<path d="M' + x + ' 0 V540"/>';
+          for (var y = 0; y <= 540; y += 60) g += '<path d="M0 ' + y + ' H1520"/>';
+          q(".gl").innerHTML = g;
+          // batimentos nas palavras-chave; no fim (problema) o ritmo acelera
+          var beats = [T("precisa", 1), T("importar"), T("precisa", 2), T("sério"), T("precisa", 3), T("momento"), T("problema")];
+          var X0 = 40, PX = (1480 - X0) / DUR, BASE = 330;
+          var d = "M" + X0 + " " + BASE;
+          beats.forEach(function (b, i) {
+            var bx = X0 + b * PX, amp = i >= 5 ? 1.3 : 1;
+            d += " L" + (bx - 26).toFixed(1) + " " + BASE + " L" + (bx - 14).toFixed(1) + " " + (BASE + 30) + " L" + bx.toFixed(1) + " " + (BASE - 170 * amp).toFixed(1) +
+              " L" + (bx + 14).toFixed(1) + " " + (BASE + 70 * amp).toFixed(1) + " L" + (bx + 28).toFixed(1) + " " + BASE;
+          });
+          d += " L1500 " + BASE;
+          var ln = q(".ln"), dot = q(".dot"), ecg = q(".ecg");
+          ln.setAttribute("d", d);
+          var L = ln.getTotalLength();
+          var tl = gsap.timeline({ paused: true });
+          VT.driver(tl, DUR, function (t) {
+            var xh = X0 + Math.max(0, t) * PX;
+            ecg.style.clipPath = "inset(0 " + Math.max(0, 1520 - xh - 2).toFixed(1) + "px 0 0)";
+            // altura do traço na cabeça: busca binária no comprimento do caminho
+            var lo = 0, hi = L;
+            for (var k = 0; k < 18; k++) { var mid = (lo + hi) / 2; if (ln.getPointAtLength(mid).x < xh) lo = mid; else hi = mid; }
+            var p = ln.getPointAtLength(lo);
+            dot.style.transform = "translate(" + (p.x - 13).toFixed(1) + "px," + (p.y - 13).toFixed(1) + "px)";
+          });
+          tl.fromTo(q(".mon"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" }, 0.02);
+          tl.fromTo(q(".hd"), { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3 }, T("empresa") - 0.1);
+          beats.forEach(function (b, i) {
+            tl.fromTo(q(".ht"), { scale: 1 }, { scale: 1.25, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, b - 0.02);
+          });
+          tl.fromTo(q(".seal"), { opacity: 0, scale: 2, rotation: -10 }, { opacity: 1, scale: 1, rotation: -4, duration: 0.22, ease: "power4.in" }, T("sério") - 0.12);
+          tl.fromTo(q(".alarm"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2.4)" }, T("problema") - 0.3);
+          tl.fromTo(q(".mon"), { boxShadow: "0 22px 46px rgba(17,27,33,0.16)" }, { boxShadow: "0 0 0 10px rgba(229,72,77,0.55)", duration: 0.15, yoyo: true, repeat: 1, immediateRender: false }, T("problema"));
+          window.__timelines["s43"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

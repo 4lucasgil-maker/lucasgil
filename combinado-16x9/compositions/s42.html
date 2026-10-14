@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s42 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; perspective: 1600px; }
+        #s42 .cam { position: absolute; inset: 0; }
+        #s42 .brand { position: absolute; left: 230px; top: 150px; height: 84px; padding: 0 24px 0 26px; border-radius: 26px; border-top-right-radius: 8px; background: #d9fdd3; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.12); display: flex; align-items: center; gap: 16px; font-weight: 700; font-size: 36px; white-space: nowrap; }
+        #s42 .rp { width: 46px; height: 46px; color: #005c4b; }
+        #s42 .book { position: absolute; left: 230px; top: 290px; width: 640px; height: 380px; }
+        #s42 .cover { position: absolute; left: 320px; top: 0; width: 320px; height: 380px; border-radius: 6px 22px 22px 6px; background: #3f5b67; transform-origin: 0% 50%; }
+        #s42 .pgL { position: absolute; left: 0; top: 0; width: 320px; height: 380px; border-radius: 22px 6px 6px 22px; background: #fbfaf7; box-shadow: 0 14px 30px rgba(17, 27, 33, 0.14); }
+        #s42 .pgR { position: absolute; left: 320px; top: 0; width: 320px; height: 380px; border-radius: 6px 22px 22px 6px; background: #fbfaf7; box-shadow: 0 14px 30px rgba(17, 27, 33, 0.14); }
+        #s42 .ln { position: absolute; left: 40px; width: 240px; height: 12px; border-radius: 6px; background: #cbc1b2; }
+        #s42 .flip { position: absolute; left: 320px; top: 0; width: 320px; height: 380px; border-radius: 6px 22px 22px 6px; background: #efeae2; transform-origin: 0% 50%; backface-visibility: hidden; }
+        #s42 .bt { position: absolute; left: 0; top: 400px; width: 640px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 4px; color: #3b4a54; }
+        #s42 .eq { position: absolute; left: 230px; top: 740px; width: 640px; height: 70px; display: flex; justify-content: center; gap: 12px; }
+        #s42 .em { width: 64px; height: 64px; }
+        #s42 .row { position: absolute; left: 1000px; width: 700px; height: 84px; border-radius: 22px; background: #fbfaf7; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.1); }
+        #s42 .row .bx { position: absolute; left: 22px; top: 18px; width: 48px; height: 48px; border-radius: 12px; box-shadow: inset 0 0 0 5px #3b4a54; background: #fbfaf7; }
+        #s42 .row .ck { position: absolute; left: 22px; top: 18px; width: 48px; height: 48px; border-radius: 12px; background: #00a884; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s42 .row .t { position: absolute; left: 92px; top: 14px; font-family: "League Gothic", sans-serif; font-size: 56px; line-height: 56px; }
+        #s42 .r0 { top: 160px; } #s42 .r1 { top: 262px; } #s42 .r2 { top: 364px; } #s42 .r3 { top: 466px; } #s42 .r4 { top: 590px; background: #d9fdd3; }
+        #s42 .r4 .t { color: #005c4b; }
+        #s42 .r4 .hz { position: absolute; right: 26px; top: 14px; width: 56px; height: 56px; color: #e5484d; }
+        #s42 .cur { position: absolute; left: 0; top: 0; width: 56px; height: 70px; }
+        #s42 .nope { position: absolute; left: 1080px; top: 690px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: 3px; color: #e5484d; }
+      </style>
+      <div id="s42" data-composition-id="s42" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="brand"><span class="rp"></span>Vou te mandar um áudio</div>
+          <div class="book">
+            <div class="pgL"><div class="ln" style="top:60px"></div><div class="ln" style="top:100px"></div><div class="ln" style="top:140px;width:180px"></div><div class="ln" style="top:200px"></div><div class="ln" style="top:240px;width:150px"></div></div>
+            <div class="pgR"><div class="ln" style="top:60px"></div><div class="ln" style="top:100px;width:200px"></div><div class="ln" style="top:160px"></div><div class="ln" style="top:200px"></div><div class="ln" style="top:240px;width:120px"></div></div>
+            <div class="flip f0"></div><div class="flip f1"></div><div class="flip f2"></div>
+            <div class="cover"></div>
+            <div class="bt">MANUAL DA EQUIPE</div>
+          </div>
+          <div class="eq"><div class="em e0"></div><div class="em e1"></div><div class="em e2"></div><div class="em e3"></div></div>
+          <div class="row r0"><div class="bx"></div><div class="ck c0"></div><div class="t">ATENDIMENTO</div></div>
+          <div class="row r1"><div class="bx"></div><div class="ck c1"></div><div class="t">PROCESSOS</div></div>
+          <div class="row r2"><div class="bx"></div><div class="ck c2"></div><div class="t">SISTEMAS</div></div>
+          <div class="row r3"><div class="bx"></div><div class="ck c3"></div><div class="t">PRODUTO</div></div>
+          <div class="row r4"><div class="bx bx4"></div><div class="t">SE IMPORTAR</div><div class="hz"></div></div>
+          <div class="nope">NÃO SE ENSINA</div>
+          <div class="cur" data-layout-ignore></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["E",0.153,0.313],["por",0.313,0.553],["isso,",0.553,0.793],["eu",1.033,1.113],["falo",1.113,1.353],["muito",1.353,1.593],["disso",1.593,1.913],["aqui,",1.913,2.233],["que",2.233,2.393],["dá",2.473,2.713],["pra",2.713,2.873],["ensinar",2.873,3.433],["tudo",3.433,3.673],["pra",3.673,3.833],["equipe,",3.993,4.473],["mas",4.473,4.713],["não",4.713,4.793],["dá",4.793,5.033],["pra",5.033,5.193],["ensinar",5.193,5.593],["as",5.593,5.753],["pessoas",5.753,5.993],["a",5.993,6.153],["se",6.153,6.393],["importarem.",6.393,7.113]];
+          var T = VT.finder(W, "s42");
+          var R = document.getElementById("s42");
+          var q = function (s) { return R.querySelector(s); };
+          q(".rp").innerHTML = VT.icon("rewind", { size: 46, stroke: 2.4 });
+          for (var e = 0; e < 4; e++) q(".e" + e).innerHTML = VT.person({ size: 64, bg: ["#3f5b67", "#005c4b", "#c9a55c", "#54656f"][e] });
+          for (var c = 0; c < 4; c++) q(".c" + c).innerHTML = VT.icon("check", { size: 34, stroke: 3.4 });
+          q(".hz").innerHTML = VT.icon("heart", { size: 56, stroke: 2.2 });
+          q(".cur").innerHTML = VT.cursor({ size: 56 });
+          gsap.set(q(".cur"), { x: 1990, y: 760 });
+          var tl = gsap.timeline({ paused: true });
+          // eu falo muito disso aqui
+          tl.fromTo(q(".brand"), { opacity: 0, y: -20, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2)", transformOrigin: "100% 0%" }, T("falo") - 0.2);
+          tl.fromTo(q(".rp"), { rotation: 0 }, { rotation: -360, duration: 0.8, ease: "power2.inOut" }, T("muito") - 0.1);
+          // dá pra ensinar tudo pra equipe: o manual abre e as páginas viram
+          tl.fromTo(q(".book"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.8)" }, T("que") - 0.3);
+          tl.fromTo(q(".cover"), { rotationY: 0 }, { rotationY: -178, duration: 0.5, ease: "power2.inOut" }, T("ensinar") - 0.2);
+          ["f0", "f1", "f2"].forEach(function (f, i) {
+            tl.fromTo(q("." + f), { rotationY: 0 }, { rotationY: -178, duration: 0.35, ease: "power2.inOut" }, T("ensinar") + 0.35 + i * 0.22);
+          });
+          for (var r = 0; r < 4; r++) {
+            tl.fromTo(q(".r" + r), { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.25, ease: "power3.out" }, T("ensinar") + r * 0.12);
+            tl.fromTo(q(".c" + r), { scale: 0 }, { scale: 1, duration: 0.2, ease: "back.out(3)" }, T("tudo") - 0.1 + r * 0.14);
+          }
+          for (var m = 0; m < 4; m++) tl.fromTo(q(".e" + m), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25, ease: "back.out(2.4)" }, T("equipe") - 0.2 + m * 0.06);
+          tl.fromTo(q(".bt"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("equipe"));
+          // mas não dá pra ensinar a se importar: o checkbox não aceita o clique
+          tl.fromTo(q(".r4"), { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, T("mas") - 0.1);
+          tl.to(q(".cur"), { x: 1040, y: 620, duration: 0.45, ease: "power3.out" }, T("não") - 0.2);
+          [T("ensinar", 2) - 0.05, T("pessoas")].forEach(function (tc) {
+            tl.to(q(".cur"), { scale: 0.85, duration: 0.07, yoyo: true, repeat: 1 }, tc);
+            tl.fromTo(q(".r4"), { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, tc + 0.08);
+            tl.fromTo(q(".bx4"), { boxShadow: "inset 0 0 0 5px #3b4a54" }, { boxShadow: "inset 0 0 0 5px #e5484d", duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }, tc + 0.08);
+          });
+          tl.to(q(".cur"), { x: 1990, y: 760, duration: 0.45, ease: "power2.in" }, T("importarem") - 0.05);
+          tl.fromTo(q(".nope"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.25 }, T("importarem") - 0.1);
+          tl.fromTo(q(".hz"), { scale: 1 }, { scale: 1.2, duration: 0.15, yoyo: true, repeat: 3, ease: "power2.out", immediateRender: false }, T("importarem"));
+          window.__timelines["s42"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

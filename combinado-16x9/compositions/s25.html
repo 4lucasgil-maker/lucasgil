@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s25 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s25 .cam { position: absolute; inset: 0; }
+        #s25 .ph { position: absolute; left: 250px; top: 150px; width: 320px; height: 580px; border-radius: 54px; background: #111b21; box-shadow: 0 22px 46px rgba(17, 27, 33, 0.25); }
+        #s25 .scr { position: absolute; left: 16px; top: 16px; width: 288px; height: 548px; border-radius: 40px; background: #1b2a30; overflow: hidden; }
+        #s25 .cav { position: absolute; left: 84px; top: 90px; width: 120px; height: 120px; }
+        #s25 .waves { position: absolute; left: 64px; top: 70px; width: 160px; height: 160px; border-radius: 50%; border: 5px solid #00a884; opacity: 0; }
+        #s25 .cn { position: absolute; left: 0; top: 230px; width: 288px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 52px; line-height: 56px; color: #fbfaf7; }
+        #s25 .cs { position: absolute; left: 0; top: 292px; width: 288px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 20px; line-height: 26px; letter-spacing: 2px; color: #cbc1b2; }
+        #s25 .cs2 { color: #00a884; }
+        #s25 .bt { position: absolute; top: 420px; width: 84px; height: 84px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fbfaf7; }
+        #s25 .no { left: 40px; background: #e5484d; } #s25 .yes { left: 164px; background: #00a884; }
+        #s25 .need { position: absolute; left: 520px; top: 150px; width: 110px; height: 110px; border-radius: 50%; background: #c9a55c; font-family: "League Gothic", sans-serif; font-size: 90px; line-height: 110px; text-align: center; color: #111b21; }
+        #s25 .pnl { position: absolute; left: 700px; top: 160px; width: 970px; height: 580px; border-radius: 40px; background: #fbfaf7; box-shadow: 0 20px 44px rgba(17, 27, 33, 0.16); overflow: hidden; }
+        #s25 .ph2 { position: absolute; left: 44px; top: 30px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 36px; letter-spacing: 6px; color: #3b4a54; }
+        #s25 .row { position: absolute; left: 30px; width: 910px; height: 108px; border-radius: 24px; background: #efeae2; }
+        #s25 .r0 { top: 90px; } #s25 .r1 { top: 210px; } #s25 .r2 { top: 330px; } #s25 .r3 { top: 450px; }
+        #s25 .row .ri { position: absolute; left: 26px; top: 22px; width: 64px; height: 64px; color: #3f5b67; }
+        #s25 .row .rl { position: absolute; left: 110px; top: 18px; font-family: "League Gothic", sans-serif; font-size: 72px; line-height: 72px; color: #111b21; }
+        #s25 .row .st { position: absolute; right: 26px; top: 24px; width: 60px; height: 60px; border-radius: 50%; background: #cbc1b2; }
+        #s25 .row .bad { position: absolute; right: 26px; top: 24px; width: 60px; height: 60px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s25 .scan { position: absolute; left: 0; top: 0; width: 970px; height: 14px; background: #00a884; opacity: 0.6; }
+        #s25 .cur { position: absolute; left: 0; top: 0; width: 56px; height: 70px; }
+      </style>
+      <div id="s25" data-composition-id="s25" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="ph"><div class="scr">
+            <div class="waves" data-layout-ignore></div>
+            <div class="cav"></div>
+            <div class="cn">CLIENTE</div>
+            <div class="cs cs1" data-layout-allow-overlap>chamando…</div>
+            <div class="cs cs2" data-layout-allow-overlap>em contato</div>
+            <div class="bt no"></div><div class="bt yes"></div>
+          </div></div>
+          <div class="need">?</div>
+          <div class="pnl">
+            <div class="ph2">DIAGNÓSTICO</div>
+            <div class="row r0"><div class="ri"></div><div class="rl">CLAREZA</div><div class="st"></div><div class="bad b0"></div></div>
+            <div class="row r1"><div class="ri"></div><div class="rl">PRODUTO</div><div class="st"></div><div class="bad b1"></div></div>
+            <div class="row r2"><div class="ri"></div><div class="rl">SERVIÇO</div><div class="st"></div><div class="bad b2"></div></div>
+            <div class="row r3"><div class="ri"></div><div class="rl">EXPERIÊNCIA</div><div class="st"></div><div class="bad b3"></div></div>
+            <div class="scan" data-layout-ignore></div>
+          </div>
+          <div class="cur" data-layout-ignore></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Porque",0.153,0.233],["se",0.313,0.393],["seu",0.473,0.633],["cliente",0.713,1.033],["tá",1.033,1.193],["entrando",1.513,1.993],["em",1.993,2.073],["contato",2.073,2.313],["com",2.313,2.393],["você,",2.393,2.553],["tá",2.633,2.793],["precisando",2.793,3.033],["de",3.033,3.113],["alguma",3.113,3.353],["coisa,",3.353,3.513],["ou",3.593,3.753],["você",3.833,4.073],["não",4.073,4.153],["foi",4.153,4.313],["claro,",4.313,4.873],["ou",4.873,5.113],["o",5.113,5.193],["seu",5.193,5.353],["produto",5.353,5.673],["não",5.673,5.833],["tá",5.833,5.993],["funcionando",5.993,6.313],["direito,",6.313,6.633],["ou",6.633,6.713],["o",6.713,6.793],["seu",6.793,6.953],["serviço",6.953,7.273],["não",7.273,7.433],["foi",7.433,7.673],["legal,",7.673,8.393],["ou",8.393,8.473],["a",8.633,8.793],["experiência",9.357,9.916],["também",9.916,10.076],["tá",10.077,10.237],["ruim.",10.237,10.636]];
+          var T = VT.finder(W, "s25");
+          var R = document.getElementById("s25");
+          var q = function (s) { return R.querySelector(s); };
+          q(".cav").innerHTML = VT.person({ size: 120, bg: "#3f5b67" });
+          q(".no").innerHTML = VT.icon("x", { size: 40, stroke: 3 });
+          q(".yes").innerHTML = VT.icon("phone", { size: 40, stroke: 2.6 });
+          [["r0", "eye"], ["r1", "doc"], ["r2", "chat"], ["r3", "heart"]].forEach(function (p) { q("." + p[0] + " .ri").innerHTML = VT.icon(p[1], { size: 64, stroke: 2 }); });
+          for (var b = 0; b < 4; b++) q(".b" + b).innerHTML = VT.icon("x", { size: 34, stroke: 3.4 });
+          q(".cur").innerHTML = VT.cursor({ size: 56 });
+          gsap.set(q(".cur"), { x: 700, y: 1120 });
+          gsap.set(q(".cs2"), { opacity: 0 });
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".ph"), { opacity: 0, y: 80, rotation: -6 }, { opacity: 1, y: 0, rotation: 0, duration: 0.45, ease: "back.out(1.8)" }, 0.05);
+          // chamando: o celular vibra
+          tl.fromTo(q(".waves"), { opacity: 0.9, scale: 0.7 }, { opacity: 0, scale: 1.5, duration: 0.6, ease: "power1.out", repeat: 2, immediateRender: false }, T("cliente") - 0.1);
+          tl.fromTo(q(".ph"), { rotation: 0 }, { rotation: 3, duration: 0.05, yoyo: true, repeat: 9, ease: "none", immediateRender: false }, T("cliente"));
+          // entrando em contato: o cursor atende
+          var ta = T("contato") - 0.05;
+          tl.to(q(".cur"), { x: 470, y: 618, duration: 0.45, ease: "power3.out" }, ta - 0.5);
+          tl.to(q(".cur"), { scale: 0.85, duration: 0.08, yoyo: true, repeat: 1 }, ta);
+          tl.fromTo(q(".yes"), { scale: 1 }, { scale: 0.85, duration: 0.08, yoyo: true, repeat: 1, immediateRender: false }, ta);
+          tl.to(q(".cs1"), { opacity: 0, duration: 0.15 }, ta + 0.1);
+          tl.to(q(".cs2"), { opacity: 1, duration: 0.15 }, ta + 0.15);
+          tl.to([q(".no"), q(".yes")], { opacity: 0, scale: 0.6, duration: 0.2 }, ta + 0.2);
+          tl.to(q(".cur"), { x: 700, y: 1120, duration: 0.4, ease: "power2.in" }, ta + 0.3);
+          // precisando de alguma coisa
+          tl.fromTo(q(".need"), { opacity: 0, scale: 0, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, T("precisando") - 0.1);
+          // o painel de diagnóstico entra e escaneia
+          tl.fromTo(q(".pnl"), { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, T("precisando"));
+          for (var r = 0; r < 4; r++) tl.fromTo(q(".r" + r), { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, T("precisando") + 0.2 + r * 0.07);
+          tl.fromTo(q(".scan"), { y: 80 }, { y: 560, duration: 0.8, ease: "sine.inOut" }, T("coisa"));
+          tl.to(q(".scan"), { y: 80, duration: 0.8, ease: "sine.inOut" }, T("ou", 4) - 0.4);
+          // cada causa falha na hora em que é dita
+          var hits = [["r0", "b0", T("claro"), T("claro")], ["r1", "b1", T("produto"), T("funcionando")], ["r2", "b2", T("serviço"), T("legal")], ["r3", "b3", T("experiência"), T("ruim")]];
+          hits.forEach(function (h) {
+            tl.to(q("." + h[0]), { backgroundColor: "#d9fdd3", scale: 1.03, duration: 0.15 }, h[2] - 0.1);
+            tl.fromTo(q("." + h[1]), { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.25, ease: "back.out(3)" }, h[3] - 0.05);
+            tl.to(q("." + h[0]), { backgroundColor: "rgba(229,72,77,0.16)", scale: 1, duration: 0.2 }, h[3] + 0.05);
+          });
+          window.__timelines["s25"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

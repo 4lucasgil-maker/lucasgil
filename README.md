@@ -1,4 +1,4 @@
-# Vou te mandar um áudio — vídeos verticais (HyperFrames)
+# Vou te mandar um áudio — vídeos (HyperFrames)
 
 Vídeos 9:16 (1080×1920) dos episódios do podcast **"Vou te mandar um áudio"** (Cris Junqueira), no conceito
 "o episódio é um áudio de WhatsApp sendo gravado": header de chat com status vivo, compositor gravando com
@@ -19,7 +19,7 @@ tools/
   build16x9.mjs       versão 16:9: layers/chat (conversa em thread), layers/scenes (cenas) e a raiz 1920×1080
   encode.sh           encode final H.264 High 30 fps, VBV 25 Mbps + verificação (ffprobe, pico de 1 s)
   new-episode.sh      prepara um episódio novo (pasta, áudio, ASR, envelope, intro)
-<slug>-16x9/          versão horizontal (gerada por build16x9.mjs a partir do projeto vertical)
+<slug>-16x9/          versão horizontal (v2: gerada por build16x9.mjs; v3 nativa: projeto próprio com "format": "16x9")
 <slug>-reel/          um projeto HyperFrames por episódio
   episode.json        número, nome, áudio, janelas das cenas, cena escura, tipos de transição
   captions.txt        texto final (um balão por linha; [in:rótulo] = balão recebido; *palavra* = destaque)
@@ -52,6 +52,25 @@ node tools/build16x9.mjs <slug>-reel          # gera <slug>-16x9/ com layers/cha
 cd <slug>-16x9 && npx hyperframes check && npx hyperframes render --quality delivery --fps 30 --output renders/ep12-<slug>-16x9-master.mp4
 ../tools/encode.sh renders/ep12-<slug>-16x9-master.mp4 renders/ep12-<slug>-16x9.mp4
 ```
+
+### 16:9 nativo (v3 — mais motion, interações e retenção)
+
+Projeto `<slug>-16x9` com `"format": "16x9"` no `episode.json` (template em `_template/wide`): o palco inteiro é
+motion graphics; header de chat com **capítulos** (barras segmentadas estilo status + rótulo + selo que voa até o
+header), legenda palavra a palavra embaixo com marcador nas palavras-chave, compositor com waveform real no rodapé.
+Usado no EP 124.
+
+```bash
+tools/new-episode.sh 124 <slug> "<Nome>" <audio.mp3> --wide
+# captions.txt → node tools/align.mjs <slug>-16x9 → episode.json (scenes, cuts, dark, chapters, titleLines) → scenes/sNN.html
+node tools/build.mjs <slug>-16x9 && (cd <slug>-16x9 && npx hyperframes check --json)
+tools/render-all.sh <slug> wide        # render + encode + thumbnails (16:9 e YouTube) + prévia 720p
+```
+
+Campos extras do `episode.json` (16:9 nativo): `chapters` (`[[início, "RÓTULO"], …]`), `titleLines` (nome em 2 linhas
+no card de título) e `titleFit` (`[largura máx, fonte máx]`). Transições disponíveis: `iris`, `blade`, `blinds`,
+`blocks`, `doors`, `stripes`. Utilitários de cena em `vtma.js`: `VT.car`, `VT.face`, `VT.person`, `VT.cursor`,
+`VT.kf` (quadros-chave puros) e `VT.driver` (estado como função do tempo, seguro para seek).
 
 Modelos de ASR (baixados dos releases do sherpa-onnx no GitHub):
 `sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8` e `sherpa-onnx-whisper-small`.

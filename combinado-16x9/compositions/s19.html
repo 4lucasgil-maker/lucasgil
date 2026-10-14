@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s19 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s19 .cam { position: absolute; inset: 0; }
+        #s19 .gar { position: absolute; left: 0; top: 150px; width: 1920px; height: 110px; display: flex; justify-content: center; align-items: center; gap: 20px; }
+        #s19 .gs { width: 96px; height: 96px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s19 .gt { font-family: "League Gothic", sans-serif; font-size: 90px; line-height: 100px; color: #111b21; }
+        #s19 .nt { position: absolute; top: 300px; width: 250px; height: 220px; border-radius: 10px; background: #c9a55c; box-shadow: 0 12px 22px rgba(17, 27, 33, 0.16); }
+        #s19 .nt .tx { position: absolute; left: 0; top: 52px; width: 250px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 60px; line-height: 62px; color: #111b21; }
+        #s19 .nt .tp { position: absolute; left: 85px; top: -14px; width: 80px; height: 28px; border-radius: 4px; background: rgba(251, 250, 247, 0.75); }
+        #s19 .nt svg { position: absolute; left: 25px; top: 10px; }
+        #s19 .tally { position: absolute; left: 790px; top: 560px; width: 340px; height: 150px; }
+        #s19 .cnt { position: absolute; left: 1150px; top: 580px; font-family: "League Gothic", sans-serif; font-size: 100px; line-height: 110px; color: #e5484d; }
+      </style>
+      <div id="s19" data-composition-id="s19" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="gar"><div class="gs"></div><div class="gt">QUEM ME GARANTE?</div></div>
+          <div class="notes"></div>
+          <svg class="tally" width="340" height="150" viewBox="0 0 340 150" aria-hidden="true">
+            <path class="tm tm0" d="M40 20 V130" stroke="#111b21" stroke-width="14" stroke-linecap="round"/>
+            <path class="tm tm1" d="M95 20 V130" stroke="#111b21" stroke-width="14" stroke-linecap="round"/>
+            <path class="tm tm2" d="M150 20 V130" stroke="#111b21" stroke-width="14" stroke-linecap="round"/>
+            <path class="tm tm3" d="M205 20 V130" stroke="#111b21" stroke-width="14" stroke-linecap="round"/>
+            <path class="tm tm4" d="M10 110 L240 36" stroke="#e5484d" stroke-width="14" stroke-linecap="round"/>
+          </svg>
+          <div class="cnt">5×</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Mas",0.154,0.374],["quem",0.577,0.897],["me",0.897,1.057],["garante?",1.058,1.457],["Você",1.537,1.697],["já",1.698,1.858],["me",1.858,1.937],["falou",1.937,2.177],["que",2.177,2.337],["na",2.338,2.418],["semana",2.418,2.737],["que",2.737,2.817],["vem",2.817,3.057],["ia",3.058,3.218],["chegar",3.218,3.537],["cinco",3.537,3.778],["vezes",3.778,4.097],["e",4.097,4.257],["não",4.258,4.418],["chegou.",4.418,5.138]];
+          var T = VT.finder(W, "s19");
+          var R = document.getElementById("s19");
+          var q = function (s) { return R.querySelector(s); };
+          q(".gs").innerHTML = VT.icon("shield", { size: 60, stroke: 2.2 });
+          var notes = q(".notes");
+          var rot = [-4, 3, -2, 5, -3];
+          for (var i = 0; i < 5; i++) {
+            notes.insertAdjacentHTML("beforeend", '<div class="nt n' + i + '" style="left:' + (250 + i * 290) + 'px"><div class="tp"></div><div class="tx">SEMANA<br>QUE VEM</div>' +
+              '<svg width="200" height="200" viewBox="0 0 200 200"><path class="xa xa' + i + '" d="M20 20 L180 180" stroke="#e5484d" stroke-width="18" stroke-linecap="round"/><path class="xb xb' + i + '" d="M180 20 L20 180" stroke="#e5484d" stroke-width="18" stroke-linecap="round"/></svg></div>');
+          }
+          var tl = gsap.timeline({ paused: true });
+          // quem me garante?
+          tl.fromTo(q(".gs"), { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.6)" }, T("quem") - 0.15);
+          tl.fromTo(q(".gt"), { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, T("quem") - 0.05);
+          tl.fromTo(q(".gar"), { scale: 1 }, { scale: 1.06, duration: 0.14, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("garante") + 0.1);
+          // você já me falou que na semana que vem… (bilhetes colados um a um)
+          var ts = T("falou") - 0.1, step = (T("cinco") - ts) / 5;
+          for (var k = 0; k < 5; k++) {
+            tl.fromTo(q(".n" + k), { opacity: 0, y: -80, scale: 1.3, rotation: rot[k] * 3 }, { opacity: 1, y: 0, scale: 1, rotation: rot[k], duration: 0.25, ease: "power3.out" }, ts + k * step);
+          }
+          // cinco vezes: risquinhos de contagem
+          for (var m = 0; m < 5; m++) {
+            tl.fromTo(q(".tm" + m), { strokeDasharray: 260, strokeDashoffset: 260 }, { strokeDashoffset: 0, duration: 0.12, ease: "power2.out" }, T("cinco") - 0.1 + m * 0.09);
+          }
+          tl.fromTo(q(".cnt"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("vezes"));
+          // e não chegou: um X em cada bilhete
+          for (var x = 0; x < 5; x++) {
+            var tx = T("não") - 0.1 + x * 0.08;
+            tl.fromTo(q(".xa" + x), { strokeDasharray: 230, strokeDashoffset: 230 }, { strokeDashoffset: 0, duration: 0.1, ease: "power2.in" }, tx);
+            tl.fromTo(q(".xb" + x), { strokeDasharray: 230, strokeDashoffset: 230 }, { strokeDashoffset: 0, duration: 0.1, ease: "power2.in" }, tx + 0.06);
+          }
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.04, duration: 4.6, ease: "sine.inOut", transformOrigin: "50% 45%" }, 0.2);
+          window.__timelines["s19"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

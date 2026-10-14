@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s50 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s50 .cam { position: absolute; inset: 0; }
+        #s50 .tk { position: absolute; left: 0; top: 0; width: 640px; height: 340px; }
+        #s50 .card { position: absolute; left: 0; top: 0; width: 640px; height: 340px; border-radius: 34px; background: #c9a55c; box-shadow: 0 22px 46px rgba(17, 27, 33, 0.22); overflow: hidden; }
+        #s50 .card .hd { position: absolute; left: 40px; top: 34px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 6px; color: #111b21; }
+        #s50 .card .t { position: absolute; left: 40px; top: 90px; font-family: "League Gothic", sans-serif; font-size: 110px; line-height: 114px; color: #111b21; }
+        #s50 .card .stx { position: absolute; left: 520px; top: 34px; width: 80px; height: 80px; color: #111b21; }
+        #s50 .card .sheen { position: absolute; left: -200px; top: -40px; width: 120px; height: 440px; background: rgba(251, 250, 247, 0.55); }
+        #s50 .card .stamp { position: absolute; left: 230px; top: 226px; padding: 2px 16px; border: 6px solid #005c4b; border-radius: 14px; color: #005c4b; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 40px; letter-spacing: 3px; background: rgba(251, 250, 247, 0.6); }
+        #s50 .ball { position: absolute; left: 0; top: 0; width: 160px; height: 160px; }
+        #s50 .pl { position: absolute; width: 60px; height: 60px; color: #00a884; }
+        #s50 .bin { position: absolute; left: 1500px; top: 470px; width: 220px; height: 280px; }
+        #s50 .lid { position: absolute; left: 1480px; top: 446px; width: 260px; height: 40px; transform-origin: 0% 100%; }
+        #s50 .lx { position: absolute; left: 1390px; top: 770px; width: 440px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 60px; line-height: 60px; color: #e5484d; }
+      </style>
+      <div id="s50" data-composition-id="s50" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="tk">
+            <div class="card">
+              <div class="sheen" data-layout-ignore></div>
+              <div class="hd">A MAIOR</div>
+              <div class="t">OPORTUNIDADE</div>
+              <div class="stx"></div>
+              <div class="stamp">ÚLTIMA IMPRESSÃO</div>
+            </div>
+          </div>
+          <svg class="ball" width="160" height="160" viewBox="0 0 160 160" aria-hidden="true"><path d="M30 80 L50 30 L95 22 L135 50 L140 100 L105 138 L55 135 L22 105 Z" fill="#c9a55c" stroke="#111b21" stroke-width="6" stroke-linejoin="round"/><path d="M50 30 L80 75 L135 50 M80 75 L55 135 M80 75 L140 100 M22 105 L80 75" fill="none" stroke="#111b21" stroke-width="4"/></svg>
+          <div class="pl p0" style="left:520px;top:260px"></div><div class="pl p1" style="left:1340px;top:240px"></div><div class="pl p2" style="left:1360px;top:560px"></div>
+          <svg class="bin" width="220" height="280" viewBox="0 0 220 280" aria-hidden="true"><path d="M20 30 H200 L180 270 H40 Z" fill="#54656f" stroke="#111b21" stroke-width="7" stroke-linejoin="round"/><path d="M75 70 V230 M110 70 V230 M145 70 V230" stroke="#3b4a54" stroke-width="10" stroke-linecap="round"/></svg>
+          <svg class="lid" width="260" height="40" viewBox="0 0 260 40" aria-hidden="true"><path d="M10 30 H250 M100 30 V10 H160 V30" fill="none" stroke="#111b21" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="lx">NO LIXO</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Você",0.146,0.466],["tá",0.466,0.626],["pegando",0.626,1.026],["a",1.026,1.106],["maior",1.106,1.666],["oportunidade",1.666,2.386],["que",2.386,2.546],["você",2.546,2.786],["tinha",2.786,3.186],["pra",3.186,3.346],["fazer",3.346,3.506],["algo",3.666,3.906],["muito",3.906,4.146],["positivo,",4.146,4.706],["pra",4.706,4.786],["deixar",4.866,5.186],["essa",5.186,5.346],["última",5.346,5.666],["impressão",5.666,6.066],["muito",6.066,6.226],["boa",6.226,6.466],["com",6.466,6.626],["o",6.626,6.706],["cliente,",6.706,7.026],["jogando",7.026,7.186],["no",7.186,7.346],["lixo.",7.506,8.226]];
+          var T = VT.finder(W, "s50");
+          var DUR = 8.08;
+          var R = document.getElementById("s50");
+          var q = function (s) { return R.querySelector(s); };
+          q(".stx").innerHTML = VT.icon("star", { size: 80, stroke: 2, fill: true });
+          for (var p = 0; p < 3; p++) q(".p" + p).innerHTML = VT.icon("plus", { size: 60, stroke: 3.2 });
+          // amassa e arremessa: posição da bola numa parábola até a lixeira (função do tempo)
+          var tj = T("jogando") - 0.15, tlx = T("lixo") - 0.05;
+          var tk = q(".tk"), ball = q(".ball");
+          var tl = gsap.timeline({ paused: true });
+          VT.driver(tl, DUR, function (t) {
+            var u = Math.max(0, Math.min(1, (t - (tj + 0.15)) / (tlx - tj - 0.15)));
+            var x = (1 - u) * (1 - u) * 880 + 2 * u * (1 - u) * 1300 + u * u * 1530;
+            var y = (1 - u) * (1 - u) * 330 + 2 * u * (1 - u) * 60 + u * u * 470;
+            ball.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) rotate(" + (u * 540).toFixed(0) + "deg) scale(" + (1 - 0.35 * u).toFixed(3) + ")";
+            ball.style.opacity = t < tj + 0.1 || t > tlx + 0.08 ? "0" : "1";
+          });
+          gsap.set(tk, { x: 640, y: 240 });
+          gsap.set(q(".stamp"), { opacity: 0 });
+          tl.fromTo(tk, { opacity: 0, scale: 0.6, rotation: -8 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }, T("maior") - 0.3);
+          tl.fromTo(q(".sheen"), { x: 0, rotation: 15 }, { x: 960, rotation: 15, duration: 0.8, ease: "power2.inOut" }, T("oportunidade") - 0.1);
+          tl.fromTo(tk, { scale: 1 }, { scale: 1.05, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("oportunidade"));
+          // algo muito positivo
+          for (var k = 0; k < 3; k++) tl.fromTo(q(".p" + k), { opacity: 0, scale: 0, rotation: -90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, T("positivo") - 0.15 + k * 0.08);
+          // última impressão: carimbo
+          tl.fromTo(q(".stamp"), { opacity: 0, scale: 2, rotation: -2 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.2, ease: "power4.in", immediateRender: false }, T("última") - 0.1);
+          // jogando no lixo: amassa e voa para a lixeira
+          tl.to([q(".p0"), q(".p1"), q(".p2")], { opacity: 0, scale: 0, duration: 0.2 }, tj - 0.2);
+          tl.to(tk, { scale: 0.2, rotation: 40, opacity: 0, duration: 0.22, ease: "power3.in" }, tj);
+          tl.fromTo(q(".lid"), { rotation: 0 }, { rotation: -35, duration: 0.18, ease: "power2.out" }, tlx - 0.25);
+          tl.to(q(".lid"), { rotation: 0, duration: 0.25, ease: "bounce.out" }, tlx + 0.12);
+          tl.fromTo(q(".bin"), { scaleY: 1, transformOrigin: "50% 100%" }, { scaleY: 0.92, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, tlx + 0.1);
+          tl.fromTo(q(".lx"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, tlx);
+          window.__timelines["s50"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

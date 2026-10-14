@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s30 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s30 .cam { position: absolute; inset: 0; }
+        #s30 .st { position: absolute; left: 280px; top: 280px; width: 280px; height: 280px; border-radius: 50%; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 18px 40px rgba(0, 92, 75, 0.3); }
+        #s30 .sl { position: absolute; left: 230px; top: 580px; width: 380px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 64px; line-height: 66px; color: #005c4b; }
+        #s30 .trail { position: absolute; left: 0; top: 0; }
+        #s30 .tag { position: absolute; left: 0; top: 0; width: 300px; height: 84px; border-radius: 42px; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; gap: 12px; padding-left: 24px; box-sizing: border-box; font-family: "League Gothic", sans-serif; font-size: 54px; box-shadow: 0 10px 22px rgba(229, 72, 77, 0.35); }
+        #s30 .sp { position: absolute; font-family: "League Gothic", sans-serif; font-size: 150px; line-height: 150px; color: #111b21; }
+        #s30 .sp1 { left: 1040px; top: 170px; } #s30 .sp2 { left: 1140px; top: 340px; } #s30 .sp3 { left: 1240px; top: 510px; color: #005c4b; }
+      </style>
+      <div id="s30" data-composition-id="s30" data-width="1920" data-height="1080">
+        <div class="cam">
+          <svg class="trail" width="1920" height="1080" viewBox="0 0 1920 1080" data-layout-ignore>
+            <path class="tr1" d="M560 420 Q1100 40 1600 260" fill="none" stroke="#e5484d" stroke-width="6" stroke-dasharray="4 18" stroke-linecap="round" opacity="0.6"/>
+            <path class="tr2" d="M1600 260 Q1200 760 560 430" fill="none" stroke="#e5484d" stroke-width="6" stroke-dasharray="4 18" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+          <div class="st"></div>
+          <div class="sl">VOCÊ / SUA EMPRESA</div>
+          <div class="sp sp1">SEMPRE</div>
+          <div class="sp sp2">SEMPRE</div>
+          <div class="sp sp3">SEMPRE.</div>
+          <div class="tag"><span class="ti"></span>PROBLEMA</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Então",0.142,0.542],["não",0.542,0.782],["existe",0.782,1.182],["isso",1.182,1.422],["de:",1.422,1.582],["Ah,",1.662,1.902],["não,",1.902,2.062],["isso",2.062,2.222],["não",2.222,2.302],["é",2.382,2.462],["problema",2.462,2.782],["meu.",2.782,2.942],["É",2.942,3.022],["sempre",3.102,3.182],["problema",3.502,3.662],["seu.",3.822,4.222],["Sempre,",4.222,4.622],["sempre,",4.622,4.942],["sempre.",5.022,5.582]];
+          var T = VT.finder(W, "s30");
+          var DUR = 5.42;
+          var R = document.getElementById("s30");
+          var q = function (s) { return R.querySelector(s); };
+          q(".st").innerHTML = VT.icon("store", { size: 150, stroke: 1.8 });
+          q(".ti").innerHTML = VT.icon("alert", { size: 42, stroke: 2.6 });
+          // bumerangue: sai na "não é problema meu", volta no "sempre problema seu"
+          var tg = T("Ah") - 0.05, tm = T("meu") + 0.1, tb = T("É", 2) - 0.05, ts = T("seu") - 0.05;
+          var p1 = q(".tr1"), p2 = q(".tr2"), L1 = p1.getTotalLength(), L2 = p2.getTotalLength();
+          var tag = q(".tag");
+          var tl = gsap.timeline({ paused: true });
+          VT.driver(tl, DUR, function (t) {
+            var x, y, rot = 0;
+            if (t < tg) { x = 560; y = 420; }
+            else if (t < tm) { var u = (t - tg) / (tm - tg); u = 1 - Math.pow(1 - u, 2); var a = p1.getPointAtLength(u * L1); x = a.x; y = a.y; rot = u * 720; }
+            else if (t < tb) { x = 1600; y = 260; rot = 720 + (t - tm) * 400; }
+            else if (t < ts) { var v = (t - tb) / (ts - tb); v = v * v; var b = p2.getPointAtLength(v * L2); x = b.x; y = b.y; rot = 720 + (tb - tm) * 400 + v * 720; }
+            else { x = 560; y = 430; rot = 0; }
+            tag.style.transform = "translate(" + (x - 150).toFixed(1) + "px," + (y - 42).toFixed(1) + "px) rotate(" + (rot % 360).toFixed(1) + "deg)";
+          });
+          tl.fromTo([q(".st"), q(".sl")], { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 0.05);
+          tl.fromTo(tag, { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0.3);
+          tl.fromTo(p1, { strokeDashoffset: 0, opacity: 0 }, { opacity: 0.6, duration: 0.2 }, tg);
+          tl.to(p1, { opacity: 0, duration: 0.3 }, tm + 0.2);
+          tl.fromTo(p2, { opacity: 0 }, { opacity: 0.6, duration: 0.2, immediateRender: false }, tb);
+          tl.to(p2, { opacity: 0, duration: 0.3 }, ts + 0.2);
+          gsap.set(p2, { opacity: 0 });
+          // impacto de volta na empresa
+          tl.fromTo(q(".st"), { x: 0 }, { x: -16, duration: 0.06, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, ts);
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.05, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", transformOrigin: "25% 45%" }, ts);
+          // sempre, sempre, sempre
+          [["sp1", "Sempre", 2], ["sp2", "sempre", 3], ["sp3", "sempre", 4]].forEach(function (p, i) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1 + i * 0.12, duration: 0.18, ease: "power4.in" }, T(p[1], p[2]) - 0.12);
+          });
+          window.__timelines["s30"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

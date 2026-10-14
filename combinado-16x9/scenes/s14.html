@@ -4,14 +4,59 @@
   <body>
     <template>
       <style>
-        #s14 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s14 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s14 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; perspective: 1400px; }
+        #s14 .cam { position: absolute; inset: 0; }
+        #s14 .hd { position: absolute; left: 0; top: 190px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 38px; letter-spacing: 6px; color: #3b4a54; }
+        #s14 .board { position: absolute; left: 510px; top: 260px; width: 1100px; height: 260px; border-radius: 34px; background: #1b2a30; box-shadow: 0 22px 46px rgba(17, 27, 33, 0.25); }
+        #s14 .seam { position: absolute; left: 30px; top: 129px; width: 1040px; height: 3px; background: #111b21; opacity: 0.8; }
+        #s14 .fl { position: absolute; left: 30px; top: 24px; width: 1040px; height: 212px; border-radius: 20px; background: #3f5b67; text-align: center; font-family: "League Gothic", sans-serif; font-size: 170px; line-height: 212px; color: #fbfaf7; letter-spacing: 6px; transform-origin: 50% 50%; backface-visibility: hidden; }
+        #s14 .fin { background: #fbfaf7; color: #e5484d; }
+        #s14 .clk { position: absolute; left: 330px; top: 300px; width: 150px; height: 150px; border-radius: 50%; background: #fbfaf7; box-shadow: 0 10px 22px rgba(17, 27, 33, 0.14); }
+        #s14 .hand { position: absolute; left: 72px; top: 24px; width: 6px; height: 54px; border-radius: 3px; background: #111b21; transform-origin: 50% 51px; }
+        #s14 .hand2 { position: absolute; left: 72px; top: 44px; width: 6px; height: 34px; border-radius: 3px; background: #e5484d; transform-origin: 50% 31px; }
+        #s14 .qm { position: absolute; left: 1560px; top: 230px; width: 110px; height: 110px; border-radius: 50%; background: #e5484d; color: #fbfaf7; font-family: "League Gothic", sans-serif; font-size: 90px; line-height: 110px; text-align: center; }
       </style>
-      <div id="s14" data-composition-id="s14" data-width="1920" data-height="1080"><div class="ph">s14 · PLACEHOLDER</div></div>
+      <div id="s14" data-composition-id="s14" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="hd">PREVISÃO DE ENTREGA</div>
+          <div class="clk"><div class="hand"></div><div class="hand2"></div></div>
+          <div class="board">
+            <div class="flaps"></div>
+            <div class="seam"></div>
+          </div>
+          <div class="qm">?</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s14");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s14");
+          var q = function (s) { return R.querySelector(s); };
+          // cada hora uma informação: dias da semana (sem datas numéricas)
+          var words = ["SEGUNDA", "QUARTA", "AMANHÃ", "SEXTA", "TERÇA", "SÁBADO", "QUINTA", "SEGUNDA", "DIA TAL"];
+          var times = [0.05, T("hora"), T("era"), T("coisa"), T("cada", 2), T("hora", 2), T("era", 2), T("informação"), T("dia")];
+          var fl = q(".flaps");
+          words.forEach(function (w, i) { fl.insertAdjacentHTML("beforeend", '<div class="fl f' + i + (i === 8 ? " fin" : "") + '" data-layout-allow-overlap>' + w + "</div>"); });
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s14 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          tl.fromTo(q(".board"), { opacity: 0, rotationX: -60, y: 60 }, { opacity: 1, rotationX: 0, y: 0, duration: 0.4, ease: "power3.out" }, 0);
+          tl.fromTo(q(".hd"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0.1);
+          tl.fromTo(q(".clk"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, 0.15);
+          words.forEach(function (w, i) {
+            var t = times[i] - 0.06;
+            tl.fromTo(q(".f" + i), { rotationX: 90, opacity: 0 }, { rotationX: 0, opacity: 1, duration: 0.16, ease: "power2.out" }, t);
+            if (i < words.length - 1) tl.to(q(".f" + i), { rotationX: -90, opacity: 0, duration: 0.14, ease: "power2.in" }, times[i + 1] - 0.12);
+          });
+          // relógio girando cada vez mais rápido
+          var hand = q(".hand"), hand2 = q(".hand2");
+          VT.driver(tl, DUR, function (t) {
+            var a = t * t * 260;
+            hand.style.transform = "rotate(" + (a % 360).toFixed(1) + "deg)";
+            hand2.style.transform = "rotate(" + ((a / 12) % 360).toFixed(1) + "deg)";
+          });
+          tl.fromTo(q(".qm"), { opacity: 0, scale: 0, rotation: -60 }, { opacity: 1, scale: 1, rotation: 12, duration: 0.3, ease: "back.out(3)" }, T("tal") - 0.05);
+          tl.fromTo(q(".board"), { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, T("tal"));
           window.__timelines["s14"] = tl;
         })();
       </script>

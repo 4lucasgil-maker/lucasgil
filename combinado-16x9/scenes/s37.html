@@ -5,13 +5,67 @@
     <template>
       <style>
         #s37 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s37 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s37 .cam { position: absolute; inset: 0; }
+        #s37 .head { position: absolute; left: 230px; top: 300px; width: 300px; height: 300px; }
+        #s37 .hl { position: absolute; left: 180px; top: 620px; width: 400px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 4px; color: #3b4a54; }
+        #s37 .bub { position: absolute; width: 36px; height: 36px; border-radius: 50%; background: #fbfaf7; box-shadow: 0 6px 14px rgba(17, 27, 33, 0.1); }
+        #s37 .cloud { position: absolute; left: 640px; top: 150px; width: 1100px; height: 520px; border-radius: 260px; background: #fbfaf7; box-shadow: 0 20px 44px rgba(17, 27, 33, 0.12); }
+        #s37 .it { position: absolute; top: 120px; width: 420px; height: 280px; border-radius: 34px; }
+        #s37 .i1 { left: 90px; background: #d9fdd3; } #s37 .i2 { left: 590px; background: #3f5b67; color: #fbfaf7; }
+        #s37 .it .ic { position: absolute; left: 150px; top: 36px; width: 120px; height: 120px; }
+        #s37 .it .t { position: absolute; left: 0; top: 176px; width: 420px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 56px; line-height: 60px; }
+        #s37 .px { position: absolute; width: 70px; height: 70px; border-radius: 10px; opacity: 0; }
+        #s37 .lb { position: absolute; left: 640px; top: 690px; width: 1100px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 4px; color: #e5484d; }
       </style>
-      <div id="s37" data-composition-id="s37" data-width="1920" data-height="1080"><div class="ph">s37 · PLACEHOLDER</div></div>
+      <div id="s37" data-composition-id="s37" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="head"></div>
+          <div class="hl">OS CLIENTES</div>
+          <div class="bub b1" style="left:520px;top:300px"></div><div class="bub b2" style="left:570px;top:240px;width:50px;height:50px"></div>
+          <div class="cloud">
+            <div class="it i1"><div class="ic"></div><div class="t">O QUE VOCÊ FALOU</div></div>
+            <div class="it i2"><div class="ic"></div><div class="t">O QUE VOCÊ FEZ</div></div>
+            <div class="pxs"></div>
+          </div>
+          <div class="lb">NÃO NECESSARIAMENTE LEMBRAM</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s37");
+          var R = document.getElementById("s37");
+          var q = function (s) { return R.querySelector(s); };
+          q(".head").innerHTML = VT.person({ size: 300, bg: "#3f5b67" });
+          q(".i1 .ic").innerHTML = VT.icon("chat", { size: 120, stroke: 2, color: "#005c4b" });
+          q(".i2 .ic").innerHTML = VT.icon("check", { size: 120, stroke: 2.4 });
+          // partículas: grade 6×4 sobre cada cartão, que se desfaz em pó
+          var pxs = q(".pxs"), parts = [[], []];
+          [[90, "#d9fdd3"], [590, "#3f5b67"]].forEach(function (it, n) {
+            for (var r = 0; r < 4; r++) for (var c = 0; c < 6; c++) {
+              var cls = "px p" + n + "_" + (r * 6 + c);
+              pxs.insertAdjacentHTML("beforeend", '<div class="' + cls + '" style="left:' + (it[0] + c * 70) + "px;top:" + (120 + r * 70) + "px;background:" + it[1] + '" data-layout-ignore></div>');
+              parts[n].push({ el: pxs.lastChild, k: r * 6 + c, c: c, r: r });
+            }
+          });
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s37 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          tl.fromTo([q(".head"), q(".hl")], { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.05);
+          tl.fromTo([q(".b1"), q(".b2")], { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(3)", stagger: 0.08 }, T("lembrar") - 0.15);
+          tl.fromTo(q(".cloud"), { opacity: 0, scale: 0.6, transformOrigin: "0% 60%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, T("lembrar") + 0.05);
+          tl.fromTo(q(".i1"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T("que") + 0.1);
+          tl.fromTo(q(".i2"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T("clientes") - 0.1);
+          tl.fromTo(q(".lb"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, T("necessariamente") - 0.1);
+          // esquecimento: cada cartão vira pó no "falou" e no "fez"
+          [[0, ".i1", T("falou") - 0.35], [1, ".i2", T("fez") - 0.35]].forEach(function (d) {
+            var t0 = d[2];
+            tl.to(q(d[1]), { opacity: 0, duration: 0.15 }, t0 + 0.05);
+            parts[d[0]].forEach(function (p) {
+              var h = ((p.k * 73) % 100) / 100, h2 = ((p.k * 37) % 100) / 100;
+              tl.fromTo(p.el, { opacity: 1, x: 0, y: 0, rotation: 0, scale: 1 },
+                { opacity: 0, x: 120 + h * 260, y: -120 - h2 * 220, rotation: -60 + h * 120, scale: 0.3, duration: 0.9, ease: "power2.out", immediateRender: false }, t0 + p.c * 0.04 + h * 0.08);
+            });
+          });
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.03, duration: 6.4, ease: "sine.inOut" }, 0.1);
           window.__timelines["s37"] = tl;
         })();
       </script>

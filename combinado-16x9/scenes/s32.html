@@ -5,13 +5,78 @@
     <template>
       <style>
         #s32 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s32 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s32 .cam { position: absolute; inset: 0; }
+        #s32 .badge { position: absolute; left: 700px; top: 150px; width: 520px; height: 520px; }
+        #s32 .gl { position: absolute; left: 0; top: 196px; width: 520px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 110px; line-height: 110px; }
+        #s32 .gl small { display: block; font-size: 52px; line-height: 56px; letter-spacing: 3px; }
+        #s32 .gr { color: #e5484d; } #s32 .gg { color: #00a884; } #s32 .gk { color: #111b21; }
+        #s32 .sp { position: absolute; width: 60px; height: 60px; color: #c9a55c; }
+        #s32 .warn { position: absolute; left: 720px; top: 150px; width: 480px; height: 440px; transform-origin: 50% 0%; }
+        #s32 .wl { position: absolute; left: 700px; top: 600px; width: 520px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 100px; line-height: 104px; color: #111b21; }
+        #s32 .pb { position: absolute; width: 70px; height: 70px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
       </style>
-      <div id="s32" data-composition-id="s32" data-width="1920" data-height="1080"><div class="ph">s32 · PLACEHOLDER</div></div>
+      <div id="s32" data-composition-id="s32" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="badge">
+            <svg width="520" height="520" viewBox="0 0 520 520" aria-hidden="true">
+              <path d="M200 400 L150 510 L210 480 L240 520 L260 420 Z M320 400 L370 510 L310 480 L280 520 L260 420 Z" fill="#005c4b"/>
+              <g class="ros" fill="#c9a55c" stroke="#111b21" stroke-width="6" stroke-linejoin="round"></g>
+              <circle cx="260" cy="250" r="160" fill="#fbfaf7" stroke="#111b21" stroke-width="6"/>
+              <path class="crack" d="M260 92 L240 170 L280 220 L230 300 L270 408" fill="none" stroke="#111b21" stroke-width="6" stroke-linejoin="round"/>
+            </svg>
+            <div class="gl gr" data-layout-allow-overlap>100%<small data-layout-allow-overlap>MARAVILHOSA</small></div>
+            <div class="gl gg" data-layout-allow-overlap>100%<small data-layout-allow-overlap>MARAVILHOSA</small></div>
+            <div class="gl gk" data-layout-allow-overlap>100%<small data-layout-allow-overlap>MARAVILHOSA</small></div>
+          </div>
+          <div class="sp s0" style="left:640px;top:180px"></div><div class="sp s1" style="left:1240px;top:220px"></div>
+          <div class="sp s2" style="left:620px;top:520px"></div><div class="sp s3" style="left:1260px;top:540px"></div>
+          <svg class="warn" width="480" height="440" viewBox="0 0 480 440" aria-hidden="true">
+            <path d="M240 10 V60" stroke="#3b4a54" stroke-width="10" stroke-linecap="round"/>
+            <path d="M240 60 L450 420 H30 Z" fill="#c9a55c" stroke="#111b21" stroke-width="10" stroke-linejoin="round"/>
+            <path d="M240 180 V310" stroke="#111b21" stroke-width="30" stroke-linecap="round"/>
+            <circle cx="240" cy="365" r="17" fill="#111b21"/>
+          </svg>
+          <div class="wl">IMPREVISTO</div>
+          <div class="pb p0" style="left:520px;top:400px"></div><div class="pb p1" style="left:1330px;top:360px"></div><div class="pb p2" style="left:560px;top:620px"></div><div class="pb p3" style="left:1300px;top:600px"></div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s32");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s32");
+          var q = function (s) { return R.querySelector(s); };
+          var ros = "";
+          for (var i = 0; i < 16; i++) { var a = i * Math.PI / 8; ros += '<circle cx="' + (260 + Math.cos(a) * 185).toFixed(1) + '" cy="' + (250 + Math.sin(a) * 185).toFixed(1) + '" r="42"/>'; }
+          q(".ros").innerHTML = ros;
+          for (var s = 0; s < 4; s++) q(".s" + s).innerHTML = VT.icon("spark", { size: 60, stroke: 2.6 });
+          for (var p = 0; p < 4; p++) q(".p" + p).innerHTML = VT.icon("alert", { size: 40, stroke: 2.6 });
+          var gr = q(".gr"), gg = q(".gg");
+          var g0 = T("nunca") - 0.1, g1 = T("imprevisto") - 0.4;
+          // glitch cromático determinístico (tempo quantizado)
+          var hash = function (n) { var x = Math.sin(n * 127.1) * 43758.5453; return x - Math.floor(x); };
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s32 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          VT.driver(tl, DUR, function (t) {
+            var on = t >= g0 && t < g1, k = Math.floor(t * 24);
+            var amp = on ? 6 + 26 * (t - g0) / (g1 - g0) : 0;
+            gr.style.transform = "translate(" + (on ? (hash(k) - 0.5) * 2 * amp : 0).toFixed(1) + "px," + (on ? (hash(k + 7) - 0.5) * amp : 0).toFixed(1) + "px)";
+            gg.style.transform = "translate(" + (on ? (hash(k + 3) - 0.5) * 2 * amp : 0).toFixed(1) + "px," + (on ? (hash(k + 11) - 0.5) * amp : 0).toFixed(1) + "px)";
+          });
+          gsap.set([gr, gg], { opacity: 0 });
+          tl.fromTo(q(".badge"), { opacity: 0, scale: 0.4, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }, T("100%") - 0.3);
+          for (var j = 0; j < 4; j++) tl.fromTo(q(".s" + j), { opacity: 0, scale: 0, rotation: -90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, T("maravilhosa") - 0.1 + j * 0.06);
+          // nunca dá nada… o selo perfeito dá pane
+          tl.fromTo([gr, gg], { opacity: 0 }, { opacity: 0.85, duration: 0.05, immediateRender: false }, g0);
+          tl.fromTo(q(".crack"), { strokeDasharray: 400, strokeDashoffset: 400 }, { strokeDashoffset: 0, duration: 0.3, ease: "power3.out" }, T("nada") - 0.05);
+          tl.to([q(".s0"), q(".s1"), q(".s2"), q(".s3")], { opacity: 0, scale: 0, duration: 0.2 }, T("nada"));
+          tl.to(q(".badge"), { opacity: 0, scale: 0.85, duration: 0.25, ease: "power2.in" }, g1 - 0.05);
+          // é lógico que o imprevisto acontece
+          tl.fromTo(q(".warn"), { opacity: 0, y: -400 }, { opacity: 1, y: 0, duration: 0.5, ease: "bounce.out" }, g1 + 0.1);
+          tl.fromTo(q(".wl"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, T("imprevisto") - 0.05);
+          tl.fromTo(q(".warn"), { rotation: 0 }, { rotation: 8, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("acontece"));
+          // que tem problema
+          for (var b = 0; b < 4; b++) tl.fromTo(q(".p" + b), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(3)" }, T("problema") - 0.15 + b * 0.06);
           window.__timelines["s32"] = tl;
         })();
       </script>

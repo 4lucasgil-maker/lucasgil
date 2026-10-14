@@ -5,13 +5,77 @@
     <template>
       <style>
         #s23 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s23 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s23 .cam { position: absolute; inset: 0; }
+        #s23 .word { position: absolute; left: 0; top: 190px; width: 1920px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 210px; line-height: 220px; color: #111b21; letter-spacing: 2px; }
+        #s23 .glass { position: absolute; left: 300px; top: 170px; width: 1320px; height: 260px; border-radius: 40px; background: #fbfaf7; box-shadow: inset 0 0 0 6px rgba(251, 250, 247, 0.95); }
+        #s23 .crk { position: absolute; left: 300px; top: 170px; }
+        #s23 .shard { position: absolute; left: 1270px; top: 320px; width: 120px; height: 110px; opacity: 0; }
+        #s23 .box { position: absolute; left: 520px; top: 500px; width: 880px; height: 104px; border-radius: 52px; background: #fbfaf7; box-shadow: 0 12px 26px rgba(17, 27, 33, 0.14); }
+        #s23 .lab { position: absolute; left: 44px; top: 28px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 48px; letter-spacing: 2px; color: #54656f; }
+        #s23 .typ { position: absolute; left: 320px; top: 26px; font-weight: 700; font-size: 40px; line-height: 52px; color: #111b21; white-space: nowrap; }
+        #s23 .caret { display: inline-block; width: 4px; height: 44px; margin-left: 4px; vertical-align: -6px; background: #00a884; }
+        #s23 .nx { position: absolute; left: 1420px; top: 506px; width: 92px; height: 92px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s23 .sl { position: absolute; top: 620px; width: 520px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 170px; line-height: 170px; color: #111b21; }
+        #s23 .sl1 { left: 330px; } #s23 .sl2 { left: 1070px; color: #e5484d; }
       </style>
-      <div id="s23" data-composition-id="s23" data-width="1920" data-height="1080"><div class="ph">s23 · PLACEHOLDER</div></div>
+      <div id="s23" data-composition-id="s23" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="word" data-layout-allow-overlap>TRANSPARÊNCIA</div>
+          <div class="glass" data-layout-allow-overlap></div>
+          <svg class="crk" width="1320" height="260" viewBox="0 0 1320 260" data-layout-ignore>
+            <g fill="none" stroke="#3b4a54" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+              <path class="c c0" d="M880 120 L760 40 L700 0"/><path class="c c1" d="M880 120 L1010 30 L1060 0"/>
+              <path class="c c2" d="M880 120 L1040 150 L1200 130 L1320 160"/><path class="c c3" d="M880 120 L720 170 L560 150 L420 200"/>
+              <path class="c c4" d="M880 120 L900 260"/><path class="c c5" d="M880 120 L800 260"/>
+              <path class="c c6" d="M560 150 L500 60 L380 30"/><path class="c c7" d="M1200 130 L1240 260"/><path class="c c8" d="M720 170 L680 260"/>
+            </g>
+          </svg>
+          <svg class="shard" width="120" height="110" viewBox="0 0 120 110"><path d="M10 10 L110 20 L60 100 Z" fill="#fbfaf7" stroke="#3b4a54" stroke-width="5" stroke-linejoin="round"/></svg>
+          <div class="box"><div class="lab">JUSTIFICATIVA</div><div class="typ"><span class="tt"></span><span class="caret"></span></div></div>
+          <div class="nx"></div>
+          <div class="sl sl1">DURO</div>
+          <div class="sl sl2">FEIO</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s23");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s23");
+          var q = function (s) { return R.querySelector(s); };
+          q(".nx").innerHTML = VT.icon("x", { size: 52, stroke: 3.2 });
+          var tt = q(".tt"), caret = q(".caret");
+          var TXT = "porque…";
+          var tA = T("não") - 0.05, tB = T("justifique") + 0.1, tC = T("isso") - 0.05;
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s23 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          // digita "porque…" e apaga: não há justificativa
+          VT.driver(tl, DUR, function (t) {
+            var n = 0;
+            if (t >= tA && t < tB) n = Math.min(TXT.length, Math.floor((t - tA) / 0.07) + 1);
+            else if (t >= tB && t < tC) n = Math.max(0, TXT.length - Math.floor((t - tB) / 0.06) - 1);
+            tt.textContent = TXT.slice(0, n);
+            caret.style.opacity = Math.floor(t * 3) % 2 ? "0" : "1";
+          });
+          tl.fromTo(q(".word"), { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.3 }, 0.02);
+          tl.fromTo(q(".glass"), { opacity: 0 }, { opacity: 0.12, duration: 0.3 }, 0.05);
+          // falta de transparência: impacto, rachaduras e vidro embaçando
+          var tf = T("falta") - 0.05;
+          for (var i = 0; i < 6; i++) tl.fromTo(q(".c" + i), { strokeDasharray: 520, strokeDashoffset: 520 }, { strokeDashoffset: 0, duration: 0.18, ease: "power3.out" }, tf + i * 0.02);
+          tl.fromTo(q(".cam"), { x: 0 }, { x: 10, duration: 0.04, yoyo: true, repeat: 5, ease: "none" }, tf);
+          tl.to(q(".glass"), { opacity: 0.82, duration: 0.6, ease: "power2.out" }, T("transparência"));
+          tl.fromTo(q(".word"), { filter: "blur(0px)" }, { filter: "blur(14px)", duration: 0.6, ease: "power2.out", immediateRender: false }, T("transparência"));
+          for (var j = 6; j < 9; j++) tl.fromTo(q(".c" + j), { strokeDasharray: 300, strokeDashoffset: 300 }, { strokeDashoffset: 0, duration: 0.18, ease: "power3.out" }, T("muito") + (j - 6) * 0.05);
+          tl.fromTo(q(".shard"), { y: 0, rotation: 0, opacity: 1 }, { y: 420, rotation: 70, opacity: 0, duration: 0.6, ease: "power2.in", immediateRender: false }, T("ruim") - 0.05);
+          tl.set(q(".shard"), { opacity: 1 }, T("muito") + 0.1);
+          // não tem o que justifique
+          tl.fromTo(q(".box"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, tA - 0.3);
+          tl.fromTo(q(".nx"), { opacity: 0, scale: 0, rotation: -90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, T("isso"));
+          tl.to([q(".box"), q(".nx")], { opacity: 0, y: -30, duration: 0.3, ease: "power2.in" }, T("É", 2) - 0.15);
+          // muito duro, muito feio
+          tl.fromTo(q(".sl1"), { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.in" }, T("duro") - 0.12);
+          tl.fromTo(q(".sl2"), { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.in" }, T("feio") - 0.12);
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.04, duration: 0.14, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("feio") + 0.08);
           window.__timelines["s23"] = tl;
         })();
       </script>

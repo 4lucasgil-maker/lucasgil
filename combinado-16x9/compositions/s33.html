@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s33 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s33 .cam { position: absolute; inset: 0; }
+        #s33 .card { position: absolute; left: 400px; top: 150px; width: 1120px; height: 580px; border-radius: 40px; background: #fbfaf7; box-shadow: 0 24px 50px rgba(17, 27, 33, 0.16); }
+        #s33 .lbl { position: absolute; left: 60px; top: 46px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 6px; color: #54656f; }
+        #s33 .hw { position: absolute; left: 60px; top: 96px; font-weight: 900; font-size: 96px; line-height: 110px; letter-spacing: -1px; color: #111b21; }
+        #s33 .pos { position: absolute; left: 560px; top: 136px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; line-height: 40px; color: #005c4b; }
+        #s33 .rule { position: absolute; left: 60px; top: 236px; width: 1000px; height: 4px; border-radius: 2px; background: #cbc1b2; }
+        #s33 .num { position: absolute; left: 60px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; line-height: 60px; color: #54656f; }
+        #s33 .d1 { position: absolute; left: 130px; top: 290px; font-weight: 700; font-size: 50px; line-height: 60px; color: #54656f; white-space: nowrap; }
+        #s33 .st { position: absolute; left: 120px; top: 312px; width: 640px; height: 14px; border-radius: 7px; background: #e5484d; }
+        #s33 .d2 { position: absolute; left: 130px; top: 420px; font-weight: 900; font-size: 64px; line-height: 76px; color: #005c4b; white-space: nowrap; }
+        #s33 .pen { position: absolute; left: 0; top: 0; width: 90px; height: 90px; color: #e5484d; }
+        #s33 .ul { position: absolute; left: 124px; top: 500px; width: 820px; height: 12px; border-radius: 6px; background: #00a884; }
+      </style>
+      <div id="s33" data-composition-id="s33" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="card">
+            <div class="lbl">O QUE DEFINE UMA EMPRESA</div>
+            <div class="hw">em·pre·sa</div>
+            <div class="pos">s.f.</div>
+            <div class="rule"></div>
+            <div class="num" style="top:290px">1.</div>
+            <div class="d1">não ter problema nenhum</div>
+            <div class="st"></div>
+            <div class="num n2" style="top:428px">1.</div>
+            <div class="d2">como lida com o problema</div>
+            <div class="ul"></div>
+          </div>
+          <div class="pen" data-layout-ignore></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["Mas",0.145,0.305],["o",0.305,0.385],["que",0.385,0.465],["define",0.465,0.865],["uma",0.865,1.105],["empresa",1.105,1.665],["não",1.665,1.825],["é",1.825,1.985],["o",1.985,2.065],["fato",2.145,2.385],["de",2.385,2.545],["não",2.545,2.705],["ter",2.705,2.945],["problema",2.945,3.265],["nenhum,",3.265,3.745],["é",3.745,3.985],["como",3.985,4.225],["a",4.225,4.305],["gente",4.305,4.545],["lida",4.545,4.945],["com",4.945,5.105],["o",5.105,5.185],["problema.",5.185,5.585]];
+          var T = VT.finder(W, "s33");
+          var R = document.getElementById("s33");
+          var q = function (s) { return R.querySelector(s); };
+          q(".pen").innerHTML = VT.icon("pen", { size: 90, stroke: 2.2 });
+          gsap.set(q(".st"), { scaleX: 0, transformOrigin: "0% 50%" });
+          gsap.set(q(".ul"), { scaleX: 0, transformOrigin: "0% 50%" });
+          gsap.set(q(".pen"), { x: 1600, y: 300, opacity: 0 });
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".card"), { opacity: 0, rotationX: 50, y: 60 }, { opacity: 1, rotationX: 0, y: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+          tl.fromTo(q(".lbl"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("define") - 0.1);
+          tl.fromTo(q(".hw"), { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, T("empresa") - 0.15);
+          tl.fromTo(q(".pos"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("empresa") + 0.1);
+          // não é o fato de não ter problema nenhum → riscado à caneta
+          tl.fromTo(q(".d1"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "none" }, T("não") - 0.05);
+          tl.to(q(".pen"), { opacity: 1, x: 500, y: 410, duration: 0.35, ease: "power3.out" }, T("problema") - 0.45);
+          tl.to(q(".pen"), { x: 1150, y: 400, duration: 0.35, ease: "power2.inOut" }, T("problema") - 0.08);
+          tl.to(q(".st"), { scaleX: 1, duration: 0.35, ease: "power2.inOut" }, T("problema") - 0.08);
+          tl.fromTo(q(".d1"), { opacity: 1 }, { opacity: 0.45, duration: 0.3, immediateRender: false }, T("nenhum"));
+          // é como a gente lida com o problema → nova definição
+          tl.fromTo(q(".n2"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("é", 2) - 0.1);
+          tl.to(q(".pen"), { x: 520, y: 540, duration: 0.3, ease: "power2.inOut" }, T("é", 2) - 0.2);
+          tl.fromTo(q(".d2"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: T("problema", 2) - T("como") + 0.3, ease: "none" }, T("como") - 0.1);
+          tl.to(q(".pen"), { x: 1330, y: 540, duration: T("problema", 2) - T("como") + 0.3, ease: "none" }, T("como") - 0.1);
+          tl.to(q(".ul"), { scaleX: 1, duration: 0.3, ease: "power2.out" }, T("problema", 2) + 0.1);
+          tl.to(q(".pen"), { opacity: 0, y: 700, duration: 0.3, ease: "power2.in" }, T("problema", 2) + 0.25);
+          window.__timelines["s33"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

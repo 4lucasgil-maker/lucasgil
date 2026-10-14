@@ -5,13 +5,61 @@
     <template>
       <style>
         #s15 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s15 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s15 .cam { position: absolute; inset: 0; }
+        #s15 .base { position: absolute; left: 700px; top: 620px; width: 520px; height: 100px; border-radius: 28px; border-top-left-radius: 8px; background: #fbfaf7; box-shadow: 0 12px 26px rgba(17, 27, 33, 0.16); }
+        #s15 .base .bt { position: absolute; left: 34px; top: 22px; font-weight: 700; font-size: 40px; line-height: 56px; white-space: nowrap; }
+        #s15 .base .tg { position: absolute; left: 34px; top: 110px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 22px; line-height: 28px; letter-spacing: 2px; color: #005c4b; }
+        #s15 .blk { position: absolute; left: 790px; width: 340px; height: 92px; border-radius: 22px; color: #fbfaf7; display: flex; align-items: center; gap: 18px; padding-left: 26px; box-sizing: border-box; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; letter-spacing: 3px; box-shadow: 0 10px 20px rgba(17, 27, 33, 0.16); }
+        #s15 .k0 { top: 516px; background: #005c4b; } #s15 .k1 { top: 414px; background: #3f5b67; }
+        #s15 .k2 { top: 312px; background: #00a884; } #s15 .k3 { top: 210px; background: #c9a55c; color: #111b21; }
+        #s15 .pl { position: absolute; left: 1180px; top: 300px; font-family: "League Gothic", sans-serif; font-size: 120px; line-height: 124px; color: #111b21; }
+        #s15 .cli { position: absolute; left: 330px; top: 300px; width: 200px; height: 200px; }
+        #s15 .cl { position: absolute; left: 300px; top: 520px; width: 260px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 3px; color: #3b4a54; }
+        #s15 .beam { position: absolute; left: 530px; top: 380px; width: 240px; height: 8px; border-radius: 4px; background: #c9a55c; }
+        #s15 .sh { position: absolute; left: 1250px; top: 600px; width: 330px; height: 120px; border-radius: 60px; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; gap: 14px; padding-left: 26px; box-sizing: border-box; font-family: "League Gothic", sans-serif; font-size: 60px; }
       </style>
-      <div id="s15" data-composition-id="s15" data-width="1920" data-height="1080"><div class="ph">s15 · PLACEHOLDER</div></div>
+      <div id="s15" data-composition-id="s15" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="cli"></div>
+          <div class="cl">CLIENTE</div>
+          <div class="beam"></div>
+          <div class="tower">
+            <div class="blk k0"><span class="i0"></span>AGENDA</div>
+            <div class="blk k1"><span class="i1"></span>TRABALHO</div>
+            <div class="blk k2"><span class="i2"></span>VIAGEM</div>
+            <div class="blk k3"><span class="i3"></span>FAMÍLIA</div>
+          </div>
+          <div class="pl">PLANOS</div>
+          <div class="base"><div class="tg">A EMPRESA</div><div class="bt">vai chegar dia tal</div></div>
+          <div class="sh"><span class="si"></span>CONFIANÇA</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s15");
+          var R = document.getElementById("s15");
+          var q = function (s) { return R.querySelector(s); };
+          q(".cli").innerHTML = VT.person({ size: 200, bg: "#3f5b67" });
+          [["i0", "cal"], ["i1", "store"], ["i2", "pin"], ["i3", "heart"]].forEach(function (p) { q("." + p[0]).innerHTML = VT.icon(p[1], { size: 44, stroke: 2.2 }); });
+          q(".si").innerHTML = VT.icon("shield", { size: 58, stroke: 2.2 });
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s15 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          tl.fromTo(q(".base"), { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2)" }, 0.05);
+          tl.fromTo([q(".cli"), q(".cl")], { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, T("clientes") - 0.2);
+          // fazem planos: blocos empilham sobre a promessa
+          ["k0", "k1", "k2", "k3"].forEach(function (k, i) {
+            tl.fromTo(q("." + k), { opacity: 0, y: -300, rotation: i % 2 ? 6 : -6 }, { opacity: 1, y: 0, rotation: 0, duration: 0.42, ease: "bounce.out" }, T("fazem") - 0.15 + i * 0.16);
+          });
+          tl.fromTo(q(".pl"), { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, T("planos") - 0.05);
+          // acreditam: o cliente olha para cima (feixe até a torre)
+          tl.fromTo(q(".beam"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.3, ease: "power2.out" }, T("acreditam") - 0.1);
+          tl.fromTo(q(".cli"), { rotation: 0 }, { rotation: 8, duration: 0.3, ease: "sine.out" }, T("acreditam"));
+          // confiar
+          tl.fromTo(q(".sh"), { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, T("confiar") - 0.1);
+          tl.fromTo(q(".base"), { boxShadow: "0 12px 26px rgba(17,27,33,0.16)" }, { boxShadow: "0 0 0 8px rgba(0,168,132,0.45)", duration: 0.3, immediateRender: false }, T("confiar"));
+          // falando: a torre balança (presságio)
+          tl.fromTo(q(".tower"), { rotation: 0, transformOrigin: "960px 620px" }, { rotation: 2.5, duration: 0.18, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("falando") - 0.1);
+          tl.fromTo(q(".cam"), { scale: 1 }, { scale: 1.03, duration: 4.2, ease: "sine.inOut", transformOrigin: "50% 60%" }, 0.1);
           window.__timelines["s15"] = tl;
         })();
       </script>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s07 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s07 .cam { position: absolute; inset: 0; }
+        #s07 .emp { position: absolute; left: 0; top: 160px; width: 1920px; height: 120px; }
+        #s07 .ei { position: absolute; top: 0; width: 120px; height: 120px; border-radius: 28px; background: #fbfaf7; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.1); display: flex; align-items: center; justify-content: center; color: #3f5b67; }
+        #s07 .big { position: absolute; left: 0; top: 300px; width: 1920px; height: 300px; }
+        #s07 .L { position: absolute; top: 0; height: 300px; font-family: "League Gothic", sans-serif; font-size: 300px; line-height: 300px; color: #111b21; }
+        #s07 .row { position: absolute; left: 0; top: 330px; width: 1920px; height: 200px; display: flex; justify-content: center; gap: 48px; }
+        #s07 .wd { display: block; height: 200px; font-family: "League Gothic", sans-serif; font-size: 190px; line-height: 200px; color: #111b21; clip-path: inset(0 100% 0 0); }
+        #s07 .wd b { font-weight: 400; color: #00a884; }
+        #s07 .ruler { position: absolute; left: 260px; top: 640px; width: 1400px; height: 90px; border-radius: 16px; background: #c9a55c; box-shadow: 0 10px 22px rgba(17, 27, 33, 0.14); overflow: hidden; }
+        #s07 .ruler svg { position: absolute; left: 0; top: 0; }
+        #s07 .rl { position: absolute; left: 1520px; top: 600px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 4px; color: #3b4a54; }
+      </style>
+      <div id="s07" data-composition-id="s07" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="emp"></div>
+          <div class="big">
+            <div class="L LN" style="left:772px" data-layout-allow-overlap>N</div>
+            <div class="L LP" style="left:902px" data-layout-allow-overlap>P</div>
+            <div class="L LS" style="left:1030px" data-layout-allow-overlap>S</div>
+          </div>
+          <div class="row">
+            <div class="wd w1" data-layout-allow-overlap><b>N</b>ET</div>
+            <div class="wd w2" data-layout-allow-overlap><b>P</b>ROMOTER</div>
+            <div class="wd w3" data-layout-allow-overlap><b>S</b>CORE</div>
+          </div>
+          <div class="ruler"><svg class="tks" width="1400" height="90" viewBox="0 0 1400 90"></svg></div>
+          <div class="rl">MEDIR</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["E",0.118,0.278],["por",0.278,0.438],["isso",0.438,0.598],["que",0.598,0.758],["muitas",0.758,0.998],["empresas",0.998,1.318],["medem",1.318,1.718],["o",1.878,1.958],["que",1.958,2.038],["a",2.038,2.118],["gente",2.118,2.198],["chama",2.198,2.438],["de",2.438,2.598],["NPS,",2.598,3.158],["é",3.318,3.398],["o",3.398,3.478],["Net",3.558,3.718],["Promoter",3.798,4.278],["Score,",4.278,4.918]];
+          var T = VT.finder(W, "s07");
+          var R = document.getElementById("s07");
+          var q = function (s) { return R.querySelector(s); };
+          var emp = q(".emp");
+          for (var i = 0; i < 9; i++) emp.insertAdjacentHTML("beforeend", '<div class="ei ei' + i + '" style="left:' + (330 + i * 150) + 'px">' + VT.icon("store", { size: 64, stroke: 1.8 }) + "</div>");
+          var tk = "";
+          for (var x = 20; x < 1400; x += 28) tk += '<path d="M' + x + " 0 V" + (x % 140 === 20 ? 46 : x % 70 === 20 ? 32 : 20) + '" stroke="#111b21" stroke-width="4"/>';
+          q(".tks").innerHTML = tk;
+          var tl = gsap.timeline({ paused: true });
+          // muitas empresas
+          for (var j = 0; j < 9; j++) {
+            tl.fromTo(q(".ei" + j), { opacity: 0, y: -40, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2.2)" }, T("muitas") - 0.15 + j * 0.04);
+          }
+          // medem: a régua desenrola
+          tl.fromTo(q(".ruler"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.55, ease: "power3.out" }, T("medem") - 0.1);
+          tl.fromTo(q(".rl"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("medem") + 0.3);
+          tl.to(emp, { opacity: 0.35, duration: 0.3 }, T("NPS") - 0.3);
+          // NPS gigante
+          [["LN", 0], ["LP", 0.06], ["LS", 0.12]].forEach(function (p) {
+            tl.fromTo(q("." + p[0]), { opacity: 0, y: 120, scale: 1.4 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "power4.out" }, T("NPS") - 0.12 + p[1]);
+          });
+          tl.fromTo(q(".big"), { scale: 1 }, { scale: 1.05, duration: 0.6, ease: "sine.out" }, T("NPS") + 0.2);
+          // cada letra vira a palavra: Net · Promoter · Score
+          [["LN", "w1", "Net", -560], ["LP", "w2", "Promoter", -150], ["LS", "w3", "Score", 360]].forEach(function (p) {
+            var t = T(p[2]) - 0.08;
+            tl.to(q("." + p[0]), { x: p[3] * 0.35, scale: 0.62, opacity: 0, duration: 0.24, ease: "power2.in" }, t);
+            tl.fromTo(q("." + p[1]), { clipPath: "inset(0 100% 0 0)", y: 30 }, { clipPath: "inset(0 0% 0 0)", y: 0, duration: 0.34, ease: "power3.out" }, t + 0.06);
+          });
+          tl.fromTo(q(".row"), { scale: 1 }, { scale: 1.04, duration: 0.5, ease: "power2.out", immediateRender: false }, T("Score") + 0.25);
+          window.__timelines["s07"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

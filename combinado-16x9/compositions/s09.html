@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s09 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s09 .cam { position: absolute; inset: 0; }
+        #s09 .ttl { position: absolute; left: 0; top: 140px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 36px; letter-spacing: 6px; color: #005c4b; }
+        #s09 .cell { position: absolute; top: 196px; width: 112px; height: 104px; border-radius: 20px; background: #fbfaf7; box-shadow: 0 8px 18px rgba(17, 27, 33, 0.1); font-family: "League Gothic", sans-serif; font-size: 70px; line-height: 104px; text-align: center; color: #3b4a54; }
+        #s09 .bk { position: absolute; top: 420px; width: 420px; height: 280px; border: 10px solid #3b4a54; border-top: none; border-radius: 0 0 46px 46px; }
+        #s09 .bkL { left: 300px; border-color: #e5484d; }
+        #s09 .bkR { left: 1200px; border-color: #00a884; }
+        #s09 .bl { position: absolute; top: 712px; width: 420px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; line-height: 34px; letter-spacing: 4px; }
+        #s09 .blL { left: 300px; color: #e5484d; } #s09 .blR { left: 1200px; color: #005c4b; }
+        #s09 .minus { position: absolute; left: 880px; top: 470px; width: 160px; height: 160px; border-radius: 50%; background: #111b21; color: #fbfaf7; font-family: "League Gothic", sans-serif; font-size: 170px; line-height: 150px; text-align: center; }
+        #s09 .pp { position: absolute; left: 0; top: 0; width: 80px; height: 80px; }
+        #s09 .cur { position: absolute; left: 0; top: 0; width: 56px; height: 70px; }
+        #s09 .rip { position: absolute; left: 0; top: 0; width: 120px; height: 120px; border-radius: 50%; border: 6px solid #00a884; opacity: 0; }
+      </style>
+      <div id="s09" data-composition-id="s09" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="ttl">VALOR DO NPS</div>
+          <div class="cells"></div>
+          <div class="bk bkL"></div><div class="bk bkR"></div>
+          <div class="bl blL">DETRATORES</div><div class="bl blR">PROMOTORES</div>
+          <div class="minus">−</div>
+          <div class="peeps"></div>
+          <div class="rip" data-layout-ignore></div>
+          <div class="cur" data-layout-ignore></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["E",0.123,0.443],["pra",0.523,0.683],["gente",0.683,0.843],["chegar",0.923,1.243],["no",1.243,1.403],["valor",1.403,1.883],["do",2.123,2.363],["NPS,",2.363,3.163],["a",3.163,3.243],["gente",3.243,3.563],["pega",3.563,3.883],["o",3.883,3.963],["número",3.963,4.203],["de",4.203,4.363],["pessoas",4.363,4.603],["que",4.603,4.763],["realmente",4.763,5.003],["recomendariam,",5.003,5.723],["que",5.723,5.883],["dão",5.883,6.043],["nota",6.043,6.203],["9",6.203,6.363],["e",6.363,6.723],["10,",6.723,7.083],["e",7.083,7.243],["a",7.243,7.323],["gente",7.323,7.563],["diminui",7.563,8.123],["o",8.123,8.203],["número",8.203,8.443],["das",8.443,8.603],["pessoas",8.603,8.763],["que",8.763,8.923],["falam",8.923,9.243],["que",9.243,9.323],["não",9.323,9.483],["recomendariam,",9.483,10.283],["que",10.283,10.443],["dão",10.443,10.683],["uma",10.683,10.843],["nota",10.843,11.083],["baixa.",11.083,11.643]];
+          var T = VT.finder(W, "s09");
+          var R = document.getElementById("s09");
+          var q = function (s) { return R.querySelector(s); };
+          var cells = q(".cells"), peeps = q(".peeps");
+          var X0 = 294, STEP = 122;
+          for (var i = 0; i <= 10; i++) cells.insertAdjacentHTML("beforeend", '<div class="cell c' + i + '" style="left:' + (X0 + i * STEP) + 'px">' + i + "</div>");
+          // 6 promotores (das notas 9–10) e 6 detratores (das notas 0–6)
+          var P = [], D = [];
+          for (var k = 0; k < 6; k++) {
+            peeps.insertAdjacentHTML("beforeend", '<div class="pp pg' + k + '">' + VT.person({ size: 80, bg: "#00a884" }) + '</div><div class="pp pr' + k + '">' + VT.person({ size: 80, bg: "#e5484d" }) + "</div>");
+            P.push({ el: q(".pg" + k), from: [X0 + (k % 2 ? 10 : 9) * STEP + 16, 220], to: [1236 + (k % 3) * 120 + (k > 2 ? 50 : 0), 600 - (k > 2 ? 100 : 0)] });
+            D.push({ el: q(".pr" + k), from: [X0 + k * STEP + 16, 220], to: [336 + (k % 3) * 120 + (k > 2 ? 50 : 0), 600 - (k > 2 ? 100 : 0)] });
+          }
+          q(".cur").innerHTML = VT.cursor({ size: 56 });
+          gsap.set(q(".cur"), { x: 1990, y: 520 });
+          var tl = gsap.timeline({ paused: true });
+          for (var c = 0; c <= 10; c++) {
+            tl.fromTo(q(".c" + c), { opacity: 0, y: -50, rotationX: 90 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.35, ease: "back.out(2)" }, 0.08 + c * 0.04);
+          }
+          tl.fromTo(q(".ttl"), { opacity: 0, scaleX: 1.3 }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "power3.out" }, T("valor") - 0.15);
+          // promotores
+          tl.fromTo([q(".bkR"), q(".blR")], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(2)" }, T("pega") - 0.1);
+          P.forEach(function (p, k) {
+            var t0 = T("pessoas") - 0.1 + k * 0.12;
+            tl.fromTo(p.el, { x: p.from[0], y: p.from[1], opacity: 0, scale: 0.4 }, { x: p.to[0], y: p.to[1], opacity: 1, scale: 1, duration: 0.5, ease: "bounce.out" }, t0);
+          });
+          // cursor marca 9 e 10
+          var t9 = T("9") - 0.1, t10 = T("10") - 0.1;
+          var cx9 = X0 + 9 * STEP + 50, cx10 = X0 + 10 * STEP + 50;
+          tl.fromTo(q(".cur"), { x: 1990, y: 520 }, { x: cx9, y: 250, duration: 0.45, ease: "power3.out", immediateRender: false }, t9 - 0.45);
+          tl.to(q(".cur"), { x: cx10, y: 250, duration: 0.3, ease: "power2.inOut" }, t9 + 0.15);
+          tl.to(q(".cur"), { x: 1990, y: 420, duration: 0.5, ease: "power2.in" }, t10 + 0.3);
+          [[".c9", t9, cx9], [".c10", t10, cx10]].forEach(function (p) {
+            tl.to(q(p[0]), { backgroundColor: "#00a884", color: "#fbfaf7", scale: 1.1, duration: 0.18, ease: "back.out(3)" }, p[1]);
+          });
+          tl.fromTo(q(".rip"), { x: cx9 - 60, y: 190, opacity: 0.9, scale: 0.3 }, { opacity: 0, scale: 1.4, duration: 0.4, ease: "power2.out", immediateRender: false }, t9);
+          tl.fromTo(q(".rip"), { x: cx10 - 60, y: 190, opacity: 0.9, scale: 0.3 }, { opacity: 0, scale: 1.4, duration: 0.4, ease: "power2.out", immediateRender: false }, t10);
+          // diminui
+          tl.fromTo(q(".minus"), { opacity: 0, scale: 0, rotation: -180 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.2)" }, T("diminui") - 0.12);
+          // detratores
+          tl.fromTo([q(".bkL"), q(".blL")], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(2)" }, T("número", 2) - 0.2);
+          for (var r = 0; r <= 6; r++) {
+            tl.to(q(".c" + r), { backgroundColor: "#e5484d", color: "#fbfaf7", duration: 0.15 }, T("não") - 0.1 + r * 0.04);
+          }
+          D.forEach(function (p, k) {
+            var t0 = T("pessoas", 2) - 0.05 + k * 0.12;
+            tl.fromTo(p.el, { x: p.from[0], y: p.from[1], opacity: 0, scale: 0.4 }, { x: p.to[0], y: p.to[1], opacity: 1, scale: 1, duration: 0.5, ease: "bounce.out" }, t0);
+          });
+          // nota baixa: as notas baixas afundam
+          for (var b = 0; b <= 6; b++) {
+            tl.fromTo(q(".c" + b), { y: 0 }, { y: 22, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("baixa") - 0.15 + b * 0.03);
+          }
+          tl.fromTo(q(".cam"), { x: 0 }, { x: -20, duration: 11, ease: "sine.inOut" }, 0.5);
+          window.__timelines["s09"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

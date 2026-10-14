@@ -79,7 +79,7 @@
             '</span><span class="badge">' + VT.icon("mic", { size: 26, stroke: 2.6 }) + '</span><span class="meta"><span class="hh">' + V.clock +
             '</span><span class="tk">' + VT.ticks({ cls: "tk-grey", color: "#54656f" }) + VT.ticks({ cls: "tk-blue", color: "#53bdeb" }) + "</span></span>";
           root.appendChild(vm);
-          els.push({ g: { start: V.t, end: V.t + 2, voice: true }, el: vm });
+          els.push({ g: { start: V.t, end: V.t + 0.4, voice: true }, el: vm });
 
           var build = function () {
             var tl = gsap.timeline({ paused: true });

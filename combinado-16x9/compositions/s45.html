@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #s45 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
+        #s45 .cam { position: absolute; inset: 0; }
+        #s45 .key { position: absolute; left: 220px; top: 290px; width: 280px; height: 380px; }
+        #s45 .kl { position: absolute; left: 160px; top: 680px; width: 380px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 58px; line-height: 60px; color: #005c4b; }
+        #s45 .poll { position: absolute; left: 640px; top: 250px; width: 620px; height: 430px; border-radius: 34px; border-top-left-radius: 8px; background: #fbfaf7; box-shadow: 0 18px 40px rgba(17, 27, 33, 0.16); }
+        #s45 .pq { position: absolute; left: 36px; top: 30px; font-weight: 900; font-size: 40px; line-height: 50px; }
+        #s45 .pt { position: absolute; left: 36px; top: 86px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 22px; line-height: 28px; letter-spacing: 2px; color: #54656f; }
+        #s45 .op { position: absolute; left: 36px; width: 548px; height: 110px; }
+        #s45 .op1 { top: 140px; } #s45 .op2 { top: 270px; }
+        #s45 .rad { position: absolute; left: 0; top: 18px; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 5px #54656f; }
+        #s45 .on { position: absolute; left: 0; top: 18px; width: 44px; height: 44px; border-radius: 50%; background: #00a884; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s45 .ot { position: absolute; left: 66px; top: 14px; font-weight: 700; font-size: 34px; line-height: 50px; white-space: nowrap; }
+        #s45 .bar { position: absolute; left: 66px; top: 76px; width: 470px; height: 14px; border-radius: 7px; background: #efeae2; overflow: hidden; }
+        #s45 .bf { position: absolute; left: 0; top: 0; width: 470px; height: 14px; border-radius: 7px; background: #00a884; }
+        #s45 .vav { position: absolute; left: 500px; top: 14px; width: 48px; height: 48px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 4px #fbfaf7; }
+        #s45 .vav img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #s45 .odo { position: absolute; left: 1330px; top: 340px; width: 440px; height: 150px; border-radius: 26px; background: #111b21; box-shadow: 0 16px 34px rgba(17, 27, 33, 0.25); }
+        #s45 .dg { position: absolute; top: 22px; width: 56px; height: 106px; border-radius: 10px; background: #1b2a30; overflow: hidden; }
+        #s45 .col { position: absolute; left: 0; top: 0; width: 56px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 70px; line-height: 106px; text-align: center; color: #fbfaf7; }
+        #s45 .km { position: absolute; left: 1330px; top: 504px; width: 440px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 60px; line-height: 64px; color: #111b21; }
+      </style>
+      <div id="s45" data-composition-id="s45" data-width="1920" data-height="1080">
+        <div class="cam">
+          <svg class="key" width="280" height="380" viewBox="0 0 280 380" aria-hidden="true">
+            <rect x="60" y="20" width="160" height="230" rx="60" fill="#1b2a30" stroke="#111b21" stroke-width="6"/>
+            <circle cx="140" cy="90" r="26" fill="#3f5b67"/><circle cx="140" cy="170" r="26" fill="#3f5b67"/>
+            <rect x="120" y="245" width="40" height="110" rx="10" fill="#cbc1b2" stroke="#111b21" stroke-width="5"/>
+            <path d="M160 290 h22 M160 320 h14" stroke="#111b21" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+          <div class="kl">COMPRAR UM CARRO</div>
+          <div class="poll">
+            <div class="pq">E vocês?</div>
+            <div class="pt">ENQUETE · ESCOLHA UMA</div>
+            <div class="op op1"><div class="rad"></div><div class="ot">Já comprei um carro zero</div><div class="bar"><div class="bf b1"></div></div></div>
+            <div class="op op2"><div class="rad"></div><div class="on"></div><div class="ot">Nunca tinha comprado</div><div class="bar"><div class="bf b2"></div></div><div class="vav"><img src="assets/images/cris-junqueira-avatar.jpg" alt="" /></div></div>
+          </div>
+          <div class="odo"></div>
+          <div class="km">CARRO ZERO</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var W = [["E",0.153,0.233],["por",0.313,0.473],["fim,",0.473,0.793],["pensa",0.953,1.433],["na",1.433,1.593],["situação:",1.593,2.073],["comprar",2.073,2.393],["um",2.473,2.553],["carro.",2.553,2.713],["Eu",2.713,2.793],["não",2.793,2.873],["sei",2.873,3.113],["vocês,",3.113,3.433],["mas",3.433,3.593],["nunca",3.913,3.993],["tinha",4.233,4.393],["comprado",4.393,4.793],["um",4.793,4.873],["carro",4.873,5.113],["zero.",5.113,5.513]];
+          var T = VT.finder(W, "s45");
+          var DUR = 5.68;
+          var R = document.getElementById("s45");
+          var q = function (s) { return R.querySelector(s); };
+          q(".on").innerHTML = VT.icon("check", { size: 30, stroke: 3.4 });
+          // hodômetro: 6 dígitos que rolam até 000000 no "zero"
+          var odo = q(".odo"), cols = [];
+          for (var i = 0; i < 6; i++) {
+            var seq = "";
+            for (var k = 0; k < 10; k++) seq += ((9 - k + i * 3) % 10) + "<br>";
+            seq += "0";
+            odo.insertAdjacentHTML("beforeend", '<div class="dg" style="left:' + (24 + i * 68) + 'px"><div class="col c' + i + '">' + seq + "</div></div>");
+            cols.push(q(".c" + i));
+          }
+          var tz = T("zero") - 0.15;
+          var tl = gsap.timeline({ paused: true });
+          VT.driver(tl, DUR, function (t) {
+            cols.forEach(function (c, j) {
+              var t0 = tz - 1.0 - j * 0.08, p = Math.max(0, Math.min(1, (t - t0) / (1.0 + j * 0.08)));
+              p = 1 - Math.pow(1 - p, 3);
+              c.style.transform = "translateY(" + (-p * 10 * 106).toFixed(1) + "px)";
+            });
+          });
+          gsap.set([q(".b1"), q(".b2")], { scaleX: 0, transformOrigin: "0% 50%" });
+          gsap.set([q(".on"), q(".vav")], { scale: 0 });
+          // comprar um carro: a chave cai
+          tl.fromTo(q(".key"), { opacity: 0, y: -260, rotation: -25 }, { opacity: 1, y: 0, rotation: 8, duration: 0.5, ease: "bounce.out" }, T("comprar") - 0.3);
+          tl.fromTo(q(".kl"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, T("carro") - 0.1);
+          tl.fromTo(q(".key"), { rotation: 8 }, { rotation: -6, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("carro") + 0.3);
+          // eu não sei vocês: enquete
+          tl.fromTo(q(".poll"), { opacity: 0, scale: 0.7, transformOrigin: "0% 0%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, T("Eu") - 0.2);
+          tl.fromTo(q(".op1"), { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.25 }, T("sei") - 0.1);
+          tl.fromTo(q(".op2"), { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.25 }, T("sei") + 0.05);
+          // mas nunca tinha comprado: o voto dela
+          tl.to(q(".on"), { scale: 1, duration: 0.25, ease: "back.out(3)" }, T("nunca") - 0.05);
+          tl.to(q(".b2"), { scaleX: 1, duration: 0.5, ease: "power3.out" }, T("nunca"));
+          tl.to(q(".vav"), { scale: 1, duration: 0.3, ease: "back.out(3)" }, T("comprado") - 0.1);
+          // carro zero: o hodômetro chega a zero
+          tl.fromTo(q(".odo"), { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, T("comprado") - 0.6);
+          tl.fromTo(q(".km"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, T("zero") - 0.05);
+          tl.fromTo(q(".odo"), { scale: 1 }, { scale: 1.06, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("zero") + 0.05);
+          window.__timelines["s45"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

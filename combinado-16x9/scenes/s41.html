@@ -5,13 +5,76 @@
     <template>
       <style>
         #s41 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s41 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s41 .cam { position: absolute; inset: 0; }
+        #s41 .pan { position: absolute; left: 340px; top: 150px; width: 820px; height: 580px; border-radius: 40px; background: #efeae2; box-shadow: 0 0 0 10px #fbfaf7, 0 22px 46px rgba(17, 27, 33, 0.18); overflow: hidden; }
+        #s41 .ph { position: absolute; left: 0; top: 0; width: 820px; height: 110px; background: #fbfaf7; }
+        #s41 .gn { position: absolute; left: 36px; top: 20px; font-weight: 700; font-size: 36px; line-height: 44px; }
+        #s41 .mem { position: absolute; left: 36px; top: 64px; display: flex; gap: 8px; }
+        #s41 .mm { width: 34px; height: 34px; }
+        #s41 .me { position: absolute; left: 0; top: 0; width: 34px; height: 34px; }
+        #s41 .bub { position: absolute; left: 380px; width: 400px; height: 96px; border-radius: 26px; border-top-right-radius: 8px; background: #d9fdd3; box-shadow: 0 6px 14px rgba(17, 27, 33, 0.1); }
+        #s41 .bub .l1 { position: absolute; left: 26px; top: 26px; width: 300px; height: 14px; border-radius: 7px; background: rgba(0, 92, 75, 0.35); }
+        #s41 .bub .l2 { position: absolute; left: 26px; top: 54px; width: 200px; height: 14px; border-radius: 7px; background: rgba(0, 92, 75, 0.35); }
+        #s41 .bub .tk { position: absolute; right: 18px; bottom: 12px; }
+        #s41 .b1 { top: 150px; } #s41 .b2 { top: 270px; }
+        #s41 .fail { position: absolute; left: 310px; top: 290px; width: 56px; height: 56px; border-radius: 50%; background: #e5484d; color: #fbfaf7; font-weight: 900; font-size: 34px; line-height: 56px; text-align: center; }
+        #s41 .typ { position: absolute; left: 36px; top: 400px; width: 140px; height: 70px; border-radius: 26px; border-top-left-radius: 8px; background: #fbfaf7; }
+        #s41 .td { position: absolute; top: 26px; width: 18px; height: 18px; border-radius: 50%; background: #54656f; }
+        #s41 .word { position: absolute; left: 1250px; height: 90px; font-family: "League Gothic", sans-serif; font-size: 84px; line-height: 90px; color: #111b21; white-space: nowrap; }
+        #s41 .word i { position: absolute; left: -10px; top: 42px; height: 10px; border-radius: 5px; background: #e5484d; }
+        #s41 .wd1 { top: 180px; } #s41 .wd2 { top: 300px; } #s41 .wd3 { top: 420px; } #s41 .wd4 { top: 540px; }
+        #s41 .np { position: absolute; left: 1250px; top: 660px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 4px; color: #005c4b; }
       </style>
-      <div id="s41" data-composition-id="s41" data-width="1920" data-height="1080"><div class="ph">s41 · PLACEHOLDER</div></div>
+      <div id="s41" data-composition-id="s41" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="pan">
+            <div class="ph"><div class="gn">Atendimento</div><div class="mem"><div class="mm m0"></div><div class="mm m1"></div><div class="mm m2"></div><div class="mm m3"></div></div></div>
+            <div class="bub b1"><div class="l1"></div><div class="l2"></div><div class="tk t1"></div></div>
+            <div class="bub b2"><div class="l1"></div><div class="l2"></div><div class="tk t2"></div></div>
+            <div class="fail">!</div>
+            <div class="typ"><div class="td d0" style="left:26px"></div><div class="td d1" style="left:60px"></div><div class="td d2" style="left:94px"></div></div>
+          </div>
+          <div class="word wd1" data-layout-allow-overlap>IMPOTENTE<i style="width:300px"></i></div>
+          <div class="word wd2" data-layout-allow-overlap>IGNORADA<i style="width:270px"></i></div>
+          <div class="word wd3" data-layout-allow-overlap>DEIXADA DE LADO<i style="width:480px"></i></div>
+          <div class="word wd4" data-layout-allow-overlap>NÃO IMPORTA<i style="width:380px"></i></div>
+          <div class="np">NADA DISSO</div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s41");
+          var R = document.getElementById("s41");
+          var q = function (s) { return R.querySelector(s); };
+          var BG = ["#c9a55c", "#3f5b67", "#005c4b", "#54656f"];
+          for (var m = 0; m < 4; m++) q(".m" + m).innerHTML = VT.person({ size: 34, bg: BG[m] });
+          q(".t1").innerHTML = VT.ticks({ color: "#53bdeb", width: 30 });
+          q(".t2").innerHTML = VT.ticks({ color: "#53bdeb", width: 30 });
+          gsap.set(R.querySelectorAll(".word i"), { scaleX: 0, transformOrigin: "0% 50%" });
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s41 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          tl.fromTo(q(".pan"), { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.6)" }, 0.02);
+          tl.fromTo(q(".b1"), { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, 0.25);
+          // impotente: a mensagem não sai
+          tl.fromTo(q(".b2"), { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, T("impotente") - 0.4);
+          tl.fromTo(q(".fail"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(3)" }, T("impotente") - 0.05);
+          // ignorada: visualizado, alguém começa a digitar… e desiste
+          tl.fromTo(q(".typ"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, T("ignorada") - 0.5);
+          ["d0", "d1", "d2"].forEach(function (d, i) {
+            tl.fromTo(q("." + d), { y: 0 }, { y: -8, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, T("ignorada") - 0.4 + i * 0.08);
+          });
+          tl.to(q(".typ"), { opacity: 0, scale: 0.6, duration: 0.2 }, T("ignorada") + 0.4);
+          // deixada de lado: ela é empurrada para fora do grupo
+          tl.to(q(".m0"), { x: -80, opacity: 0, duration: 0.4, ease: "power3.in" }, T("deixada"));
+          tl.to([q(".b1"), q(".b2"), q(".fail")], { x: 520, duration: 0.6, ease: "power3.in" }, T("lado") - 0.3);
+          // que ela não importa: o painel esmaece
+          tl.to(q(".pan"), { opacity: 0.45, scale: 0.96, duration: 0.4 }, T("importa") - 0.1);
+          // as palavras, cada uma riscada: nada disso
+          [["wd1", "impotente"], ["wd2", "ignorada"], ["wd3", "deixada"], ["wd4", "importa"]].forEach(function (w) {
+            tl.fromTo(q("." + w[0]), { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.25, ease: "power3.out" }, T(w[1]) - 0.1);
+            tl.to(q("." + w[0] + " i"), { scaleX: 1, duration: 0.2, ease: "power2.out" }, T(w[1]) + 0.35);
+          });
+          tl.fromTo(q(".np"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, T("importa") + 0.4);
           window.__timelines["s41"] = tl;
         })();
       </script>

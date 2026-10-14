@@ -5,13 +5,68 @@
     <template>
       <style>
         #s26 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s26 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s26 .cam { position: absolute; inset: 0; }
+        #s26 .na { position: absolute; left: 760px; top: 250px; width: 400px; height: 300px; }
+        #s26 .na .bb { position: absolute; left: 70px; top: 20px; width: 260px; height: 200px; color: #3f5b67; }
+        #s26 .na .sl { position: absolute; left: 60px; top: 110px; width: 280px; height: 18px; border-radius: 9px; background: #e5484d; }
+        #s26 .na .nt { position: absolute; left: 0; top: 236px; width: 400px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 64px; line-height: 64px; color: #e5484d; }
+        #s26 .nd { position: absolute; width: 200px; height: 200px; border-radius: 50%; background: #fbfaf7; box-shadow: 0 14px 30px rgba(17, 27, 33, 0.16); display: flex; align-items: center; justify-content: center; color: #3f5b67; }
+        #s26 .nl { position: absolute; width: 400px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 58px; line-height: 60px; color: #111b21; }
+        #s26 .ball { position: absolute; left: 0; top: 0; width: 110px; height: 110px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 24px rgba(229, 72, 77, 0.4); }
+        #s26 .ex { position: absolute; padding: 6px 16px; border-radius: 14px; background: #111b21; color: #fbfaf7; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 22px; line-height: 28px; letter-spacing: 2px; white-space: nowrap; }
       </style>
-      <div id="s26" data-composition-id="s26" data-width="1920" data-height="1080"><div class="ph">s26 · PLACEHOLDER</div></div>
+      <div id="s26" data-composition-id="s26" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="na"><div class="bb"></div><div class="sl"></div><div class="nt">NÃO ADIANTA</div></div>
+          <div class="nd n1" style="left:380px;top:200px"></div><div class="nl l1" style="left:280px;top:414px">TERCEIRO</div>
+          <div class="nd n2" style="left:1340px;top:200px"></div><div class="nl l2" style="left:1240px;top:414px">CONCESSIONÁRIA</div>
+          <div class="nd n3" style="left:860px;top:470px"></div><div class="nl l3" style="left:760px;top:684px">BLINDADORA</div>
+          <div class="ex e1" style="left:330px;top:150px">NÃO FOI EU</div>
+          <div class="ex e2" style="left:1290px;top:150px">NÃO FOI EU</div>
+          <div class="ex e3" style="left:1080px;top:520px">NÃO FOI EU</div>
+          <div class="ball"></div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s26");
+          var DUR = /*@DUR@*/ 0;
+          var R = document.getElementById("s26");
+          var q = function (s) { return R.querySelector(s); };
+          q(".na .bb").innerHTML = VT.icon("chat", { size: 200, stroke: 1.6 });
+          q(".n1").innerHTML = VT.icon("user", { size: 110, stroke: 1.8 });
+          q(".n2").innerHTML = VT.icon("store", { size: 110, stroke: 1.8 });
+          q(".n3").innerHTML = VT.icon("shield", { size: 110, stroke: 1.8 });
+          q(".ball").innerHTML = VT.icon("alert", { size: 62, stroke: 2.6 });
+          // a bola-problema: centro → terceiro → concessionária → blindadora → ricochete
+          var P = { c: [905, 290], a: [425, 245], b: [1385, 245], d: [905, 515] };
+          var t1 = T("terceiro"), t2 = T("concessionária"), t3 = T("blindadora"), tq = T("não", 3);
+          var KX = [[0, P.c[0]], [t1 - 0.3, P.c[0]], [t1, P.a[0], "out"], [t1 + 0.35, 640, "out"], [t2 - 0.3, 640], [t2, P.b[0], "out"], [t2 + 0.35, 1180, "out"], [t3 - 0.3, 1180], [t3, P.d[0], "out"],
+            [tq, P.d[0]], [tq + 0.12, P.a[0], "lin"], [tq + 0.24, P.b[0], "lin"], [tq + 0.36, P.d[0], "lin"], [tq + 0.48, P.a[0], "lin"], [DUR, 660, "out"]];
+          var KY = [[0, P.c[1]], [t1 - 0.3, P.c[1]], [t1, P.a[1], "out"], [t1 + 0.35, 330, "out"], [t2 - 0.3, 330], [t2, P.b[1], "out"], [t2 + 0.35, 330, "out"], [t3 - 0.3, 330], [t3, P.d[1], "out"],
+            [tq, P.d[1]], [tq + 0.12, P.a[1], "lin"], [tq + 0.24, P.b[1], "lin"], [tq + 0.36, P.d[1], "lin"], [tq + 0.48, P.a[1], "lin"], [DUR, 380, "out"]];
+          var ball = q(".ball");
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s26 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          VT.driver(tl, DUR, function (t) {
+            ball.style.transform = "translate(" + VT.kf(t, KX).toFixed(1) + "px," + VT.kf(t, KY).toFixed(1) + "px) rotate(" + (t > tq ? (t - tq) * 900 : 0).toFixed(0) + "deg)";
+          });
+          // não adianta falar
+          tl.fromTo(q(".na .bb"), { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, 0.05);
+          tl.fromTo(q(".na .sl"), { scaleX: 0, rotation: -30 }, { scaleX: 1, rotation: -30, duration: 0.2, ease: "power3.out" }, T("adianta"));
+          tl.fromTo(q(".na .nt"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25 }, T("adianta") + 0.1);
+          tl.to(q(".na"), { opacity: 0, scale: 0.6, duration: 0.3, ease: "power2.in" }, T("menos") + 0.1);
+          tl.fromTo(ball, { opacity: 0 }, { opacity: 1, duration: 0.2 }, T("menos") + 0.2);
+          // os três nós aparecem
+          [["n1", "l1"], ["n2", "l2"], ["n3", "l3"]].forEach(function (n, i) {
+            tl.fromTo([q("." + n[0]), q("." + n[1])], { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, T("menos") + 0.1 + i * 0.08);
+          });
+          // cada um rebate: "não fui eu"
+          [["n1", "e1", t1], ["n2", "e2", t2], ["n3", "e3", t3]].forEach(function (h) {
+            tl.fromTo(q("." + h[0]), { x: 0 }, { x: 14, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, h[2]);
+            tl.fromTo(q("." + h[1]), { opacity: 0, y: 10, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.25, ease: "back.out(2.6)" }, h[2] + 0.02);
+          });
+          tl.fromTo(q(".cam"), { rotation: 0 }, { rotation: 1.2, duration: 0.08, yoyo: true, repeat: 5, ease: "none" }, tq);
           window.__timelines["s26"] = tl;
         })();
       </script>

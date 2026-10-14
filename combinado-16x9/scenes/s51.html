@@ -5,13 +5,80 @@
     <template>
       <style>
         #s51 { position: absolute; inset: 0; font-family: Inter, sans-serif; color: #111b21; }
-        #s51 .ph { position: absolute; left: 0; top: 400px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 60px; line-height: 70px; color: #cbc1b2; }
+        #s51 .cam { position: absolute; inset: 0; }
+        #s51 .fan { position: absolute; inset: 0; }
+        #s51 .cd { position: absolute; left: 810px; top: 200px; width: 300px; height: 330px; border-radius: 30px; background: #fbfaf7; box-shadow: 0 16px 34px rgba(17, 27, 33, 0.16); transform-origin: 50% 120%; }
+        #s51 .cd .n { position: absolute; left: 26px; top: 20px; font-family: "League Gothic", sans-serif; font-size: 100px; line-height: 100px; color: #005c4b; }
+        #s51 .cd .l { position: absolute; left: 22px; top: 130px; width: 262px; font-family: "League Gothic", sans-serif; font-size: 46px; line-height: 52px; color: #111b21; }
+        #s51 .cd .ic { position: absolute; right: 22px; top: 26px; width: 70px; height: 70px; color: #3f5b67; }
+        #s51 .ok { position: absolute; left: 1150px; top: 170px; height: 76px; padding: 0 24px 0 16px; border-radius: 38px; background: #00a884; color: #fbfaf7; display: flex; align-items: center; gap: 10px; font-family: "League Gothic", sans-serif; font-size: 50px; }
+        #s51 .ind { position: absolute; left: 0; top: 590px; width: 1920px; height: 120px; }
+        #s51 .ii { position: absolute; top: 0; width: 110px; height: 110px; border-radius: 28px; background: #005c4b; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
+        #s51 .il { position: absolute; left: 0; top: 724px; width: 1920px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: 6px; color: #3b4a54; }
+        #s51 .fin { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #s51 .carw { position: absolute; left: 700px; top: 330px; width: 520px; height: 220px; }
+        #s51 .chk { position: absolute; left: 1180px; top: 240px; width: 170px; height: 170px; border-radius: 50%; background: #00a884; color: #fbfaf7; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 12px rgba(0, 168, 132, 0.25); }
+        #s51 .tc { position: absolute; left: 0; top: 590px; width: 1920px; text-align: center; font-family: "League Gothic", sans-serif; font-size: 110px; line-height: 114px; color: #005c4b; }
+        #s51 .pr { position: absolute; width: 70px; height: 70px; border-radius: 50%; background: #e5484d; color: #fbfaf7; display: flex; align-items: center; justify-content: center; }
       </style>
-      <div id="s51" data-composition-id="s51" data-width="1920" data-height="1080"><div class="ph">s51 · PLACEHOLDER</div></div>
+      <div id="s51" data-composition-id="s51" data-width="1920" data-height="1080">
+        <div class="cam">
+          <div class="fan">
+            <div class="cd c1"><div class="n" data-layout-allow-overlap>1</div><div class="ic"></div><div class="l" data-layout-allow-overlap>TRANSPARÊNCIA</div></div>
+            <div class="cd c2"><div class="n" data-layout-allow-overlap>2</div><div class="ic"></div><div class="l" data-layout-allow-overlap>O PROBLEMA É SEU</div></div>
+            <div class="cd c3"><div class="n" data-layout-allow-overlap>3</div><div class="ic"></div><div class="l" data-layout-allow-overlap>COMO VOCÊ REAGE</div></div>
+            <div class="cd c4"><div class="n" data-layout-allow-overlap>4</div><div class="ic"></div><div class="l" data-layout-allow-overlap>O MOMENTO MÁGICO</div></div>
+            <div class="ok"><span class="oi"></span>ÚTIL</div>
+          </div>
+          <div class="ind"></div>
+          <div class="il">TODAS AS INDÚSTRIAS</div>
+          <div class="fin">
+            <div class="carw"></div>
+            <div class="pr r0" style="left:640px;top:300px"></div><div class="pr r1" style="left:1240px;top:520px"></div><div class="pr r2" style="left:660px;top:520px"></div>
+            <div class="chk"></div>
+            <div class="tc">QUE DÊ TUDO CERTO</div>
+          </div>
+        </div>
+      </div>
       <script>
         (function () {
+          var W = /*@WORDS@*/ [];
+          var T = VT.finder(W, "s51");
+          var R = document.getElementById("s51");
+          var q = function (s) { return R.querySelector(s); };
+          [["c1", "eye"], ["c2", "alert"], ["c3", "heart"], ["c4", "spark"]].forEach(function (p) { q("." + p[0] + " .ic").innerHTML = VT.icon(p[1], { size: 70, stroke: 2 }); });
+          q(".oi").innerHTML = VT.icon("check", { size: 40, stroke: 3 });
+          var IND = ["store", "car", "phone", "shield", "doc", "key", "chat", "cal"];
+          var ind = q(".ind");
+          IND.forEach(function (n, i) { ind.insertAdjacentHTML("beforeend", '<div class="ii i' + i + '" style="left:' + (440 + i * 135) + 'px">' + VT.icon(n, { size: 64, stroke: 2 }) + "</div>"); });
+          q(".carw").innerHTML = VT.car({ width: 520, color: "#00a884" });
+          q(".chk").innerHTML = VT.icon("check", { size: 110, stroke: 3 });
+          for (var p = 0; p < 3; p++) q(".r" + p).innerHTML = VT.icon("alert", { size: 40, stroke: 2.6 });
+          gsap.set([q(".carw"), q(".chk"), q(".tc"), q(".r0"), q(".r1"), q(".r2")], { opacity: 0 });
           var tl = gsap.timeline({ paused: true });
-          tl.fromTo("#s51 .ph", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+          // espero que tenha sido útil: as quatro lições em leque
+          var fan = [["c1", -480, -12], ["c2", -160, -4], ["c3", 160, 4], ["c4", 480, 12]];
+          fan.forEach(function (f, i) {
+            tl.fromTo(q("." + f[0]), { opacity: 0, y: 300, x: 0, rotation: 0 }, { opacity: 1, y: 0, x: f[1], rotation: f[2], duration: 0.5, ease: "back.out(1.6)" }, T("útil") - 0.4 + i * 0.07);
+          });
+          tl.fromTo(q(".ok"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, T("útil") + 0.15);
+          tl.fromTo(q(".fan"), { scale: 1 }, { scale: 1.04, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T("lições") - 0.05);
+          // valem pra todas as indústrias
+          IND.forEach(function (n, i) {
+            tl.fromTo(q(".i" + i), { opacity: 0, y: 50, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2.6)" }, T("valem") - 0.1 + i * 0.06);
+          });
+          tl.fromTo(q(".il"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, T("todas") - 0.05);
+          // vamos torcer…: o carro, os problemas somem, tudo certo
+          var tv = T("Vamos") - 0.25;
+          tl.to([q(".fan"), q(".ind"), q(".il")], { opacity: 0, y: -60, duration: 0.35, ease: "power2.in" }, tv);
+          tl.to(q(".carw"), { opacity: 1, duration: 0.01 }, tv + 0.3);
+          tl.fromTo(q(".carw"), { x: -900 }, { x: 0, duration: 0.6, ease: "power3.out", immediateRender: false }, tv + 0.3);
+          ["r0", "r1", "r2"].forEach(function (r, i) {
+            tl.fromTo(q("." + r), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(3)", immediateRender: false }, T("problemas") - 0.2 + i * 0.06);
+            tl.to(q("." + r), { opacity: 0, scale: 0, y: -40, duration: 0.25, ease: "power2.in" }, T("acabado") + i * 0.06);
+          });
+          tl.fromTo(q(".chk"), { opacity: 0, scale: 0, rotation: -90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)", immediateRender: false }, T("tudo") - 0.1);
+          tl.fromTo(q(".tc"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)", immediateRender: false }, T("dê") - 0.1);
           window.__timelines["s51"] = tl;
         })();
       </script>
