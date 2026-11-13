@@ -186,43 +186,48 @@
     .card {
       display: grid; column-gap: 22px; row-gap: 14px;
       grid-template-columns: 200px 1fr;
-      grid-template-rows: auto auto 1fr auto;
-      grid-template-areas: "art top" "art text" "art meta" "art actions";
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas: "art text" "art meta" "art actions";
     }
-    .card-top { grid-area: top; }
     .card-art { grid-area: art; height: auto; min-height: 100%; padding: 16px; }
-    .card .card-art .big { font-size: 40px; line-height: 1; }
+    .card .card-art .big { font-size: 50px; }
     .card-text { grid-area: text; }
     .card .meta { grid-area: meta; align-self: end; }
     .card .actions { grid-area: actions; }
   }
 
-  .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  .org {
-    display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
-    font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
-    background: rgba(255,255,255,.08); border: 1px solid var(--stroke);
-  }
-  .org i { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--orange)); box-shadow: 0 0 12px var(--c, var(--orange)); }
   .bf-tag {
-    font-family: "Anton", sans-serif; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
-    padding: 6px 10px; border-radius: 8px; color: var(--navy); background: #fff;
-    transform: rotate(-3deg);
+    position: absolute; top: 12px; left: 12px;
+    font-family: "Anton", sans-serif; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 5px 9px; border-radius: 7px; color: var(--navy); background: #fff;
+    transform: rotate(-3deg); box-shadow: 0 6px 16px -6px rgba(0,0,0,.5);
   }
 
   .card-art {
-    position: relative; height: 128px; border-radius: 16px; overflow: hidden;
+    position: relative; height: 196px; border-radius: 16px; overflow: hidden;
     background:
       radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--c) 70%, transparent), transparent 60%),
       radial-gradient(120% 140% at 100% 100%, rgba(39, 42, 96, .95), transparent 65%),
       #0e1030;
     border: 1px solid rgba(255,255,255,.08);
-    display: flex; align-items: flex-end; padding: 14px 16px;
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 12px;
+    padding: 16px 18px;
   }
+  /* 1º destaque: órgão */
   .card-art .big {
-    font-family: "Anton", sans-serif; font-size: 58px; line-height: .85; text-transform: uppercase; letter-spacing: .01em;
-    color: rgba(255,255,255,.92); text-shadow: 0 6px 30px rgba(0,0,0,.35);
+    font-family: "Anton", sans-serif; font-size: 72px; line-height: .9; text-transform: uppercase; letter-spacing: .01em;
+    color: #fff; text-shadow: 0 6px 30px rgba(0,0,0,.35); white-space: nowrap;
   }
+  /* 2º destaque: escolaridade */
+  .level {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 12px; border-radius: 999px;
+    font-size: 12.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--navy-ink); background: var(--sky);
+    box-shadow: 0 6px 18px -8px rgba(0,0,0,.6);
+  }
+  .level::before { content: "🎓"; font-size: 13px; letter-spacing: 0; }
+  .level.superior { background: var(--orange-hi); }
   .card-art .year {
     position: absolute; top: 12px; right: 14px; font-weight: 800; font-size: 12px; letter-spacing: .14em; color: rgba(255,255,255,.75);
     padding: 4px 8px; border-radius: 6px; background: rgba(0,0,0,.25); backdrop-filter: blur(6px);
@@ -346,23 +351,23 @@
 
   const PRODUCTS = [
     {
-      org: "DPE-RJ", big: "Técnico", year: "2026",
+      org: "DPE-RJ", year: "2026", level: "Nível médio",
       title: "Combo Técnico Nível Médio · DPE-RJ 2026",
       role: "Técnico Médio de Defensoria Pública do Rio de Janeiro.",
-      tags: ["Nível médio", "Combo"],
+      tags: ["Técnico", "Combo"],
       page: "https://www.revisalei.com.br/produtos/combo-tecnico-nivel-medio-dpe-rj-2026/",
       buy:  "https://pay.hotmart.com/T105378734D"
     },
     {
-      org: "DPE-RJ", big: "Superior", year: "2026",
+      org: "DPE-RJ", year: "2026", level: "Nível superior",
       title: "Combo Técnico Nível Superior · DPE-RJ 2026",
       role: "Técnico Superior de Defensoria Pública do Rio de Janeiro.",
-      tags: ["Nível superior", "Combo"],
+      tags: ["Técnico", "Combo"],
       page: "https://www.revisalei.com.br/produtos/combo-tecnico-nivel-superior-dpe-rj-2026/",
       buy:  "https://pay.hotmart.com/J105378805G"
     },
     {
-      org: "TRF2", big: "TJAA", year: "TRF2",
+      org: "TRF2", year: "", level: "Nível superior",
       title: "Combo TJAA · TRF2",
       role: "Técnico Judiciário – Área Administrativa do TRF da 2ª Região.",
       tags: ["Técnico", "Combo"],
@@ -370,7 +375,7 @@
       buy:  "https://pay.hotmart.com/B106327574F"
     },
     {
-      org: "TRF2", big: "AJAJ", year: "TRF2",
+      org: "TRF2", year: "", level: "Nível superior",
       title: "Combo AJAJ · TRF2",
       role: "Analista Judiciário – Área Judiciária do TRF da 2ª Região.",
       tags: ["Analista", "Combo"],
@@ -378,7 +383,7 @@
       buy:  "https://pay.hotmart.com/G106280965L"
     },
     {
-      org: "INSS", big: "INSS", year: "2026",
+      org: "INSS", year: "2026", level: "Nível médio",
       title: "Combo INSS 2026 · Técnico do Seguro Social",
       role: "Revisão completa para o cargo de Técnico do Seguro Social.",
       tags: ["Técnico", "Combo"],
@@ -386,7 +391,7 @@
       buy:  "https://pay.hotmart.com/V106327772B"
     },
     {
-      org: "INSS", big: "INSS", year: "2026",
+      org: "INSS", year: "2026", level: "Nível médio",
       title: "Combo INSS 2026 · Técnico do Seguro Social (opção 2)",
       role: "Segunda opção de combo para o cargo de Técnico do Seguro Social.",
       tags: ["Técnico", "Combo"],
@@ -394,15 +399,15 @@
       buy:  "https://pay.hotmart.com/K107111232X?checkoutMode=10"
     },
     {
-      org: "TJSP", big: "Escre&shy;vente", year: "2026",
+      org: "TJSP", year: "2026", level: "Nível médio",
       title: "TJSP 2026 · Escrevente Técnico Judiciário",
       role: "Revisão para o cargo de Escrevente Técnico Judiciário do TJSP.",
-      tags: ["Nível médio", "Escrevente"],
+      tags: ["Escrevente", "Técnico"],
       page: "https://www.revisalei.com.br/produtos/tjsp-2026-escrevente/",
       buy:  "https://pay.hotmart.com/B104669251N?checkoutMode=10"
     },
     {
-      org: "TJSP", big: "Oficial", year: "2026",
+      org: "TJSP", year: "2026", level: "Nível superior",
       title: "TJSP 2026 · Oficial de Justiça",
       role: "Revisão para o cargo de Oficial de Justiça do TJSP.",
       tags: ["Oficial de Justiça"],
@@ -410,7 +415,7 @@
       buy:  "https://pay.hotmart.com/B107428693C?checkoutMode=10"
     },
     {
-      org: "TJDFT", big: "TJAA", year: "TJDFT",
+      org: "TJDFT", year: "", level: "Nível superior",
       title: "Combo TJAA · TJDFT",
       role: "Técnico Judiciário – Área Administrativa do TJDFT.",
       tags: ["Técnico", "Combo"],
@@ -418,7 +423,7 @@
       buy:  "https://pay.hotmart.com/T107649506Y"
     },
     {
-      org: "TJDFT", big: "AJAJ", year: "TJDFT",
+      org: "TJDFT", year: "", level: "Nível superior",
       title: "Combo AJAJ · TJDFT",
       role: "Analista Judiciário – Área Judiciária do TJDFT.",
       tags: ["Analista", "Combo"],
@@ -436,13 +441,11 @@
   const grid = document.getElementById("grid");
   grid.innerHTML = PRODUCTS.map(p => `
     <article class="card" data-org="${p.org}" style="--c:${ORGS[p.org]}">
-      <div class="card-top">
-        <span class="org"><i></i>${p.org}</span>
-        <span class="bf-tag">Black Friday</span>
-      </div>
-      <div class="card-art" aria-hidden="true">
-        <span class="year">${p.year}</span>
-        <span class="big">${p.big}</span>
+      <div class="card-art">
+        <span class="bf-tag" aria-hidden="true">Black Friday</span>
+        ${p.year ? `<span class="year" aria-hidden="true">${p.year}</span>` : ""}
+        <span class="big">${p.org}</span>
+        <span class="level ${p.level === "Nível superior" ? "superior" : ""}">${p.level}</span>
       </div>
       <div class="card-text">
         <h3>${p.title}</h3>
