@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Friday Revisalei</title>
+<meta name="description" content="Black Friday Revisalei: todos os combos de revisão para DPE-RJ, TRF2, INSS, TJSP e TJDFT em uma única página.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07060b;
+    --ink: #f6f3ff;
+    --muted: rgba(246, 243, 255, .66);
+    --faint: rgba(246, 243, 255, .42);
+    --glass: rgba(255, 255, 255, .06);
+    --glass-strong: rgba(255, 255, 255, .10);
+    --stroke: rgba(255, 255, 255, .14);
+    --stroke-hi: rgba(255, 255, 255, .28);
+    --gold: #ffcc33;
+    --orange: #ff7a1a;
+    --hot: #ff2e63;
+    --violet: #8b5cf6;
+    --radius: 22px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- fundo: manchas de luz + grão ---------- */
+  .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; animation: drift 22s ease-in-out infinite alternate; }
+  .b1 { width: 560px; height: 560px; background: var(--hot);    top: -160px; left: -140px; }
+  .b2 { width: 520px; height: 520px; background: var(--orange); top: 30%;    right: -180px; animation-delay: -6s; }
+  .b3 { width: 620px; height: 620px; background: var(--violet); bottom: -260px; left: 20%; animation-delay: -12s; opacity: .45; }
+  .b4 { width: 340px; height: 340px; background: var(--gold);   top: 55%;    left: -120px; animation-delay: -3s; opacity: .30; }
+  @keyframes drift {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(60px, 40px) scale(1.12); }
+  }
+  .grid-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 20%, #000 30%, transparent 75%);
+  }
+
+  .wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+
+  /* ---------- faixa rolante ---------- */
+  .ticker {
+    background: linear-gradient(90deg, var(--hot), var(--orange), var(--gold));
+    color: #0b0710; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    font-size: 13px; overflow: hidden; white-space: nowrap;
+  }
+  .ticker-track { display: inline-flex; gap: 32px; padding: 10px 0; animation: scroll 30s linear infinite; }
+  .ticker-track span::after { content: "✦"; margin-left: 32px; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* ---------- topo ---------- */
+  header.top { padding: 22px 0; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -.01em; text-decoration: none; color: var(--ink); }
+  .brand-mark {
+    width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--gold), var(--hot)); color: #0b0710; font-family: "Anton", sans-serif; font-size: 18px;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+    background: var(--glass); border: 1px solid var(--stroke); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    font-size: 13px; font-weight: 600; color: var(--muted);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--hot); box-shadow: 0 0 0 0 rgba(255,46,99,.7); animation: pulse 1.6s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(255,46,99,0); } 100% { box-shadow: 0 0 0 0 rgba(255,46,99,0); } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 40px 0 56px; text-align: center; }
+  .eyebrow { display: inline-block; margin-bottom: 18px; }
+  .hero h1 {
+    font-family: "Anton", Impact, sans-serif; font-weight: 400; text-transform: uppercase;
+    font-size: clamp(64px, 14vw, 168px); line-height: .9; letter-spacing: .01em;
+  }
+  .hero h1 .outline { color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,.85); display: block; }
+  .hero h1 .fill {
+    display: block;
+    background: linear-gradient(90deg, var(--gold), var(--orange) 45%, var(--hot));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 8px 40px rgba(255, 90, 60, .35));
+  }
+  .hero p.lead { max-width: 640px; margin: 22px auto 0; color: var(--muted); font-size: clamp(16px, 2.2vw, 19px); line-height: 1.55; }
+
+  .countdown { margin: 34px auto 0; display: inline-flex; flex-direction: column; align-items: center; gap: 12px; }
+  .countdown-label { font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
+  .clock { display: flex; gap: 10px; }
+  .unit {
+    min-width: 78px; padding: 14px 10px 10px; border-radius: 18px; text-align: center;
+    background: var(--glass); border: 1px solid var(--stroke);
+    backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+  }
+  .unit b { display: block; font-family: "Anton", sans-serif; font-weight: 400; font-size: 38px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .unit small { display: block; margin-top: 6px; font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: .12em; }
+  .today {
+    display: none; font-family: "Anton", sans-serif; font-size: 34px; text-transform: uppercase; letter-spacing: .02em;
+    padding: 12px 26px; border-radius: 18px; background: var(--glass); border: 1px solid var(--stroke); backdrop-filter: blur(18px);
+  }
+
+  .cta-row { margin-top: 34px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+  /* ---------- botões ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 22px; border-radius: 14px; font-weight: 700; font-size: 15px; text-decoration: none;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    cursor: pointer; border: 0; font-family: inherit;
+  }
+  .btn-hot {
+    color: #0b0710;
+    background: linear-gradient(135deg, var(--gold), var(--orange) 55%, var(--hot));
+    box-shadow: 0 10px 30px -8px rgba(255, 80, 60, .6), inset 0 1px 0 rgba(255,255,255,.45);
+  }
+  .btn-hot:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -8px rgba(255, 80, 60, .75), inset 0 1px 0 rgba(255,255,255,.45); }
+  .btn-glass {
+    color: var(--ink); background: var(--glass); border: 1px solid var(--stroke);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  }
+  .btn-glass:hover { background: var(--glass-strong); border-color: var(--stroke-hi); transform: translateY(-2px); }
+  .btn:focus-visible, .chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* ---------- filtros ---------- */
+  .catalog { padding: 24px 0 80px; }
+  .catalog-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+  .catalog-head h2 { font-family: "Anton", sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(32px, 5vw, 48px); line-height: 1; }
+  .catalog-head h2 span { color: var(--gold); }
+  .catalog-head p { color: var(--muted); margin-top: 8px; font-size: 15px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    padding: 9px 16px; border-radius: 999px; font: 600 14px/1 "Inter", sans-serif; color: var(--muted);
+    background: var(--glass); border: 1px solid var(--stroke); cursor: pointer;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: all .18s ease;
+  }
+  .chip:hover { color: var(--ink); border-color: var(--stroke-hi); }
+  .chip[aria-pressed="true"] { color: #0b0710; background: linear-gradient(135deg, var(--gold), var(--orange)); border-color: transparent; }
+
+  /* ---------- grade de produtos ---------- */
+  .grid {
+    display: grid; gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 680px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  .card {
+    position: relative; isolation: isolate; overflow: hidden;
+    display: flex; flex-direction: column; gap: 18px;
+    padding: 24px; border-radius: var(--radius);
+    background: linear-gradient(160deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+    border: 1px solid var(--stroke);
+    backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 20px 50px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.14);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .card::before { /* brilho que acompanha o cursor */
+    content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .25s ease;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 170, 60, .18), transparent 60%);
+  }
+  .card:hover { transform: translateY(-6px); border-color: var(--stroke-hi); box-shadow: 0 30px 60px -20px rgba(255, 60, 80, .35), inset 0 1px 0 rgba(255,255,255,.18); }
+  .card:hover::before { opacity: 1; }
+  .card.hidden { display: none; }
+  .card-text { display: block; }
+
+  /* telas largas: cards horizontais, um concurso por linha */
+  @media (min-width: 1040px) {
+    .card {
+      display: grid; column-gap: 22px; row-gap: 14px;
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-areas: "art top" "art text" "art meta" "art actions";
+    }
+    .card-top { grid-area: top; }
+    .card-art { grid-area: art; height: auto; min-height: 100%; padding: 16px; }
+    .card .card-art .big { font-size: 40px; line-height: 1; }
+    .card-text { grid-area: text; }
+    .card .meta { grid-area: meta; align-self: end; }
+    .card .actions { grid-area: actions; }
+  }
+
+  .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .org {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+    font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    background: rgba(255,255,255,.08); border: 1px solid var(--stroke);
+  }
+  .org i { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--gold)); box-shadow: 0 0 12px var(--c, var(--gold)); }
+  .bf-tag {
+    font-family: "Anton", sans-serif; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 8px; color: #0b0710; background: var(--ink);
+    transform: rotate(-3deg);
+  }
+
+  .card-art {
+    position: relative; height: 128px; border-radius: 16px; overflow: hidden;
+    background:
+      radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--c) 70%, transparent), transparent 60%),
+      radial-gradient(120% 140% at 100% 100%, rgba(255, 46, 99, .55), transparent 60%),
+      #120d1a;
+    border: 1px solid rgba(255,255,255,.08);
+    display: flex; align-items: flex-end; padding: 14px 16px;
+  }
+  .card-art .big {
+    font-family: "Anton", sans-serif; font-size: 58px; line-height: .85; text-transform: uppercase; letter-spacing: .01em;
+    color: rgba(255,255,255,.92); text-shadow: 0 6px 30px rgba(0,0,0,.35);
+  }
+  .card-art .year {
+    position: absolute; top: 12px; right: 14px; font-weight: 800; font-size: 12px; letter-spacing: .14em; color: rgba(255,255,255,.75);
+    padding: 4px 8px; border-radius: 6px; background: rgba(0,0,0,.25); backdrop-filter: blur(6px);
+  }
+
+  .card h3 { font-size: 20px; font-weight: 800; line-height: 1.25; letter-spacing: -.01em; }
+  .card .role { margin-top: 6px; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+  .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+  .meta span { font-size: 12px; font-weight: 600; color: var(--muted); padding: 5px 10px; border-radius: 8px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); }
+  .actions { display: grid; grid-template-columns: 1fr 1.3fr; gap: 10px; }
+  .actions .btn { padding: 13px 14px; font-size: 14px; }
+
+  .empty { display: none; text-align: center; color: var(--muted); padding: 40px 0; }
+
+  /* ---------- rodapé ---------- */
+  .banner {
+    margin: 0 auto 64px; padding: 36px 28px; border-radius: 28px; text-align: center;
+    background: linear-gradient(135deg, rgba(255,204,51,.14), rgba(255,46,99,.14));
+    border: 1px solid var(--stroke); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+  }
+  .banner h2 { font-family: "Anton", sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(28px, 4.6vw, 44px); line-height: 1.05; }
+  .banner p { color: var(--muted); margin: 12px auto 22px; max-width: 560px; line-height: 1.55; }
+  footer { padding: 28px 0 40px; border-top: 1px solid rgba(255,255,255,.08); color: var(--faint); font-size: 13px; text-align: center; }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 560px) {
+    .unit { min-width: 64px; padding: 12px 6px 8px; }
+    .unit b { font-size: 30px; }
+    .clock { gap: 8px; }
+    .top .pill { display: none; }
+    .actions { grid-template-columns: 1fr; }
+    .card { padding: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+  <div class="grid-lines"></div>
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="https://www.revisalei.com.br/" target="_blank" rel="noopener">
+      <span class="brand-mark">R</span> Revisalei
+    </a>
+    <span class="pill"><span class="dot"></span> Black Friday 2026</span>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <span class="pill eyebrow">🔥 Todos os combos em um só lugar</span>
+    <h1><span class="outline">Black</span><span class="fill">Friday</span></h1>
+    <p class="lead">Revisão da lei seca para os principais concursos de 2026: DPE-RJ, TRF2, INSS, TJSP e TJDFT. Escolha o seu combo e garanta a condição de Black Friday.</p>
+
+    <div class="countdown" id="countdown">
+      <span class="countdown-label" id="countdown-label">Black Friday começa em</span>
+      <div class="clock" id="clock">
+        <div class="unit"><b id="d">00</b><small>dias</small></div>
+        <div class="unit"><b id="h">00</b><small>horas</small></div>
+        <div class="unit"><b id="m">00</b><small>min</small></div>
+        <div class="unit"><b id="s">00</b><small>seg</small></div>
+      </div>
+      <div class="today" id="today">🔥 É hoje!</div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-hot" href="#combos">Ver todos os combos ↓</a>
+    </div>
+  </section>
+
+  <section class="catalog wrap" id="combos">
+    <div class="catalog-head">
+      <div>
+        <h2>Escolha o seu <span>combo</span></h2>
+        <p><span id="count">10</span> materiais disponíveis</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filtrar por concurso"></div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty">Nenhum combo para este filtro.</p>
+  </section>
+
+  <section class="wrap">
+    <div class="banner">
+      <h2>Não deixe a sua aprovação para depois</h2>
+      <p>A condição de Black Friday é por tempo limitado. Escolha o combo do seu concurso e comece a revisar hoje.</p>
+      <a class="btn btn-hot" href="#combos">Escolher meu combo</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Pagamento seguro processado pela Hotmart · <a href="https://www.revisalei.com.br/" target="_blank" rel="noopener">revisalei.com.br</a>
+  </div>
+</footer>
+
+<script>
+  // Data da Black Friday 2026 (horário de Brasília)
+  const BLACK_FRIDAY = new Date("2026-11-27T00:00:00-03:00");
+  const BLACK_FRIDAY_END = new Date("2026-11-28T00:00:00-03:00");
+
+  const ORGS = {
+    "DPE-RJ": "#ffcc33",
+    "TRF2":   "#38bdf8",
+    "INSS":   "#34d399",
+    "TJSP":   "#f472b6",
+    "TJDFT":  "#a78bfa"
+  };
+
+  const PRODUCTS = [
+    {
+      org: "DPE-RJ", big: "Técnico", year: "2026",
+      title: "Combo Técnico Nível Médio · DPE-RJ 2026",
+      role: "Técnico Médio de Defensoria Pública do Rio de Janeiro.",
+      tags: ["Nível médio", "Combo"],
+      page: "https://www.revisalei.com.br/produtos/combo-tecnico-nivel-medio-dpe-rj-2026/",
+      buy:  "https://pay.hotmart.com/T105378734D"
+    },
+    {
+      org: "DPE-RJ", big: "Superior", year: "2026",
+      title: "Combo Técnico Nível Superior · DPE-RJ 2026",
+      role: "Técnico Superior de Defensoria Pública do Rio de Janeiro.",
+      tags: ["Nível superior", "Combo"],
+      page: "https://www.revisalei.com.br/produtos/combo-tecnico-nivel-superior-dpe-rj-2026/",
+      buy:  "https://pay.hotmart.com/J105378805G"
+    },
+    {
+      org: "TRF2", big: "TJAA", year: "TRF2",
+      title: "Combo TJAA · TRF2",
+      role: "Técnico Judiciário – Área Administrativa do TRF da 2ª Região.",
+      tags: ["Técnico", "Combo"],
+      page: "https://www.revisalei.com.br/produtos/combo-tjaa-trf2/",
+      buy:  "https://pay.hotmart.com/B106327574F"
+    },
+    {
+      org: "TRF2", big: "AJAJ", year: "TRF2",
+      title: "Combo AJAJ · TRF2",
+      role: "Analista Judiciário – Área Judiciária do TRF da 2ª Região.",
+      tags: ["Analista", "Combo"],
+      page: "https://www.revisalei.com.br/produtos/combo-ajaj-trf2/",
+      buy:  "https://pay.hotmart.com/G106280965L"
+    },
+    {
+      org: "INSS", big: "INSS", year: "2026",
+      title: "Combo INSS 2026 · Técnico do Seguro Social",
+      role: "Revisão completa para o cargo de Técnico do Seguro Social.",
+      tags: ["Técnico", "Combo"],
+      page: "https://www.revisalei.com.br/produtos/combo-inss-2026-tecnico-seguridade/",
+      buy:  "https://pay.hotmart.com/V106327772B"
+    },
+    {
+      org: "INSS", big: "INSS", year: "2026",
+      title: "Combo INSS 2026 · Técnico do Seguro Social (opção 2)",
+      role: "Segunda opção de combo para o cargo de Técnico do Seguro Social.",
+      tags: ["Técnico", "Combo"],
+      page: "https://www.revisalei.com.br/produtos/combo-inss-2026-tecnico-seguridade-copy-copy/",
+      buy:  "https://pay.hotmart.com/K107111232X?checkoutMode=10"
+    },
+    {
+      org: "TJSP", big: "Escre&shy;vente", year: "2026",
+      title: "TJSP 2026 · Escrevente Técnico Judiciário",
+      role: "Revisão para o cargo de Escrevente Técnico Judiciário do TJSP.",
+      tags: ["Nível médio", "Escrevente"],
+      page: "https://www.revisalei.com.br/produtos/tjsp-2026-escrevente/",
+      buy:  "https://pay.hotmart.com/B104669251N?checkoutMode=10"
+    },
+    {
+      org: "TJSP", big: "Oficial", year: "2026",
+      title: "TJSP 2026 · Oficial de Justiça",
+      role: "Revisão para o cargo de Oficial de Justiça do TJSP.",
+      tags: ["Oficial de Justiça"],
+      page: "https://www.revisalei.com.br/produtos/tjsp-2026-oficial-de-justica/",
+      buy:  "https://pay.hotmart.com/B107428693C?checkoutMode=10"
+    },
+    {
+      org: "TJDFT", big: "TJAA", year: "TJDFT",
+      title: "Combo TJAA · TJDFT",
+      role: "Técnico Judiciário – Área Administrativa do TJDFT.",
+      tags: ["Técnico", "Combo"],
+      page: "https://www.revisalei.com.br/produtos/combo-tjaa-tjdft/",
+      buy:  "https://pay.hotmart.com/T107649506Y"
+    },
+    {
+      org: "TJDFT", big: "AJAJ", year: "TJDFT",
+      title: "Combo AJAJ · TJDFT",
+      role: "Analista Judiciário – Área Judiciária do TJDFT.",
+      tags: ["Analista", "Combo"],
+      page: "https://www.revisalei.com.br/produtos/combo-ajaj-tjdft/",
+      buy:  "https://pay.hotmart.com/U107649468V"
+    }
+  ];
+
+  // ---------- faixa rolante ----------
+  const tickerWords = ["Black Friday", "DPE-RJ", "TRF2", "INSS", "TJSP", "TJDFT", "Revisão da lei seca", "Oferta por tempo limitado"];
+  document.getElementById("ticker").innerHTML =
+    [...tickerWords, ...tickerWords, ...tickerWords, ...tickerWords].map(w => `<span>${w}</span>`).join("");
+
+  // ---------- grade ----------
+  const grid = document.getElementById("grid");
+  grid.innerHTML = PRODUCTS.map(p => `
+    <article class="card" data-org="${p.org}" style="--c:${ORGS[p.org]}">
+      <div class="card-top">
+        <span class="org"><i></i>${p.org}</span>
+        <span class="bf-tag">Black Friday</span>
+      </div>
+      <div class="card-art" aria-hidden="true">
+        <span class="year">${p.year}</span>
+        <span class="big">${p.big}</span>
+      </div>
+      <div class="card-text">
+        <h3>${p.title}</h3>
+        <p class="role">${p.role}</p>
+      </div>
+      <div class="meta">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
+      <div class="actions">
+        <a class="btn btn-glass" href="${p.page}" target="_blank" rel="noopener">Detalhes</a>
+        <a class="btn btn-hot" href="${p.buy}" target="_blank" rel="noopener">Comprar agora</a>
+      </div>
+    </article>
+  `).join("");
+
+  // brilho que segue o cursor
+  grid.addEventListener("pointermove", e => {
+    const card = e.target.closest(".card");
+    if (!card) return;
+    const r = card.getBoundingClientRect();
+    card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    card.style.setProperty("--my", `${e.clientY - r.top}px`);
+  });
+
+  // ---------- filtros ----------
+  const filters = document.getElementById("filters");
+  const options = ["Todos", ...Object.keys(ORGS)];
+  filters.innerHTML = options.map((o, i) =>
+    `<button class="chip" type="button" data-filter="${o}" aria-pressed="${i === 0}">${o}</button>`).join("");
+
+  filters.addEventListener("click", e => {
+    const btn = e.target.closest(".chip");
+    if (!btn) return;
+    const f = btn.dataset.filter;
+    filters.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === btn));
+    let visible = 0;
+    grid.querySelectorAll(".card").forEach(card => {
+      const show = f === "Todos" || card.dataset.org === f;
+      card.classList.toggle("hidden", !show);
+      if (show) visible++;
+    });
+    document.getElementById("count").textContent = visible;
+    document.getElementById("empty").style.display = visible ? "none" : "block";
+  });
+
+  // ---------- contagem regressiva ----------
+  const pad = n => String(n).padStart(2, "0");
+  function tick() {
+    const now = new Date();
+    const label = document.getElementById("countdown-label");
+    if (now >= BLACK_FRIDAY && now < BLACK_FRIDAY_END) {
+      document.getElementById("clock").style.display = "none";
+      document.getElementById("today").style.display = "block";
+      label.textContent = "Black Friday";
+      return;
+    }
+    if (now >= BLACK_FRIDAY_END) {
+      document.getElementById("countdown").style.display = "none";
+      return;
+    }
+    let diff = Math.floor((BLACK_FRIDAY - now) / 1000);
+    const d = Math.floor(diff / 86400); diff -= d * 86400;
+    const h = Math.floor(diff / 3600);  diff -= h * 3600;
+    const m = Math.floor(diff / 60);
+    const s = diff - m * 60;
+    document.getElementById("d").textContent = pad(d);
+    document.getElementById("h").textContent = pad(h);
+    document.getElementById("m").textContent = pad(m);
+    document.getElementById("s").textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
