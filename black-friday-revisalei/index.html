@@ -157,11 +157,35 @@
   .chip[aria-pressed="true"] { color: var(--navy-ink); background: linear-gradient(135deg, var(--orange-hi), var(--orange)); border-color: transparent; }
 
   /* ---------- grade de produtos ---------- */
-  .grid {
-    display: grid; gap: 20px;
-    grid-template-columns: 1fr;
+  .grid { display: flex; flex-direction: column; gap: 28px; }
+
+  /* agrupamento por concurso (sem backdrop-filter, para não anular o vidro dos cards) */
+  .group {
+    position: relative; padding: 18px; border-radius: 30px;
+    background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+    border: 1px solid rgba(255,255,255,.09);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
   }
-  @media (min-width: 680px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  .group::before { /* filete colorido do concurso */
+    content: ""; position: absolute; top: -1px; left: 28px; right: 28px; height: 2px; border-radius: 2px;
+    background: linear-gradient(90deg, transparent, var(--c), transparent); opacity: .9;
+  }
+  .group.hidden { display: none; }
+  .group-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 4px 6px 16px; }
+  .group-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); box-shadow: 0 0 14px var(--c); flex: none; }
+  .group-title { font-family: "Anton", sans-serif; font-weight: 400; font-size: 26px; line-height: 1; text-transform: uppercase; letter-spacing: .02em; }
+  .group-name { color: var(--muted); font-size: 14px; }
+  .group-count {
+    margin-left: auto; font-size: 12px; font-weight: 700; color: var(--muted);
+    padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  }
+  .group-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+  @media (min-width: 680px) { .group-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) {
+    .group { padding: 12px; border-radius: 24px; }
+    .group-head { padding: 6px 6px 12px; gap: 8px 10px; }
+    .group-name { order: 3; flex-basis: 100%; font-size: 13px; }
+  }
   .card {
     position: relative; isolation: isolate; overflow: hidden;
     display: flex; flex-direction: column; gap: 18px;
@@ -233,7 +257,7 @@
     padding: 4px 8px; border-radius: 6px; background: rgba(0,0,0,.25); backdrop-filter: blur(6px);
   }
 
-  .card h3 { font-size: 20px; font-weight: 800; line-height: 1.25; letter-spacing: -.01em; }
+  .card h4 { font-size: 20px; font-weight: 800; line-height: 1.25; letter-spacing: -.01em; }
   .card .role { margin-top: 6px; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
   .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
   .meta span { font-size: 12px; font-weight: 600; color: var(--muted); padding: 5px 10px; border-radius: 8px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); }
@@ -349,6 +373,14 @@
     "TJDFT":  "#5FA3B5"
   };
 
+  const ORG_NAMES = {
+    "DPE-RJ": "Defensoria Pública do Estado do Rio de Janeiro",
+    "TRF2":   "Tribunal Regional Federal da 2ª Região",
+    "INSS":   "Instituto Nacional do Seguro Social",
+    "TJSP":   "Tribunal de Justiça de São Paulo",
+    "TJDFT":  "Tribunal de Justiça do Distrito Federal e Territórios"
+  };
+
   const PRODUCTS = [
     {
       org: "DPE-RJ", year: "2026", level: "Nível médio",
@@ -439,7 +471,7 @@
 
   // ---------- grade ----------
   const grid = document.getElementById("grid");
-  grid.innerHTML = PRODUCTS.map(p => `
+  const cardHTML = p => `
     <article class="card" data-org="${p.org}" style="--c:${ORGS[p.org]}">
       <div class="card-art">
         <span class="bf-tag" aria-hidden="true">Black Friday</span>
@@ -448,7 +480,7 @@
         <span class="level ${p.level === "Nível superior" ? "superior" : ""}">${p.level}</span>
       </div>
       <div class="card-text">
-        <h3>${p.title}</h3>
+        <h4>${p.title}</h4>
         <p class="role">${p.role}</p>
       </div>
       <div class="meta">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
@@ -457,7 +489,22 @@
         <a class="btn btn-hot" href="${p.buy}" target="_blank" rel="noopener">Comprar agora</a>
       </div>
     </article>
-  `).join("");
+  `;
+
+  grid.innerHTML = Object.keys(ORGS).map(org => {
+    const items = PRODUCTS.filter(p => p.org === org);
+    if (!items.length) return "";
+    return `
+    <section class="group" data-org="${org}" style="--c:${ORGS[org]}" aria-labelledby="g-${org}">
+      <header class="group-head">
+        <span class="group-dot" aria-hidden="true"></span>
+        <h3 class="group-title" id="g-${org}">${org}</h3>
+        <span class="group-name">${ORG_NAMES[org]}</span>
+        <span class="group-count">${items.length} ${items.length === 1 ? "combo" : "combos"}</span>
+      </header>
+      <div class="group-grid">${items.map(cardHTML).join("")}</div>
+    </section>`;
+  }).join("");
 
   // brilho que segue o cursor
   grid.addEventListener("pointermove", e => {
@@ -480,10 +527,10 @@
     const f = btn.dataset.filter;
     filters.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === btn));
     let visible = 0;
-    grid.querySelectorAll(".card").forEach(card => {
-      const show = f === "Todos" || card.dataset.org === f;
-      card.classList.toggle("hidden", !show);
-      if (show) visible++;
+    grid.querySelectorAll(".group").forEach(group => {
+      const show = f === "Todos" || group.dataset.org === f;
+      group.classList.toggle("hidden", !show);
+      if (show) visible += group.querySelectorAll(".card").length;
     });
     document.getElementById("count").textContent = visible;
     document.getElementById("empty").style.display = visible ? "none" : "block";
